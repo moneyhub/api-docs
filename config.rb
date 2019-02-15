@@ -38,6 +38,9 @@ end
 activate :relative_assets
 set :relative_links, true
 
+# Enable live reload
+activate :livereload
+
 # Build Configuration
 configure :build do
   # If you're having trouble with Middleman hanging, commenting
