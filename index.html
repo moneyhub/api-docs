@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <link href="images/favicon.png" rel="icon" type="image/png" />
+    <title>Moneyhub Identity Service</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +202,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;javascript&quot;,&quot;javascript--nodejs&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +212,8 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="javascript">JavaScript</a>
+              <a href="#" data-language-name="javascript--nodejs">Node.JS</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -222,282 +221,424 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#moneyhub-identity-service" class="toc-h1 toc-link" data-title="Moneyhub Identity Service">Moneyhub Identity Service</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#overview" class="toc-h2 toc-link" data-title="Overview">Overview</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#scopes" class="toc-h2 toc-link" data-title="Scopes">Scopes</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#claims" class="toc-h2 toc-link" data-title="Claims">Claims</a>
+                  </li>
+                  <li>
+                    <a href="#our-openid-connect-implementation" class="toc-h2 toc-link" data-title="Our OpenID Connect Implementation">Our OpenID Connect Implementation</a>
+                  </li>
+                  <li>
+                    <a href="#registration" class="toc-h2 toc-link" data-title="Registration">Registration</a>
+                  </li>
+                  <li>
+                    <a href="#user-management" class="toc-h2 toc-link" data-title="User Management">User Management</a>
+                  </li>
+                  <li>
+                    <a href="#example-for-use-case-2" class="toc-h2 toc-link" data-title="Example for use case 2">Example for use case 2</a>
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-          </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id='moneyhub-identity-service'>Moneyhub Identity Service</h1><h6 id='version-0-8'>Version 0.8</h6>
+<p>We provide an OpenID Connect compliant interface that should work well with any OpenID Connect certified relying party software.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>This document will provide a high level overview, but we recommend that users familiarise themselves with the following specs:</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+<ul>
+<li><a href="http://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect Core</a></li>
+<li><a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_001.md">Financial Grade API Read Only Profile</a></li>
+<li><a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_002.md">Financial Grade API Read/Write Profile</a></li>
+</ul>
+<h2 id='overview'>Overview</h2>
+<p>Our identity service supports the following use cases:</p>
+
+<ol>
+<li>Allowing a user to connect to a financial institution and grant permissioned access to their data from that financial institution.</li>
+<li>Allowing a user to connect to multiple financial institutions through a single profile and gain access to the data from those institutions.</li>
+</ol>
+
+<p>We provide these features via an OpenID Provider interface that supports standard OAuth 2 based flows to issue access tokens that can be used to gain access to financial data via our API Gateway.</p>
+
+<p>For API documentation please see <a href="https://api.moneyhub.co.uk/docs">here</a>.</p>
+<h3 id='flow-for-use-case-1'>Flow for use case 1</h3>
+<ul>
+<li>Partner redirects user to identity service <code>/oidc/auth</code> with a scope param that contains the id of the bank to connect to and the level of data to gain consent for</li>
+<li>Moneyhub Identity service gains consent from the user to access their banking data</li>
+<li>Moneyhub Identity service redirects the user to the bank</li>
+<li>Bank authenticates the user and sends them back to the Moneyhub Identity Service</li>
+<li>Moneyhub redirects the user back to the partner with an <code>authorization_code</code></li>
+<li>Partner exchanges this code for an <code>access_token</code></li>
+<li>Partner uses the access token at the api gateway to access financial data</li>
+</ul>
+<h3 id='flow-for-use-case-2'>Flow for use case 2</h3>
+<ul>
+<li>Partner requests an access token from the identity service with the scope <code>user:create</code></li>
+<li>Partner uses this token to create a profile at the /user endpoint</li>
+<li>Partner redirects user to the identity service <code>/oidc/auth</code> with a scope param that contains the id of the bank to connect to, and with the id of the new user profile in the claims parameter</li>
+<li>Moneyhub Identity service gains consent from the user to access their banking data</li>
+<li>Moneyhub Identity service redirects the user to the bank</li>
+<li>Bank authenticates the user and sends them back to the Moneyhub Identity Service</li>
+<li>Moneyhub redirects the user back to the partner with an <code>id_token</code> that contains the <code>connection_id</code></li>
+<li>Partner requests an access token from the identity service with the scope of data access required and a custom <code>sub</code> parameter that contains the profile id</li>
+<li>Partner uses the access token at the api gateway to access financial data</li>
+</ul>
+
+<p>More detailed examples of the above flows are available later in this document.</p>
+<h2 id='scopes'>Scopes</h2>
+<p>We use scopes to both describe the access the user is granting and the way in which you would like the user to identify themselves.</p>
+
+<p>Below is a summary of the scopes we provide, please check our discovery document (available at /oidc/.well-known/openid-configuation to see which particular scopes are supported by a given deployment of our identity service).</p>
+<h3 id='scopes-indicating-the-manner-in-which-we-should-authenticate-the-user'>Scopes indicating the manner in which we should authenticate the user:</h3>
+<ul>
+<li><code>id:{bank_code}</code> - if you pass a specific bank code (available via the endpoints listed above) then we will bypass the bank chooser and take the user directly to the selected bank.</li>
+<li><code>id:all</code> - if you specify this scope we will display a list of all available connections</li>
+<li><code>id:api</code> - if you specify this scope we will display a list of the available API based connections</li>
+<li><code>id:legacy</code> - if you specify this scope we will display a list of the available legacy (screen scraping) connections</li>
+<li><code>id:test</code> - if you specify a type of connection then we will display a list of our test connections. This scope will be enabled by default when creating a new client</li>
+</ul>
+
+<p>The above scopes are mutually exclusive and we will return
+an error of <code>invalid_scope</code> if more than one of the above is supplied.</p>
+<h3 id='scopes-describing-data-to-be-requested'>Scopes describing data to be requested:</h3>
+<ul>
+<li><code>transactions:read:all</code> - All transactions</li>
+<li><code>transactions:read:in</code> - All incoming transactions</li>
+<li><code>transactions:read:out</code> - All outgoing transactions</li>
+</ul>
+
+<p>Note - the above transactions:read scopes are mutually exclusive - if more than one is provided there will be an <code>invalid_scope</code> error.</p>
+
+<ul>
+<li><code>transactions:write</code> - For all transactions that are able to be read it is possible to edit certain fields (e.g. category, notes, etc.). Please see the documentation on the transactions endpoint for details of which fields can be edited. If <code>transactions:write</code> is provided without any <code>transactions:read</code> scope there will be an <code>invalid_scope</code> error.</li>
+<li><code>transactions:write:all</code> - This allows full access to create transactions, edit all their properties and delete transactions. This scope is only available when issuing tokens for users that are managed by the client - i.e. use case 2.</li>
+<li><code>accounts:read</code> - Read access to all accounts</li>
+<li><code>accounts:write</code> - Write access to all accounts. Please see the accounts endpoint for details of which fields can be edited.</li>
+<li><code>accounts:write:all</code> - Full write access including the ability to delete accounts. This scope is only available when issuing tokens for users that are managed by the client - i.e. use case 2.</li>
+<li><code>categories:read</code> - Read access to a customer&#39;s categories.</li>
+<li><code>categories:write</code> - Write access to a customer&#39;s custom categories.</li>
+<li><code>spending_analysis:read</code> - Read access to a customer&#39;s spending analysis.</li>
+<li><code>spending_goals:read</code> - Read access to a customer&#39;s spending goals.</li>
+<li><code>spending_goals:write</code> - Write access to a customer&#39;s spending goals.</li>
+<li><code>spending_goals:write:all</code> - Full write access to spending goals, including the ability to delete goals.</li>
+<li><code>savings_goals:read</code> - Read access to a customer&#39;s saving goals.</li>
+<li><code>savings_goals:write</code> - Write access to a customer&#39;s saving goals.</li>
+<li><code>savings_goals:write:all</code> - Full write access to saving goals, including the ability to delete goals.</li>
+</ul>
+<h3 id='scopes-describing-connection-lifecycle-flows'>Scopes describing connection lifecycle flows:</h3>
+<p>Some of the OpenBanking APIs that we connect to require the user to re-authenticate every 90 days. In addition we have screen-scraping connections that the user will need to update if their credentials change. In order to support these flows we support the following scopes:</p>
+
+<ul>
+<li><code>reauth</code></li>
+<li><code>refresh</code></li>
+</ul>
+
+<p>These scopes require a claims parameter to be sent that contains a <code>sub</code> value and a <code>mh:con_id</code> value. Moneyhub will then take the user through a re-authentication journey or &quot;refresh&quot; journey.</p>
+
+<p>We advise that the above 2 scopes are used with the response_type of <code>id_token</code> rather than <code>code id_token</code>. This is because the access token issued at the end of such a flow is of no value and can only be introspected to confirm the values already present in the id_token.</p>
+
+<p>The only scope that can (and must) be supplied along with either <code>reauth</code> or <code>refresh</code> is <code>openid</code>. If any other scope is provided the result will be an <code>invalid_scope</code> error.</p>
+<h3 id='other-scopes'>Other Scopes</h3>
+<ul>
+<li><code>openid</code> - this scope is required and indicates that you are using our OpenID Connect interface. We will return an id token as described in the OpenID Connect Core spec. You can request specific claims to be present in the id token using the claims parameter described in OpenID Connect Core. For details on what claims we support, please see below.</li>
+<li><code>offline_access</code> - this scope indicates that you would like ongoing access to the user&#39;s resources, when it is present we will issue a refresh token</li>
+<li><code>user:create</code> - this scope is only supported with the client credentials grant type. It allows a relying party to create a new user profile.</li>
+<li><code>user:read</code> - this scope is only supported with the client credentials grant type. It allows a relying party to access their user profiles.</li>
+</ul>
+<h2 id='claims'>Claims</h2>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>To add a new account for a registered user via either openbanking or
+screen scraping the following parameters would be sent in the request object:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"scope"</span><span class="p">:</span> <span class="s2">"openid id:all"</span><span class="p">,</span>
+  <span class="s2">"claims"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"id_token"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nl">sub</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">essential</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">value</span><span class="p">:</span> <span class="s2">"24400320"</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="s2">"mh:con_id"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"essential"</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>On completion of the connection, the connection id is returned in the id token as below:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="s2">"iss"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://identity.moneyhub.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24400320"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"aud"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s6BhdRkqt3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"n-0S6_WzA2Mj"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1311281970</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"iat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1311280970</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mh:con_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"the-connection-id"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<p>Moneyhub uses the OpenID Connect <a href="http://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter">claims parameter</a> for the following purposes:</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<ol>
+<li>Specifying the connection that should be re-authorised or refreshed</li>
+<li>Specifying the user profile that an account should be added to</li>
+</ol>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>The format of the claims parameter may seem odd to those unfamiliar with OpenID Connect, but it has the advantage of being a standards compliant technique of supporting the above purposes. It is supported by many OpenID Connect relying party libraries.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p>Our discovery document details the <code>claims</code> that we support, they currently include:</p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<ul>
+<li><code>sub</code> - the subject (user id) that the authorization request should be scoped to (for adding, reauth and refresh)</li>
+<li><code>mh:con_id</code> - the connection id that the authorization request should be scoped to (for reauth and refresh)</li>
+</ul>
+<h2 id='our-openid-connect-implementation'>Our OpenID Connect Implementation</h2>
+<p>Moneyhub supports the following endpoints:</p>
+<h3 id='authorization-endpoint'>Authorization Endpoint</h3>
+<p>As described <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint">here</a></p>
+
+<p>We support the use of request objects and the claims parameter at this endpoint.</p>
+<h3 id='token-endpoint'>Token Endpoint</h3>
+<p>As described <a href="http://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint">here</a></p>
+
+<p>We support the following grant types:</p>
+
+<ul>
+<li><code>authorization_code</code></li>
+<li><code>client_credentials</code></li>
+<li><code>refresh_token</code></li>
+</ul>
+
+<p>The <code>authorization_code</code> and <code>refresh_token</code> grant types are implemented exactly as according to the specs in <a href="https://tools.ietf.org/html/rfc6749">RFC6749</a> and <a href="http://openid.net/specs/openid-connect-core-1_0.html">OIDC</a>.</p>
+
+<p>The <code>client_credentials</code> grant supports a custom parameter of <code>sub</code>. This is a required parameter for any scope apart from the <code>user:create</code> or <code>user:read</code> scopes.</p>
+<h3 id='discovery'>Discovery</h3>
+<p>As described <a href="http://openid.net/specs/openid-connect-discovery-1_0.html">here</a></p>
+
+<p>Our discovery document is available <a href="https://identity.moneyhub.co.uk/oidc/.well-known/openid-configuration">here</a>.
+It will contain our up-to-date machine readable configuration
+and for example will list our:</p>
+
+<ul>
+<li>token endpoint</li>
+<li>authorization endpoint</li>
+<li>jwks endpoint</li>
+<li>scopes that we support</li>
+<li>claims that we support</li>
+<li>the cryptographic algorithms we support</li>
+<li>the response types we support</li>
+</ul>
+
+<p>Examples of discovery metadata from other providers are:</p>
+
+<ul>
+<li><a href="https://accounts.google.com/.well-known/openid-configuration">Google</a></li>
+<li><a href="https://login.windows.net/contoso.onmicrosoft.com/.well-known/openid-configuration">Microsoft</a></li>
+</ul>
+<h3 id='bank-connections'>Bank connections</h3>
+<p>We have 4 lists of available bank connections:</p>
+
+<ul>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/all-connections">all connections</a></li>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/api-connections">API connections</a></li>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/legacy-connections">screen-scraping connections</a></li>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/test-connections">test connections</a></li>
+</ul>
+
+<p>Every client you create will have access to the test connections by default. Access to the real connections via the API
+will need to be requested.</p>
+
+<p>Every connection will have the following properties:</p>
+
+<ul>
+<li><code>id</code> - bank connection id (used to request an authorization url for a specific bank)</li>
+<li><code>name</code></li>
+<li><code>type</code> - the type of bank connection (<code>api</code>, <code>legacy</code> or <code>test</code>)</li>
+<li><code>bankRef</code> - reference that uniquely identities a set of connections as being part of the same institution (e.g. HSBC Open banking and HSBC credit cards). It is used to group a set of connections by the banking institution they refer to</li>
+<li><code>parentRef</code> - this property is now deprecated. Please use <code>bankRef</code> instead</li>
+<li><code>iconUrl</code> - the url of the bank icon SVG. Please be aware we don&#39;t have icons for all the connections we provide. For the missing icons you can either use your own set or use our generic bank icon found at this url: <a href="https://identity.moneyhub.co.uk/bank-icons/default">https://identity.moneyhub.co.uk/bank-icons/default</a></li>
+<li><code>accountTypes</code> - an array containing the types of accounts supported by the connection (<code>cash</code>, <code>card</code>, <code>pension</code>, <code>mortgage</code>, <code>investment</code>, <code>loan</code>) and a beta boolean value flagging which accounts types for that connection are currently being developed and may not have a 100% success rate</li>
+<li><code>userTypes</code> - an array of user account types supported by the bank connection (<code>personal</code> and <code>business</code>)</li>
+</ul>
+<h3 id='response-types'>Response Types</h3>
+<p>Our discovery doc will list the response types that we support. Currently these are: <code>code</code>, <code>code id_token</code> and <code>id_token</code>.</p>
+
+<p><code>code</code> is fairly straight forward and is the standard OAuth 2
+authorization code flow.</p>
+
+<p><code>code id_token</code> is one of the variants of the hybrid flow and isn&#39;t always understood. At a basic level it means that we will send an <code>id_token</code> along with the authorization code when we redirect the user back to your <code>redirect_uri</code>. This id_token doesn&#39;t contain any identity information, but is rather a detached signature which cryptographically binds the authorization_code we send back with the nonce and the state that you sent to us. It prevents a certain class of code interception attacks and we encourage implementers to use it rather than the basic authorization code flow.</p>
+<h3 id='request-object'>Request Object</h3>
+<p>OpenID Connect defines the request object - this is a JWT that contains the standard OAuth 2.0 parameters such as: <code>client_id</code>, <code>scope</code>, <code>state</code>, etc.</p>
+
+<p>We encourage implementers to use this and may require it for certain use cases.</p>
+
+<p>The request object allows you to sign the request parameters and prevents tampering. This can prevent a certain class of attacks against OAuth 2.0.</p>
+
+<p>More information about request objects is available <a href="http://openid.net/specs/openid-connect-core-1_0.html#JWTRequests">here</a></p>
+<h3 id='jwks-endpoints-amp-asymmetric-signatures'>JWKS Endpoints &amp; Asymmetric Signatures</h3>
+<p>We use jwks endpoints to support the rotation of signing keys as described <a href="http://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys">here</a></p>
+
+<p>As part of registering your client software with us, we will ask you for your own jwks endpoint.</p>
+
+<p>If you don&#39;t yet have one, we strongly encourage you to implement one. JWKS endpoints provide a neat method to achieve key rotation without any interruption to service or any need for bilateral communication.</p>
+
+<p>They enable you to manage your keys in which ever manner you see fit and removes the need for the <code>client_secret</code>.</p>
+
+<p>For more information about the benefits of this approach or advice
+on implementing, please contact us.</p>
+<h2 id='registration'>Registration</h2>
+<p>We plan to support <a href="https://openid.net/specs/openid-connect-registration-1_0.html">dyanamic client registration</a>, but currently in order to register your software with us we will ask you to send the following information:</p>
+
+<ul>
+<li><code>redirect_uris</code></li>
+<li><code>client_name</code></li>
+<li><code>logo_uri</code></li>
+<li><code>jwks_uri</code></li>
+<li><code>id_token_signed_response_alg</code></li>
+<li><code>request_object_signing_alg</code></li>
+</ul>
+
+<p>Definitions of the above can be found <a href="https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata">here</a></p>
+<h2 id='user-management'>User Management</h2>
+<p>To support use case 2, the following RESTful routes are available:</p>
+<h3 id='post-users'>POST /users</h3>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST /users HTTP/1.1
+Host: identity.moneyhub.co.uk
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkFObVlmU0dfa2J0MktScFRLbzdRQ05IMl9SSy0wYTc4N3lqbTA3encifQ.eyJqdGkiOiJjcEVPMk11dVJscmtDfkdDQ3Rqa0IiLCJpc3MiOiJodHRwOi8vaWRlbnRpdHkuZGV2LjEyNy4wLjAuMS5uaXAuaW8vb2lkYyIsImlhdCI6MTUzNDQ5MzU0MSwiZXhwIjoxNTM0NDk0MTQxLCJzY29wZSI6InVzZXI6Y3JlYXRlIiwiYXVkIjoiODk4YzUyOWItYzA2Mi00ZjI2LWExMzYtZmQ4YmM0NjJkNTgzIn0.AMU266O-wgmz-6SOfSF_Bq0LQhoAgytaInwCKhT-tXQ6Z_L0I75blmRujnKALK-LG08ny_gemtDWUEmD2mjyHgO-vtmiSNMHF2T5z2GS3k4VOUbGKVjFY5kK9QfoUCR_WCpUEPd64LHe_IaR0rMAzaKcVLRhtjin9yAB-goif683ESBFQLDrnojzdcOxWtP1x_qGSNBOMqJ6RDk7H65aBCXJj5eee11EW71G1Q3C3_MyJqTYdwXbAzkE-8XLDznDqZzVmm4erFUTN3TuB5L7af2pendAWitGEeshHKRpgeHI3EQrNj98-UIyemVV9tUK76x2ojiV1ge7ZpnYeNCO0A
+Content-Type: application/json
+
+{
+  "clientUserId":"some-id"
+}
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Example response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+  </span><span class="s2">"clientUserId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"328278302947678c0fc37f54"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"898c529b-c062-4f26-a136-fd8bc462d583"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"scopes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user:create"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"managedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
+<p>This allows an API client to create a new &quot;user&quot;. Once this user has been created the following operations are possible:</p>
 
-<p>The Kittn API uses the following error codes:</p>
+<ul>
+<li>starting an authorisation flow to connect a financial provider to that user</li>
+<li>gaining an access token for that user</li>
+<li>using that access token to get and create financial resources for that user</li>
+</ul>
 
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
+<p>This route requires an access token from the client credentials grant with the scope of <code>user:create</code>.</p>
+
+<p>It accepts a JSON body with a single parameter: <code>clientUserId</code>. This is optional but allows an API cilent to persist it&#39;s own identifier against the user.</p>
+<h3 id='get-users'>GET /users</h3>
+<p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
+It returns an array of all the users associated with your api client.</p>
+<h3 id='get-users-id'>GET /users/:id</h3>
+<p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
+It returns a single user associated with your api client.</p>
+<h2 id='example-for-use-case-2'>Example for use case 2</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="p">{</span> <span class="nx">access_token</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">grant</span><span class="p">({</span>
+  <span class="na">grant_type</span><span class="p">:</span> <span class="s2">"client_credentials"</span><span class="p">,</span>
+  <span class="na">scope</span><span class="p">:</span> <span class="s2">"user:create"</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="kr">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">got</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`#{identityServiceUrl}/`</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">Authorization</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">access_token</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="p">{</span> <span class="na">clientUserId</span><span class="p">:</span> <span class="s2">"some-id"</span> <span class="p">},</span>
+<span class="p">})</span>
+
+<span class="kr">const</span> <span class="nx">authParams</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">client_id</span><span class="p">:</span> <span class="nx">client_id</span><span class="p">,</span>
+  <span class="na">scope</span><span class="p">:</span> <span class="s2">"openid id:some-bankid"</span><span class="p">,</span>
+  <span class="na">state</span><span class="p">:</span> <span class="s2">"your-state-value"</span><span class="p">,</span>
+  <span class="na">redirect_uri</span><span class="p">:</span> <span class="nx">redirect_uri</span><span class="p">,</span>
+  <span class="na">response_type</span><span class="p">:</span> <span class="s2">"code"</span><span class="p">,</span>
+  <span class="na">prompt</span><span class="p">:</span> <span class="s2">"consent"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">claims</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">id_token</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">sub</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">essential</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="na">value</span><span class="p">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">userId</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">mh</span><span class="p">:</span><span class="na">con_id</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">essential</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">requestObject</span><span class="p">({</span>
+  <span class="p">...</span><span class="nx">authParams</span><span class="p">,</span>
+  <span class="nx">claims</span><span class="p">,</span>
+  <span class="na">max_age</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">client</span><span class="p">.</span><span class="nx">authorizationUrl</span><span class="p">({</span>
+  <span class="p">...</span><span class="nx">authParams</span><span class="p">,</span>
+  <span class="nx">request</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="c1">// redirect the user to this url</span>
+<span class="c1">// if everything is succesful they will be redirected to your `redirect_uri` with `code` and `state` as query parameters.</span>
+
+<span class="kr">const</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">authorizationCallback</span><span class="p">(</span>
+  <span class="nx">redirect_uri</span><span class="p">,</span>
+  <span class="p">{</span> <span class="nx">code</span><span class="p">,</span> <span class="nx">state</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">state</span><span class="p">:</span> <span class="nx">expectedState</span> <span class="p">}</span>
+<span class="p">)</span>
+<span class="c1">// these tokens confirm that the account has been added, however cannot be used for data access</span>
+<span class="c1">// the `id_token` will contain the id of the connection that has just been created</span>
+
+<span class="kr">const</span> <span class="p">{</span> <span class="nx">access_token</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">grant</span><span class="p">({</span>
+  <span class="na">grant_type</span><span class="p">:</span> <span class="s2">"client_credentials"</span><span class="p">,</span>
+  <span class="na">scope</span><span class="p">:</span> <span class="s2">"accounts:read transactions:read:all"</span><span class="p">,</span>
+  <span class="na">sub</span><span class="p">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">userId</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">got</span><span class="p">(</span><span class="s2">`#{resourceServerUrl}/accounts`</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">Authorization</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">access_token</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="kr">const</span> <span class="nx">transactions</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">got</span><span class="p">(</span><span class="s2">`#{resourceServerUrl}/transactions`</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">Authorization</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">access_token</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">})</span>
+</code></pre>
+<p>This example assumes the use of an OpenID Client (e.g. <a href="https://github.com/panva/node-openid-client">https://github.com/panva/node-openid-client</a>)</p>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="javascript">JavaScript</a>
+                <a href="#" data-language-name="javascript--nodejs">Node.JS</a>
           </div>
       </div>
     </div>
