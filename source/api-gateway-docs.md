@@ -6929,10 +6929,10 @@ Bearer
 ```json
 {
   "categoryId": "string",
-  "startDate": "2019-02-18",
-  "endDate": "2019-02-18",
-  "startDateModified": "2019-02-18",
-  "endDateModified": "2019-02-18",
+  "startDate": "2019-02-19",
+  "endDate": "2019-02-19",
+  "startDateModified": "2019-02-19",
+  "endDateModified": "2019-02-19",
   "limit": 0,
   "offset": 0,
   "text": "string",

@@ -1,5 +1,5 @@
 ---
-title: Moneyhub Identity Service
+title: Moneyhub API Documentation
 language_tabs:
   - shell: Shell
   - http: HTTP
@@ -16,7 +16,6 @@ highlight_theme: darkula
 headingLevel: 2
 
 ---
-
 # Moneyhub Identity Service
 
 ###### Version 0.8
@@ -7350,10 +7349,10 @@ Bearer
 ```json
 {
   "categoryId": "string",
-  "startDate": "2019-02-18",
-  "endDate": "2019-02-18",
-  "startDateModified": "2019-02-18",
-  "endDateModified": "2019-02-18",
+  "startDate": "2019-02-19",
+  "endDate": "2019-02-19",
+  "startDateModified": "2019-02-19",
+  "endDateModified": "2019-02-19",
   "limit": 0,
   "offset": 0,
   "text": "string",
