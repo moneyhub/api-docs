@@ -1,4 +1,4 @@
-# Moneyhub Identity Service
+# Authentication/Authorization API
 
 ###### Version 0.8
 
@@ -10,7 +10,7 @@ This document will provide a high level overview, but we recommend that users fa
 - [Financial Grade API Read Only Profile](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_001.md)
 - [Financial Grade API Read/Write Profile](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_002.md)
 
-## Overview
+# Overview
 
 Our identity service supports the following use cases:
 
@@ -21,7 +21,7 @@ We provide these features via an OpenID Provider interface that supports standar
 
 For API documentation please see [here](https://api.moneyhub.co.uk/docs).
 
-### Flow for use case 1
+## Flow for use case 1
 
 - Partner redirects user to identity service `/oidc/auth` with a scope param that contains the id of the bank to connect to and the level of data to gain consent for
 - Moneyhub Identity service gains consent from the user to access their banking data
@@ -31,7 +31,7 @@ For API documentation please see [here](https://api.moneyhub.co.uk/docs).
 - Partner exchanges this code for an `access_token`
 - Partner uses the access token at the api gateway to access financial data
 
-### Flow for use case 2
+## Flow for use case 2
 
 - Partner requests an access token from the identity service with the scope `user:create`
 - Partner uses this token to create a profile at the /user endpoint
@@ -45,13 +45,13 @@ For API documentation please see [here](https://api.moneyhub.co.uk/docs).
 
 More detailed examples of the above flows are available later in this document.
 
-## Scopes
+# Scopes
 
 We use scopes to both describe the access the user is granting and the way in which you would like the user to identify themselves.
 
 Below is a summary of the scopes we provide, please check our discovery document (available at /oidc/.well-known/openid-configuation to see which particular scopes are supported by a given deployment of our identity service).
 
-### Scopes indicating the manner in which we should authenticate the user:
+## Scopes indicating the manner in which we should authenticate the user:
 
 - `id:{bank_code}` - if you pass a specific bank code (available via the endpoints listed above) then we will bypass the bank chooser and take the user directly to the selected bank.
 - `id:all` - if you specify this scope we will display a list of all available connections
@@ -62,7 +62,7 @@ Below is a summary of the scopes we provide, please check our discovery document
 The above scopes are mutually exclusive and we will return
 an error of `invalid_scope` if more than one of the above is supplied.
 
-### Scopes describing data to be requested:
+## Scopes describing data to be requested:
 
 - `transactions:read:all` - All transactions
 - `transactions:read:in` - All incoming transactions
@@ -85,7 +85,7 @@ Note - the above transactions:read scopes are mutually exclusive - if more than 
 - `savings_goals:write` - Write access to a customer's saving goals.
 - `savings_goals:write:all` - Full write access to saving goals, including the ability to delete goals.
 
-### Scopes describing connection lifecycle flows:
+## Scopes describing connection lifecycle flows:
 
 Some of the OpenBanking APIs that we connect to require the user to re-authenticate every 90 days. In addition we have screen-scraping connections that the user will need to update if their credentials change. In order to support these flows we support the following scopes:
 
@@ -98,14 +98,14 @@ We advise that the above 2 scopes are used with the response_type of `id_token` 
 
 The only scope that can (and must) be supplied along with either `reauth` or `refresh` is `openid`. If any other scope is provided the result will be an `invalid_scope` error.
 
-### Other Scopes
+## Other Scopes
 
 - `openid` - this scope is required and indicates that you are using our OpenID Connect interface. We will return an id token as described in the OpenID Connect Core spec. You can request specific claims to be present in the id token using the claims parameter described in OpenID Connect Core. For details on what claims we support, please see below.
 - `offline_access` - this scope indicates that you would like ongoing access to the user's resources, when it is present we will issue a refresh token
 - `user:create` - this scope is only supported with the client credentials grant type. It allows a relying party to create a new user profile.
 - `user:read` - this scope is only supported with the client credentials grant type. It allows a relying party to access their user profiles.
 
-## Claims
+# Claims
 
 > To add a new account for a registered user via either openbanking or
 screen scraping the following parameters would be sent in the request object:
@@ -153,17 +153,17 @@ Our discovery document details the `claims` that we support, they currently incl
 - `sub` - the subject (user id) that the authorization request should be scoped to (for adding, reauth and refresh)
 - `mh:con_id` - the connection id that the authorization request should be scoped to (for reauth and refresh)
 
-## Our OpenID Connect Implementation
+# Our OpenID Connect Implementation
 
 Moneyhub supports the following endpoints:
 
-### Authorization Endpoint
+## Authorization Endpoint
 
 As described [here](http://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint)
 
 We support the use of request objects and the claims parameter at this endpoint.
 
-### Token Endpoint
+## Token Endpoint
 
 As described [here](http://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint)
 
@@ -177,7 +177,7 @@ The `authorization_code` and `refresh_token` grant types are implemented exactly
 
 The `client_credentials` grant supports a custom parameter of `sub`. This is a required parameter for any scope apart from the `user:create` or `user:read` scopes.
 
-### Discovery
+## Discovery
 
 As described [here](http://openid.net/specs/openid-connect-discovery-1_0.html)
 
@@ -198,7 +198,7 @@ Examples of discovery metadata from other providers are:
 - [Google](https://accounts.google.com/.well-known/openid-configuration)
 - [Microsoft](https://login.windows.net/contoso.onmicrosoft.com/.well-known/openid-configuration)
 
-### Bank connections
+## Bank connections
 
 We have 4 lists of available bank connections:
 
@@ -220,7 +220,7 @@ Every connection will have the following properties:
 - `accountTypes` - an array containing the types of accounts supported by the connection (`cash`, `card`, `pension`, `mortgage`, `investment`, `loan`) and a beta boolean value flagging which accounts types for that connection are currently being developed and may not have a 100% success rate
 - `userTypes` - an array of user account types supported by the bank connection (`personal` and `business`)
 
-### Response Types
+## Response Types
 
 Our discovery doc will list the response types that we support. Currently these are: `code`, `code id_token` and `id_token`.
 
@@ -229,7 +229,7 @@ authorization code flow.
 
 `code id_token` is one of the variants of the hybrid flow and isn't always understood. At a basic level it means that we will send an `id_token` along with the authorization code when we redirect the user back to your `redirect_uri`. This id_token doesn't contain any identity information, but is rather a detached signature which cryptographically binds the authorization_code we send back with the nonce and the state that you sent to us. It prevents a certain class of code interception attacks and we encourage implementers to use it rather than the basic authorization code flow.
 
-### Request Object
+## Request Object
 
 OpenID Connect defines the request object - this is a JWT that contains the standard OAuth 2.0 parameters such as: `client_id`, `scope`, `state`, etc.
 
@@ -240,7 +240,7 @@ The request object allows you to sign the request parameters and prevents tamper
 More information about request objects is available here:
 http://openid.net/specs/openid-connect-core-1_0.html#JWTRequests
 
-### JWKS Endpoints & Asymmetric Signatures
+## JWKS Endpoints & Asymmetric Signatures
 
 We use jwks endpoints to support the rotation of signing keys:
 http://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys
@@ -254,7 +254,7 @@ They enable you to manage your keys in which ever manner you see fit and removes
 For more information about the benefits of this approach or advice
 on implementing, please contact us.
 
-## Registration
+# Registration
 
 We plan to support dyanamic client registration (https://openid.net/specs/openid-connect-registration-1_0.html), but currently in order to register your software with us we will ask you to send the following information:
 
@@ -268,11 +268,11 @@ We plan to support dyanamic client registration (https://openid.net/specs/openid
 Definitions of the above can be found here:
 https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata
 
-## User Management
+# User Management
 
 To support use case 2, the following RESTful routes are available:
 
-### POST /users
+## POST /users
 
 > Example request:
 
@@ -309,17 +309,17 @@ This route requires an access token from the client credentials grant with the s
 
 It accepts a JSON body with a single parameter: `clientUserId`. This is optional but allows an API cilent to persist it's own identifier against the user.
 
-### GET /users
+## GET /users
 
 This route requires an access token from the client credentials grant with the scope of `user:read`.
 It returns an array of all the users associated with your api client.
 
-### GET /users/:id
+## GET /users/:id
 
 This route requires an access token from the client credentials grant with the scope of `user:read`.
 It returns a single user associated with your api client.
 
-## Example for use case 2
+# Example for use case 2
 
 ```javascript
 const { access_token } = await client.grant({
