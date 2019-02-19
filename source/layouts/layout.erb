@@ -23,6 +23,8 @@ under the License.
   end
 %>
 
+<% SECTIONS_TO_SEPARATE = ["Moneyhub Enterprise v2.0.0"] %>
+
 <!doctype html>
 <html>
   <head>
@@ -72,6 +74,9 @@ under the License.
       <% end %>
       <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
+          <% if SECTIONS_TO_SEPARATE.include? h1[:title] %>
+            <li class="separator" />
+          <% end %>
           <li>
             <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
             <% if h1[:children].length > 0 %>

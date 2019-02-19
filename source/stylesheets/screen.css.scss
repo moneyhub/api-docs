@@ -151,6 +151,12 @@ html, body {
     transition-duration: 200ms;
   }
 
+  li.separator {
+    padding: 0.5em 0;
+    margin-top: 1em;
+    border-top: 1px dashed #666;
+  }
+
   // This is the currently selected ToC entry
   .toc-link.active {
     background-color: $nav-active-bg;
