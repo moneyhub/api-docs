@@ -86,7 +86,6 @@ parse_args() {
 }
 
 main() {
-  update_docs
   parse_args "$@"
 
   enable_expanded_output
@@ -219,6 +218,7 @@ sanitize() {
   "$@" 2> >(filter 1>&2) | filter
 }
 
+update_docs
 if [[ $1 = --source-only ]]; then
   run_build
 elif [[ $1 = --push-only ]]; then
