@@ -211,7 +211,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo.png" class="logo" alt="Logo" />
+      <img src="images/logo.svg" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">Shell</a>
               <a href="#" data-language-name="http">HTTP</a>
@@ -228,29 +228,85 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#moneyhub-identity-service" class="toc-h1 toc-link" data-title="Moneyhub Identity Service">Moneyhub Identity Service</a>
+            <a href="#authentication-authorization-api" class="toc-h1 toc-link" data-title="Authentication/Authorization API">Authentication/Authorization API</a>
+          </li>
+          <li>
+            <a href="#overview" class="toc-h1 toc-link" data-title="Overview">Overview</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#overview" class="toc-h2 toc-link" data-title="Overview">Overview</a>
+                    <a href="#flow-for-use-case-1" class="toc-h2 toc-link" data-title="Flow for use case 1">Flow for use case 1</a>
                   </li>
                   <li>
-                    <a href="#scopes" class="toc-h2 toc-link" data-title="Scopes">Scopes</a>
+                    <a href="#flow-for-use-case-2" class="toc-h2 toc-link" data-title="Flow for use case 2">Flow for use case 2</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#scopes" class="toc-h1 toc-link" data-title="Scopes">Scopes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#scopes-indicating-the-manner-in-which-we-should-authenticate-the-user" class="toc-h2 toc-link" data-title="Scopes indicating the manner in which we should authenticate the user:">Scopes indicating the manner in which we should authenticate the user:</a>
                   </li>
                   <li>
-                    <a href="#claims" class="toc-h2 toc-link" data-title="Claims">Claims</a>
+                    <a href="#scopes-describing-data-to-be-requested" class="toc-h2 toc-link" data-title="Scopes describing data to be requested:">Scopes describing data to be requested:</a>
                   </li>
                   <li>
-                    <a href="#our-openid-connect-implementation" class="toc-h2 toc-link" data-title="Our OpenID Connect Implementation">Our OpenID Connect Implementation</a>
+                    <a href="#scopes-describing-connection-lifecycle-flows" class="toc-h2 toc-link" data-title="Scopes describing connection lifecycle flows:">Scopes describing connection lifecycle flows:</a>
                   </li>
                   <li>
-                    <a href="#registration" class="toc-h2 toc-link" data-title="Registration">Registration</a>
+                    <a href="#other-scopes" class="toc-h2 toc-link" data-title="Other Scopes">Other Scopes</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#claims" class="toc-h1 toc-link" data-title="Claims">Claims</a>
+          </li>
+          <li>
+            <a href="#our-openid-connect-implementation" class="toc-h1 toc-link" data-title="Our OpenID Connect Implementation">Our OpenID Connect Implementation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#authorization-endpoint" class="toc-h2 toc-link" data-title="Authorization Endpoint">Authorization Endpoint</a>
                   </li>
                   <li>
-                    <a href="#user-management" class="toc-h2 toc-link" data-title="User Management">User Management</a>
+                    <a href="#token-endpoint" class="toc-h2 toc-link" data-title="Token Endpoint">Token Endpoint</a>
                   </li>
                   <li>
-                    <a href="#example-for-use-case-2" class="toc-h2 toc-link" data-title="Example for use case 2">Example for use case 2</a>
+                    <a href="#discovery" class="toc-h2 toc-link" data-title="Discovery">Discovery</a>
                   </li>
+                  <li>
+                    <a href="#bank-connections" class="toc-h2 toc-link" data-title="Bank connections">Bank connections</a>
+                  </li>
+                  <li>
+                    <a href="#response-types" class="toc-h2 toc-link" data-title="Response Types">Response Types</a>
+                  </li>
+                  <li>
+                    <a href="#request-object" class="toc-h2 toc-link" data-title="Request Object">Request Object</a>
+                  </li>
+                  <li>
+                    <a href="#jwks-endpoints-amp-asymmetric-signatures" class="toc-h2 toc-link" data-title="JWKS Endpoints &amp; Asymmetric Signatures">JWKS Endpoints &amp; Asymmetric Signatures</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#registration" class="toc-h1 toc-link" data-title="Registration">Registration</a>
+          </li>
+          <li>
+            <a href="#user-management" class="toc-h1 toc-link" data-title="User Management">User Management</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#post-users" class="toc-h2 toc-link" data-title="POST /users">POST /users</a>
+                  </li>
+                  <li>
+                    <a href="#get-users" class="toc-h2 toc-link" data-title="GET /users">GET /users</a>
+                  </li>
+                  <li>
+                    <a href="#get-users-id" class="toc-h2 toc-link" data-title="GET /users/:id">GET /users/:id</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#example-for-use-case-2" class="toc-h1 toc-link" data-title="Example for use case 2">Example for use case 2</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#this-example-assumes-the-use-of-an-openid-client-e-g-https-github-com-panva-node-openid-client" class="toc-h2 toc-link" data-title="This example assumes the use of an OpenID Client (e.g. https://github.com/panva/node-openid-client)">This example assumes the use of an OpenID Client (e.g. https://github.com/panva/node-openid-client)</a>
                   </li>
@@ -473,7 +529,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='moneyhub-identity-service'>Moneyhub Identity Service</h1><h6 id='version-0-8'>Version 0.8</h6>
+        <h1 id='authentication-authorization-api'>Authentication/Authorization API</h1><h6 id='version-0-8'>Version 0.8</h6>
 <p>We provide an OpenID Connect compliant interface that should work well with any OpenID Connect certified relying party software.</p>
 
 <p>This document will provide a high level overview, but we recommend that users familiarise themselves with the following specs:</p>
@@ -483,7 +539,7 @@
 <li><a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_001.md">Financial Grade API Read Only Profile</a></li>
 <li><a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_002.md">Financial Grade API Read/Write Profile</a></li>
 </ul>
-<h2 id='overview'>Overview</h2>
+<h1 id='overview'>Overview</h1>
 <p>Our identity service supports the following use cases:</p>
 
 <ol>
@@ -494,7 +550,7 @@
 <p>We provide these features via an OpenID Provider interface that supports standard OAuth 2 based flows to issue access tokens that can be used to gain access to financial data via our API Gateway.</p>
 
 <p>For API documentation please see <a href="https://api.moneyhub.co.uk/docs">here</a>.</p>
-<h3 id='flow-for-use-case-1'>Flow for use case 1</h3>
+<h2 id='flow-for-use-case-1'>Flow for use case 1</h2>
 <ul>
 <li>Partner redirects user to identity service <code>/oidc/auth</code> with a scope param that contains the id of the bank to connect to and the level of data to gain consent for</li>
 <li>Moneyhub Identity service gains consent from the user to access their banking data</li>
@@ -504,7 +560,7 @@
 <li>Partner exchanges this code for an <code>access_token</code></li>
 <li>Partner uses the access token at the api gateway to access financial data</li>
 </ul>
-<h3 id='flow-for-use-case-2'>Flow for use case 2</h3>
+<h2 id='flow-for-use-case-2'>Flow for use case 2</h2>
 <ul>
 <li>Partner requests an access token from the identity service with the scope <code>user:create</code></li>
 <li>Partner uses this token to create a profile at the /user endpoint</li>
@@ -518,11 +574,11 @@
 </ul>
 
 <p>More detailed examples of the above flows are available later in this document.</p>
-<h2 id='scopes'>Scopes</h2>
+<h1 id='scopes'>Scopes</h1>
 <p>We use scopes to both describe the access the user is granting and the way in which you would like the user to identify themselves.</p>
 
 <p>Below is a summary of the scopes we provide, please check our discovery document (available at /oidc/.well-known/openid-configuation to see which particular scopes are supported by a given deployment of our identity service).</p>
-<h3 id='scopes-indicating-the-manner-in-which-we-should-authenticate-the-user'>Scopes indicating the manner in which we should authenticate the user:</h3>
+<h2 id='scopes-indicating-the-manner-in-which-we-should-authenticate-the-user'>Scopes indicating the manner in which we should authenticate the user:</h2>
 <ul>
 <li><code>id:{bank_code}</code> - if you pass a specific bank code (available via the endpoints listed above) then we will bypass the bank chooser and take the user directly to the selected bank.</li>
 <li><code>id:all</code> - if you specify this scope we will display a list of all available connections</li>
@@ -533,7 +589,7 @@
 
 <p>The above scopes are mutually exclusive and we will return
 an error of <code>invalid_scope</code> if more than one of the above is supplied.</p>
-<h3 id='scopes-describing-data-to-be-requested'>Scopes describing data to be requested:</h3>
+<h2 id='scopes-describing-data-to-be-requested'>Scopes describing data to be requested:</h2>
 <ul>
 <li><code>transactions:read:all</code> - All transactions</li>
 <li><code>transactions:read:in</code> - All incoming transactions</li>
@@ -558,7 +614,7 @@ an error of <code>invalid_scope</code> if more than one of the above is supplied
 <li><code>savings_goals:write</code> - Write access to a customer&#39;s saving goals.</li>
 <li><code>savings_goals:write:all</code> - Full write access to saving goals, including the ability to delete goals.</li>
 </ul>
-<h3 id='scopes-describing-connection-lifecycle-flows'>Scopes describing connection lifecycle flows:</h3>
+<h2 id='scopes-describing-connection-lifecycle-flows'>Scopes describing connection lifecycle flows:</h2>
 <p>Some of the OpenBanking APIs that we connect to require the user to re-authenticate every 90 days. In addition we have screen-scraping connections that the user will need to update if their credentials change. In order to support these flows we support the following scopes:</p>
 
 <ul>
@@ -571,14 +627,14 @@ an error of <code>invalid_scope</code> if more than one of the above is supplied
 <p>We advise that the above 2 scopes are used with the response_type of <code>id_token</code> rather than <code>code id_token</code>. This is because the access token issued at the end of such a flow is of no value and can only be introspected to confirm the values already present in the id_token.</p>
 
 <p>The only scope that can (and must) be supplied along with either <code>reauth</code> or <code>refresh</code> is <code>openid</code>. If any other scope is provided the result will be an <code>invalid_scope</code> error.</p>
-<h3 id='other-scopes'>Other Scopes</h3>
+<h2 id='other-scopes'>Other Scopes</h2>
 <ul>
 <li><code>openid</code> - this scope is required and indicates that you are using our OpenID Connect interface. We will return an id token as described in the OpenID Connect Core spec. You can request specific claims to be present in the id token using the claims parameter described in OpenID Connect Core. For details on what claims we support, please see below.</li>
 <li><code>offline_access</code> - this scope indicates that you would like ongoing access to the user&#39;s resources, when it is present we will issue a refresh token</li>
 <li><code>user:create</code> - this scope is only supported with the client credentials grant type. It allows a relying party to create a new user profile.</li>
 <li><code>user:read</code> - this scope is only supported with the client credentials grant type. It allows a relying party to access their user profiles.</li>
 </ul>
-<h2 id='claims'>Claims</h2>
+<h1 id='claims'>Claims</h1>
 <blockquote>
 <p>To add a new account for a registered user via either openbanking or
 screen scraping the following parameters would be sent in the request object:</p>
@@ -626,13 +682,13 @@ screen scraping the following parameters would be sent in the request object:</p
 <li><code>sub</code> - the subject (user id) that the authorization request should be scoped to (for adding, reauth and refresh)</li>
 <li><code>mh:con_id</code> - the connection id that the authorization request should be scoped to (for reauth and refresh)</li>
 </ul>
-<h2 id='our-openid-connect-implementation'>Our OpenID Connect Implementation</h2>
+<h1 id='our-openid-connect-implementation'>Our OpenID Connect Implementation</h1>
 <p>Moneyhub supports the following endpoints:</p>
-<h3 id='authorization-endpoint'>Authorization Endpoint</h3>
+<h2 id='authorization-endpoint'>Authorization Endpoint</h2>
 <p>As described <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint">here</a></p>
 
 <p>We support the use of request objects and the claims parameter at this endpoint.</p>
-<h3 id='token-endpoint'>Token Endpoint</h3>
+<h2 id='token-endpoint'>Token Endpoint</h2>
 <p>As described <a href="http://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint">here</a></p>
 
 <p>We support the following grant types:</p>
@@ -646,7 +702,7 @@ screen scraping the following parameters would be sent in the request object:</p
 <p>The <code>authorization_code</code> and <code>refresh_token</code> grant types are implemented exactly as according to the specs in <a href="https://tools.ietf.org/html/rfc6749">RFC6749</a> and <a href="http://openid.net/specs/openid-connect-core-1_0.html">OIDC</a>.</p>
 
 <p>The <code>client_credentials</code> grant supports a custom parameter of <code>sub</code>. This is a required parameter for any scope apart from the <code>user:create</code> or <code>user:read</code> scopes.</p>
-<h3 id='discovery'>Discovery</h3>
+<h2 id='discovery'>Discovery</h2>
 <p>As described <a href="http://openid.net/specs/openid-connect-discovery-1_0.html">here</a></p>
 
 <p>Our discovery document is available <a href="https://identity.moneyhub.co.uk/oidc/.well-known/openid-configuration">here</a>.
@@ -669,7 +725,7 @@ and for example will list our:</p>
 <li><a href="https://accounts.google.com/.well-known/openid-configuration">Google</a></li>
 <li><a href="https://login.windows.net/contoso.onmicrosoft.com/.well-known/openid-configuration">Microsoft</a></li>
 </ul>
-<h3 id='bank-connections'>Bank connections</h3>
+<h2 id='bank-connections'>Bank connections</h2>
 <p>We have 4 lists of available bank connections:</p>
 
 <ul>
@@ -691,14 +747,14 @@ will need to be requested.</p>
 - <code>iconUrl</code> - the url of the bank icon SVG. Please be aware we don&#39;t have icons for all the connections we provide. For the missing icons you can either use your own set or use our generic bank icon found at this url: <code>https://identity.moneyhub.co.uk/bank-icons/default</code>
 - <code>accountTypes</code> - an array containing the types of accounts supported by the connection (<code>cash</code>, <code>card</code>, <code>pension</code>, <code>mortgage</code>, <code>investment</code>, <code>loan</code>) and a beta boolean value flagging which accounts types for that connection are currently being developed and may not have a 100% success rate
 - <code>userTypes</code> - an array of user account types supported by the bank connection (<code>personal</code> and <code>business</code>)</p>
-<h3 id='response-types'>Response Types</h3>
+<h2 id='response-types'>Response Types</h2>
 <p>Our discovery doc will list the response types that we support. Currently these are: <code>code</code>, <code>code id_token</code> and <code>id_token</code>.</p>
 
 <p><code>code</code> is fairly straight forward and is the standard OAuth 2
 authorization code flow.</p>
 
 <p><code>code id_token</code> is one of the variants of the hybrid flow and isn&#39;t always understood. At a basic level it means that we will send an <code>id_token</code> along with the authorization code when we redirect the user back to your <code>redirect_uri</code>. This id_token doesn&#39;t contain any identity information, but is rather a detached signature which cryptographically binds the authorization_code we send back with the nonce and the state that you sent to us. It prevents a certain class of code interception attacks and we encourage implementers to use it rather than the basic authorization code flow.</p>
-<h3 id='request-object'>Request Object</h3>
+<h2 id='request-object'>Request Object</h2>
 <p>OpenID Connect defines the request object - this is a JWT that contains the standard OAuth 2.0 parameters such as: <code>client_id</code>, <code>scope</code>, <code>state</code>, etc.</p>
 
 <p>We encourage implementers to use this and may require it for certain use cases.</p>
@@ -707,7 +763,7 @@ authorization code flow.</p>
 
 <p>More information about request objects is available here:
 http://openid.net/specs/openid-connect-core-1_0.html#JWTRequests</p>
-<h3 id='jwks-endpoints-amp-asymmetric-signatures'>JWKS Endpoints &amp; Asymmetric Signatures</h3>
+<h2 id='jwks-endpoints-amp-asymmetric-signatures'>JWKS Endpoints &amp; Asymmetric Signatures</h2>
 <p>We use jwks endpoints to support the rotation of signing keys:
 http://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys</p>
 
@@ -719,7 +775,7 @@ http://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys</p>
 
 <p>For more information about the benefits of this approach or advice
 on implementing, please contact us.</p>
-<h2 id='registration'>Registration</h2>
+<h1 id='registration'>Registration</h1>
 <p>We plan to support dyanamic client registration (https://openid.net/specs/openid-connect-registration-1_0.html), but currently in order to register your software with us we will ask you to send the following information:</p>
 
 <ul>
@@ -733,9 +789,9 @@ on implementing, please contact us.</p>
 
 <p>Definitions of the above can be found here:
 https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata</p>
-<h2 id='user-management'>User Management</h2>
+<h1 id='user-management'>User Management</h1>
 <p>To support use case 2, the following RESTful routes are available:</p>
-<h3 id='post-users'>POST /users</h3>
+<h2 id='post-users'>POST /users</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -770,13 +826,13 @@ Content-Type: application/json
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:create</code>.</p>
 
 <p>It accepts a JSON body with a single parameter: <code>clientUserId</code>. This is optional but allows an API cilent to persist it&#39;s own identifier against the user.</p>
-<h3 id='get-users'>GET /users</h3>
+<h2 id='get-users'>GET /users</h2>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
 It returns an array of all the users associated with your api client.</p>
-<h3 id='get-users-id'>GET /users/:id</h3>
+<h2 id='get-users-id'>GET /users/:id</h2>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
 It returns a single user associated with your api client.</p>
-<h2 id='example-for-use-case-2'>Example for use case 2</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="p">{</span> <span class="nx">access_token</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">grant</span><span class="p">({</span>
+<h1 id='example-for-use-case-2'>Example for use case 2</h1><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="p">{</span> <span class="nx">access_token</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">grant</span><span class="p">({</span>
   <span class="na">grant_type</span><span class="p">:</span> <span class="s2">"client_credentials"</span><span class="p">,</span>
   <span class="na">scope</span><span class="p">:</span> <span class="s2">"user:create"</span><span class="p">,</span>
 <span class="p">})</span>
