@@ -20,8 +20,17 @@ Options:
 "
 
 
+
 run_build() {
   bundle exec middleman build --clean
+}
+
+update_docs() {
+  # get the doc files from identity service and api gateway and merge them
+  # together into index.html.md
+  curl -o ./src/identity-docs.md  http://identity.dev.127.0.0.1.nip.io/docs.md
+  curl -o ./src/api-gateway-docs.md  http://apigateway.dev.127.0.0.1.nip.io/docs.md
+  cat ./src/identity-docs.md ./src/api-gateway-docs.md > .src/index.html.md
 }
 
 parse_args() {
