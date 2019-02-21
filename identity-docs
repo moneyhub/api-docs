@@ -1,4 +1,4 @@
-<h1 id='authentication-authorization-api'>Authentication/Authorization API</h1><h6 id='version-0-8'>Version 0.8</h6>
+<h1 id='moneyhub-auth-api'>Moneyhub Auth API</h1><h6 id='version-0-8'>Version 0.8</h6>
 <p>We provide an OpenID Connect compliant interface that should work well with any OpenID Connect certified relying party software.</p>
 
 <p>This document will provide a high level overview, but we recommend that users familiarise themselves with the following specs:</p>
@@ -18,7 +18,8 @@
 
 <p>We provide these features via an OpenID Provider interface that supports standard OAuth 2 based flows to issue access tokens that can be used to gain access to financial data via our API Gateway.</p>
 
-<p>For API documentation please see <a href="https://api.moneyhub.co.uk/docs">here</a>.</p>
+<p>For API documentation please see <a href="https://moneyhub.github.io/api-docs/#moneyhub-data-api">here</a>.
+For interactive swagger documentaion please see <a href="https://api.moneyhub.co.uk/docs">here</a>.</p>
 <h2 id='flow-for-use-case-1'>Flow for use case 1</h2>
 <ul>
 <li>Partner redirects user to identity service <code>/oidc/auth</code> with a scope param that contains the id of the bank to connect to and the level of data to gain consent for</li>
@@ -108,21 +109,21 @@ an error of <code>invalid_scope</code> if more than one of the above is supplied
 <p>To add a new account for a registered user via either openbanking or
 screen scraping the following parameters would be sent in the request object:</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
-  <span class="s2">"scope"</span><span class="p">:</span> <span class="s2">"openid id:all"</span><span class="p">,</span>
-  <span class="s2">"claims"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"id_token"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nl">sub</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nl">essential</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="nx">value</span><span class="p">:</span> <span class="s2">"24400320"</span><span class="p">,</span>
-      <span class="p">},</span>
-      <span class="s2">"mh:con_id"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"essential"</span><span class="p">:</span> <span class="kc">true</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"openid id:all"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"claims"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id_token"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24400320"</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"mh:con_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>On completion of the connection, the connection id is returned in the id token as below:</p>
 </blockquote>
@@ -198,10 +199,10 @@ and for example will list our:</p>
 <p>We have 4 lists of available bank connections:</p>
 
 <ul>
-<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/all-connections">all connections</a></li>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/all-connections">All connections</a></li>
 <li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/api-connections">API connections</a></li>
-<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/legacy-connections">screen-scraping connections</a></li>
-<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/test-connections">test connections</a></li>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/legacy-connections">Screen-scraping connections</a></li>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/test-connections">Test connections</a></li>
 </ul>
 
 <p>Every client you create will have access to the test connections by default. Access to the real connections via the API
@@ -301,80 +302,80 @@ It returns an array of all the users associated with your api client.</p>
 <h2 id='get-users-id'>GET /users/:id</h2>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
 It returns a single user associated with your api client.</p>
-<h1 id='example-for-use-case-2'>Example for use case 2</h1><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="p">{</span> <span class="nx">access_token</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">grant</span><span class="p">({</span>
-  <span class="na">grant_type</span><span class="p">:</span> <span class="s2">"client_credentials"</span><span class="p">,</span>
-  <span class="na">scope</span><span class="p">:</span> <span class="s2">"user:create"</span><span class="p">,</span>
-<span class="p">})</span>
+<h1 id='example-for-use-case-2'>Example for use case 2</h1><pre class="highlight plaintext"><code>const { access_token } = await client.grant({
+  grant_type: "client_credentials",
+  scope: "user:create",
+})
 
-<span class="kr">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">got</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`#{identityServiceUrl}/`</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">Authorization</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">access_token</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
-  <span class="p">},</span>
-  <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="na">body</span><span class="p">:</span> <span class="p">{</span> <span class="na">clientUserId</span><span class="p">:</span> <span class="s2">"some-id"</span> <span class="p">},</span>
-<span class="p">})</span>
+const user = await got.post(`#{identityServiceUrl}/`, {
+  headers: {
+    Authorization: `Bearer ${access_token}`,
+  },
+  json: true,
+  body: { clientUserId: "some-id" },
+})
 
-<span class="kr">const</span> <span class="nx">authParams</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">client_id</span><span class="p">:</span> <span class="nx">client_id</span><span class="p">,</span>
-  <span class="na">scope</span><span class="p">:</span> <span class="s2">"openid id:some-bankid"</span><span class="p">,</span>
-  <span class="na">state</span><span class="p">:</span> <span class="s2">"your-state-value"</span><span class="p">,</span>
-  <span class="na">redirect_uri</span><span class="p">:</span> <span class="nx">redirect_uri</span><span class="p">,</span>
-  <span class="na">response_type</span><span class="p">:</span> <span class="s2">"code"</span><span class="p">,</span>
-  <span class="na">prompt</span><span class="p">:</span> <span class="s2">"consent"</span><span class="p">,</span>
-<span class="p">}</span>
+const authParams = {
+  client_id: client_id,
+  scope: "openid id:some-bankid",
+  state: "your-state-value",
+  redirect_uri: redirect_uri,
+  response_type: "code",
+  prompt: "consent",
+}
 
-<span class="kr">const</span> <span class="nx">claims</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">id_token</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">sub</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">essential</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="na">value</span><span class="p">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">userId</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="na">mh</span><span class="p">:</span><span class="na">con_id</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">essential</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="p">},</span>
-  <span class="p">},</span>
-<span class="p">}</span>
+const claims = {
+  id_token: {
+    sub: {
+      essential: true,
+      value: user.userId,
+    },
+    mh:con_id: {
+      essential: true,
+    },
+  },
+}
 
-<span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">requestObject</span><span class="p">({</span>
-  <span class="p">...</span><span class="nx">authParams</span><span class="p">,</span>
-  <span class="nx">claims</span><span class="p">,</span>
-  <span class="na">max_age</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
-<span class="p">})</span>
+const request = await client.requestObject({
+  ...authParams,
+  claims,
+  max_age: 86400,
+})
 
-<span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">client</span><span class="p">.</span><span class="nx">authorizationUrl</span><span class="p">({</span>
-  <span class="p">...</span><span class="nx">authParams</span><span class="p">,</span>
-  <span class="nx">request</span><span class="p">,</span>
-<span class="p">})</span>
+const url = client.authorizationUrl({
+  ...authParams,
+  request,
+})
 
-<span class="c1">// redirect the user to this url</span>
-<span class="c1">// if everything is succesful they will be redirected to your `redirect_uri` with `code` and `state` as query parameters.</span>
+// redirect the user to this url
+// if everything is succesful they will be redirected to your `redirect_uri` with `code` and `state` as query parameters.
 
-<span class="kr">const</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">authorizationCallback</span><span class="p">(</span>
-  <span class="nx">redirect_uri</span><span class="p">,</span>
-  <span class="p">{</span> <span class="nx">code</span><span class="p">,</span> <span class="nx">state</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="na">state</span><span class="p">:</span> <span class="nx">expectedState</span> <span class="p">}</span>
-<span class="p">)</span>
-<span class="c1">// these tokens confirm that the account has been added, however cannot be used for data access</span>
-<span class="c1">// the `id_token` will contain the id of the connection that has just been created</span>
+const tokens = await client.authorizationCallback(
+  redirect_uri,
+  { code, state },
+  { state: expectedState }
+)
+// these tokens confirm that the account has been added, however cannot be used for data access
+// the `id_token` will contain the id of the connection that has just been created
 
-<span class="kr">const</span> <span class="p">{</span> <span class="nx">access_token</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">grant</span><span class="p">({</span>
-  <span class="na">grant_type</span><span class="p">:</span> <span class="s2">"client_credentials"</span><span class="p">,</span>
-  <span class="na">scope</span><span class="p">:</span> <span class="s2">"accounts:read transactions:read:all"</span><span class="p">,</span>
-  <span class="na">sub</span><span class="p">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">userId</span><span class="p">,</span>
-<span class="p">})</span>
+const { access_token } = await client.grant({
+  grant_type: "client_credentials",
+  scope: "accounts:read transactions:read:all",
+  sub: user.userId,
+})
 
-<span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">got</span><span class="p">(</span><span class="s2">`#{resourceServerUrl}/accounts`</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">Authorization</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">access_token</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
-  <span class="p">},</span>
-  <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="p">})</span>
+const accounts = await got(`#{resourceServerUrl}/accounts`, {
+  headers: {
+    Authorization: `Bearer ${access_token}`,
+  },
+  json: true,
+})
 
-<span class="kr">const</span> <span class="nx">transactions</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">got</span><span class="p">(</span><span class="s2">`#{resourceServerUrl}/transactions`</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">Authorization</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">access_token</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
-  <span class="p">},</span>
-  <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="p">})</span>
+const transactions = await got(`#{resourceServerUrl}/transactions`, {
+  headers: {
+    Authorization: `Bearer ${access_token}`,
+  },
+  json: true,
+})
 </code></pre>
 <p>This example assumes the use of an OpenID Client (e.g. https://github.com/panva/node-openid-client)</p>
