@@ -1,4 +1,4 @@
-# Authentication/Authorization API
+# Moneyhub Auth API
 
 ###### Version 0.8
 
@@ -19,7 +19,8 @@ Our identity service supports the following use cases:
 
 We provide these features via an OpenID Provider interface that supports standard OAuth 2 based flows to issue access tokens that can be used to gain access to financial data via our API Gateway.
 
-For API documentation please see [here](https://api.moneyhub.co.uk/docs).
+For API documentation please see [here](https://moneyhub.github.io/api-docs/#moneyhub-data-api).
+For interactive swagger documentaion please see [here](https://api.moneyhub.co.uk/docs).
 
 ## Flow for use case 1
 
@@ -110,14 +111,14 @@ The only scope that can (and must) be supplied along with either `reauth` or `re
 > To add a new account for a registered user via either openbanking or
 screen scraping the following parameters would be sent in the request object:
 
-```javascript
+```json
 {
   "scope": "openid id:all",
   "claims": {
     "id_token": {
-      sub: {
-        essential: true,
-        value: "24400320",
+      "sub": {
+        "essential": true,
+        "value": "24400320",
       },
       "mh:con_id": {
         "essential": true
@@ -202,10 +203,10 @@ Examples of discovery metadata from other providers are:
 
 We have 4 lists of available bank connections:
 
-- [all connections](https://identity.moneyhub.co.uk/oidc/.well-known/all-connections)
+- [All connections](https://identity.moneyhub.co.uk/oidc/.well-known/all-connections)
 - [API connections](https://identity.moneyhub.co.uk/oidc/.well-known/api-connections)
-- [screen-scraping connections](https://identity.moneyhub.co.uk/oidc/.well-known/legacy-connections)
-- [test connections](https://identity.moneyhub.co.uk/oidc/.well-known/test-connections)
+- [Screen-scraping connections](https://identity.moneyhub.co.uk/oidc/.well-known/legacy-connections)
+- [Test connections](https://identity.moneyhub.co.uk/oidc/.well-known/test-connections)
 
 Every client you create will have access to the test connections by default. Access to the real connections via the API
 will need to be requested.
@@ -321,7 +322,7 @@ It returns a single user associated with your api client.
 
 # Example for use case 2
 
-```javascript
+```
 const { access_token } = await client.grant({
   grant_type: "client_credentials",
   scope: "user:create",

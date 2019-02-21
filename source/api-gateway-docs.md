@@ -1,38 +1,21 @@
----
-title: Moneyhub Enterprise
-language_tabs:
-  - shell: Shell
-  - http: HTTP
-  - javascript: JavaScript
-  - javascript--nodejs: Node.JS
-  - ruby: Ruby
-  - python: Python
-  - java: Java
-  - go: Go
-toc_footers: []
-includes: []
-search: true
-highlight_theme: darkula
-headingLevel: 2
 
----
 
-<h1 id="moneyhub-enterprise">Moneyhub Enterprise v2.0.0</h1>
+<h1 id="moneyhub-data-api">Moneyhub Data API v2.0.0</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-Swagger 2.0 docs for the Moneyhub API. Includes accounts, transactions, spending goals and categories. Authentication is via bearer token.
+Documentation for the Moneyhub data API. Includes accounts, transactions, spending goals and categories. Authentication is via bearer token.
 
 Base URLs:
 
-* <a href="https://api.moneyhub.co.uk/v2.0/">https://api.moneyhub.co.uk/v2.0/</a>
+* <a href="https://api.moneyhub.co.uk/v2.0">https://api.moneyhub.co.uk/v2.0</a>
 
 # Authentication
 
 * API Key (Bearer)
     - Parameter Name: **Authorization**, in: header. 
 
-<h1 id="moneyhub-enterprise-accounts">accounts</h1>
+<h1 id="moneyhub-data-api-accounts">accounts</h1>
 
 ## get__accounts
 
@@ -190,54 +173,281 @@ Requires **accounts:read** scope.
 
 ```json
 {
-  "data": [
-    {
-      "accountName": "Cash ISA",
-      "currency": "GBP",
-      "balance": {
-        "date": "2018-08-12",
-        "amount": {
-          "value": -300023,
-          "currency": "GBP"
+  "properties": {
+    "data": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "accountName": {
+            "description": "The name of the account",
+            "example": "Cash ISA",
+            "type": "string"
+          },
+          "currency": {
+            "description": "The currency of the account",
+            "example": "GBP",
+            "type": "string"
+          },
+          "balance": {
+            "additionalProperties": false,
+            "type": "object",
+            "properties": {
+              "amount": {
+                "properties": {
+                  "value": {
+                    "description": "The value of the balance in minor units of the currency, eg. pennies for GBP.",
+                    "example": -300023,
+                    "type": "integer"
+                  },
+                  "currency": {
+                    "description": "The currency of the balance taken from the account",
+                    "example": "GBP",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "value",
+                  "currency"
+                ],
+                "type": "object"
+              },
+              "date": {
+                "description": "The date of the balance",
+                "example": "2018-08-12",
+                "format": "date",
+                "type": "string"
+              }
+            },
+            "example": {
+              "date": "2018-08-12",
+              "amount": {
+                "value": -300023,
+                "currency": "GBP"
+              }
+            },
+            "required": [
+              "amount",
+              "date"
+            ]
+          },
+          "details": {
+            "additionalProperties": false,
+            "properties": {
+              "AER": {
+                "description": "For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.",
+                "example": 1.3,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "APR": {
+                "description": "For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.",
+                "example": 13.1,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "creditLimit": {
+                "description": "For credit cards. The agreed overdraft limit of the account in minor units of the currency.",
+                "example": 150000,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "endDate": {
+                "description": "For Mortgages and loans. The date at which the loan/mortgage will finish.",
+                "format": "date",
+                "example": "2020-01-01",
+                "type": "string"
+              },
+              "fixedDate": {
+                "description": "For Mortgages. The date at which the current fixed rate ends",
+                "format": "date",
+                "example": "2019-01-01",
+                "type": "string"
+              },
+              "interestFreePeriod": {
+                "type": "integer",
+                "description": "For loans. The length in months of the interest free period",
+                "example": 12,
+                "minimum": 0
+              },
+              "interestType": {
+                "description": "For mortgages. The interest type",
+                "enum": [
+                  "fixed",
+                  "variable"
+                ],
+                "example": "fixed",
+                "type": "string"
+              },
+              "linkedProperty": {
+                "type": "string",
+                "description": "For Mortgages. The id of an associated property account",
+                "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+              },
+              "monthlyRepayment": {
+                "type": "integer",
+                "description": "For mortgages and loans. The monthly amount due to the mortgage provider in minor units of the currency.",
+                "example": 60000,
+                "minimum": 0
+              },
+              "overdraftLimit": {
+                "description": "For cash accounts. The agreed overdraft limit of the account in minor units of the currency.",
+                "example": 150000,
+                "type": "number",
+                "minimum": 0
+              },
+              "postcode": {
+                "description": "For properties. The postcode of the property",
+                "example": "bs1 1aa",
+                "type": "string"
+              },
+              "runningCost": {
+                "description": "For assets. The running cost in minor units of the currency.",
+                "example": 20000,
+                "type": "integer",
+                "minimum": 0
+              },
+              "runningCostPeriod": {
+                "type": "string",
+                "description": "For assets. The running cost period",
+                "enum": [
+                  "month",
+                  "year"
+                ],
+                "example": "month"
+              },
+              "term": {
+                "type": "integer",
+                "description": "For mortgages. The term of the mortgage in months.",
+                "example": 13,
+                "minimum": 0
+              },
+              "yearlyAppreciation": {
+                "type": "number",
+                "description": "For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate",
+                "example": -10
+              }
+            }
+          },
+          "transactionData": {
+            "additionalProperties": false,
+            "required": [
+              "count",
+              "earliestDate",
+              "lastDate"
+            ],
+            "properties": {
+              "count": {
+                "type": "integer",
+                "example": 6
+              },
+              "earliestDate": {
+                "type": "string",
+                "format": "date",
+                "example": "2017-11-28"
+              },
+              "lastDate": {
+                "type": "string",
+                "format": "date",
+                "example": "2018-05-28"
+              }
+            }
+          },
+          "dateAdded": {
+            "description": "The date at which the account was added.",
+            "example": "2018-07-10T11:39:44+00:00",
+            "format": "date-time",
+            "type": "string"
+          },
+          "dateModified": {
+            "description": "The date at which the account was last modified",
+            "example": "2018-07-10T11:39:44+00:00",
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "description": "The unique identity of the account.",
+            "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
+            "type": "string"
+          },
+          "providerName": {
+            "description": "The name of the provider of the account.",
+            "example": "HSBC",
+            "type": "string"
+          },
+          "connectionId": {
+            "description": "The id of the connection of the account. This value is not present for accounts created manually by the user.",
+            "example": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
+            "format": "([\\w-])+:([\\w-])+",
+            "type": "string"
+          },
+          "providerId": {
+            "description": "The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.",
+            "example": "049c10ab871e8d60aa891c0ae368322d",
+            "format": "API|([\\w-])+",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of account - this will determine the data available in the details field",
+            "enum": [
+              "cash:current",
+              "savings",
+              "card",
+              "investment",
+              "loan",
+              "mortgage:repayment",
+              "mortgage:interestOnly",
+              "pension",
+              "asset",
+              "properties:residential",
+              "properties:buyToLet"
+            ],
+            "type": "string",
+            "example": "cash:current"
+          }
+        },
+        "required": [
+          "id",
+          "dateAdded",
+          "dateModified",
+          "accountName",
+          "type",
+          "balance",
+          "details"
+        ]
+      },
+      "type": "array"
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
         }
       },
-      "details": {
-        "AER": 1.3,
-        "APR": 13.1,
-        "creditLimit": 150000,
-        "endDate": "2020-01-01",
-        "fixedDate": "2019-01-01",
-        "interestFreePeriod": 12,
-        "interestType": "fixed",
-        "linkedProperty": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-        "monthlyRepayment": 60000,
-        "overdraftLimit": 150000,
-        "postcode": "bs1 1aa",
-        "runningCost": 20000,
-        "runningCostPeriod": "month",
-        "term": 13,
-        "yearlyAppreciation": -10
-      },
-      "transactionData": {
-        "count": 6,
-        "earliestDate": "2017-11-28",
-        "lastDate": "2018-05-28"
-      },
-      "dateAdded": "2018-07-10T11:39:44+00:00",
-      "dateModified": "2018-07-10T11:39:44+00:00",
-      "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-      "providerName": "HSBC",
-      "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
-      "providerId": "049c10ab871e8d60aa891c0ae368322d",
-      "type": "cash:current"
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
     }
-  ],
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
   },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -365,32 +575,178 @@ $.ajax({
 ```javascript--nodejs
 const fetch = require('node-fetch');
 const inputBody = '{
-  "accountName": "Account name",
-  "providerName": "Provider name",
-  "type": "cash:current",
-  "balance": {
-    "date": "2018-08-12",
-    "amount": {
-      "value": -300023
+  "properties": {
+    "accountName": {
+      "description": "The name of the account",
+      "example": "Account name",
+      "type": "string"
+    },
+    "providerName": {
+      "description": "The name of the provider of the account.",
+      "example": "Provider name",
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of account - this will determine the data available in the details field",
+      "enum": [
+        "cash:current",
+        "savings",
+        "card",
+        "investment",
+        "loan",
+        "mortgage:repayment",
+        "mortgage:interestOnly",
+        "pension",
+        "asset",
+        "properties:residential",
+        "properties:buyToLet"
+      ],
+      "type": "string",
+      "example": "cash:current"
+    },
+    "balance": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The value of the balance in minor units of the currency, eg. pennies for GBP.",
+              "example": -300023,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "type": "object"
+        },
+        "date": {
+          "description": "The date of the balance",
+          "example": "2018-08-12",
+          "format": "date",
+          "type": "string"
+        }
+      },
+      "example": {
+        "date": "2018-08-12",
+        "amount": {
+          "value": -300023
+        }
+      },
+      "required": [
+        "amount",
+        "date"
+      ]
+    },
+    "details": {
+      "additionalProperties": false,
+      "properties": {
+        "AER": {
+          "description": "For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.",
+          "example": 1.3,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "APR": {
+          "description": "For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.",
+          "example": 13.1,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "creditLimit": {
+          "description": "For credit cards. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "endDate": {
+          "description": "For Mortgages and loans. The date at which the loan/mortgage will finish.",
+          "format": "date",
+          "example": "2020-01-01",
+          "type": "string"
+        },
+        "fixedDate": {
+          "description": "For Mortgages. The date at which the current fixed rate ends",
+          "format": "date",
+          "example": "2019-01-01",
+          "type": "string"
+        },
+        "interestFreePeriod": {
+          "type": "integer",
+          "description": "For loans. The length in months of the interest free period",
+          "example": 12,
+          "minimum": 0
+        },
+        "interestType": {
+          "description": "For mortgages. The interest type",
+          "enum": [
+            "fixed",
+            "variable"
+          ],
+          "example": "fixed",
+          "type": "string"
+        },
+        "linkedProperty": {
+          "type": "string",
+          "description": "For Mortgages. The id of an associated property account",
+          "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+        },
+        "monthlyRepayment": {
+          "type": "integer",
+          "description": "For mortgages and loans. The monthly amount due to the mortgage provider in minor units of the currency.",
+          "example": 60000,
+          "minimum": 0
+        },
+        "overdraftLimit": {
+          "description": "For cash accounts. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "type": "number",
+          "minimum": 0
+        },
+        "postcode": {
+          "description": "For properties. The postcode of the property",
+          "example": "bs1 1aa",
+          "type": "string"
+        },
+        "runningCost": {
+          "description": "For assets. The running cost in minor units of the currency.",
+          "example": 20000,
+          "type": "integer",
+          "minimum": 0
+        },
+        "runningCostPeriod": {
+          "type": "string",
+          "description": "For assets. The running cost period",
+          "enum": [
+            "month",
+            "year"
+          ],
+          "example": "month"
+        },
+        "term": {
+          "type": "integer",
+          "description": "For mortgages. The term of the mortgage in months.",
+          "example": 13,
+          "minimum": 0
+        },
+        "yearlyAppreciation": {
+          "type": "number",
+          "description": "For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate",
+          "example": -10
+        }
+      }
     }
   },
-  "details": {
-    "AER": 1.3,
-    "APR": 13.1,
-    "creditLimit": 150000,
-    "endDate": "2020-01-01",
-    "fixedDate": "2019-01-01",
-    "interestFreePeriod": 12,
-    "interestType": "fixed",
-    "linkedProperty": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-    "monthlyRepayment": 60000,
-    "overdraftLimit": 150000,
-    "postcode": "bs1 1aa",
-    "runningCost": 20000,
-    "runningCostPeriod": "month",
-    "term": 13,
-    "yearlyAppreciation": -10
-  }
+  "required": [
+    "accountName",
+    "providerName",
+    "type",
+    "balance"
+  ],
+  "type": "object"
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -502,32 +858,178 @@ Requires **accounts:read** and **accounts:write:all** scopes.
 
 ```json
 {
-  "accountName": "Account name",
-  "providerName": "Provider name",
-  "type": "cash:current",
-  "balance": {
-    "date": "2018-08-12",
-    "amount": {
-      "value": -300023
+  "properties": {
+    "accountName": {
+      "description": "The name of the account",
+      "example": "Account name",
+      "type": "string"
+    },
+    "providerName": {
+      "description": "The name of the provider of the account.",
+      "example": "Provider name",
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of account - this will determine the data available in the details field",
+      "enum": [
+        "cash:current",
+        "savings",
+        "card",
+        "investment",
+        "loan",
+        "mortgage:repayment",
+        "mortgage:interestOnly",
+        "pension",
+        "asset",
+        "properties:residential",
+        "properties:buyToLet"
+      ],
+      "type": "string",
+      "example": "cash:current"
+    },
+    "balance": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The value of the balance in minor units of the currency, eg. pennies for GBP.",
+              "example": -300023,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "type": "object"
+        },
+        "date": {
+          "description": "The date of the balance",
+          "example": "2018-08-12",
+          "format": "date",
+          "type": "string"
+        }
+      },
+      "example": {
+        "date": "2018-08-12",
+        "amount": {
+          "value": -300023
+        }
+      },
+      "required": [
+        "amount",
+        "date"
+      ]
+    },
+    "details": {
+      "additionalProperties": false,
+      "properties": {
+        "AER": {
+          "description": "For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.",
+          "example": 1.3,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "APR": {
+          "description": "For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.",
+          "example": 13.1,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "creditLimit": {
+          "description": "For credit cards. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "endDate": {
+          "description": "For Mortgages and loans. The date at which the loan/mortgage will finish.",
+          "format": "date",
+          "example": "2020-01-01",
+          "type": "string"
+        },
+        "fixedDate": {
+          "description": "For Mortgages. The date at which the current fixed rate ends",
+          "format": "date",
+          "example": "2019-01-01",
+          "type": "string"
+        },
+        "interestFreePeriod": {
+          "type": "integer",
+          "description": "For loans. The length in months of the interest free period",
+          "example": 12,
+          "minimum": 0
+        },
+        "interestType": {
+          "description": "For mortgages. The interest type",
+          "enum": [
+            "fixed",
+            "variable"
+          ],
+          "example": "fixed",
+          "type": "string"
+        },
+        "linkedProperty": {
+          "type": "string",
+          "description": "For Mortgages. The id of an associated property account",
+          "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+        },
+        "monthlyRepayment": {
+          "type": "integer",
+          "description": "For mortgages and loans. The monthly amount due to the mortgage provider in minor units of the currency.",
+          "example": 60000,
+          "minimum": 0
+        },
+        "overdraftLimit": {
+          "description": "For cash accounts. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "type": "number",
+          "minimum": 0
+        },
+        "postcode": {
+          "description": "For properties. The postcode of the property",
+          "example": "bs1 1aa",
+          "type": "string"
+        },
+        "runningCost": {
+          "description": "For assets. The running cost in minor units of the currency.",
+          "example": 20000,
+          "type": "integer",
+          "minimum": 0
+        },
+        "runningCostPeriod": {
+          "type": "string",
+          "description": "For assets. The running cost period",
+          "enum": [
+            "month",
+            "year"
+          ],
+          "example": "month"
+        },
+        "term": {
+          "type": "integer",
+          "description": "For mortgages. The term of the mortgage in months.",
+          "example": 13,
+          "minimum": 0
+        },
+        "yearlyAppreciation": {
+          "type": "number",
+          "description": "For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate",
+          "example": -10
+        }
+      }
     }
   },
-  "details": {
-    "AER": 1.3,
-    "APR": 13.1,
-    "creditLimit": 150000,
-    "endDate": "2020-01-01",
-    "fixedDate": "2019-01-01",
-    "interestFreePeriod": 12,
-    "interestType": "fixed",
-    "linkedProperty": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-    "monthlyRepayment": 60000,
-    "overdraftLimit": 150000,
-    "postcode": "bs1 1aa",
-    "runningCost": 20000,
-    "runningCostPeriod": "month",
-    "term": 13,
-    "yearlyAppreciation": -10
-  }
+  "required": [
+    "accountName",
+    "providerName",
+    "type",
+    "balance"
+  ],
+  "type": "object"
 }
 ```
 
@@ -543,52 +1045,278 @@ Requires **accounts:read** and **accounts:write:all** scopes.
 
 ```json
 {
-  "data": {
-    "accountName": "Cash ISA",
-    "currency": "GBP",
-    "balance": {
-      "date": "2018-08-12",
-      "amount": {
-        "value": -300023,
-        "currency": "GBP"
-      }
+  "properties": {
+    "data": {
+      "additionalProperties": false,
+      "properties": {
+        "accountName": {
+          "description": "The name of the account",
+          "example": "Cash ISA",
+          "type": "string"
+        },
+        "currency": {
+          "description": "The currency of the account",
+          "example": "GBP",
+          "type": "string"
+        },
+        "balance": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "amount": {
+              "properties": {
+                "value": {
+                  "description": "The value of the balance in minor units of the currency, eg. pennies for GBP.",
+                  "example": -300023,
+                  "type": "integer"
+                },
+                "currency": {
+                  "description": "The currency of the balance taken from the account",
+                  "example": "GBP",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "currency"
+              ],
+              "type": "object"
+            },
+            "date": {
+              "description": "The date of the balance",
+              "example": "2018-08-12",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "example": {
+            "date": "2018-08-12",
+            "amount": {
+              "value": -300023,
+              "currency": "GBP"
+            }
+          },
+          "required": [
+            "amount",
+            "date"
+          ]
+        },
+        "details": {
+          "additionalProperties": false,
+          "properties": {
+            "AER": {
+              "description": "For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.",
+              "example": 1.3,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "APR": {
+              "description": "For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.",
+              "example": 13.1,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "creditLimit": {
+              "description": "For credit cards. The agreed overdraft limit of the account in minor units of the currency.",
+              "example": 150000,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "endDate": {
+              "description": "For Mortgages and loans. The date at which the loan/mortgage will finish.",
+              "format": "date",
+              "example": "2020-01-01",
+              "type": "string"
+            },
+            "fixedDate": {
+              "description": "For Mortgages. The date at which the current fixed rate ends",
+              "format": "date",
+              "example": "2019-01-01",
+              "type": "string"
+            },
+            "interestFreePeriod": {
+              "type": "integer",
+              "description": "For loans. The length in months of the interest free period",
+              "example": 12,
+              "minimum": 0
+            },
+            "interestType": {
+              "description": "For mortgages. The interest type",
+              "enum": [
+                "fixed",
+                "variable"
+              ],
+              "example": "fixed",
+              "type": "string"
+            },
+            "linkedProperty": {
+              "type": "string",
+              "description": "For Mortgages. The id of an associated property account",
+              "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+            },
+            "monthlyRepayment": {
+              "type": "integer",
+              "description": "For mortgages and loans. The monthly amount due to the mortgage provider in minor units of the currency.",
+              "example": 60000,
+              "minimum": 0
+            },
+            "overdraftLimit": {
+              "description": "For cash accounts. The agreed overdraft limit of the account in minor units of the currency.",
+              "example": 150000,
+              "type": "number",
+              "minimum": 0
+            },
+            "postcode": {
+              "description": "For properties. The postcode of the property",
+              "example": "bs1 1aa",
+              "type": "string"
+            },
+            "runningCost": {
+              "description": "For assets. The running cost in minor units of the currency.",
+              "example": 20000,
+              "type": "integer",
+              "minimum": 0
+            },
+            "runningCostPeriod": {
+              "type": "string",
+              "description": "For assets. The running cost period",
+              "enum": [
+                "month",
+                "year"
+              ],
+              "example": "month"
+            },
+            "term": {
+              "type": "integer",
+              "description": "For mortgages. The term of the mortgage in months.",
+              "example": 13,
+              "minimum": 0
+            },
+            "yearlyAppreciation": {
+              "type": "number",
+              "description": "For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate",
+              "example": -10
+            }
+          }
+        },
+        "transactionData": {
+          "additionalProperties": false,
+          "required": [
+            "count",
+            "earliestDate",
+            "lastDate"
+          ],
+          "properties": {
+            "count": {
+              "type": "integer",
+              "example": 6
+            },
+            "earliestDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2017-11-28"
+            },
+            "lastDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2018-05-28"
+            }
+          }
+        },
+        "dateAdded": {
+          "description": "The date at which the account was added.",
+          "example": "2018-07-10T11:39:44+00:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateModified": {
+          "description": "The date at which the account was last modified",
+          "example": "2018-07-10T11:39:44+00:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique identity of the account.",
+          "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
+          "type": "string"
+        },
+        "providerName": {
+          "description": "The name of the provider of the account.",
+          "example": "HSBC",
+          "type": "string"
+        },
+        "connectionId": {
+          "description": "The id of the connection of the account. This value is not present for accounts created manually by the user.",
+          "example": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
+          "format": "([\\w-])+:([\\w-])+",
+          "type": "string"
+        },
+        "providerId": {
+          "description": "The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.",
+          "example": "049c10ab871e8d60aa891c0ae368322d",
+          "format": "API|([\\w-])+",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of account - this will determine the data available in the details field",
+          "enum": [
+            "cash:current",
+            "savings",
+            "card",
+            "investment",
+            "loan",
+            "mortgage:repayment",
+            "mortgage:interestOnly",
+            "pension",
+            "asset",
+            "properties:residential",
+            "properties:buyToLet"
+          ],
+          "type": "string",
+          "example": "cash:current"
+        }
+      },
+      "required": [
+        "id",
+        "dateAdded",
+        "dateModified",
+        "accountName",
+        "type",
+        "balance",
+        "details"
+      ]
     },
-    "details": {
-      "AER": 1.3,
-      "APR": 13.1,
-      "creditLimit": 150000,
-      "endDate": "2020-01-01",
-      "fixedDate": "2019-01-01",
-      "interestFreePeriod": 12,
-      "interestType": "fixed",
-      "linkedProperty": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-      "monthlyRepayment": 60000,
-      "overdraftLimit": 150000,
-      "postcode": "bs1 1aa",
-      "runningCost": 20000,
-      "runningCostPeriod": "month",
-      "term": 13,
-      "yearlyAppreciation": -10
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
     },
-    "transactionData": {
-      "count": 6,
-      "earliestDate": "2017-11-28",
-      "lastDate": "2018-05-28"
-    },
-    "dateAdded": "2018-07-10T11:39:44+00:00",
-    "dateModified": "2018-07-10T11:39:44+00:00",
-    "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-    "providerName": "HSBC",
-    "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
-    "providerId": "049c10ab871e8d60aa891c0ae368322d",
-    "type": "cash:current"
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -828,52 +1556,278 @@ Requires **accounts:read** scope.
 
 ```json
 {
-  "data": {
-    "accountName": "Cash ISA",
-    "currency": "GBP",
-    "balance": {
-      "date": "2018-08-12",
-      "amount": {
-        "value": -300023,
-        "currency": "GBP"
-      }
+  "properties": {
+    "data": {
+      "additionalProperties": false,
+      "properties": {
+        "accountName": {
+          "description": "The name of the account",
+          "example": "Cash ISA",
+          "type": "string"
+        },
+        "currency": {
+          "description": "The currency of the account",
+          "example": "GBP",
+          "type": "string"
+        },
+        "balance": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "amount": {
+              "properties": {
+                "value": {
+                  "description": "The value of the balance in minor units of the currency, eg. pennies for GBP.",
+                  "example": -300023,
+                  "type": "integer"
+                },
+                "currency": {
+                  "description": "The currency of the balance taken from the account",
+                  "example": "GBP",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "currency"
+              ],
+              "type": "object"
+            },
+            "date": {
+              "description": "The date of the balance",
+              "example": "2018-08-12",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "example": {
+            "date": "2018-08-12",
+            "amount": {
+              "value": -300023,
+              "currency": "GBP"
+            }
+          },
+          "required": [
+            "amount",
+            "date"
+          ]
+        },
+        "details": {
+          "additionalProperties": false,
+          "properties": {
+            "AER": {
+              "description": "For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.",
+              "example": 1.3,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "APR": {
+              "description": "For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.",
+              "example": 13.1,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "creditLimit": {
+              "description": "For credit cards. The agreed overdraft limit of the account in minor units of the currency.",
+              "example": 150000,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "endDate": {
+              "description": "For Mortgages and loans. The date at which the loan/mortgage will finish.",
+              "format": "date",
+              "example": "2020-01-01",
+              "type": "string"
+            },
+            "fixedDate": {
+              "description": "For Mortgages. The date at which the current fixed rate ends",
+              "format": "date",
+              "example": "2019-01-01",
+              "type": "string"
+            },
+            "interestFreePeriod": {
+              "type": "integer",
+              "description": "For loans. The length in months of the interest free period",
+              "example": 12,
+              "minimum": 0
+            },
+            "interestType": {
+              "description": "For mortgages. The interest type",
+              "enum": [
+                "fixed",
+                "variable"
+              ],
+              "example": "fixed",
+              "type": "string"
+            },
+            "linkedProperty": {
+              "type": "string",
+              "description": "For Mortgages. The id of an associated property account",
+              "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+            },
+            "monthlyRepayment": {
+              "type": "integer",
+              "description": "For mortgages and loans. The monthly amount due to the mortgage provider in minor units of the currency.",
+              "example": 60000,
+              "minimum": 0
+            },
+            "overdraftLimit": {
+              "description": "For cash accounts. The agreed overdraft limit of the account in minor units of the currency.",
+              "example": 150000,
+              "type": "number",
+              "minimum": 0
+            },
+            "postcode": {
+              "description": "For properties. The postcode of the property",
+              "example": "bs1 1aa",
+              "type": "string"
+            },
+            "runningCost": {
+              "description": "For assets. The running cost in minor units of the currency.",
+              "example": 20000,
+              "type": "integer",
+              "minimum": 0
+            },
+            "runningCostPeriod": {
+              "type": "string",
+              "description": "For assets. The running cost period",
+              "enum": [
+                "month",
+                "year"
+              ],
+              "example": "month"
+            },
+            "term": {
+              "type": "integer",
+              "description": "For mortgages. The term of the mortgage in months.",
+              "example": 13,
+              "minimum": 0
+            },
+            "yearlyAppreciation": {
+              "type": "number",
+              "description": "For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate",
+              "example": -10
+            }
+          }
+        },
+        "transactionData": {
+          "additionalProperties": false,
+          "required": [
+            "count",
+            "earliestDate",
+            "lastDate"
+          ],
+          "properties": {
+            "count": {
+              "type": "integer",
+              "example": 6
+            },
+            "earliestDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2017-11-28"
+            },
+            "lastDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2018-05-28"
+            }
+          }
+        },
+        "dateAdded": {
+          "description": "The date at which the account was added.",
+          "example": "2018-07-10T11:39:44+00:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateModified": {
+          "description": "The date at which the account was last modified",
+          "example": "2018-07-10T11:39:44+00:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique identity of the account.",
+          "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
+          "type": "string"
+        },
+        "providerName": {
+          "description": "The name of the provider of the account.",
+          "example": "HSBC",
+          "type": "string"
+        },
+        "connectionId": {
+          "description": "The id of the connection of the account. This value is not present for accounts created manually by the user.",
+          "example": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
+          "format": "([\\w-])+:([\\w-])+",
+          "type": "string"
+        },
+        "providerId": {
+          "description": "The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.",
+          "example": "049c10ab871e8d60aa891c0ae368322d",
+          "format": "API|([\\w-])+",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of account - this will determine the data available in the details field",
+          "enum": [
+            "cash:current",
+            "savings",
+            "card",
+            "investment",
+            "loan",
+            "mortgage:repayment",
+            "mortgage:interestOnly",
+            "pension",
+            "asset",
+            "properties:residential",
+            "properties:buyToLet"
+          ],
+          "type": "string",
+          "example": "cash:current"
+        }
+      },
+      "required": [
+        "id",
+        "dateAdded",
+        "dateModified",
+        "accountName",
+        "type",
+        "balance",
+        "details"
+      ]
     },
-    "details": {
-      "AER": 1.3,
-      "APR": 13.1,
-      "creditLimit": 150000,
-      "endDate": "2020-01-01",
-      "fixedDate": "2019-01-01",
-      "interestFreePeriod": 12,
-      "interestType": "fixed",
-      "linkedProperty": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-      "monthlyRepayment": 60000,
-      "overdraftLimit": 150000,
-      "postcode": "bs1 1aa",
-      "runningCost": 20000,
-      "runningCostPeriod": "month",
-      "term": 13,
-      "yearlyAppreciation": -10
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
     },
-    "transactionData": {
-      "count": 6,
-      "earliestDate": "2017-11-28",
-      "lastDate": "2018-05-28"
-    },
-    "dateAdded": "2018-07-10T11:39:44+00:00",
-    "dateModified": "2018-07-10T11:39:44+00:00",
-    "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-    "providerName": "HSBC",
-    "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
-    "providerId": "049c10ab871e8d60aa891c0ae368322d",
-    "type": "cash:current"
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -1002,25 +1956,123 @@ $.ajax({
 ```javascript--nodejs
 const fetch = require('node-fetch');
 const inputBody = '{
-  "accountName": "Account name",
-  "providerName": "Provider name",
-  "details": {
-    "AER": 1.3,
-    "APR": 13.1,
-    "creditLimit": 150000,
-    "endDate": "2020-01-01",
-    "fixedDate": "2019-01-01",
-    "interestFreePeriod": 12,
-    "interestType": "fixed",
-    "linkedProperty": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-    "monthlyRepayment": 60000,
-    "overdraftLimit": 150000,
-    "postcode": "bs1 1aa",
-    "runningCost": 20000,
-    "runningCostPeriod": "month",
-    "term": 13,
-    "yearlyAppreciation": -10
-  }
+  "properties": {
+    "accountName": {
+      "description": "The name of the account",
+      "example": "Account name",
+      "type": "string"
+    },
+    "providerName": {
+      "description": "The name of the provider of the account.",
+      "example": "Provider name",
+      "type": "string"
+    },
+    "details": {
+      "additionalProperties": false,
+      "properties": {
+        "AER": {
+          "description": "For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.",
+          "example": 1.3,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "APR": {
+          "description": "For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.",
+          "example": 13.1,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "creditLimit": {
+          "description": "For credit cards. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "endDate": {
+          "description": "For Mortgages and loans. The date at which the loan/mortgage will finish.",
+          "format": "date",
+          "example": "2020-01-01",
+          "type": "string"
+        },
+        "fixedDate": {
+          "description": "For Mortgages. The date at which the current fixed rate ends",
+          "format": "date",
+          "example": "2019-01-01",
+          "type": "string"
+        },
+        "interestFreePeriod": {
+          "type": "integer",
+          "description": "For loans. The length in months of the interest free period",
+          "example": 12,
+          "minimum": 0
+        },
+        "interestType": {
+          "description": "For mortgages. The interest type",
+          "enum": [
+            "fixed",
+            "variable"
+          ],
+          "example": "fixed",
+          "type": "string"
+        },
+        "linkedProperty": {
+          "type": "string",
+          "description": "For Mortgages. The id of an associated property account",
+          "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+        },
+        "monthlyRepayment": {
+          "type": "integer",
+          "description": "For mortgages and loans. The monthly amount due to the mortgage provider in minor units of the currency.",
+          "example": 60000,
+          "minimum": 0
+        },
+        "overdraftLimit": {
+          "description": "For cash accounts. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "type": "number",
+          "minimum": 0
+        },
+        "postcode": {
+          "description": "For properties. The postcode of the property",
+          "example": "bs1 1aa",
+          "type": "string"
+        },
+        "runningCost": {
+          "description": "For assets. The running cost in minor units of the currency.",
+          "example": 20000,
+          "type": "integer",
+          "minimum": 0
+        },
+        "runningCostPeriod": {
+          "type": "string",
+          "description": "For assets. The running cost period",
+          "enum": [
+            "month",
+            "year"
+          ],
+          "example": "month"
+        },
+        "term": {
+          "type": "integer",
+          "description": "For mortgages. The term of the mortgage in months.",
+          "example": 13,
+          "minimum": 0
+        },
+        "yearlyAppreciation": {
+          "type": "number",
+          "description": "For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate",
+          "example": -10
+        }
+      }
+    }
+  },
+  "required": [
+    "accountName",
+    "providerName"
+  ],
+  "type": "object"
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -1132,25 +2184,123 @@ Requires **accounts:read** and **account:write:all** scopes.
 
 ```json
 {
-  "accountName": "Account name",
-  "providerName": "Provider name",
-  "details": {
-    "AER": 1.3,
-    "APR": 13.1,
-    "creditLimit": 150000,
-    "endDate": "2020-01-01",
-    "fixedDate": "2019-01-01",
-    "interestFreePeriod": 12,
-    "interestType": "fixed",
-    "linkedProperty": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-    "monthlyRepayment": 60000,
-    "overdraftLimit": 150000,
-    "postcode": "bs1 1aa",
-    "runningCost": 20000,
-    "runningCostPeriod": "month",
-    "term": 13,
-    "yearlyAppreciation": -10
-  }
+  "properties": {
+    "accountName": {
+      "description": "The name of the account",
+      "example": "Account name",
+      "type": "string"
+    },
+    "providerName": {
+      "description": "The name of the provider of the account.",
+      "example": "Provider name",
+      "type": "string"
+    },
+    "details": {
+      "additionalProperties": false,
+      "properties": {
+        "AER": {
+          "description": "For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.",
+          "example": 1.3,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "APR": {
+          "description": "For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.",
+          "example": 13.1,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "creditLimit": {
+          "description": "For credit cards. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "endDate": {
+          "description": "For Mortgages and loans. The date at which the loan/mortgage will finish.",
+          "format": "date",
+          "example": "2020-01-01",
+          "type": "string"
+        },
+        "fixedDate": {
+          "description": "For Mortgages. The date at which the current fixed rate ends",
+          "format": "date",
+          "example": "2019-01-01",
+          "type": "string"
+        },
+        "interestFreePeriod": {
+          "type": "integer",
+          "description": "For loans. The length in months of the interest free period",
+          "example": 12,
+          "minimum": 0
+        },
+        "interestType": {
+          "description": "For mortgages. The interest type",
+          "enum": [
+            "fixed",
+            "variable"
+          ],
+          "example": "fixed",
+          "type": "string"
+        },
+        "linkedProperty": {
+          "type": "string",
+          "description": "For Mortgages. The id of an associated property account",
+          "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+        },
+        "monthlyRepayment": {
+          "type": "integer",
+          "description": "For mortgages and loans. The monthly amount due to the mortgage provider in minor units of the currency.",
+          "example": 60000,
+          "minimum": 0
+        },
+        "overdraftLimit": {
+          "description": "For cash accounts. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "type": "number",
+          "minimum": 0
+        },
+        "postcode": {
+          "description": "For properties. The postcode of the property",
+          "example": "bs1 1aa",
+          "type": "string"
+        },
+        "runningCost": {
+          "description": "For assets. The running cost in minor units of the currency.",
+          "example": 20000,
+          "type": "integer",
+          "minimum": 0
+        },
+        "runningCostPeriod": {
+          "type": "string",
+          "description": "For assets. The running cost period",
+          "enum": [
+            "month",
+            "year"
+          ],
+          "example": "month"
+        },
+        "term": {
+          "type": "integer",
+          "description": "For mortgages. The term of the mortgage in months.",
+          "example": 13,
+          "minimum": 0
+        },
+        "yearlyAppreciation": {
+          "type": "number",
+          "description": "For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate",
+          "example": -10
+        }
+      }
+    }
+  },
+  "required": [
+    "accountName",
+    "providerName"
+  ],
+  "type": "object"
 }
 ```
 
@@ -1167,52 +2317,278 @@ Requires **accounts:read** and **account:write:all** scopes.
 
 ```json
 {
-  "data": {
-    "accountName": "Cash ISA",
-    "currency": "GBP",
-    "balance": {
-      "date": "2018-08-12",
-      "amount": {
-        "value": -300023,
-        "currency": "GBP"
-      }
+  "properties": {
+    "data": {
+      "additionalProperties": false,
+      "properties": {
+        "accountName": {
+          "description": "The name of the account",
+          "example": "Cash ISA",
+          "type": "string"
+        },
+        "currency": {
+          "description": "The currency of the account",
+          "example": "GBP",
+          "type": "string"
+        },
+        "balance": {
+          "additionalProperties": false,
+          "type": "object",
+          "properties": {
+            "amount": {
+              "properties": {
+                "value": {
+                  "description": "The value of the balance in minor units of the currency, eg. pennies for GBP.",
+                  "example": -300023,
+                  "type": "integer"
+                },
+                "currency": {
+                  "description": "The currency of the balance taken from the account",
+                  "example": "GBP",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "currency"
+              ],
+              "type": "object"
+            },
+            "date": {
+              "description": "The date of the balance",
+              "example": "2018-08-12",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          "example": {
+            "date": "2018-08-12",
+            "amount": {
+              "value": -300023,
+              "currency": "GBP"
+            }
+          },
+          "required": [
+            "amount",
+            "date"
+          ]
+        },
+        "details": {
+          "additionalProperties": false,
+          "properties": {
+            "AER": {
+              "description": "For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.",
+              "example": 1.3,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "APR": {
+              "description": "For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.",
+              "example": 13.1,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "creditLimit": {
+              "description": "For credit cards. The agreed overdraft limit of the account in minor units of the currency.",
+              "example": 150000,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "endDate": {
+              "description": "For Mortgages and loans. The date at which the loan/mortgage will finish.",
+              "format": "date",
+              "example": "2020-01-01",
+              "type": "string"
+            },
+            "fixedDate": {
+              "description": "For Mortgages. The date at which the current fixed rate ends",
+              "format": "date",
+              "example": "2019-01-01",
+              "type": "string"
+            },
+            "interestFreePeriod": {
+              "type": "integer",
+              "description": "For loans. The length in months of the interest free period",
+              "example": 12,
+              "minimum": 0
+            },
+            "interestType": {
+              "description": "For mortgages. The interest type",
+              "enum": [
+                "fixed",
+                "variable"
+              ],
+              "example": "fixed",
+              "type": "string"
+            },
+            "linkedProperty": {
+              "type": "string",
+              "description": "For Mortgages. The id of an associated property account",
+              "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+            },
+            "monthlyRepayment": {
+              "type": "integer",
+              "description": "For mortgages and loans. The monthly amount due to the mortgage provider in minor units of the currency.",
+              "example": 60000,
+              "minimum": 0
+            },
+            "overdraftLimit": {
+              "description": "For cash accounts. The agreed overdraft limit of the account in minor units of the currency.",
+              "example": 150000,
+              "type": "number",
+              "minimum": 0
+            },
+            "postcode": {
+              "description": "For properties. The postcode of the property",
+              "example": "bs1 1aa",
+              "type": "string"
+            },
+            "runningCost": {
+              "description": "For assets. The running cost in minor units of the currency.",
+              "example": 20000,
+              "type": "integer",
+              "minimum": 0
+            },
+            "runningCostPeriod": {
+              "type": "string",
+              "description": "For assets. The running cost period",
+              "enum": [
+                "month",
+                "year"
+              ],
+              "example": "month"
+            },
+            "term": {
+              "type": "integer",
+              "description": "For mortgages. The term of the mortgage in months.",
+              "example": 13,
+              "minimum": 0
+            },
+            "yearlyAppreciation": {
+              "type": "number",
+              "description": "For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate",
+              "example": -10
+            }
+          }
+        },
+        "transactionData": {
+          "additionalProperties": false,
+          "required": [
+            "count",
+            "earliestDate",
+            "lastDate"
+          ],
+          "properties": {
+            "count": {
+              "type": "integer",
+              "example": 6
+            },
+            "earliestDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2017-11-28"
+            },
+            "lastDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2018-05-28"
+            }
+          }
+        },
+        "dateAdded": {
+          "description": "The date at which the account was added.",
+          "example": "2018-07-10T11:39:44+00:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateModified": {
+          "description": "The date at which the account was last modified",
+          "example": "2018-07-10T11:39:44+00:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique identity of the account.",
+          "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
+          "type": "string"
+        },
+        "providerName": {
+          "description": "The name of the provider of the account.",
+          "example": "HSBC",
+          "type": "string"
+        },
+        "connectionId": {
+          "description": "The id of the connection of the account. This value is not present for accounts created manually by the user.",
+          "example": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
+          "format": "([\\w-])+:([\\w-])+",
+          "type": "string"
+        },
+        "providerId": {
+          "description": "The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.",
+          "example": "049c10ab871e8d60aa891c0ae368322d",
+          "format": "API|([\\w-])+",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of account - this will determine the data available in the details field",
+          "enum": [
+            "cash:current",
+            "savings",
+            "card",
+            "investment",
+            "loan",
+            "mortgage:repayment",
+            "mortgage:interestOnly",
+            "pension",
+            "asset",
+            "properties:residential",
+            "properties:buyToLet"
+          ],
+          "type": "string",
+          "example": "cash:current"
+        }
+      },
+      "required": [
+        "id",
+        "dateAdded",
+        "dateModified",
+        "accountName",
+        "type",
+        "balance",
+        "details"
+      ]
     },
-    "details": {
-      "AER": 1.3,
-      "APR": 13.1,
-      "creditLimit": 150000,
-      "endDate": "2020-01-01",
-      "fixedDate": "2019-01-01",
-      "interestFreePeriod": 12,
-      "interestType": "fixed",
-      "linkedProperty": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-      "monthlyRepayment": 60000,
-      "overdraftLimit": 150000,
-      "postcode": "bs1 1aa",
-      "runningCost": 20000,
-      "runningCostPeriod": "month",
-      "term": 13,
-      "yearlyAppreciation": -10
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
     },
-    "transactionData": {
-      "count": 6,
-      "earliestDate": "2017-11-28",
-      "lastDate": "2018-05-28"
-    },
-    "dateAdded": "2018-07-10T11:39:44+00:00",
-    "dateModified": "2018-07-10T11:39:44+00:00",
-    "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-    "providerName": "HSBC",
-    "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
-    "providerId": "049c10ab871e8d60aa891c0ae368322d",
-    "type": "cash:current"
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -1452,8 +2828,21 @@ Requires **accounts:write:all** scope.
 
 ```json
 {
-  "code": "string",
-  "message": "string"
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "description": "The error code",
+      "type": "string"
+    },
+    "message": {
+      "description": "The error message",
+      "type": "string"
+    }
+  },
+  "required": [
+    "code"
+  ],
+  "type": "object"
 }
 ```
 
@@ -1626,21 +3015,81 @@ Requires **accounts:read** scope.
 
 ```json
 {
-  "data": [
-    {
-      "date": "2018-08-12",
-      "amount": {
-        "value": -300023,
-        "currency": "GBP"
-      }
+  "properties": {
+    "data": {
+      "items": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "amount": {
+            "properties": {
+              "value": {
+                "description": "The value of the balance in minor units of the currency, eg. pennies for GBP.",
+                "example": -300023,
+                "type": "integer"
+              },
+              "currency": {
+                "description": "The currency of the balance taken from the account",
+                "example": "GBP",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "currency"
+            ],
+            "type": "object"
+          },
+          "date": {
+            "description": "The date of the balance",
+            "example": "2018-08-12",
+            "format": "date",
+            "type": "string"
+          }
+        },
+        "example": {
+          "date": "2018-08-12",
+          "amount": {
+            "value": -300023,
+            "currency": "GBP"
+          }
+        },
+        "required": [
+          "amount",
+          "date"
+        ]
+      },
+      "type": "array"
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
     }
-  ],
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
   },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -1854,19 +3303,78 @@ Requires **accounts:read** and either of **accounts:write** or **accounts:write:
 
 ```json
 {
-  "data": {
-    "date": "2018-08-12",
-    "amount": {
-      "value": -300023,
-      "currency": "GBP"
+  "properties": {
+    "data": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The value of the balance in minor units of the currency, eg. pennies for GBP.",
+              "example": -300023,
+              "type": "integer"
+            },
+            "currency": {
+              "description": "The currency of the balance taken from the account",
+              "example": "GBP",
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "type": "object"
+        },
+        "date": {
+          "description": "The date of the balance",
+          "example": "2018-08-12",
+          "format": "date",
+          "type": "string"
+        }
+      },
+      "example": {
+        "date": "2018-08-12",
+        "amount": {
+          "value": -300023,
+          "currency": "GBP"
+        }
+      },
+      "required": [
+        "amount",
+        "date"
+      ]
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
     }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -2056,37 +3564,137 @@ Requires **accounts:read** scope.
 
 ```json
 {
-  "data": [
-    {
-      "date": "2018-07-11",
-      "items": [
-        {
-          "codes": [
-            {
-              "code": "GB00B39TQT96",
-              "type": "ISIN"
-            }
-          ],
-          "description": "Dynamic Bond Fund",
-          "quantity": 4548.09,
-          "total": {
-            "value": 90334.16,
-            "currency": "GBP"
+  "properties": {
+    "data": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "date": {
+            "description": "Date of the valuation",
+            "example": "2018-07-11",
+            "format": "date",
+            "type": "string"
           },
-          "unitPrice": {
-            "value": 19.862,
-            "currency": "GBP"
+          "items": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "codes": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "code": {
+                        "example": "GB00B39TQT96",
+                        "type": "string"
+                      },
+                      "type": {
+                        "enum": [
+                          "ISIN",
+                          "SEDOL",
+                          "MEX"
+                        ],
+                        "example": "ISIN",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "description": {
+                  "example": "Dynamic Bond Fund",
+                  "type": "string"
+                },
+                "quantity": {
+                  "example": 4548.09,
+                  "type": "number"
+                },
+                "total": {
+                  "properties": {
+                    "value": {
+                      "description": "The value of the total in minor units of the currency, eg. pennies for GBP.",
+                      "example": 90334.16,
+                      "type": "number"
+                    },
+                    "currency": {
+                      "description": "The currency of the total.",
+                      "example": "GBP",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "currency"
+                  ],
+                  "type": "object"
+                },
+                "unitPrice": {
+                  "properties": {
+                    "value": {
+                      "description": "The value of the unit price in minor units of the currency, eg. pennies for GBP.",
+                      "example": 19.862,
+                      "type": "number"
+                    },
+                    "currency": {
+                      "description": "The currency of the unit price.",
+                      "example": "GBP",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "currency"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "description",
+                "quantity",
+                "unitPrice",
+                "total",
+                "codes"
+              ]
+            },
+            "type": "array"
           }
+        },
+        "required": [
+          "date",
+          "items"
+        ]
+      },
+      "type": "array"
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
         }
-      ]
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
     }
-  ],
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
   },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -2138,7 +3746,7 @@ To perform this operation, you must be authenticated by means of one of the foll
 Bearer
 </aside>
 
-<h1 id="moneyhub-enterprise-transactions">transactions</h1>
+<h1 id="moneyhub-data-api-transactions">transactions</h1>
 
 ## get__transactions
 
@@ -2303,30 +3911,133 @@ Requires any of **transactions:read:all**, **transactions:read:in**, or **transa
 
 ```json
 {
-  "data": [
-    {
-      "accountId": "c390a94f-2309-4cdf-8d02-b0c5304d9f66",
-      "amount": {
-        "value": -2323,
-        "currency": "GBP"
+  "properties": {
+    "data": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "accountId": {
+            "description": "The id of the account the transaction belongs to",
+            "example": "c390a94f-2309-4cdf-8d02-b0c5304d9f66",
+            "type": "string"
+          },
+          "amount": {
+            "properties": {
+              "value": {
+                "description": "The amount of the transaction in minor units of the currency, eg. pennies for GBP, negative means money going out of an account, positive means money coming into an account.",
+                "example": -2323,
+                "type": "integer"
+              },
+              "currency": {
+                "description": "The currency of the amount",
+                "example": "GBP",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "currency"
+            ],
+            "type": "object"
+          },
+          "categoryId": {
+            "description": "The category id. Standard categories are prefixed with 'std', custom categories are prefixed with 'cus'",
+            "example": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
+            "type": "string",
+            "pattern": "^(std|cus):(\\w|-)+$"
+          },
+          "categoryIdConfirmed": {
+            "description": "Flag indificating whether the user has confirmed the category id as correct",
+            "example": false,
+            "type": "boolean"
+          },
+          "date": {
+            "description": "The date that the transaction occurred. Where available this will contain an accurate time, where the time is not available it will default to midday.",
+            "example": "2018-07-10T12:00:00+00:00",
+            "format": "date-time",
+            "type": "string"
+          },
+          "dateModified": {
+            "description": "The date the transaction was modified - this could be when it was added, or a category changed, or when notes were added",
+            "example": "2018-07-10T11:39:46.506Z",
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "description": "The unique id of the transaction",
+            "example": "c390a94f-3824-4cdf-8d02-b0c5304d9f66",
+            "type": "string"
+          },
+          "longDescription": {
+            "description": "The full text description of the transactions - often as it is represented on the users bank statement",
+            "example": "Card Purchase SAINSBURYS S/MKTS  BCC",
+            "type": "string"
+          },
+          "notes": {
+            "default": "",
+            "description": "Arbitrary text that a user can add about a transaction",
+            "example": "Some notes about the transaction",
+            "type": "string"
+          },
+          "shortDescription": {
+            "description": "A cleaned up and shorter description of the transaction, this can be editied",
+            "example": "Sainsburys S/mkts",
+            "type": "string"
+          },
+          "status": {
+            "description": "Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.",
+            "enum": [
+              "posted",
+              "pending"
+            ],
+            "example": "posted",
+            "type": "string"
+          }
+        },
+        "required": [
+          "amount",
+          "categoryId",
+          "categoryIdConfirmed",
+          "date",
+          "dateModified",
+          "id",
+          "longDescription",
+          "notes",
+          "shortDescription",
+          "status"
+        ]
       },
-      "categoryId": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
-      "categoryIdConfirmed": false,
-      "date": "2018-07-10T12:00:00+00:00",
-      "dateModified": "2018-07-10T11:39:46.506Z",
-      "id": "c390a94f-3824-4cdf-8d02-b0c5304d9f66",
-      "longDescription": "Card Purchase SAINSBURYS S/MKTS  BCC",
-      "notes": "Some notes about the transaction",
-      "shortDescription": "Sainsburys S/mkts",
-      "status": "posted"
+      "type": "array"
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
     }
-  ],
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
   },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -2569,28 +4280,130 @@ Requires **transactions:read:all** and **transactions:write:all** scopes.
 
 ```json
 {
-  "data": {
-    "accountId": "c390a94f-2309-4cdf-8d02-b0c5304d9f66",
-    "amount": {
-      "value": -2323,
-      "currency": "GBP"
+  "properties": {
+    "data": {
+      "additionalProperties": false,
+      "properties": {
+        "accountId": {
+          "description": "The id of the account the transaction belongs to",
+          "example": "c390a94f-2309-4cdf-8d02-b0c5304d9f66",
+          "type": "string"
+        },
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The amount of the transaction in minor units of the currency, eg. pennies for GBP, negative means money going out of an account, positive means money coming into an account.",
+              "example": -2323,
+              "type": "integer"
+            },
+            "currency": {
+              "description": "The currency of the amount",
+              "example": "GBP",
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "type": "object"
+        },
+        "categoryId": {
+          "description": "The category id. Standard categories are prefixed with 'std', custom categories are prefixed with 'cus'",
+          "example": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
+          "type": "string",
+          "pattern": "^(std|cus):(\\w|-)+$"
+        },
+        "categoryIdConfirmed": {
+          "description": "Flag indificating whether the user has confirmed the category id as correct",
+          "example": false,
+          "type": "boolean"
+        },
+        "date": {
+          "description": "The date that the transaction occurred. Where available this will contain an accurate time, where the time is not available it will default to midday.",
+          "example": "2018-07-10T12:00:00+00:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateModified": {
+          "description": "The date the transaction was modified - this could be when it was added, or a category changed, or when notes were added",
+          "example": "2018-07-10T11:39:46.506Z",
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique id of the transaction",
+          "example": "c390a94f-3824-4cdf-8d02-b0c5304d9f66",
+          "type": "string"
+        },
+        "longDescription": {
+          "description": "The full text description of the transactions - often as it is represented on the users bank statement",
+          "example": "Card Purchase SAINSBURYS S/MKTS  BCC",
+          "type": "string"
+        },
+        "notes": {
+          "default": "",
+          "description": "Arbitrary text that a user can add about a transaction",
+          "example": "Some notes about the transaction",
+          "type": "string"
+        },
+        "shortDescription": {
+          "description": "A cleaned up and shorter description of the transaction, this can be editied",
+          "example": "Sainsburys S/mkts",
+          "type": "string"
+        },
+        "status": {
+          "description": "Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.",
+          "enum": [
+            "posted",
+            "pending"
+          ],
+          "example": "posted",
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "categoryId",
+        "categoryIdConfirmed",
+        "date",
+        "dateModified",
+        "id",
+        "longDescription",
+        "notes",
+        "shortDescription",
+        "status"
+      ]
     },
-    "categoryId": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
-    "categoryIdConfirmed": false,
-    "date": "2018-07-10T12:00:00+00:00",
-    "dateModified": "2018-07-10T11:39:46.506Z",
-    "id": "c390a94f-3824-4cdf-8d02-b0c5304d9f66",
-    "longDescription": "Card Purchase SAINSBURYS S/MKTS  BCC",
-    "notes": "Some notes about the transaction",
-    "shortDescription": "Sainsburys S/mkts",
-    "status": "posted"
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -2796,28 +4609,130 @@ Requires **transactions:read:all** scope.
 
 ```json
 {
-  "data": {
-    "accountId": "c390a94f-2309-4cdf-8d02-b0c5304d9f66",
-    "amount": {
-      "value": -2323,
-      "currency": "GBP"
+  "properties": {
+    "data": {
+      "additionalProperties": false,
+      "properties": {
+        "accountId": {
+          "description": "The id of the account the transaction belongs to",
+          "example": "c390a94f-2309-4cdf-8d02-b0c5304d9f66",
+          "type": "string"
+        },
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The amount of the transaction in minor units of the currency, eg. pennies for GBP, negative means money going out of an account, positive means money coming into an account.",
+              "example": -2323,
+              "type": "integer"
+            },
+            "currency": {
+              "description": "The currency of the amount",
+              "example": "GBP",
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "type": "object"
+        },
+        "categoryId": {
+          "description": "The category id. Standard categories are prefixed with 'std', custom categories are prefixed with 'cus'",
+          "example": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
+          "type": "string",
+          "pattern": "^(std|cus):(\\w|-)+$"
+        },
+        "categoryIdConfirmed": {
+          "description": "Flag indificating whether the user has confirmed the category id as correct",
+          "example": false,
+          "type": "boolean"
+        },
+        "date": {
+          "description": "The date that the transaction occurred. Where available this will contain an accurate time, where the time is not available it will default to midday.",
+          "example": "2018-07-10T12:00:00+00:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateModified": {
+          "description": "The date the transaction was modified - this could be when it was added, or a category changed, or when notes were added",
+          "example": "2018-07-10T11:39:46.506Z",
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique id of the transaction",
+          "example": "c390a94f-3824-4cdf-8d02-b0c5304d9f66",
+          "type": "string"
+        },
+        "longDescription": {
+          "description": "The full text description of the transactions - often as it is represented on the users bank statement",
+          "example": "Card Purchase SAINSBURYS S/MKTS  BCC",
+          "type": "string"
+        },
+        "notes": {
+          "default": "",
+          "description": "Arbitrary text that a user can add about a transaction",
+          "example": "Some notes about the transaction",
+          "type": "string"
+        },
+        "shortDescription": {
+          "description": "A cleaned up and shorter description of the transaction, this can be editied",
+          "example": "Sainsburys S/mkts",
+          "type": "string"
+        },
+        "status": {
+          "description": "Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.",
+          "enum": [
+            "posted",
+            "pending"
+          ],
+          "example": "posted",
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "categoryId",
+        "categoryIdConfirmed",
+        "date",
+        "dateModified",
+        "id",
+        "longDescription",
+        "notes",
+        "shortDescription",
+        "status"
+      ]
     },
-    "categoryId": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
-    "categoryIdConfirmed": false,
-    "date": "2018-07-10T12:00:00+00:00",
-    "dateModified": "2018-07-10T11:39:46.506Z",
-    "id": "c390a94f-3824-4cdf-8d02-b0c5304d9f66",
-    "longDescription": "Card Purchase SAINSBURYS S/MKTS  BCC",
-    "notes": "Some notes about the transaction",
-    "shortDescription": "Sainsburys S/mkts",
-    "status": "posted"
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -3061,28 +4976,130 @@ Requires **transactions:read:all** and either of **transactions:write** or **tra
 
 ```json
 {
-  "data": {
-    "accountId": "c390a94f-2309-4cdf-8d02-b0c5304d9f66",
-    "amount": {
-      "value": -2323,
-      "currency": "GBP"
+  "properties": {
+    "data": {
+      "additionalProperties": false,
+      "properties": {
+        "accountId": {
+          "description": "The id of the account the transaction belongs to",
+          "example": "c390a94f-2309-4cdf-8d02-b0c5304d9f66",
+          "type": "string"
+        },
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The amount of the transaction in minor units of the currency, eg. pennies for GBP, negative means money going out of an account, positive means money coming into an account.",
+              "example": -2323,
+              "type": "integer"
+            },
+            "currency": {
+              "description": "The currency of the amount",
+              "example": "GBP",
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "type": "object"
+        },
+        "categoryId": {
+          "description": "The category id. Standard categories are prefixed with 'std', custom categories are prefixed with 'cus'",
+          "example": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
+          "type": "string",
+          "pattern": "^(std|cus):(\\w|-)+$"
+        },
+        "categoryIdConfirmed": {
+          "description": "Flag indificating whether the user has confirmed the category id as correct",
+          "example": false,
+          "type": "boolean"
+        },
+        "date": {
+          "description": "The date that the transaction occurred. Where available this will contain an accurate time, where the time is not available it will default to midday.",
+          "example": "2018-07-10T12:00:00+00:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateModified": {
+          "description": "The date the transaction was modified - this could be when it was added, or a category changed, or when notes were added",
+          "example": "2018-07-10T11:39:46.506Z",
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique id of the transaction",
+          "example": "c390a94f-3824-4cdf-8d02-b0c5304d9f66",
+          "type": "string"
+        },
+        "longDescription": {
+          "description": "The full text description of the transactions - often as it is represented on the users bank statement",
+          "example": "Card Purchase SAINSBURYS S/MKTS  BCC",
+          "type": "string"
+        },
+        "notes": {
+          "default": "",
+          "description": "Arbitrary text that a user can add about a transaction",
+          "example": "Some notes about the transaction",
+          "type": "string"
+        },
+        "shortDescription": {
+          "description": "A cleaned up and shorter description of the transaction, this can be editied",
+          "example": "Sainsburys S/mkts",
+          "type": "string"
+        },
+        "status": {
+          "description": "Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.",
+          "enum": [
+            "posted",
+            "pending"
+          ],
+          "example": "posted",
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "categoryId",
+        "categoryIdConfirmed",
+        "date",
+        "dateModified",
+        "id",
+        "longDescription",
+        "notes",
+        "shortDescription",
+        "status"
+      ]
     },
-    "categoryId": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
-    "categoryIdConfirmed": false,
-    "date": "2018-07-10T12:00:00+00:00",
-    "dateModified": "2018-07-10T11:39:46.506Z",
-    "id": "c390a94f-3824-4cdf-8d02-b0c5304d9f66",
-    "longDescription": "Card Purchase SAINSBURYS S/MKTS  BCC",
-    "notes": "Some notes about the transaction",
-    "shortDescription": "Sainsburys S/mkts",
-    "status": "posted"
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -3288,8 +5305,21 @@ Requires **transactions:write:all** scope.
 
 ```json
 {
-  "code": "string",
-  "message": "string"
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "description": "The error code",
+      "type": "string"
+    },
+    "message": {
+      "description": "The error message",
+      "type": "string"
+    }
+  },
+  "required": [
+    "code"
+  ],
+  "type": "object"
 }
 ```
 
@@ -3525,17 +5555,56 @@ Requires **transactions:read:all** and **transactions:write:all** scopes.
 
 ```json
 {
-  "data": [
-    {
-      "id": "c390a94f-3824-4cdf-8d02-b0c5304d9f66"
+  "properties": {
+    "data": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "The unique id of the transaction",
+            "example": "c390a94f-3824-4cdf-8d02-b0c5304d9f66",
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id"
+        ]
+      },
+      "type": "array",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
     }
-  ],
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
   },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -3567,7 +5636,7 @@ To perform this operation, you must be authenticated by means of one of the foll
 Bearer
 </aside>
 
-<h1 id="moneyhub-enterprise-categories">categories</h1>
+<h1 id="moneyhub-data-api-categories">categories</h1>
 
 ## get__categories
 
@@ -3725,20 +5794,70 @@ Requires **categories:read** scope.
 
 ```json
 {
-  "data": [
-    {
-      "categoryId": "std:338d2636-7f88-491d-8129-255c98da1eb8",
-      "name": "Days Out",
-      "key": "wages",
-      "group": "group:2"
+  "properties": {
+    "data": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "categoryId": {
+            "description": "The id of the category. Custom categories are prefixed with 'cus:'",
+            "example": "std:338d2636-7f88-491d-8129-255c98da1eb8",
+            "type": "string",
+            "pattern": "^(std|cus):(\\w|-)+$"
+          },
+          "name": {
+            "description": "The name of the category - only applicable for custom categories",
+            "example": "Days Out",
+            "type": "string"
+          },
+          "key": {
+            "description": "A text key for standard categories",
+            "example": "wages",
+            "type": "string"
+          },
+          "group": {
+            "description": "The category group to which the category belongs",
+            "example": "group:2",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "categoryId",
+          "group"
+        ]
+      },
+      "type": "array"
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
     }
-  ],
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
   },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -3946,18 +6065,67 @@ Requires **categories:write** scope.
 
 ```json
 {
-  "data": {
-    "categoryId": "std:338d2636-7f88-491d-8129-255c98da1eb8",
-    "name": "Days Out",
-    "key": "wages",
-    "group": "group:2"
+  "properties": {
+    "data": {
+      "additionalProperties": false,
+      "properties": {
+        "categoryId": {
+          "description": "The id of the category. Custom categories are prefixed with 'cus:'",
+          "example": "std:338d2636-7f88-491d-8129-255c98da1eb8",
+          "type": "string",
+          "pattern": "^(std|cus):(\\w|-)+$"
+        },
+        "name": {
+          "description": "The name of the category - only applicable for custom categories",
+          "example": "Days Out",
+          "type": "string"
+        },
+        "key": {
+          "description": "A text key for standard categories",
+          "example": "wages",
+          "type": "string"
+        },
+        "group": {
+          "description": "The category group to which the category belongs",
+          "example": "group:2",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "required": [
+        "categoryId",
+        "group"
+      ]
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -4147,18 +6315,67 @@ Requires **categories:read** scope.
 
 ```json
 {
-  "data": {
-    "categoryId": "std:338d2636-7f88-491d-8129-255c98da1eb8",
-    "name": "Days Out",
-    "key": "wages",
-    "group": "group:2"
+  "properties": {
+    "data": {
+      "additionalProperties": false,
+      "properties": {
+        "categoryId": {
+          "description": "The id of the category. Custom categories are prefixed with 'cus:'",
+          "example": "std:338d2636-7f88-491d-8129-255c98da1eb8",
+          "type": "string",
+          "pattern": "^(std|cus):(\\w|-)+$"
+        },
+        "name": {
+          "description": "The name of the category - only applicable for custom categories",
+          "example": "Days Out",
+          "type": "string"
+        },
+        "key": {
+          "description": "A text key for standard categories",
+          "example": "wages",
+          "type": "string"
+        },
+        "group": {
+          "description": "The category group to which the category belongs",
+          "example": "group:2",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "required": [
+        "categoryId",
+        "group"
+      ]
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -4342,18 +6559,59 @@ Requires **categories:read** scope.
 
 ```json
 {
-  "data": [
-    {
-      "id": "group-1",
-      "key": "bills"
+  "properties": {
+    "data": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "The id of the category group.",
+            "example": "group-1",
+            "type": "string"
+          },
+          "key": {
+            "description": "A text key for the category group",
+            "example": "bills",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "key"
+        ]
+      },
+      "type": "array"
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
     }
-  ],
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
   },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -4385,7 +6643,7 @@ To perform this operation, you must be authenticated by means of one of the foll
 Bearer
 </aside>
 
-<h1 id="moneyhub-enterprise-spending-analysis">spending analysis</h1>
+<h1 id="moneyhub-data-api-spending-analysis">spending analysis</h1>
 
 ## post__spending-analysis
 
@@ -4596,32 +6854,85 @@ Defaults to all categories and accounts if none specified.
 
 ```json
 {
-  "data": {
-    "categories": [
-      {
-        "categoryId": "std:65ebdcdb-c46b-478f-bbbc-feabeb0b4342",
-        "categoryGroup": "group:2",
-        "currentMonth": -2000,
-        "previousMonth": -1000
-      },
-      {
-        "categoryId": "std:379c7ed2-27f3-401f-b581-f6507934f0f0",
-        "categoryGroup": "group:3",
-        "currentMonth": -1500,
-        "previousMonth": -500
+  "properties": {
+    "data": {
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "categoryId": {
+                "type": "string",
+                "example": "std:338d2636-7f88-491d-8129-255c98da1eb8"
+              },
+              "categoryGroup": {
+                "type": "string",
+                "example": "group:2"
+              }
+            },
+            "additionalProperties": true
+          },
+          "required": [
+            "categoryId",
+            "categoryGroup"
+          ],
+          "additionalProperties": false,
+          "example": [
+            {
+              "categoryId": "std:65ebdcdb-c46b-478f-bbbc-feabeb0b4342",
+              "categoryGroup": "group:2",
+              "currentMonth": -2000,
+              "previousMonth": -1000
+            },
+            {
+              "categoryId": "std:379c7ed2-27f3-401f-b581-f6507934f0f0",
+              "categoryGroup": "group:3",
+              "currentMonth": -1500,
+              "previousMonth": -500
+            }
+          ]
+        },
+        "total": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true,
+          "example": {
+            "currentMonth": -3500,
+            "previousMonth": -1500
+          }
+        }
       }
-    ],
-    "total": {
-      "currentMonth": -3500,
-      "previousMonth": -1500
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
     }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -4656,7 +6967,7 @@ To perform this operation, you must be authenticated by means of one of the foll
 Bearer
 </aside>
 
-<h1 id="moneyhub-enterprise-spending-goals">spending goals</h1>
+<h1 id="moneyhub-data-api-spending-goals">spending goals</h1>
 
 ## get__spending-goals
 
@@ -4814,31 +7125,123 @@ Requires **spending_goals:read** scope.
 
 ```json
 {
-  "data": [
-    {
-      "categoryId": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
-      "dateCreated": "2018-07-11T03:51:08+00:00",
-      "periodType": "monthly",
-      "periodStart": "01",
-      "id": "0b4e6488-6de0-420c-8f56-fee665707d57",
-      "amount": {
-        "value": 40000,
-        "currency": "GBP"
+  "properties": {
+    "data": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "categoryId": {
+            "example": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
+            "type": "string",
+            "pattern": "^(std|cus):(\\w|-)+$"
+          },
+          "dateCreated": {
+            "example": "2018-07-11T03:51:08+00:00",
+            "format": "date-time",
+            "type": "string"
+          },
+          "periodType": {
+            "example": "monthly",
+            "type": "string",
+            "enum": [
+              "monthly",
+              "annual"
+            ]
+          },
+          "periodStart": {
+            "example": "01",
+            "type": "string",
+            "pattern": "^(0?[1-9]|[12][0-9]|3[01])(-(0?[1-9]|1[012]))?$"
+          },
+          "id": {
+            "description": "The unique id of the spending goal",
+            "type": "string",
+            "example": "0b4e6488-6de0-420c-8f56-fee665707d57"
+          },
+          "amount": {
+            "properties": {
+              "value": {
+                "description": "The value of the amount in minor units of the currency, eg. pennies for GBP.",
+                "example": 40000,
+                "type": "integer",
+                "minimum": 0
+              },
+              "currency": {
+                "description": "The currency of the amount.",
+                "example": "GBP",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "currency"
+            ],
+            "type": "object"
+          },
+          "spending": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "date": {
+                  "example": "2018-07",
+                  "type": "string"
+                },
+                "spent": {
+                  "description": "The spending analysis amount of the specified month expressed in minor units of the currency.",
+                  "example": -35000,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "date",
+                "spent"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "dateCreated",
+          "categoryId",
+          "amount",
+          "periodStart",
+          "periodType",
+          "spending"
+        ]
       },
-      "spending": [
-        {
-          "date": "2018-07",
-          "spent": -35000
+      "type": "array"
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
         }
-      ]
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
     }
-  ],
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
   },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -5062,29 +7465,120 @@ Requires **spending_goals:read** and **spending_goals:write:all** scopes.
 
 ```json
 {
-  "data": {
-    "categoryId": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
-    "dateCreated": "2018-07-11T03:51:08+00:00",
-    "periodType": "monthly",
-    "periodStart": "01",
-    "id": "0b4e6488-6de0-420c-8f56-fee665707d57",
-    "amount": {
-      "value": 40000,
-      "currency": "GBP"
+  "properties": {
+    "data": {
+      "additionalProperties": false,
+      "properties": {
+        "categoryId": {
+          "example": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
+          "type": "string",
+          "pattern": "^(std|cus):(\\w|-)+$"
+        },
+        "dateCreated": {
+          "example": "2018-07-11T03:51:08+00:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "periodType": {
+          "example": "monthly",
+          "type": "string",
+          "enum": [
+            "monthly",
+            "annual"
+          ]
+        },
+        "periodStart": {
+          "example": "01",
+          "type": "string",
+          "pattern": "^(0?[1-9]|[12][0-9]|3[01])(-(0?[1-9]|1[012]))?$"
+        },
+        "id": {
+          "description": "The unique id of the spending goal",
+          "type": "string",
+          "example": "0b4e6488-6de0-420c-8f56-fee665707d57"
+        },
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The value of the amount in minor units of the currency, eg. pennies for GBP.",
+              "example": 40000,
+              "type": "integer",
+              "minimum": 0
+            },
+            "currency": {
+              "description": "The currency of the amount.",
+              "example": "GBP",
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "type": "object"
+        },
+        "spending": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "date": {
+                "example": "2018-07",
+                "type": "string"
+              },
+              "spent": {
+                "description": "The spending analysis amount of the specified month expressed in minor units of the currency.",
+                "example": -35000,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "date",
+              "spent"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "dateCreated",
+        "categoryId",
+        "amount",
+        "periodStart",
+        "periodType",
+        "spending"
+      ]
     },
-    "spending": [
-      {
-        "date": "2018-07",
-        "spent": -35000
-      }
-    ]
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -5288,29 +7782,120 @@ Requires **spending_goals:read** scope.
 
 ```json
 {
-  "data": {
-    "categoryId": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
-    "dateCreated": "2018-07-11T03:51:08+00:00",
-    "periodType": "monthly",
-    "periodStart": "01",
-    "id": "0b4e6488-6de0-420c-8f56-fee665707d57",
-    "amount": {
-      "value": 40000,
-      "currency": "GBP"
+  "properties": {
+    "data": {
+      "additionalProperties": false,
+      "properties": {
+        "categoryId": {
+          "example": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
+          "type": "string",
+          "pattern": "^(std|cus):(\\w|-)+$"
+        },
+        "dateCreated": {
+          "example": "2018-07-11T03:51:08+00:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "periodType": {
+          "example": "monthly",
+          "type": "string",
+          "enum": [
+            "monthly",
+            "annual"
+          ]
+        },
+        "periodStart": {
+          "example": "01",
+          "type": "string",
+          "pattern": "^(0?[1-9]|[12][0-9]|3[01])(-(0?[1-9]|1[012]))?$"
+        },
+        "id": {
+          "description": "The unique id of the spending goal",
+          "type": "string",
+          "example": "0b4e6488-6de0-420c-8f56-fee665707d57"
+        },
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The value of the amount in minor units of the currency, eg. pennies for GBP.",
+              "example": 40000,
+              "type": "integer",
+              "minimum": 0
+            },
+            "currency": {
+              "description": "The currency of the amount.",
+              "example": "GBP",
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "type": "object"
+        },
+        "spending": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "date": {
+                "example": "2018-07",
+                "type": "string"
+              },
+              "spent": {
+                "description": "The spending analysis amount of the specified month expressed in minor units of the currency.",
+                "example": -35000,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "date",
+              "spent"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "dateCreated",
+        "categoryId",
+        "amount",
+        "periodStart",
+        "periodType",
+        "spending"
+      ]
     },
-    "spending": [
-      {
-        "date": "2018-07",
-        "spent": -35000
-      }
-    ]
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -5538,29 +8123,120 @@ Requires **spending_goals:read spending_goals:write** scope.
 
 ```json
 {
-  "data": {
-    "categoryId": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
-    "dateCreated": "2018-07-11T03:51:08+00:00",
-    "periodType": "monthly",
-    "periodStart": "01",
-    "id": "0b4e6488-6de0-420c-8f56-fee665707d57",
-    "amount": {
-      "value": 40000,
-      "currency": "GBP"
+  "properties": {
+    "data": {
+      "additionalProperties": false,
+      "properties": {
+        "categoryId": {
+          "example": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
+          "type": "string",
+          "pattern": "^(std|cus):(\\w|-)+$"
+        },
+        "dateCreated": {
+          "example": "2018-07-11T03:51:08+00:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "periodType": {
+          "example": "monthly",
+          "type": "string",
+          "enum": [
+            "monthly",
+            "annual"
+          ]
+        },
+        "periodStart": {
+          "example": "01",
+          "type": "string",
+          "pattern": "^(0?[1-9]|[12][0-9]|3[01])(-(0?[1-9]|1[012]))?$"
+        },
+        "id": {
+          "description": "The unique id of the spending goal",
+          "type": "string",
+          "example": "0b4e6488-6de0-420c-8f56-fee665707d57"
+        },
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The value of the amount in minor units of the currency, eg. pennies for GBP.",
+              "example": 40000,
+              "type": "integer",
+              "minimum": 0
+            },
+            "currency": {
+              "description": "The currency of the amount.",
+              "example": "GBP",
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "type": "object"
+        },
+        "spending": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "date": {
+                "example": "2018-07",
+                "type": "string"
+              },
+              "spent": {
+                "description": "The spending analysis amount of the specified month expressed in minor units of the currency.",
+                "example": -35000,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "date",
+              "spent"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "dateCreated",
+        "categoryId",
+        "amount",
+        "periodStart",
+        "periodType",
+        "spending"
+      ]
     },
-    "spending": [
-      {
-        "date": "2018-07",
-        "spent": -35000
-      }
-    ]
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -5764,8 +8440,21 @@ Requires **spending_goals:write:all** scope.
 
 ```json
 {
-  "code": "string",
-  "message": "string"
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "description": "The error code",
+      "type": "string"
+    },
+    "message": {
+      "description": "The error message",
+      "type": "string"
+    }
+  },
+  "required": [
+    "code"
+  ],
+  "type": "object"
 }
 ```
 
@@ -5783,7 +8472,7 @@ To perform this operation, you must be authenticated by means of one of the foll
 Bearer
 </aside>
 
-<h1 id="moneyhub-enterprise-savings-goals">savings goals</h1>
+<h1 id="moneyhub-data-api-savings-goals">savings goals</h1>
 
 ## get__savings-goals
 
@@ -5941,32 +8630,128 @@ Requires **savings_goals:read** scope.
 
 ```json
 {
-  "data": [
-    {
-      "id": "27c316ef-8dfa-4a4b-b0a2-4979b7db1543",
-      "name": "House deposit",
-      "amount": {
-        "value": 500000,
-        "currency": "GBP"
+  "properties": {
+    "data": {
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Unique id of the saving goal.",
+            "type": "string",
+            "example": "27c316ef-8dfa-4a4b-b0a2-4979b7db1543"
+          },
+          "name": {
+            "description": "Name for the savings goal.",
+            "type": "string",
+            "example": "House deposit"
+          },
+          "amount": {
+            "properties": {
+              "value": {
+                "description": "The target amount in minor unit in minor units of the currency, eg. pennies for GBP.",
+                "example": 500000,
+                "type": "integer",
+                "minimum": 0,
+                "exclusiveMinimum": true
+              },
+              "currency": {
+                "description": "The currency of the amount",
+                "example": "GBP",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "currency"
+            ],
+            "additionalProperties": false,
+            "type": "object"
+          },
+          "dateCreated": {
+            "description": "The date at which the savings goal was added.",
+            "type": "string",
+            "format": "date-time",
+            "example": "2018-10-11T03:51:08+00:00"
+          },
+          "imageUrl": {
+            "type": "string",
+            "example": "url"
+          },
+          "notes": {
+            "description": "Arbitrary text that a user can add about a savings goal.",
+            "type": "string",
+            "example": "Notes"
+          },
+          "progressPercentage": {
+            "description": "Progresss achieved towards the target amount represented in percentage.",
+            "type": "number",
+            "example": 33.3
+          },
+          "progressAmount": {
+            "description": "Progresss achieved towards the target amount by adding up the balances of the selected accounts.",
+            "type": "integer",
+            "example": 500000
+          },
+          "accounts": {
+            "type": "array",
+            "description": "Accounts that will be taken into account towards the target amount.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "description": "Id of the account",
+                  "type": "string",
+                  "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "amount",
+          "dateCreated",
+          "accounts"
+        ]
       },
-      "dateCreated": "2018-10-11T03:51:08+00:00",
-      "imageUrl": "url",
-      "notes": "Notes",
-      "progressPercentage": 33.3,
-      "progressAmount": 500000,
-      "accounts": [
-        {
-          "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+      "type": "array"
+    },
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
         }
-      ]
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
     }
-  ],
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
   },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -6200,30 +8985,125 @@ Requires **savings_goals:read** and **savings_goals:write:all** scopes.
 
 ```json
 {
-  "data": {
-    "id": "27c316ef-8dfa-4a4b-b0a2-4979b7db1543",
-    "name": "House deposit",
-    "amount": {
-      "value": 500000,
-      "currency": "GBP"
+  "properties": {
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Unique id of the saving goal.",
+          "type": "string",
+          "example": "27c316ef-8dfa-4a4b-b0a2-4979b7db1543"
+        },
+        "name": {
+          "description": "Name for the savings goal.",
+          "type": "string",
+          "example": "House deposit"
+        },
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The target amount in minor unit in minor units of the currency, eg. pennies for GBP.",
+              "example": 500000,
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true
+            },
+            "currency": {
+              "description": "The currency of the amount",
+              "example": "GBP",
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "dateCreated": {
+          "description": "The date at which the savings goal was added.",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-10-11T03:51:08+00:00"
+        },
+        "imageUrl": {
+          "type": "string",
+          "example": "url"
+        },
+        "notes": {
+          "description": "Arbitrary text that a user can add about a savings goal.",
+          "type": "string",
+          "example": "Notes"
+        },
+        "progressPercentage": {
+          "description": "Progresss achieved towards the target amount represented in percentage.",
+          "type": "number",
+          "example": 33.3
+        },
+        "progressAmount": {
+          "description": "Progresss achieved towards the target amount by adding up the balances of the selected accounts.",
+          "type": "integer",
+          "example": 500000
+        },
+        "accounts": {
+          "type": "array",
+          "description": "Accounts that will be taken into account towards the target amount.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "description": "Id of the account",
+                "type": "string",
+                "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "amount",
+        "dateCreated",
+        "accounts"
+      ]
     },
-    "dateCreated": "2018-10-11T03:51:08+00:00",
-    "imageUrl": "url",
-    "notes": "Notes",
-    "progressPercentage": 33.3,
-    "progressAmount": 500000,
-    "accounts": [
-      {
-        "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
-      }
-    ]
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -6421,30 +9301,125 @@ Requires **savings_goals:read** scope.
 
 ```json
 {
-  "data": {
-    "id": "27c316ef-8dfa-4a4b-b0a2-4979b7db1543",
-    "name": "House deposit",
-    "amount": {
-      "value": 500000,
-      "currency": "GBP"
+  "properties": {
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Unique id of the saving goal.",
+          "type": "string",
+          "example": "27c316ef-8dfa-4a4b-b0a2-4979b7db1543"
+        },
+        "name": {
+          "description": "Name for the savings goal.",
+          "type": "string",
+          "example": "House deposit"
+        },
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The target amount in minor unit in minor units of the currency, eg. pennies for GBP.",
+              "example": 500000,
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true
+            },
+            "currency": {
+              "description": "The currency of the amount",
+              "example": "GBP",
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "dateCreated": {
+          "description": "The date at which the savings goal was added.",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-10-11T03:51:08+00:00"
+        },
+        "imageUrl": {
+          "type": "string",
+          "example": "url"
+        },
+        "notes": {
+          "description": "Arbitrary text that a user can add about a savings goal.",
+          "type": "string",
+          "example": "Notes"
+        },
+        "progressPercentage": {
+          "description": "Progresss achieved towards the target amount represented in percentage.",
+          "type": "number",
+          "example": 33.3
+        },
+        "progressAmount": {
+          "description": "Progresss achieved towards the target amount by adding up the balances of the selected accounts.",
+          "type": "integer",
+          "example": 500000
+        },
+        "accounts": {
+          "type": "array",
+          "description": "Accounts that will be taken into account towards the target amount.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "description": "Id of the account",
+                "type": "string",
+                "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "amount",
+        "dateCreated",
+        "accounts"
+      ]
     },
-    "dateCreated": "2018-10-11T03:51:08+00:00",
-    "imageUrl": "url",
-    "notes": "Notes",
-    "progressPercentage": 33.3,
-    "progressAmount": 500000,
-    "accounts": [
-      {
-        "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
-      }
-    ]
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -6680,30 +9655,125 @@ Requires **savings_goals:read** and either **savings_goals:write** or **savings_
 
 ```json
 {
-  "data": {
-    "id": "27c316ef-8dfa-4a4b-b0a2-4979b7db1543",
-    "name": "House deposit",
-    "amount": {
-      "value": 500000,
-      "currency": "GBP"
+  "properties": {
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Unique id of the saving goal.",
+          "type": "string",
+          "example": "27c316ef-8dfa-4a4b-b0a2-4979b7db1543"
+        },
+        "name": {
+          "description": "Name for the savings goal.",
+          "type": "string",
+          "example": "House deposit"
+        },
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The target amount in minor unit in minor units of the currency, eg. pennies for GBP.",
+              "example": 500000,
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true
+            },
+            "currency": {
+              "description": "The currency of the amount",
+              "example": "GBP",
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "dateCreated": {
+          "description": "The date at which the savings goal was added.",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-10-11T03:51:08+00:00"
+        },
+        "imageUrl": {
+          "type": "string",
+          "example": "url"
+        },
+        "notes": {
+          "description": "Arbitrary text that a user can add about a savings goal.",
+          "type": "string",
+          "example": "Notes"
+        },
+        "progressPercentage": {
+          "description": "Progresss achieved towards the target amount represented in percentage.",
+          "type": "number",
+          "example": 33.3
+        },
+        "progressAmount": {
+          "description": "Progresss achieved towards the target amount by adding up the balances of the selected accounts.",
+          "type": "integer",
+          "example": 500000
+        },
+        "accounts": {
+          "type": "array",
+          "description": "Accounts that will be taken into account towards the target amount.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "description": "Id of the account",
+                "type": "string",
+                "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "amount",
+        "dateCreated",
+        "accounts"
+      ]
     },
-    "dateCreated": "2018-10-11T03:51:08+00:00",
-    "imageUrl": "url",
-    "notes": "Notes",
-    "progressPercentage": 33.3,
-    "progressAmount": 500000,
-    "accounts": [
-      {
-        "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
-      }
-    ]
+    "links": {
+      "additionalProperties": false,
+      "properties": {
+        "next": {
+          "description": "The url to retrieve the next page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "prev": {
+          "description": "The url to retrieve the previous page of results from",
+          "format": "uri",
+          "type": "string"
+        },
+        "self": {
+          "description": "The url of the current resource(s)",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    }
   },
-  "links": {
-    "next": "http://example.com",
-    "prev": "http://example.com",
-    "self": "http://example.com"
-  },
-  "meta": {}
+  "type": "object"
 }
 ```
 
@@ -6901,8 +9971,21 @@ Requires **savings_goals:write:all** scope.
 
 ```json
 {
-  "code": "string",
-  "message": "string"
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "description": "The error code",
+      "type": "string"
+    },
+    "message": {
+      "description": "The error message",
+      "type": "string"
+    }
+  },
+  "required": [
+    "code"
+  ],
+  "type": "object"
 }
 ```
 
@@ -6928,15 +10011,49 @@ Bearer
 
 ```json
 {
-  "categoryId": "string",
-  "startDate": "2019-02-19",
-  "endDate": "2019-02-19",
-  "startDateModified": "2019-02-19",
-  "endDateModified": "2019-02-19",
-  "limit": 0,
-  "offset": 0,
-  "text": "string",
-  "accountId": "stringstringstringstringstringstring"
+  "additionalProperties": false,
+  "properties": {
+    "categoryId": {
+      "type": "string",
+      "pattern": "^(?:(?:std|cus):(?:\\w|-)+)|(?:(?:income|expense):[\\d]{1,2})$"
+    },
+    "startDate": {
+      "format": "date",
+      "type": "string"
+    },
+    "endDate": {
+      "format": "date",
+      "type": "string"
+    },
+    "startDateModified": {
+      "format": "date",
+      "type": "string"
+    },
+    "endDateModified": {
+      "format": "date",
+      "type": "string"
+    },
+    "limit": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "offset": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "text": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100
+    },
+    "accountId": {
+      "type": "string",
+      "minLength": 36,
+      "maxLength": 36
+    }
+  }
 }
 
 ```
@@ -6961,44 +10078,246 @@ Bearer
 
 ```json
 {
-  "accountName": "Cash ISA",
-  "currency": "GBP",
-  "balance": {
-    "date": "2018-08-12",
-    "amount": {
-      "value": -300023,
-      "currency": "GBP"
+  "additionalProperties": false,
+  "properties": {
+    "accountName": {
+      "description": "The name of the account",
+      "example": "Cash ISA",
+      "type": "string"
+    },
+    "currency": {
+      "description": "The currency of the account",
+      "example": "GBP",
+      "type": "string"
+    },
+    "balance": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The value of the balance in minor units of the currency, eg. pennies for GBP.",
+              "example": -300023,
+              "type": "integer"
+            },
+            "currency": {
+              "description": "The currency of the balance taken from the account",
+              "example": "GBP",
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "currency"
+          ],
+          "type": "object"
+        },
+        "date": {
+          "description": "The date of the balance",
+          "example": "2018-08-12",
+          "format": "date",
+          "type": "string"
+        }
+      },
+      "example": {
+        "date": "2018-08-12",
+        "amount": {
+          "value": -300023,
+          "currency": "GBP"
+        }
+      },
+      "required": [
+        "amount",
+        "date"
+      ]
+    },
+    "details": {
+      "additionalProperties": false,
+      "properties": {
+        "AER": {
+          "description": "For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.",
+          "example": 1.3,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "APR": {
+          "description": "For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.",
+          "example": 13.1,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "creditLimit": {
+          "description": "For credit cards. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "endDate": {
+          "description": "For Mortgages and loans. The date at which the loan/mortgage will finish.",
+          "format": "date",
+          "example": "2020-01-01",
+          "type": "string"
+        },
+        "fixedDate": {
+          "description": "For Mortgages. The date at which the current fixed rate ends",
+          "format": "date",
+          "example": "2019-01-01",
+          "type": "string"
+        },
+        "interestFreePeriod": {
+          "type": "integer",
+          "description": "For loans. The length in months of the interest free period",
+          "example": 12,
+          "minimum": 0
+        },
+        "interestType": {
+          "description": "For mortgages. The interest type",
+          "enum": [
+            "fixed",
+            "variable"
+          ],
+          "example": "fixed",
+          "type": "string"
+        },
+        "linkedProperty": {
+          "type": "string",
+          "description": "For Mortgages. The id of an associated property account",
+          "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+        },
+        "monthlyRepayment": {
+          "type": "integer",
+          "description": "For mortgages and loans. The monthly amount due to the mortgage provider in minor units of the currency.",
+          "example": 60000,
+          "minimum": 0
+        },
+        "overdraftLimit": {
+          "description": "For cash accounts. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "type": "number",
+          "minimum": 0
+        },
+        "postcode": {
+          "description": "For properties. The postcode of the property",
+          "example": "bs1 1aa",
+          "type": "string"
+        },
+        "runningCost": {
+          "description": "For assets. The running cost in minor units of the currency.",
+          "example": 20000,
+          "type": "integer",
+          "minimum": 0
+        },
+        "runningCostPeriod": {
+          "type": "string",
+          "description": "For assets. The running cost period",
+          "enum": [
+            "month",
+            "year"
+          ],
+          "example": "month"
+        },
+        "term": {
+          "type": "integer",
+          "description": "For mortgages. The term of the mortgage in months.",
+          "example": 13,
+          "minimum": 0
+        },
+        "yearlyAppreciation": {
+          "type": "number",
+          "description": "For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate",
+          "example": -10
+        }
+      }
+    },
+    "transactionData": {
+      "additionalProperties": false,
+      "required": [
+        "count",
+        "earliestDate",
+        "lastDate"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "example": 6
+        },
+        "earliestDate": {
+          "type": "string",
+          "format": "date",
+          "example": "2017-11-28"
+        },
+        "lastDate": {
+          "type": "string",
+          "format": "date",
+          "example": "2018-05-28"
+        }
+      }
+    },
+    "dateAdded": {
+      "description": "The date at which the account was added.",
+      "example": "2018-07-10T11:39:44+00:00",
+      "format": "date-time",
+      "type": "string"
+    },
+    "dateModified": {
+      "description": "The date at which the account was last modified",
+      "example": "2018-07-10T11:39:44+00:00",
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "The unique identity of the account.",
+      "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
+      "type": "string"
+    },
+    "providerName": {
+      "description": "The name of the provider of the account.",
+      "example": "HSBC",
+      "type": "string"
+    },
+    "connectionId": {
+      "description": "The id of the connection of the account. This value is not present for accounts created manually by the user.",
+      "example": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
+      "format": "([\\w-])+:([\\w-])+",
+      "type": "string"
+    },
+    "providerId": {
+      "description": "The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.",
+      "example": "049c10ab871e8d60aa891c0ae368322d",
+      "format": "API|([\\w-])+",
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of account - this will determine the data available in the details field",
+      "enum": [
+        "cash:current",
+        "savings",
+        "card",
+        "investment",
+        "loan",
+        "mortgage:repayment",
+        "mortgage:interestOnly",
+        "pension",
+        "asset",
+        "properties:residential",
+        "properties:buyToLet"
+      ],
+      "type": "string",
+      "example": "cash:current"
     }
   },
-  "details": {
-    "AER": 1.3,
-    "APR": 13.1,
-    "creditLimit": 150000,
-    "endDate": "2020-01-01",
-    "fixedDate": "2019-01-01",
-    "interestFreePeriod": 12,
-    "interestType": "fixed",
-    "linkedProperty": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-    "monthlyRepayment": 60000,
-    "overdraftLimit": 150000,
-    "postcode": "bs1 1aa",
-    "runningCost": 20000,
-    "runningCostPeriod": "month",
-    "term": 13,
-    "yearlyAppreciation": -10
-  },
-  "transactionData": {
-    "count": 6,
-    "earliestDate": "2017-11-28",
-    "lastDate": "2018-05-28"
-  },
-  "dateAdded": "2018-07-10T11:39:44+00:00",
-  "dateModified": "2018-07-10T11:39:44+00:00",
-  "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-  "providerName": "HSBC",
-  "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
-  "providerId": "049c10ab871e8d60aa891c0ae368322d",
-  "type": "cash:current"
+  "required": [
+    "id",
+    "dateAdded",
+    "dateModified",
+    "accountName",
+    "type",
+    "balance",
+    "details"
+  ]
 }
 
 ```
@@ -7068,21 +10387,104 @@ Bearer
 
 ```json
 {
-  "AER": 1.3,
-  "APR": 13.1,
-  "creditLimit": 150000,
-  "endDate": "2020-01-01",
-  "fixedDate": "2019-01-01",
-  "interestFreePeriod": 12,
-  "interestType": "fixed",
-  "linkedProperty": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-  "monthlyRepayment": 60000,
-  "overdraftLimit": 150000,
-  "postcode": "bs1 1aa",
-  "runningCost": 20000,
-  "runningCostPeriod": "month",
-  "term": 13,
-  "yearlyAppreciation": -10
+  "additionalProperties": false,
+  "properties": {
+    "AER": {
+      "description": "For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.",
+      "example": 1.3,
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "APR": {
+      "description": "For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.",
+      "example": 13.1,
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "creditLimit": {
+      "description": "For credit cards. The agreed overdraft limit of the account in minor units of the currency.",
+      "example": 150000,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "endDate": {
+      "description": "For Mortgages and loans. The date at which the loan/mortgage will finish.",
+      "format": "date",
+      "example": "2020-01-01",
+      "type": "string"
+    },
+    "fixedDate": {
+      "description": "For Mortgages. The date at which the current fixed rate ends",
+      "format": "date",
+      "example": "2019-01-01",
+      "type": "string"
+    },
+    "interestFreePeriod": {
+      "type": "integer",
+      "description": "For loans. The length in months of the interest free period",
+      "example": 12,
+      "minimum": 0
+    },
+    "interestType": {
+      "description": "For mortgages. The interest type",
+      "enum": [
+        "fixed",
+        "variable"
+      ],
+      "example": "fixed",
+      "type": "string"
+    },
+    "linkedProperty": {
+      "type": "string",
+      "description": "For Mortgages. The id of an associated property account",
+      "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+    },
+    "monthlyRepayment": {
+      "type": "integer",
+      "description": "For mortgages and loans. The monthly amount due to the mortgage provider in minor units of the currency.",
+      "example": 60000,
+      "minimum": 0
+    },
+    "overdraftLimit": {
+      "description": "For cash accounts. The agreed overdraft limit of the account in minor units of the currency.",
+      "example": 150000,
+      "type": "number",
+      "minimum": 0
+    },
+    "postcode": {
+      "description": "For properties. The postcode of the property",
+      "example": "bs1 1aa",
+      "type": "string"
+    },
+    "runningCost": {
+      "description": "For assets. The running cost in minor units of the currency.",
+      "example": 20000,
+      "type": "integer",
+      "minimum": 0
+    },
+    "runningCostPeriod": {
+      "type": "string",
+      "description": "For assets. The running cost period",
+      "enum": [
+        "month",
+        "year"
+      ],
+      "example": "month"
+    },
+    "term": {
+      "type": "integer",
+      "description": "For mortgages. The term of the mortgage in months.",
+      "example": 13,
+      "minimum": 0
+    },
+    "yearlyAppreciation": {
+      "type": "number",
+      "description": "For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate",
+      "example": -10
+    }
+  }
 }
 
 ```
@@ -7168,32 +10570,178 @@ Bearer
 
 ```json
 {
-  "accountName": "Account name",
-  "providerName": "Provider name",
-  "type": "cash:current",
-  "balance": {
-    "date": "2018-08-12",
-    "amount": {
-      "value": -300023
+  "properties": {
+    "accountName": {
+      "description": "The name of the account",
+      "example": "Account name",
+      "type": "string"
+    },
+    "providerName": {
+      "description": "The name of the provider of the account.",
+      "example": "Provider name",
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of account - this will determine the data available in the details field",
+      "enum": [
+        "cash:current",
+        "savings",
+        "card",
+        "investment",
+        "loan",
+        "mortgage:repayment",
+        "mortgage:interestOnly",
+        "pension",
+        "asset",
+        "properties:residential",
+        "properties:buyToLet"
+      ],
+      "type": "string",
+      "example": "cash:current"
+    },
+    "balance": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "amount": {
+          "properties": {
+            "value": {
+              "description": "The value of the balance in minor units of the currency, eg. pennies for GBP.",
+              "example": -300023,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "type": "object"
+        },
+        "date": {
+          "description": "The date of the balance",
+          "example": "2018-08-12",
+          "format": "date",
+          "type": "string"
+        }
+      },
+      "example": {
+        "date": "2018-08-12",
+        "amount": {
+          "value": -300023
+        }
+      },
+      "required": [
+        "amount",
+        "date"
+      ]
+    },
+    "details": {
+      "additionalProperties": false,
+      "properties": {
+        "AER": {
+          "description": "For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.",
+          "example": 1.3,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "APR": {
+          "description": "For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.",
+          "example": 13.1,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "creditLimit": {
+          "description": "For credit cards. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "endDate": {
+          "description": "For Mortgages and loans. The date at which the loan/mortgage will finish.",
+          "format": "date",
+          "example": "2020-01-01",
+          "type": "string"
+        },
+        "fixedDate": {
+          "description": "For Mortgages. The date at which the current fixed rate ends",
+          "format": "date",
+          "example": "2019-01-01",
+          "type": "string"
+        },
+        "interestFreePeriod": {
+          "type": "integer",
+          "description": "For loans. The length in months of the interest free period",
+          "example": 12,
+          "minimum": 0
+        },
+        "interestType": {
+          "description": "For mortgages. The interest type",
+          "enum": [
+            "fixed",
+            "variable"
+          ],
+          "example": "fixed",
+          "type": "string"
+        },
+        "linkedProperty": {
+          "type": "string",
+          "description": "For Mortgages. The id of an associated property account",
+          "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+        },
+        "monthlyRepayment": {
+          "type": "integer",
+          "description": "For mortgages and loans. The monthly amount due to the mortgage provider in minor units of the currency.",
+          "example": 60000,
+          "minimum": 0
+        },
+        "overdraftLimit": {
+          "description": "For cash accounts. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "type": "number",
+          "minimum": 0
+        },
+        "postcode": {
+          "description": "For properties. The postcode of the property",
+          "example": "bs1 1aa",
+          "type": "string"
+        },
+        "runningCost": {
+          "description": "For assets. The running cost in minor units of the currency.",
+          "example": 20000,
+          "type": "integer",
+          "minimum": 0
+        },
+        "runningCostPeriod": {
+          "type": "string",
+          "description": "For assets. The running cost period",
+          "enum": [
+            "month",
+            "year"
+          ],
+          "example": "month"
+        },
+        "term": {
+          "type": "integer",
+          "description": "For mortgages. The term of the mortgage in months.",
+          "example": 13,
+          "minimum": 0
+        },
+        "yearlyAppreciation": {
+          "type": "number",
+          "description": "For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate",
+          "example": -10
+        }
+      }
     }
   },
-  "details": {
-    "AER": 1.3,
-    "APR": 13.1,
-    "creditLimit": 150000,
-    "endDate": "2020-01-01",
-    "fixedDate": "2019-01-01",
-    "interestFreePeriod": 12,
-    "interestType": "fixed",
-    "linkedProperty": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-    "monthlyRepayment": 60000,
-    "overdraftLimit": 150000,
-    "postcode": "bs1 1aa",
-    "runningCost": 20000,
-    "runningCostPeriod": "month",
-    "term": 13,
-    "yearlyAppreciation": -10
-  }
+  "required": [
+    "accountName",
+    "providerName",
+    "type",
+    "balance"
+  ],
+  "type": "object"
 }
 
 ```
@@ -7252,25 +10800,123 @@ Bearer
 
 ```json
 {
-  "accountName": "Account name",
-  "providerName": "Provider name",
-  "details": {
-    "AER": 1.3,
-    "APR": 13.1,
-    "creditLimit": 150000,
-    "endDate": "2020-01-01",
-    "fixedDate": "2019-01-01",
-    "interestFreePeriod": 12,
-    "interestType": "fixed",
-    "linkedProperty": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
-    "monthlyRepayment": 60000,
-    "overdraftLimit": 150000,
-    "postcode": "bs1 1aa",
-    "runningCost": 20000,
-    "runningCostPeriod": "month",
-    "term": 13,
-    "yearlyAppreciation": -10
-  }
+  "properties": {
+    "accountName": {
+      "description": "The name of the account",
+      "example": "Account name",
+      "type": "string"
+    },
+    "providerName": {
+      "description": "The name of the provider of the account.",
+      "example": "Provider name",
+      "type": "string"
+    },
+    "details": {
+      "additionalProperties": false,
+      "properties": {
+        "AER": {
+          "description": "For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.",
+          "example": 1.3,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "APR": {
+          "description": "For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.",
+          "example": 13.1,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "creditLimit": {
+          "description": "For credit cards. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "endDate": {
+          "description": "For Mortgages and loans. The date at which the loan/mortgage will finish.",
+          "format": "date",
+          "example": "2020-01-01",
+          "type": "string"
+        },
+        "fixedDate": {
+          "description": "For Mortgages. The date at which the current fixed rate ends",
+          "format": "date",
+          "example": "2019-01-01",
+          "type": "string"
+        },
+        "interestFreePeriod": {
+          "type": "integer",
+          "description": "For loans. The length in months of the interest free period",
+          "example": 12,
+          "minimum": 0
+        },
+        "interestType": {
+          "description": "For mortgages. The interest type",
+          "enum": [
+            "fixed",
+            "variable"
+          ],
+          "example": "fixed",
+          "type": "string"
+        },
+        "linkedProperty": {
+          "type": "string",
+          "description": "For Mortgages. The id of an associated property account",
+          "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+        },
+        "monthlyRepayment": {
+          "type": "integer",
+          "description": "For mortgages and loans. The monthly amount due to the mortgage provider in minor units of the currency.",
+          "example": 60000,
+          "minimum": 0
+        },
+        "overdraftLimit": {
+          "description": "For cash accounts. The agreed overdraft limit of the account in minor units of the currency.",
+          "example": 150000,
+          "type": "number",
+          "minimum": 0
+        },
+        "postcode": {
+          "description": "For properties. The postcode of the property",
+          "example": "bs1 1aa",
+          "type": "string"
+        },
+        "runningCost": {
+          "description": "For assets. The running cost in minor units of the currency.",
+          "example": 20000,
+          "type": "integer",
+          "minimum": 0
+        },
+        "runningCostPeriod": {
+          "type": "string",
+          "description": "For assets. The running cost period",
+          "enum": [
+            "month",
+            "year"
+          ],
+          "example": "month"
+        },
+        "term": {
+          "type": "integer",
+          "description": "For mortgages. The term of the mortgage in months.",
+          "example": 13,
+          "minimum": 0
+        },
+        "yearlyAppreciation": {
+          "type": "number",
+          "description": "For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate",
+          "example": -10
+        }
+      }
+    }
+  },
+  "required": [
+    "accountName",
+    "providerName"
+  ],
+  "type": "object"
 }
 
 ```
@@ -7313,26 +10959,101 @@ Bearer
 
 ```json
 {
-  "date": "2018-07-11",
-  "items": [
-    {
-      "codes": [
-        {
-          "code": "GB00B39TQT96",
-          "type": "ISIN"
-        }
-      ],
-      "description": "Dynamic Bond Fund",
-      "quantity": 4548.09,
-      "total": {
-        "value": 90334.16,
-        "currency": "GBP"
+  "additionalProperties": false,
+  "properties": {
+    "date": {
+      "description": "Date of the valuation",
+      "example": "2018-07-11",
+      "format": "date",
+      "type": "string"
+    },
+    "items": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "codes": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "code": {
+                  "example": "GB00B39TQT96",
+                  "type": "string"
+                },
+                "type": {
+                  "enum": [
+                    "ISIN",
+                    "SEDOL",
+                    "MEX"
+                  ],
+                  "example": "ISIN",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "description": {
+            "example": "Dynamic Bond Fund",
+            "type": "string"
+          },
+          "quantity": {
+            "example": 4548.09,
+            "type": "number"
+          },
+          "total": {
+            "properties": {
+              "value": {
+                "description": "The value of the total in minor units of the currency, eg. pennies for GBP.",
+                "example": 90334.16,
+                "type": "number"
+              },
+              "currency": {
+                "description": "The currency of the total.",
+                "example": "GBP",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "currency"
+            ],
+            "type": "object"
+          },
+          "unitPrice": {
+            "properties": {
+              "value": {
+                "description": "The value of the unit price in minor units of the currency, eg. pennies for GBP.",
+                "example": 19.862,
+                "type": "number"
+              },
+              "currency": {
+                "description": "The currency of the unit price.",
+                "example": "GBP",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "currency"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "description",
+          "quantity",
+          "unitPrice",
+          "total",
+          "codes"
+        ]
       },
-      "unitPrice": {
-        "value": 19.862,
-        "currency": "GBP"
-      }
+      "type": "array"
     }
+  },
+  "required": [
+    "date",
+    "items"
   ]
 }
 
@@ -7370,22 +11091,84 @@ Bearer
 
 ```json
 {
-  "codes": [
-    {
-      "code": "GB00B39TQT96",
-      "type": "ISIN"
+  "additionalProperties": false,
+  "properties": {
+    "codes": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "example": "GB00B39TQT96",
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "ISIN",
+              "SEDOL",
+              "MEX"
+            ],
+            "example": "ISIN",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "description": {
+      "example": "Dynamic Bond Fund",
+      "type": "string"
+    },
+    "quantity": {
+      "example": 4548.09,
+      "type": "number"
+    },
+    "total": {
+      "properties": {
+        "value": {
+          "description": "The value of the total in minor units of the currency, eg. pennies for GBP.",
+          "example": 90334.16,
+          "type": "number"
+        },
+        "currency": {
+          "description": "The currency of the total.",
+          "example": "GBP",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "currency"
+      ],
+      "type": "object"
+    },
+    "unitPrice": {
+      "properties": {
+        "value": {
+          "description": "The value of the unit price in minor units of the currency, eg. pennies for GBP.",
+          "example": 19.862,
+          "type": "number"
+        },
+        "currency": {
+          "description": "The currency of the unit price.",
+          "example": "GBP",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "currency"
+      ],
+      "type": "object"
     }
-  ],
-  "description": "Dynamic Bond Fund",
-  "quantity": 4548.09,
-  "total": {
-    "value": 90334.16,
-    "currency": "GBP"
   },
-  "unitPrice": {
-    "value": 19.862,
-    "currency": "GBP"
-  }
+  "required": [
+    "description",
+    "quantity",
+    "unitPrice",
+    "total",
+    "codes"
+  ]
 }
 
 ```
@@ -7420,10 +11203,35 @@ Bearer
 
 ```json
 {
-  "categoryId": "std:338d2636-7f88-491d-8129-255c98da1eb8",
-  "name": "Days Out",
-  "key": "wages",
-  "group": "group:2"
+  "additionalProperties": false,
+  "properties": {
+    "categoryId": {
+      "description": "The id of the category. Custom categories are prefixed with 'cus:'",
+      "example": "std:338d2636-7f88-491d-8129-255c98da1eb8",
+      "type": "string",
+      "pattern": "^(std|cus):(\\w|-)+$"
+    },
+    "name": {
+      "description": "The name of the category - only applicable for custom categories",
+      "example": "Days Out",
+      "type": "string"
+    },
+    "key": {
+      "description": "A text key for standard categories",
+      "example": "wages",
+      "type": "string"
+    },
+    "group": {
+      "description": "The category group to which the category belongs",
+      "example": "group:2",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "required": [
+    "categoryId",
+    "group"
+  ]
 }
 
 ```
@@ -7462,8 +11270,24 @@ Bearer
 
 ```json
 {
-  "id": "group-1",
-  "key": "bills"
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "The id of the category group.",
+      "example": "group-1",
+      "type": "string"
+    },
+    "key": {
+      "description": "A text key for the category group",
+      "example": "bills",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "required": [
+    "id",
+    "key"
+  ]
 }
 
 ```
@@ -7481,9 +11305,28 @@ Bearer
 
 ```json
 {
-  "count": 6,
-  "earliestDate": "2017-11-28",
-  "lastDate": "2018-05-28"
+  "additionalProperties": false,
+  "required": [
+    "count",
+    "earliestDate",
+    "lastDate"
+  ],
+  "properties": {
+    "count": {
+      "type": "integer",
+      "example": 6
+    },
+    "earliestDate": {
+      "type": "string",
+      "format": "date",
+      "example": "2017-11-28"
+    },
+    "lastDate": {
+      "type": "string",
+      "format": "date",
+      "example": "2018-05-28"
+    }
+  }
 }
 
 ```
@@ -7502,20 +11345,98 @@ Bearer
 
 ```json
 {
-  "accountId": "c390a94f-2309-4cdf-8d02-b0c5304d9f66",
-  "amount": {
-    "value": -2323,
-    "currency": "GBP"
+  "additionalProperties": false,
+  "properties": {
+    "accountId": {
+      "description": "The id of the account the transaction belongs to",
+      "example": "c390a94f-2309-4cdf-8d02-b0c5304d9f66",
+      "type": "string"
+    },
+    "amount": {
+      "properties": {
+        "value": {
+          "description": "The amount of the transaction in minor units of the currency, eg. pennies for GBP, negative means money going out of an account, positive means money coming into an account.",
+          "example": -2323,
+          "type": "integer"
+        },
+        "currency": {
+          "description": "The currency of the amount",
+          "example": "GBP",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "currency"
+      ],
+      "type": "object"
+    },
+    "categoryId": {
+      "description": "The category id. Standard categories are prefixed with 'std', custom categories are prefixed with 'cus'",
+      "example": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
+      "type": "string",
+      "pattern": "^(std|cus):(\\w|-)+$"
+    },
+    "categoryIdConfirmed": {
+      "description": "Flag indificating whether the user has confirmed the category id as correct",
+      "example": false,
+      "type": "boolean"
+    },
+    "date": {
+      "description": "The date that the transaction occurred. Where available this will contain an accurate time, where the time is not available it will default to midday.",
+      "example": "2018-07-10T12:00:00+00:00",
+      "format": "date-time",
+      "type": "string"
+    },
+    "dateModified": {
+      "description": "The date the transaction was modified - this could be when it was added, or a category changed, or when notes were added",
+      "example": "2018-07-10T11:39:46.506Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "The unique id of the transaction",
+      "example": "c390a94f-3824-4cdf-8d02-b0c5304d9f66",
+      "type": "string"
+    },
+    "longDescription": {
+      "description": "The full text description of the transactions - often as it is represented on the users bank statement",
+      "example": "Card Purchase SAINSBURYS S/MKTS  BCC",
+      "type": "string"
+    },
+    "notes": {
+      "default": "",
+      "description": "Arbitrary text that a user can add about a transaction",
+      "example": "Some notes about the transaction",
+      "type": "string"
+    },
+    "shortDescription": {
+      "description": "A cleaned up and shorter description of the transaction, this can be editied",
+      "example": "Sainsburys S/mkts",
+      "type": "string"
+    },
+    "status": {
+      "description": "Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.",
+      "enum": [
+        "posted",
+        "pending"
+      ],
+      "example": "posted",
+      "type": "string"
+    }
   },
-  "categoryId": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
-  "categoryIdConfirmed": false,
-  "date": "2018-07-10T12:00:00+00:00",
-  "dateModified": "2018-07-10T11:39:46.506Z",
-  "id": "c390a94f-3824-4cdf-8d02-b0c5304d9f66",
-  "longDescription": "Card Purchase SAINSBURYS S/MKTS  BCC",
-  "notes": "Some notes about the transaction",
-  "shortDescription": "Sainsburys S/mkts",
-  "status": "posted"
+  "required": [
+    "amount",
+    "categoryId",
+    "categoryIdConfirmed",
+    "date",
+    "dateModified",
+    "id",
+    "longDescription",
+    "notes",
+    "shortDescription",
+    "status"
+  ]
 }
 
 ```
@@ -7693,23 +11614,52 @@ Bearer
 
 ```json
 {
-  "categories": [
-    {
-      "categoryId": "std:65ebdcdb-c46b-478f-bbbc-feabeb0b4342",
-      "categoryGroup": "group:2",
-      "currentMonth": -2000,
-      "previousMonth": -1000
+  "properties": {
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "string",
+            "example": "std:338d2636-7f88-491d-8129-255c98da1eb8"
+          },
+          "categoryGroup": {
+            "type": "string",
+            "example": "group:2"
+          }
+        },
+        "additionalProperties": true
+      },
+      "required": [
+        "categoryId",
+        "categoryGroup"
+      ],
+      "additionalProperties": false,
+      "example": [
+        {
+          "categoryId": "std:65ebdcdb-c46b-478f-bbbc-feabeb0b4342",
+          "categoryGroup": "group:2",
+          "currentMonth": -2000,
+          "previousMonth": -1000
+        },
+        {
+          "categoryId": "std:379c7ed2-27f3-401f-b581-f6507934f0f0",
+          "categoryGroup": "group:3",
+          "currentMonth": -1500,
+          "previousMonth": -500
+        }
+      ]
     },
-    {
-      "categoryId": "std:379c7ed2-27f3-401f-b581-f6507934f0f0",
-      "categoryGroup": "group:3",
-      "currentMonth": -1500,
-      "previousMonth": -500
+    "total": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true,
+      "example": {
+        "currentMonth": -3500,
+        "previousMonth": -1500
+      }
     }
-  ],
-  "total": {
-    "currentMonth": -3500,
-    "previousMonth": -1500
   }
 }
 
@@ -7769,20 +11719,87 @@ Bearer
 
 ```json
 {
-  "categoryId": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
-  "dateCreated": "2018-07-11T03:51:08+00:00",
-  "periodType": "monthly",
-  "periodStart": "01",
-  "id": "0b4e6488-6de0-420c-8f56-fee665707d57",
-  "amount": {
-    "value": 40000,
-    "currency": "GBP"
-  },
-  "spending": [
-    {
-      "date": "2018-07",
-      "spent": -35000
+  "additionalProperties": false,
+  "properties": {
+    "categoryId": {
+      "example": "std:4b0255f0-0309-4509-9e05-4b4e386f9b0d",
+      "type": "string",
+      "pattern": "^(std|cus):(\\w|-)+$"
+    },
+    "dateCreated": {
+      "example": "2018-07-11T03:51:08+00:00",
+      "format": "date-time",
+      "type": "string"
+    },
+    "periodType": {
+      "example": "monthly",
+      "type": "string",
+      "enum": [
+        "monthly",
+        "annual"
+      ]
+    },
+    "periodStart": {
+      "example": "01",
+      "type": "string",
+      "pattern": "^(0?[1-9]|[12][0-9]|3[01])(-(0?[1-9]|1[012]))?$"
+    },
+    "id": {
+      "description": "The unique id of the spending goal",
+      "type": "string",
+      "example": "0b4e6488-6de0-420c-8f56-fee665707d57"
+    },
+    "amount": {
+      "properties": {
+        "value": {
+          "description": "The value of the amount in minor units of the currency, eg. pennies for GBP.",
+          "example": 40000,
+          "type": "integer",
+          "minimum": 0
+        },
+        "currency": {
+          "description": "The currency of the amount.",
+          "example": "GBP",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "currency"
+      ],
+      "type": "object"
+    },
+    "spending": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "date": {
+            "example": "2018-07",
+            "type": "string"
+          },
+          "spent": {
+            "description": "The spending analysis amount of the specified month expressed in minor units of the currency.",
+            "example": -35000,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "date",
+          "spent"
+        ],
+        "type": "object"
+      },
+      "type": "array"
     }
+  },
+  "required": [
+    "id",
+    "dateCreated",
+    "categoryId",
+    "amount",
+    "periodStart",
+    "periodType",
+    "spending"
   ]
 }
 
@@ -7870,21 +11887,92 @@ Bearer
 
 ```json
 {
-  "id": "27c316ef-8dfa-4a4b-b0a2-4979b7db1543",
-  "name": "House deposit",
-  "amount": {
-    "value": 500000,
-    "currency": "GBP"
-  },
-  "dateCreated": "2018-10-11T03:51:08+00:00",
-  "imageUrl": "url",
-  "notes": "Notes",
-  "progressPercentage": 33.3,
-  "progressAmount": 500000,
-  "accounts": [
-    {
-      "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "Unique id of the saving goal.",
+      "type": "string",
+      "example": "27c316ef-8dfa-4a4b-b0a2-4979b7db1543"
+    },
+    "name": {
+      "description": "Name for the savings goal.",
+      "type": "string",
+      "example": "House deposit"
+    },
+    "amount": {
+      "properties": {
+        "value": {
+          "description": "The target amount in minor unit in minor units of the currency, eg. pennies for GBP.",
+          "example": 500000,
+          "type": "integer",
+          "minimum": 0,
+          "exclusiveMinimum": true
+        },
+        "currency": {
+          "description": "The currency of the amount",
+          "example": "GBP",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "currency"
+      ],
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "dateCreated": {
+      "description": "The date at which the savings goal was added.",
+      "type": "string",
+      "format": "date-time",
+      "example": "2018-10-11T03:51:08+00:00"
+    },
+    "imageUrl": {
+      "type": "string",
+      "example": "url"
+    },
+    "notes": {
+      "description": "Arbitrary text that a user can add about a savings goal.",
+      "type": "string",
+      "example": "Notes"
+    },
+    "progressPercentage": {
+      "description": "Progresss achieved towards the target amount represented in percentage.",
+      "type": "number",
+      "example": 33.3
+    },
+    "progressAmount": {
+      "description": "Progresss achieved towards the target amount by adding up the balances of the selected accounts.",
+      "type": "integer",
+      "example": 500000
+    },
+    "accounts": {
+      "type": "array",
+      "description": "Accounts that will be taken into account towards the target amount.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Id of the account",
+            "type": "string",
+            "example": "ac9bd177-d01e-449c-9f29-d3656d2edc2e"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "minItems": 1
     }
+  },
+  "required": [
+    "id",
+    "name",
+    "amount",
+    "dateCreated",
+    "accounts"
   ]
 }
 
@@ -7979,9 +12067,28 @@ Bearer
 
 ```json
 {
-  "next": "http://example.com",
-  "prev": "http://example.com",
-  "self": "http://example.com"
+  "additionalProperties": false,
+  "properties": {
+    "next": {
+      "description": "The url to retrieve the next page of results from",
+      "format": "uri",
+      "type": "string"
+    },
+    "prev": {
+      "description": "The url to retrieve the previous page of results from",
+      "format": "uri",
+      "type": "string"
+    },
+    "self": {
+      "description": "The url of the current resource(s)",
+      "format": "uri",
+      "type": "string"
+    }
+  },
+  "required": [
+    "self"
+  ],
+  "type": "object"
 }
 
 ```
@@ -8000,8 +12107,21 @@ Bearer
 
 ```json
 {
-  "code": "string",
-  "message": "string"
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "description": "The error code",
+      "type": "string"
+    },
+    "message": {
+      "description": "The error message",
+      "type": "string"
+    }
+  },
+  "required": [
+    "code"
+  ],
+  "type": "object"
 }
 
 ```
