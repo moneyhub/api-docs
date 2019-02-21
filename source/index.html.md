@@ -68,7 +68,7 @@ More detailed examples of the above flows are available later in this document.
 
 We use scopes to both describe the access the user is granting and the way in which you would like the user to identify themselves.
 
-Below is a summary of the scopes we provide, please check our discovery document (available at /oidc/.well-known/openid-configuation to see which particular scopes are supported by a given deployment of our identity service).
+Below is a summary of the scopes we provide, please check our discovery document available [here](https://identity.moneyhub.co.uk/oidc/.well-known/openid-configuration) to see which particular scopes are supported by a given deployment of our identity service).
 
 ## Scopes indicating the manner in which we should authenticate the user:
 
@@ -230,12 +230,13 @@ Every client you create will have access to the test connections by default. Acc
 will need to be requested.
 
 Every connection will have the following properties:
+
 - `id` - bank connection id (used to request an authorization url for a specific bank)
 - `name`
 - `type` - the type of bank connection (`api`, `legacy` or `test`)
 - `bankRef` - reference that uniquely identities a set of connections as being part of the same institution (e.g. HSBC Open banking and HSBC credit cards). It is used to group a set of connections by the banking institution they refer to
 - `parentRef` - this property is now deprecated. Please use `bankRef` instead
-- `iconUrl` - the url of the bank icon SVG. Please be aware we don't have icons for all the connections we provide. For the missing icons you can either use your own set or use our generic bank icon found at this url: `https://identity.moneyhub.co.uk/bank-icons/default`
+- `iconUrl` - the url of the bank icon SVG. Please be aware we don't have icons for all the connections we provide. For the missing icons you can either use your own set or use our generic bank icon found at this url: <https://identity.moneyhub.co.uk/bank-icons/default>
 - `accountTypes` - an array containing the types of accounts supported by the connection (`cash`, `card`, `pension`, `mortgage`, `investment`, `loan`) and a beta boolean value flagging which accounts types for that connection are currently being developed and may not have a 100% success rate
 - `userTypes` - an array of user account types supported by the bank connection (`personal` and `business`)
 
@@ -256,13 +257,11 @@ We encourage implementers to use this and may require it for certain use cases.
 
 The request object allows you to sign the request parameters and prevents tampering. This can prevent a certain class of attacks against OAuth 2.0.
 
-More information about request objects is available here:
-http://openid.net/specs/openid-connect-core-1_0.html#JWTRequests
+More information about request objects is available [here](http://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)
 
 ## JWKS Endpoints & Asymmetric Signatures
 
-We use jwks endpoints to support the rotation of signing keys:
-http://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys
+We use jwks endpoints to support the [rotation of signing keys](http://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys)
 
 As part of registering your client software with us, we will ask you for your own jwks endpoint.
 
@@ -275,7 +274,7 @@ on implementing, please contact us.
 
 # Registration
 
-We plan to support dyanamic client registration (https://openid.net/specs/openid-connect-registration-1_0.html), but currently in order to register your software with us we will ask you to send the following information:
+We plan to support [dyanamic client registration](https://openid.net/specs/openid-connect-registration-1_0.html), but currently in order to register your software with us we will ask you to send the following information:
 
 - `redirect_uris`
 - `client_name`
@@ -284,8 +283,7 @@ We plan to support dyanamic client registration (https://openid.net/specs/openid
 - `id_token_signed_response_alg`
 - `request_object_signing_alg`
 
-Definitions of the above can be found here:
-https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata
+Definitions of the above can be found [here](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata)
 
 # User Management
 
@@ -418,7 +416,7 @@ const transactions = await got(`#{resourceServerUrl}/transactions`, {
 })
 ```
 
-This example assumes the use of an OpenID Client (e.g. https://github.com/panva/node-openid-client)
+This example assumes the use of an OpenID Client (e.g. [Node OpenId client](https://github.com/panva/node-openid-client))
 
 
 <h1 id="moneyhub-data-api">Moneyhub Data API v2.0.0</h1>
