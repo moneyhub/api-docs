@@ -32,7 +32,7 @@ update_docs() {
   curl -o ./source/api-gateway-docs.md  https://api.moneyhub.co.uk/docs.md
   cat ./source/headers.md ./source/identity-docs.md ./source/api-gateway-docs.md > ./source/index.html.md
 
-  git add .
+  git add source
   git commit -m "Update docs"
   git push
 }
