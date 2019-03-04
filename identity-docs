@@ -424,3 +424,10 @@ It returns an array of all the users associated with your api client.</p>
 <h2 id='get-users-id'>GET /users/:id</h2>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
 It returns a single user associated with your api client.</p>
+<h2 id='delete-users-id-connection-connection-id'>DELETE /users/:id/connection/:connection-id</h2>
+<p>This route requires an access token from the client credentials grant with the scope of <code>user:delete</code>.
+It deletes a financial connection of a user. This will revoke the grant that the user provided previously and it
+will delete any data associated with it from our API. (e.g. accounts, transactions)</p>
+<h2 id='delete-users-id'>DELETE /users/:id</h2>
+<p>This route requires an access token from the client credentials grant with the scope of <code>user:delete</code>.
+It deletes a user and all of its financial connections that were created.</p>
