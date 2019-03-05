@@ -10,6 +10,11 @@ This document will provide a high level overview, but we recommend that users fa
 - [Financial Grade API Read Only Profile](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_001.md)
 - [Financial Grade API Read/Write Profile](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_002.md)
 
+Base URL:
+
+* <a href="https://identity.moneyhub.co.uk">https://identity.moneyhub.co.uk</a>
+
+
 # Overview
 
 Our identity service supports the following use cases:
@@ -19,8 +24,13 @@ Our identity service supports the following use cases:
 
 We provide these features via an OpenID Provider interface that supports standard OAuth 2 based flows to issue access tokens that can be used to gain access to financial data via our API Gateway.
 
-For API documentation please see [here](https://moneyhub.github.io/api-docs/#moneyhub-data-api).
-For interactive swagger documentaion please see [here](https://api.moneyhub.co.uk/docs).
+[Moneyhub Data API documentation](https://moneyhub.github.io/api-docs/#moneyhub-data-api).
+
+[Moneyhub Data API Swagger documentation](https://api.moneyhub.co.uk/docs)
+
+[Moneyhub API client](https://github.com/moneyhub/moneyhub-api-client)
+
+[Moneyhub Admin portal](https://admin-portal.moneyhub.co.uk/)
 
 ## Flow for use case 1
 
@@ -138,11 +148,15 @@ Moneyhub supports the following endpoints:
 
 ## Authorization Endpoint
 
-As described [here](http://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint)
+`https://identity.moneyhub.co.uk/oidc/auth`
+
+[OpenID Connect Authorization Spec](http://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint)
 
 We support the use of request objects and the claims parameter at this endpoint.
 
 ## Token Endpoint
+
+`https://identity.moneyhub.co.uk/oidc/token`
 
 > Example of a client_credentials grant for creating a user
 
@@ -164,7 +178,7 @@ curl -X POST \
   -d 'grant_type=client_credentials&scope=accounts%3Aread&sub=example-user-id'
 ```
 
-As described [here](http://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint)
+[OpenID Connect Token Spec](http://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint)
 
 We support the following grant types:
 
@@ -182,7 +196,9 @@ The scopes that can be requested are `user:create`, `user:read` and `user:delete
 
 ## Discovery
 
-As described [here](http://openid.net/specs/openid-connect-discovery-1_0.html)
+`https://identity.moneyhub.co.uk/oidc/.well-known/openid-configuration`
+
+[OpenID Connect Discovery Spec](http://openid.net/specs/openid-connect-discovery-1_0.html)
 
 Our discovery document is available [here](https://identity.moneyhub.co.uk/oidc/.well-known/openid-configuration).
 It will contain our up-to-date machine readable configuration
