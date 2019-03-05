@@ -8,6 +8,12 @@
 <li><a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_001.md">Financial Grade API Read Only Profile</a></li>
 <li><a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_002.md">Financial Grade API Read/Write Profile</a></li>
 </ul>
+
+<p>Base URL:</p>
+
+<ul>
+<li><a href="https://identity.moneyhub.co.uk">https://identity.moneyhub.co.uk</a></li>
+</ul>
 <h1 id='overview'>Overview</h1>
 <p>Our identity service supports the following use cases:</p>
 
@@ -18,8 +24,13 @@
 
 <p>We provide these features via an OpenID Provider interface that supports standard OAuth 2 based flows to issue access tokens that can be used to gain access to financial data via our API Gateway.</p>
 
-<p>For API documentation please see <a href="https://moneyhub.github.io/api-docs/#moneyhub-data-api">here</a>.
-For interactive swagger documentaion please see <a href="https://api.moneyhub.co.uk/docs">here</a>.</p>
+<p><a href="https://moneyhub.github.io/api-docs/#moneyhub-data-api">Moneyhub Data API documentation</a>.</p>
+
+<p><a href="https://api.moneyhub.co.uk/docs">Moneyhub Data API Swagger documentation</a></p>
+
+<p><a href="https://github.com/moneyhub/moneyhub-api-client">Moneyhub API client</a></p>
+
+<p><a href="https://admin-portal.moneyhub.co.uk/">Moneyhub Admin portal</a></p>
 <h2 id='flow-for-use-case-1'>Flow for use case 1</h2>
 <ul>
 <li>Partner redirects user to identity service <code>/oidc/auth</code> with a scope param that contains the id of the bank to connect to and the level of data to gain consent for</li>
@@ -132,10 +143,14 @@ const transactions = await got(`#{resourceServerUrl}/transactions`, {
 
 <p>Moneyhub supports the following endpoints:</p>
 <h2 id='authorization-endpoint'>Authorization Endpoint</h2>
-<p>As described <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint">here</a></p>
+<p><code>https://identity.moneyhub.co.uk/oidc/auth</code></p>
+
+<p><a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint">OpenID Connect Authorization Spec</a></p>
 
 <p>We support the use of request objects and the claims parameter at this endpoint.</p>
 <h2 id='token-endpoint'>Token Endpoint</h2>
+<p><code>https://identity.moneyhub.co.uk/oidc/token</code></p>
+
 <blockquote>
 <p>Example of a client_credentials grant for creating a user</p>
 </blockquote>
@@ -154,7 +169,7 @@ const transactions = await got(`#{resourceServerUrl}/transactions`, {
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'grant_type=client_credentials&amp;scope=accounts%3Aread&amp;sub=example-user-id'
 </code></pre>
-<p>As described <a href="http://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint">here</a></p>
+<p><a href="http://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint">OpenID Connect Token Spec</a></p>
 
 <p>We support the following grant types:</p>
 
@@ -174,7 +189,9 @@ The scopes that can be requested are <code>user:create</code>, <code>user:read</
 <li>generating a token to access a specific user&#39;s data (e.g. accounts, transactions). The <code>sub</code> query parameter is required</li>
 </ul>
 <h2 id='discovery'>Discovery</h2>
-<p>As described <a href="http://openid.net/specs/openid-connect-discovery-1_0.html">here</a></p>
+<p><code>https://identity.moneyhub.co.uk/oidc/.well-known/openid-configuration</code></p>
+
+<p><a href="http://openid.net/specs/openid-connect-discovery-1_0.html">OpenID Connect Discovery Spec</a></p>
 
 <p>Our discovery document is available <a href="https://identity.moneyhub.co.uk/oidc/.well-known/openid-configuration">here</a>.
 It will contain our up-to-date machine readable configuration
