@@ -471,7 +471,7 @@ It deletes a user and all of its financial connections that were created.</p>
 </span></code></pre>
 <p>You can configure webhook endpoints via the <a href="https://admin-portal.moneyhub.co.uk/">Admin portal</a> to be notified about events that happen to
 your api users.</p>
-<h2 id='schema'>Schema</h2>
+<h3 id='schema'>Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
