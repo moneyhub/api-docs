@@ -4,7 +4,7 @@
 <p>Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.</p>
 </blockquote>
 
-<p>Documentation for the Moneyhub data API. Includes accounts, transactions, spending goals and categories. Authentication is via bearer token.</p>
+<p>Documentation for the Moneyhub data API. <br/>Authentication is via bearer token. <br/><br/>Swagger docs:<br/><br/> * <a href='https://api.moneyhub.co.uk/docs/'>https://api.moneyhub.co.uk/docs/</a></p>
 
 <p>Base URLs:</p>
 
@@ -28,7 +28,7 @@
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/accounts</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -36,7 +36,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -54,7 +54,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -75,7 +75,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts'</span><span class="p">,</span>
@@ -87,7 +87,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/accounts'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -121,7 +121,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -629,7 +629,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/accounts</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -639,7 +639,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -685,7 +685,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -707,7 +707,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts'</span><span class="p">,</span>
@@ -720,7 +720,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/accounts'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -755,7 +755,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -1291,7 +1291,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>accountId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/accounts/{accountId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -1299,7 +1299,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -1317,7 +1317,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -1338,7 +1338,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}'</span><span class="p">,</span>
@@ -1350,7 +1350,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -1384,7 +1384,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -1889,7 +1889,7 @@ Bearer
 curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>accountId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/accounts/{accountId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -1899,7 +1899,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -1938,7 +1938,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -1960,7 +1960,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">patch</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}'</span><span class="p">,</span>
@@ -1973,7 +1973,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -2008,7 +2008,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -2544,7 +2544,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X DELETE https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>accountId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/accounts/{accountId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -2552,7 +2552,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -2570,7 +2570,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -2591,7 +2591,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}'</span><span class="p">,</span>
@@ -2603,7 +2603,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -2637,7 +2637,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -2734,7 +2734,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>accountId<span class="o">}</span>/balances <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/balances</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -2742,7 +2742,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -2760,7 +2760,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -2781,7 +2781,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/balances'</span><span class="p">,</span>
@@ -2793,7 +2793,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/balances'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -2827,7 +2827,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -3023,7 +3023,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>accountId<span class="o">}</span>/balances <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/balances</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -3033,7 +3033,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>ac
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -3057,7 +3057,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>ac
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -3079,7 +3079,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>ac
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/balances'</span><span class="p">,</span>
@@ -3092,7 +3092,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>ac
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/balances'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -3127,7 +3127,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>ac
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -3337,7 +3337,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>accountId<span class="o">}</span>/holdings <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -3345,7 +3345,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -3363,7 +3363,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -3384,7 +3384,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings'</span><span class="p">,</span>
@@ -3396,7 +3396,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -3430,7 +3430,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -3726,7 +3726,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/transactions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -3734,7 +3734,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</spa
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -3752,7 +3752,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</spa
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -3773,7 +3773,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</spa
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/transactions'</span><span class="p">,</span>
@@ -3785,7 +3785,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</spa
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/transactions'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -3819,7 +3819,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</spa
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -3936,6 +3936,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</spa
       </span><span class="s2">"longDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card Purchase SAINSBURYS S/MKTS  BCC"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some notes about the transaction"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sainsburys S/mkts"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"counterpartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30be8fa43f30fc285e4c479e9dfd6a1dec2bead8ee6cc6276b8dac152c565e9e"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
@@ -4088,6 +4089,13 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</spa
 <td>A cleaned up and shorter description of the transaction, this can be editied</td>
 </tr>
 <tr>
+<td>»» counterpartyId</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>An identifier for the counterparty</td>
+</tr>
+<tr>
 <td>»» status</td>
 <td>string</td>
 <td>true</td>
@@ -4159,7 +4167,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/transactions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -4169,7 +4177,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</sp
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -4200,7 +4208,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</sp
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -4222,7 +4230,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</sp
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/transactions'</span><span class="p">,</span>
@@ -4235,7 +4243,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</sp
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/transactions'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -4270,7 +4278,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</sp
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -4347,6 +4355,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</sp
     </span><span class="s2">"longDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card Purchase SAINSBURYS S/MKTS  BCC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some notes about the transaction"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sainsburys S/mkts"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"counterpartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30be8fa43f30fc285e4c479e9dfd6a1dec2bead8ee6cc6276b8dac152c565e9e"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4498,6 +4507,13 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</sp
 <td>A cleaned up and shorter description of the transaction, this can be editied</td>
 </tr>
 <tr>
+<td>»» counterpartyId</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>An identifier for the counterparty</td>
+</tr>
+<tr>
 <td>»» status</td>
 <td>string</td>
 <td>true</td>
@@ -4568,7 +4584,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</span>transactionId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -4576,7 +4592,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</span
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -4594,7 +4610,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</span
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -4615,7 +4631,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</span
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}'</span><span class="p">,</span>
@@ -4627,7 +4643,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</span
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -4661,7 +4677,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</span
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -4721,6 +4737,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</span
     </span><span class="s2">"longDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card Purchase SAINSBURYS S/MKTS  BCC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some notes about the transaction"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sainsburys S/mkts"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"counterpartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30be8fa43f30fc285e4c479e9dfd6a1dec2bead8ee6cc6276b8dac152c565e9e"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4872,6 +4889,13 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</span
 <td>A cleaned up and shorter description of the transaction, this can be editied</td>
 </tr>
 <tr>
+<td>»» counterpartyId</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>An identifier for the counterparty</td>
+</tr>
+<tr>
 <td>»» status</td>
 <td>string</td>
 <td>true</td>
@@ -4943,7 +4967,7 @@ Bearer
 curl -X PATCH https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</span>transactionId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -4953,7 +4977,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</sp
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -4984,7 +5008,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</sp
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -5006,7 +5030,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</sp
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">patch</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}'</span><span class="p">,</span>
@@ -5019,7 +5043,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</sp
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -5054,7 +5078,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</sp
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -5138,6 +5162,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</sp
     </span><span class="s2">"longDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card Purchase SAINSBURYS S/MKTS  BCC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some notes about the transaction"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sainsburys S/mkts"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"counterpartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30be8fa43f30fc285e4c479e9dfd6a1dec2bead8ee6cc6276b8dac152c565e9e"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -5289,6 +5314,13 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</sp
 <td>A cleaned up and shorter description of the transaction, this can be editied</td>
 </tr>
 <tr>
+<td>»» counterpartyId</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>An identifier for the counterparty</td>
+</tr>
+<tr>
 <td>»» status</td>
 <td>string</td>
 <td>true</td>
@@ -5359,7 +5391,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X DELETE https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</span>transactionId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -5367,7 +5399,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</s
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -5385,7 +5417,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</s
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -5406,7 +5438,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</s
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}'</span><span class="p">,</span>
@@ -5418,7 +5450,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</s
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -5452,7 +5484,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</s
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -5550,7 +5582,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/transactions-collection <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/transactions-collection</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -5560,7 +5592,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions-collection <span class
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -5604,7 +5636,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions-collection <span class
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -5626,7 +5658,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions-collection <span class
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/transactions-collection'</span><span class="p">,</span>
@@ -5639,7 +5671,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions-collection <span class
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/transactions-collection'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -5674,7 +5706,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions-collection <span class
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -5876,7 +5908,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/categories</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -5884,7 +5916,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span>
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -5902,7 +5934,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -5923,7 +5955,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/categories'</span><span class="p">,</span>
@@ -5935,7 +5967,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/categories'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -5969,7 +6001,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span>
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -6165,7 +6197,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/categories</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -6175,7 +6207,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -6197,7 +6229,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -6219,7 +6251,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/categories'</span><span class="p">,</span>
@@ -6232,7 +6264,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/categories'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -6267,7 +6299,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -6467,7 +6499,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/categories/<span class="o">{</span>categoryId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/categories/{categoryId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -6475,7 +6507,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories/<span class="o">{</span>c
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -6493,7 +6525,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories/<span class="o">{</span>c
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -6514,7 +6546,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories/<span class="o">{</span>c
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/categories/{categoryId}'</span><span class="p">,</span>
@@ -6526,7 +6558,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories/<span class="o">{</span>c
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/categories/{categoryId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -6560,7 +6592,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories/<span class="o">{</span>c
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -6752,7 +6784,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/category-groups <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/category-groups</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -6760,7 +6792,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/category-groups <span class="se">\</
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -6778,7 +6810,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/category-groups <span class="se">\</
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -6799,7 +6831,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/category-groups <span class="se">\</
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/category-groups'</span><span class="p">,</span>
@@ -6811,7 +6843,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/category-groups <span class="se">\</
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/category-groups'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -6845,7 +6877,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/category-groups <span class="se">\</
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -7000,7 +7032,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/spending-analysis <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/spending-analysis</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -7010,7 +7042,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/spending-analysis <span class="se">
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -7048,7 +7080,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/spending-analysis <span class="se">
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -7070,7 +7102,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/spending-analysis <span class="se">
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/spending-analysis'</span><span class="p">,</span>
@@ -7083,7 +7115,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/spending-analysis <span class="se">
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/spending-analysis'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -7118,7 +7150,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/spending-analysis <span class="se">
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -7353,7 +7385,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/spending-goals</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -7361,7 +7393,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</s
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -7379,7 +7411,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</s
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -7400,7 +7432,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</s
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/spending-goals'</span><span class="p">,</span>
@@ -7412,7 +7444,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</s
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/spending-goals'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -7446,7 +7478,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</s
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -7706,7 +7738,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/spending-goals</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -7716,7 +7748,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -7740,7 +7772,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -7762,7 +7794,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/spending-goals'</span><span class="p">,</span>
@@ -7775,7 +7807,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/spending-goals'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -7810,7 +7842,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -8088,7 +8120,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</span>goalId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -8096,7 +8128,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</sp
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -8114,7 +8146,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</sp
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -8135,7 +8167,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</sp
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}'</span><span class="p">,</span>
@@ -8147,7 +8179,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</sp
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -8181,7 +8213,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</sp
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -8450,7 +8482,7 @@ Bearer
 curl -X PATCH https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</span>goalId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -8460,7 +8492,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -8484,7 +8516,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -8506,7 +8538,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">patch</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}'</span><span class="p">,</span>
@@ -8519,7 +8551,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -8554,7 +8586,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -8839,7 +8871,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X DELETE https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</span>goalId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -8847,7 +8879,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{<
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -8865,7 +8897,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{<
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -8886,7 +8918,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{<
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}'</span><span class="p">,</span>
@@ -8898,7 +8930,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{<
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -8932,7 +8964,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{<
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -9031,7 +9063,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/savings-goals</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -9039,7 +9071,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals <span class="se">\</sp
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -9057,7 +9089,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals <span class="se">\</sp
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -9078,7 +9110,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals <span class="se">\</sp
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/savings-goals'</span><span class="p">,</span>
@@ -9090,7 +9122,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals <span class="se">\</sp
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/savings-goals'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -9124,7 +9156,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals <span class="se">\</sp
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -9388,7 +9420,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/savings-goals <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/savings-goals</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -9398,7 +9430,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/savings-goals <span class="se">\</s
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -9429,7 +9461,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/savings-goals <span class="se">\</s
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -9451,7 +9483,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/savings-goals <span class="se">\</s
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/savings-goals'</span><span class="p">,</span>
@@ -9464,7 +9496,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/savings-goals <span class="se">\</s
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/savings-goals'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -9499,7 +9531,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/savings-goals <span class="se">\</s
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -9776,7 +9808,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</span>goalId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -9784,7 +9816,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</spa
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -9802,7 +9834,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</spa
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -9823,7 +9855,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</spa
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}'</span><span class="p">,</span>
@@ -9835,7 +9867,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</spa
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -9869,7 +9901,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</spa
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -10130,7 +10162,7 @@ Bearer
 curl -X PATCH https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</span>goalId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -10140,7 +10172,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</s
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -10171,7 +10203,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</s
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -10193,7 +10225,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</s
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">patch</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}'</span><span class="p">,</span>
@@ -10206,7 +10238,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</s
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -10241,7 +10273,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</s
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -10525,7 +10557,7 @@ Bearer
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X DELETE https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</span>goalId<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: API_KEY'</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
@@ -10533,7 +10565,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -10551,7 +10583,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
 
 <span class="p">};</span>
 
@@ -10572,7 +10604,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}'</span><span class="p">,</span>
@@ -10584,7 +10616,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -10618,7 +10650,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/savings-goals/<span class="o">{</
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
-        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -10714,10 +10746,10 @@ Bearer
 <p><a id="schemaqueryparams"></a></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"categoryId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-21"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-21"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDateModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-21"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDateModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-21"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-07"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-07"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDateModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-07"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDateModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-07"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -12335,6 +12367,7 @@ Bearer
   </span><span class="s2">"longDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card Purchase SAINSBURYS S/MKTS  BCC"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some notes about the transaction"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sainsburys S/mkts"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"counterpartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30be8fa43f30fc285e4c479e9dfd6a1dec2bead8ee6cc6276b8dac152c565e9e"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -12431,6 +12464,13 @@ Bearer
 <td>true</td>
 <td>none</td>
 <td>A cleaned up and shorter description of the transaction, this can be editied</td>
+</tr>
+<tr>
+<td>counterpartyId</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>An identifier for the counterparty</td>
 </tr>
 <tr>
 <td>status</td>
