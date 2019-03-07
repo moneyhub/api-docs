@@ -467,3 +467,71 @@ will delete any data associated with it from our API. (e.g. accounts, transactio
 
 This route requires an access token from the client credentials grant with the scope of `user:delete`.
 It deletes a user and all of its financial connections that were created.
+
+# Webhooks
+
+> Example webhook
+
+```json
+{
+  "id": "abe168ce-1b2f-4c38-9c92-db5730485cb3",
+  "eventType": "newTransactions",
+  "userId": "5c79210bbac25ecb5e71ac40",
+  "payload": {
+    "accounts": [
+      {
+        "id": "6d0baf11-248e-4c11-9c04-97b7758b4e04",
+        "transactions": [
+          "d520402a-d982-43ee-b1d1-bdfd282249ea",
+          "613586bf-dac9-4996-9c03-7194a7d62297"
+        ]
+      }
+    ]
+  }
+}
+```
+
+You can configure webhook endpoints via the [Admin portal](https://admin-portal.moneyhub.co.uk/) to be notified about events that happen to
+your api users.
+
+## Schema
+
+| Name | Type | Description |
+| --- | --- | --- | --- | --- |
+| id | `string` | Unique id of the webhook
+| eventType | `string[enum]` | Event id
+| userId | `string` | User id
+| payload | `object` | Payload of the event
+
+## New transactions Event
+
+> Example payload
+
+```json
+{
+  "accounts": [
+    {
+      "id": "6d0baf11-248e-4c11-9c04-97b7758b4e04",
+      "transactions": [
+        "d520402a-d982-43ee-b1d1-bdfd282249ea",
+        "613586bf-dac9-4996-9c03-7194a7d62297"
+      ]
+    }
+  ]
+}
+```
+Id: `newTransactions`
+
+Event that notifies when an account has been automatically updated and new transactions have come through.
+
+### Event Payload
+
+| Name | Type | Description |
+| --- | --- | --- | --- | --- |
+| accounts | `array[object]` | Array of accounts that contain new transactions
+| » id | `string` | Account Id
+| » transactions | `array[string]` | Array of transactions ids
+
+<aside class="notice">
+This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
+</aside>

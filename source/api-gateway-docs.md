@@ -4,7 +4,7 @@
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-Documentation for the Moneyhub data API. Includes accounts, transactions, spending goals and categories. Authentication is via bearer token.
+Documentation for the Moneyhub data API. <br/>Authentication is via bearer token. <br/><br/>Swagger docs:<br/><br/> * <a href='https://api.moneyhub.co.uk/docs/'>https://api.moneyhub.co.uk/docs/</a>
 
 Base URLs:
 
@@ -25,7 +25,7 @@ Base URLs:
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/accounts \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -39,7 +39,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -60,7 +60,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -84,7 +84,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/accounts',
@@ -99,7 +99,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/accounts', params={
@@ -139,7 +139,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -313,7 +313,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/accounts \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -329,7 +329,7 @@ Accept: application/json
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -378,7 +378,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -403,7 +403,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.post 'https://api.moneyhub.co.uk/v2.0/accounts',
@@ -419,7 +419,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.post('https://api.moneyhub.co.uk/v2.0/accounts', params={
@@ -460,7 +460,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -664,7 +664,7 @@ Bearer
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/{accountId} \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -678,7 +678,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -699,7 +699,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -723,7 +723,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}',
@@ -738,7 +738,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}', params={
@@ -778,7 +778,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -950,7 +950,7 @@ Bearer
 curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/{accountId} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -966,7 +966,7 @@ Accept: application/json
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -1008,7 +1008,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -1033,7 +1033,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.patch 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}',
@@ -1049,7 +1049,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.patch('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}', params={
@@ -1090,7 +1090,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -1288,7 +1288,7 @@ Bearer
 # You can also use wget
 curl -X DELETE https://api.moneyhub.co.uk/v2.0/accounts/{accountId} \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -1302,7 +1302,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -1323,7 +1323,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -1347,7 +1347,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.delete 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}',
@@ -1362,7 +1362,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.delete('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}', params={
@@ -1402,7 +1402,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -1462,7 +1462,7 @@ Bearer
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/balances \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -1476,7 +1476,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -1497,7 +1497,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -1521,7 +1521,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/balances',
@@ -1536,7 +1536,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/balances', params={
@@ -1576,7 +1576,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -1667,7 +1667,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/balances \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -1683,7 +1683,7 @@ Accept: application/json
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -1710,7 +1710,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -1735,7 +1735,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.post 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/balances',
@@ -1751,7 +1751,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.post('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/balances', params={
@@ -1792,7 +1792,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -1892,7 +1892,7 @@ Bearer
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -1906,7 +1906,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -1927,7 +1927,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -1951,7 +1951,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings',
@@ -1966,7 +1966,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings', params={
@@ -2006,7 +2006,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -2131,7 +2131,7 @@ Bearer
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/transactions \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -2145,7 +2145,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -2166,7 +2166,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -2190,7 +2190,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/transactions',
@@ -2205,7 +2205,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/transactions', params={
@@ -2245,7 +2245,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -2301,6 +2301,7 @@ Requires any of **transactions:read:all**, **transactions:read:in**, or **transa
       "longDescription": "Card Purchase SAINSBURYS S/MKTS  BCC",
       "notes": "Some notes about the transaction",
       "shortDescription": "Sainsburys S/mkts",
+      "counterpartyId": "30be8fa43f30fc285e4c479e9dfd6a1dec2bead8ee6cc6276b8dac152c565e9e",
       "status": "posted"
     }
   ],
@@ -2341,6 +2342,7 @@ Status Code **200**
 |»» longDescription|string|true|none|The full text description of the transactions - often as it is represented on the users bank statement|
 |»» notes|string|true|none|Arbitrary text that a user can add about a transaction|
 |»» shortDescription|string|true|none|A cleaned up and shorter description of the transaction, this can be editied|
+|»» counterpartyId|string|false|none|An identifier for the counterparty|
 |»» status|string|true|none|Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -2369,7 +2371,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/transactions \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -2385,7 +2387,7 @@ Accept: application/json
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -2419,7 +2421,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -2444,7 +2446,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.post 'https://api.moneyhub.co.uk/v2.0/transactions',
@@ -2460,7 +2462,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.post('https://api.moneyhub.co.uk/v2.0/transactions', params={
@@ -2501,7 +2503,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -2566,6 +2568,7 @@ Requires **transactions:read:all** and **transactions:write:all** scopes.
     "longDescription": "Card Purchase SAINSBURYS S/MKTS  BCC",
     "notes": "Some notes about the transaction",
     "shortDescription": "Sainsburys S/mkts",
+    "counterpartyId": "30be8fa43f30fc285e4c479e9dfd6a1dec2bead8ee6cc6276b8dac152c565e9e",
     "status": "posted"
   },
   "links": {
@@ -2605,6 +2608,7 @@ Status Code **200**
 |»» longDescription|string|true|none|The full text description of the transactions - often as it is represented on the users bank statement|
 |»» notes|string|true|none|Arbitrary text that a user can add about a transaction|
 |»» shortDescription|string|true|none|A cleaned up and shorter description of the transaction, this can be editied|
+|»» counterpartyId|string|false|none|An identifier for the counterparty|
 |»» status|string|true|none|Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -2632,7 +2636,7 @@ Bearer
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/transactions/{transactionId} \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -2646,7 +2650,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -2667,7 +2671,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -2691,7 +2695,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}',
@@ -2706,7 +2710,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}', params={
@@ -2746,7 +2750,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -2793,6 +2797,7 @@ Requires **transactions:read:all** scope.
     "longDescription": "Card Purchase SAINSBURYS S/MKTS  BCC",
     "notes": "Some notes about the transaction",
     "shortDescription": "Sainsburys S/mkts",
+    "counterpartyId": "30be8fa43f30fc285e4c479e9dfd6a1dec2bead8ee6cc6276b8dac152c565e9e",
     "status": "posted"
   },
   "links": {
@@ -2832,6 +2837,7 @@ Status Code **200**
 |»» longDescription|string|true|none|The full text description of the transactions - often as it is represented on the users bank statement|
 |»» notes|string|true|none|Arbitrary text that a user can add about a transaction|
 |»» shortDescription|string|true|none|A cleaned up and shorter description of the transaction, this can be editied|
+|»» counterpartyId|string|false|none|An identifier for the counterparty|
 |»» status|string|true|none|Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -2860,7 +2866,7 @@ Bearer
 curl -X PATCH https://api.moneyhub.co.uk/v2.0/transactions/{transactionId} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -2876,7 +2882,7 @@ Accept: application/json
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -2910,7 +2916,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -2935,7 +2941,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.patch 'https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}',
@@ -2951,7 +2957,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.patch('https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}', params={
@@ -2992,7 +2998,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -3058,6 +3064,7 @@ Requires **transactions:read:all** and either of **transactions:write** or **tra
     "longDescription": "Card Purchase SAINSBURYS S/MKTS  BCC",
     "notes": "Some notes about the transaction",
     "shortDescription": "Sainsburys S/mkts",
+    "counterpartyId": "30be8fa43f30fc285e4c479e9dfd6a1dec2bead8ee6cc6276b8dac152c565e9e",
     "status": "posted"
   },
   "links": {
@@ -3097,6 +3104,7 @@ Status Code **200**
 |»» longDescription|string|true|none|The full text description of the transactions - often as it is represented on the users bank statement|
 |»» notes|string|true|none|Arbitrary text that a user can add about a transaction|
 |»» shortDescription|string|true|none|A cleaned up and shorter description of the transaction, this can be editied|
+|»» counterpartyId|string|false|none|An identifier for the counterparty|
 |»» status|string|true|none|Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -3124,7 +3132,7 @@ Bearer
 # You can also use wget
 curl -X DELETE https://api.moneyhub.co.uk/v2.0/transactions/{transactionId} \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -3138,7 +3146,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -3159,7 +3167,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -3183,7 +3191,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.delete 'https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}',
@@ -3198,7 +3206,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.delete('https://api.moneyhub.co.uk/v2.0/transactions/{transactionId}', params={
@@ -3238,7 +3246,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -3299,7 +3307,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/transactions-collection \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -3315,7 +3323,7 @@ Accept: application/json
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -3362,7 +3370,7 @@ const inputBody = '[
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -3387,7 +3395,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.post 'https://api.moneyhub.co.uk/v2.0/transactions-collection',
@@ -3403,7 +3411,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.post('https://api.moneyhub.co.uk/v2.0/transactions-collection', params={
@@ -3444,7 +3452,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -3560,7 +3568,7 @@ Bearer
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/categories \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -3574,7 +3582,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -3595,7 +3603,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -3619,7 +3627,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/categories',
@@ -3634,7 +3642,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/categories', params={
@@ -3674,7 +3682,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -3764,7 +3772,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/categories \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -3780,7 +3788,7 @@ Accept: application/json
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -3805,7 +3813,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -3830,7 +3838,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.post 'https://api.moneyhub.co.uk/v2.0/categories',
@@ -3846,7 +3854,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.post('https://api.moneyhub.co.uk/v2.0/categories', params={
@@ -3887,7 +3895,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -3983,7 +3991,7 @@ Bearer
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/categories/{categoryId} \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -3997,7 +4005,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -4018,7 +4026,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -4042,7 +4050,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/categories/{categoryId}',
@@ -4057,7 +4065,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/categories/{categoryId}', params={
@@ -4097,7 +4105,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -4184,7 +4192,7 @@ Bearer
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/category-groups \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -4198,7 +4206,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -4219,7 +4227,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -4243,7 +4251,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/category-groups',
@@ -4258,7 +4266,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/category-groups', params={
@@ -4298,7 +4306,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -4379,7 +4387,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/spending-analysis \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -4395,7 +4403,7 @@ Accept: application/json
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -4436,7 +4444,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -4461,7 +4469,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.post 'https://api.moneyhub.co.uk/v2.0/spending-analysis',
@@ -4477,7 +4485,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.post('https://api.moneyhub.co.uk/v2.0/spending-analysis', params={
@@ -4518,7 +4526,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -4649,7 +4657,7 @@ Bearer
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -4663,7 +4671,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -4684,7 +4692,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -4708,7 +4716,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/spending-goals',
@@ -4723,7 +4731,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/spending-goals', params={
@@ -4763,7 +4771,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -4876,7 +4884,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/spending-goals \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -4892,7 +4900,7 @@ Accept: application/json
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -4919,7 +4927,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -4944,7 +4952,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.post 'https://api.moneyhub.co.uk/v2.0/spending-goals',
@@ -4960,7 +4968,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.post('https://api.moneyhub.co.uk/v2.0/spending-goals', params={
@@ -5001,7 +5009,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -5124,7 +5132,7 @@ Bearer
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId} \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -5138,7 +5146,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -5159,7 +5167,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -5183,7 +5191,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}',
@@ -5198,7 +5206,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}', params={
@@ -5238,7 +5246,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -5351,7 +5359,7 @@ Bearer
 curl -X PATCH https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -5367,7 +5375,7 @@ Accept: application/json
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -5394,7 +5402,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -5419,7 +5427,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.patch 'https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}',
@@ -5435,7 +5443,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.patch('https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}', params={
@@ -5476,7 +5484,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -5600,7 +5608,7 @@ Bearer
 # You can also use wget
 curl -X DELETE https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId} \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -5614,7 +5622,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -5635,7 +5643,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -5659,7 +5667,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.delete 'https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}',
@@ -5674,7 +5682,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.delete('https://api.moneyhub.co.uk/v2.0/spending-goals/{goalId}', params={
@@ -5714,7 +5722,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -5776,7 +5784,7 @@ Bearer
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -5790,7 +5798,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -5811,7 +5819,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -5835,7 +5843,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/savings-goals',
@@ -5850,7 +5858,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/savings-goals', params={
@@ -5890,7 +5898,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -6000,7 +6008,7 @@ Bearer
 curl -X POST https://api.moneyhub.co.uk/v2.0/savings-goals \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -6016,7 +6024,7 @@ Accept: application/json
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -6050,7 +6058,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -6075,7 +6083,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.post 'https://api.moneyhub.co.uk/v2.0/savings-goals',
@@ -6091,7 +6099,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.post('https://api.moneyhub.co.uk/v2.0/savings-goals', params={
@@ -6132,7 +6140,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -6257,7 +6265,7 @@ Bearer
 # You can also use wget
 curl -X GET https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId} \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -6271,7 +6279,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -6292,7 +6300,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -6316,7 +6324,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}',
@@ -6331,7 +6339,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.get('https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}', params={
@@ -6371,7 +6379,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -6479,7 +6487,7 @@ Bearer
 curl -X PATCH https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -6495,7 +6503,7 @@ Accept: application/json
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -6529,7 +6537,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -6554,7 +6562,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.patch 'https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}',
@@ -6570,7 +6578,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.patch('https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}', params={
@@ -6611,7 +6619,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -6737,7 +6745,7 @@ Bearer
 # You can also use wget
 curl -X DELETE https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId} \
   -H 'Accept: application/json' \
-  -H 'Authorization: API_KEY'
+  -H 'Authorization: bearerToken'
 
 ```
 
@@ -6751,7 +6759,7 @@ Accept: application/json
 ```javascript
 var headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -6772,7 +6780,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'Authorization':'API_KEY'
+  'Authorization':'bearerToken'
 
 };
 
@@ -6796,7 +6804,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'Authorization' => 'API_KEY'
+  'Authorization' => 'bearerToken'
 }
 
 result = RestClient.delete 'https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}',
@@ -6811,7 +6819,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Accept': 'application/json',
-  'Authorization': 'API_KEY'
+  'Authorization': 'bearerToken'
 }
 
 r = requests.delete('https://api.moneyhub.co.uk/v2.0/savings-goals/{goalId}', params={
@@ -6851,7 +6859,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "Authorization": []string{"API_KEY"},
+        "Authorization": []string{"bearerToken"},
         
     }
 
@@ -6912,10 +6920,10 @@ Bearer
 ```json
 {
   "categoryId": "string",
-  "startDate": "2019-02-21",
-  "endDate": "2019-02-21",
-  "startDateModified": "2019-02-21",
-  "endDateModified": "2019-02-21",
+  "startDate": "2019-03-07",
+  "endDate": "2019-03-07",
+  "startDateModified": "2019-03-07",
+  "endDateModified": "2019-03-07",
   "limit": 0,
   "offset": 0,
   "text": "string",
@@ -7498,6 +7506,7 @@ Bearer
   "longDescription": "Card Purchase SAINSBURYS S/MKTS  BCC",
   "notes": "Some notes about the transaction",
   "shortDescription": "Sainsburys S/mkts",
+  "counterpartyId": "30be8fa43f30fc285e4c479e9dfd6a1dec2bead8ee6cc6276b8dac152c565e9e",
   "status": "posted"
 }
 
@@ -7519,6 +7528,7 @@ Bearer
 |longDescription|string|true|none|The full text description of the transactions - often as it is represented on the users bank statement|
 |notes|string|true|none|Arbitrary text that a user can add about a transaction|
 |shortDescription|string|true|none|A cleaned up and shorter description of the transaction, this can be editied|
+|counterpartyId|string|false|none|An identifier for the counterparty|
 |status|string|true|none|Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.|
 
 #### Enumerated Values
