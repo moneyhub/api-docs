@@ -2121,6 +2121,423 @@ To perform this operation, you must be authenticated by means of one of the foll
 Bearer
 </aside>
 
+## get__accounts_{accountId}_counterparties
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties \
+  -H 'Accept: application/json' \
+  -H 'Authorization: bearerToken'
+
+```
+
+```http
+GET https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties HTTP/1.1
+Host: api.moneyhub.co.uk
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json',
+  'Authorization':'bearerToken'
+
+};
+
+$.ajax({
+  url: 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'bearerToken'
+
+};
+
+fetch('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'bearerToken'
+}
+
+result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'bearerToken'
+}
+
+r = requests.get('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"bearerToken"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /accounts/{accountId}/counterparties`
+
+*Retrieve the counterparties for an account*
+
+Requires **transactions:read:all** scope.
+
+<h3 id="get__accounts_{accountid}_counterparties-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|string(uuid)|true|The Account Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": "4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877",
+      "label": "British Gas"
+    }
+  ],
+  "links": {
+    "next": "http://example.com",
+    "prev": "http://example.com",
+    "self": "http://example.com"
+  },
+  "meta": {}
+}
+```
+
+<h3 id="get__accounts_{accountid}_counterparties-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Succesful Counterparties Response|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unsuccesful Response - Not authorised - Missing authorization header - Invalid access Token|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Unsuccesful Response - Forbidden - Invalid scopes|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Unsuccesful Response - Resource Not found|[Error](#schemaerror)|
+
+<h3 id="get__accounts_{accountid}_counterparties-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» data|[[Counterparty](#schemacounterparty)]|false|none|none|
+|»» id|string|true|none|The unique identifier for the counterparty.|
+|»» label|string|true|none|A label describing the counterparty|
+|» links|[Links](#schemalinks)|false|none|none|
+|»» next|string(uri)|false|none|The url to retrieve the next page of results from|
+|»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
+|»» self|string(uri)|true|none|The url of the current resource(s)|
+|» meta|object|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## post__accounts_{accountId}_recurring-transactions
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions \
+  -H 'Accept: application/json' \
+  -H 'Authorization: bearerToken'
+
+```
+
+```http
+POST https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions HTTP/1.1
+Host: api.moneyhub.co.uk
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json',
+  'Authorization':'bearerToken'
+
+};
+
+$.ajax({
+  url: 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'bearerToken'
+
+};
+
+fetch('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions',
+{
+  method: 'POST',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'bearerToken'
+}
+
+result = RestClient.post 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'bearerToken'
+}
+
+r = requests.post('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"bearerToken"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /accounts/{accountId}/recurring-transactions`
+
+*Create an estimate of the recurring transactions for an account*
+
+Requires **transactions:read:all** scope.
+
+<h3 id="post__accounts_{accountid}_recurring-transactions-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|string(uuid)|true|The Account Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "counterpartyId": "4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877",
+      "amount": {
+        "value": -300023,
+        "currency": "GBP"
+      },
+      "predictionSource": "moneyhub",
+      "dates": [
+        "2019-03-07",
+        "2019-04-07",
+        "2019-05-07"
+      ]
+    }
+  ],
+  "links": {
+    "next": "http://example.com",
+    "prev": "http://example.com",
+    "self": "http://example.com"
+  },
+  "meta": {}
+}
+```
+
+<h3 id="post__accounts_{accountid}_recurring-transactions-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Succesful Recurring Transactions Response|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unsuccesful Response - Not authorised - Missing authorization header - Invalid access Token|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Unsuccesful Response - Forbidden - Invalid scopes|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Unsuccesful Response - Resource Not found|[Error](#schemaerror)|
+
+<h3 id="post__accounts_{accountid}_recurring-transactions-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» data|[[RecurringTransactionEstimate](#schemarecurringtransactionestimate)]|false|none|none|
+|»» counterpartyId|string|false|none|The id of the counterparty that the estimate is for|
+|»» amount|object|false|none|none|
+|»»» value|integer|true|none|The average prected amount of the recurring transaction in minor units of the currency, eg. pennies for GBP.|
+|»»» currency|string|true|none|The currency of the predicted amount taken from the account|
+|»» predictionSource|string|false|none|The source of the prediction|
+|»» dates|[string]|false|none|none|
+|» links|[Links](#schemalinks)|false|none|none|
+|»» next|string(uri)|false|none|The url to retrieve the next page of results from|
+|»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
+|»» self|string(uri)|true|none|The url of the current resource(s)|
+|» meta|object|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|predictionSource|moneyhub|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
 <h1 id="moneyhub-data-api-transactions">transactions</h1>
 
 ## get__transactions
@@ -7404,6 +7821,63 @@ Bearer
 |type|ISIN|
 |type|SEDOL|
 |type|MEX|
+
+<h2 id="tocScounterparty">Counterparty</h2>
+
+<a id="schemacounterparty"></a>
+
+```json
+{
+  "id": "4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877",
+  "label": "British Gas"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|true|none|The unique identifier for the counterparty.|
+|label|string|true|none|A label describing the counterparty|
+
+<h2 id="tocSrecurringtransactionestimate">RecurringTransactionEstimate</h2>
+
+<a id="schemarecurringtransactionestimate"></a>
+
+```json
+{
+  "counterpartyId": "4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877",
+  "amount": {
+    "value": -300023,
+    "currency": "GBP"
+  },
+  "predictionSource": "moneyhub",
+  "dates": [
+    "2019-03-07",
+    "2019-04-07",
+    "2019-05-07"
+  ]
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|counterpartyId|string|false|none|The id of the counterparty that the estimate is for|
+|amount|object|false|none|none|
+|» value|integer|true|none|The average prected amount of the recurring transaction in minor units of the currency, eg. pennies for GBP.|
+|» currency|string|true|none|The currency of the predicted amount taken from the account|
+|predictionSource|string|false|none|The source of the prediction|
+|dates|[string]|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|predictionSource|moneyhub|
 
 <h2 id="tocScategory">Category</h2>
 
