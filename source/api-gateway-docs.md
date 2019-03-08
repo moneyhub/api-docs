@@ -2262,7 +2262,7 @@ func main() {
 
 *Retrieve the counterparties for an account*
 
-Requires **transactions:read:all** scope.
+Requires **accounts:read** and **transactions:read:all** scope.
 
 <h3 id="get__accounts_{accountid}_counterparties-parameters">Parameters</h3>
 
@@ -2461,7 +2461,7 @@ func main() {
 
 *Create an estimate of the recurring transactions for an account*
 
-Requires **transactions:read:all** scope.
+Requires **accounts:read** and **transactions:read:all** scope.
 
 <h3 id="post__accounts_{accountid}_recurring-transactions-parameters">Parameters</h3>
 
@@ -7337,10 +7337,10 @@ Bearer
 ```json
 {
   "categoryId": "string",
-  "startDate": "2019-03-07",
-  "endDate": "2019-03-07",
-  "startDateModified": "2019-03-07",
-  "endDateModified": "2019-03-07",
+  "startDate": "2019-03-08",
+  "endDate": "2019-03-08",
+  "startDateModified": "2019-03-08",
+  "endDateModified": "2019-03-08",
   "limit": 0,
   "offset": 0,
   "text": "string",

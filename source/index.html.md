@@ -486,6 +486,76 @@ will delete any data associated with it from our API. (e.g. accounts, transactio
 This route requires an access token from the client credentials grant with the scope of `user:delete`.
 It deletes a user and all of its financial connections that were created.
 
+# Webhooks
+
+> Example webhook
+
+```json
+{
+  "id": "abe168ce-1b2f-4c38-9c92-db5730485cb3",
+  "eventType": "newTransactions",
+  "userId": "5c79210bbac25ecb5e71ac40",
+  "payload": {
+    "accounts": [
+      {
+        "id": "6d0baf11-248e-4c11-9c04-97b7758b4e04",
+        "transactions": [
+          "d520402a-d982-43ee-b1d1-bdfd282249ea",
+          "613586bf-dac9-4996-9c03-7194a7d62297"
+        ]
+      }
+    ]
+  }
+}
+```
+This is a way to be notified in real time about events related to the api users that you have created.
+
+You can configure webhook endpoints via the [Admin portal](https://admin-portal.moneyhub.co.uk/) when you add or edit your [API clients](/my-api-clients).
+
+Once that you start receiving webhooks you will be able to see a list of them when you drill down to the details of your [API users](https://admin-portal.moneyhub.co.uk/api-users).
+
+### Schema
+
+| Name | Type | Description |
+| --- | --- | --- | --- | --- |
+| id | `string` | Unique id of the webhook
+| eventType | `string[enum]` | Event id
+| userId | `string` | User id
+| payload | `object` | Payload of the event
+
+## New transactions
+
+> Example payload
+
+```json
+{
+  "accounts": [
+    {
+      "id": "6d0baf11-248e-4c11-9c04-97b7758b4e04",
+      "transactions": [
+        "d520402a-d982-43ee-b1d1-bdfd282249ea",
+        "613586bf-dac9-4996-9c03-7194a7d62297"
+      ]
+    }
+  ]
+}
+```
+Id: `newTransactions`
+
+Event that notifies when an account has been automatically updated and new transactions have come through.
+
+### Event Payload
+
+| Name | Type | Description |
+| --- | --- | --- | --- | --- |
+| accounts | `array[object]` | Array of accounts that contain new transactions
+| » id | `string` | Account Id
+| » transactions | `array[string]` | Array of transactions ids
+
+<aside class="notice">
+This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
+</aside>
+
 
 <h1 id="moneyhub-data-api">Moneyhub Data API v2.0.0</h1>
 
@@ -2749,7 +2819,7 @@ func main() {
 
 *Retrieve the counterparties for an account*
 
-Requires **transactions:read:all** scope.
+Requires **accounts:read** and **transactions:read:all** scope.
 
 <h3 id="get__accounts_{accountid}_counterparties-parameters">Parameters</h3>
 
@@ -2948,7 +3018,7 @@ func main() {
 
 *Create an estimate of the recurring transactions for an account*
 
-Requires **transactions:read:all** scope.
+Requires **accounts:read** and **transactions:read:all** scope.
 
 <h3 id="post__accounts_{accountid}_recurring-transactions-parameters">Parameters</h3>
 
@@ -7824,10 +7894,10 @@ Bearer
 ```json
 {
   "categoryId": "string",
-  "startDate": "2019-03-07",
-  "endDate": "2019-03-07",
-  "startDateModified": "2019-03-07",
-  "endDateModified": "2019-03-07",
+  "startDate": "2019-03-08",
+  "endDate": "2019-03-08",
+  "startDateModified": "2019-03-08",
+  "endDateModified": "2019-03-08",
   "limit": 0,
   "offset": 0,
   "text": "string",
