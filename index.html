@@ -310,17 +310,6 @@
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#schema" class="toc-h2 toc-link" data-title="Schema">Schema</a>
-                  </li>
-                  <li>
-                    <a href="#new-transactions-event" class="toc-h2 toc-link" data-title="New transactions Event">New transactions Event</a>
-                  </li>
-              </ul>
-          </li>
             <li class="separator" />
           <li>
             <a href="#moneyhub-data-api" class="toc-h1 toc-link" data-title="Moneyhub Data API v2.0.0">Moneyhub Data API v2.0.0</a>
@@ -354,6 +343,12 @@
                   </li>
                   <li>
                     <a href="#get_accounts-accountid-_holdings" class="toc-h2 toc-link" data-title="get_accounts{accountId}_holdings">get_<em>accounts</em>{accountId}_holdings</a>
+                  </li>
+                  <li>
+                    <a href="#get_accounts-accountid-_counterparties" class="toc-h2 toc-link" data-title="get_accounts{accountId}_counterparties">get_<em>accounts</em>{accountId}_counterparties</a>
+                  </li>
+                  <li>
+                    <a href="#post_accounts-accountid-_recurring-transactions" class="toc-h2 toc-link" data-title="post_accounts{accountId}_recurring-transactions">post_<em>accounts</em>{accountId}_recurring-transactions</a>
                   </li>
               </ul>
           </li>
@@ -474,6 +469,12 @@
                   </li>
                   <li>
                     <a href="#tocSholding" class="toc-h2 toc-link" data-title="Holding">Holding</a>
+                  </li>
+                  <li>
+                    <a href="#tocScounterparty" class="toc-h2 toc-link" data-title="Counterparty">Counterparty</a>
+                  </li>
+                  <li>
+                    <a href="#tocSrecurringtransactionestimate" class="toc-h2 toc-link" data-title="RecurringTransactionEstimate">RecurringTransactionEstimate</a>
                   </li>
                   <li>
                     <a href="#tocScategory" class="toc-h2 toc-link" data-title="Category">Category</a>
@@ -988,105 +989,6 @@ will delete any data associated with it from our API. (e.g. accounts, transactio
 <h2 id='delete-users-id'>DELETE /users/:id</h2>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:delete</code>.
 It deletes a user and all of its financial connections that were created.</p>
-<h1 id='webhooks'>Webhooks</h1>
-<blockquote>
-<p>Example webhook</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abe168ce-1b2f-4c38-9c92-db5730485cb3"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"eventType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newTransactions"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c79210bbac25ecb5e71ac40"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d0baf11-248e-4c11-9c04-97b7758b4e04"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"transactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="s2">"d520402a-d982-43ee-b1d1-bdfd282249ea"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"613586bf-dac9-4996-9c03-7194a7d62297"</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>You can configure webhook endpoints via the <a href="https://admin-portal.moneyhub.co.uk/">Admin portal</a> to be notified about events that happen to
-your api users.</p>
-<h3 id='schema'>Schema</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td><code>string</code></td>
-<td>Unique id of the webhook</td>
-</tr>
-<tr>
-<td>eventType</td>
-<td><code>string[enum]</code></td>
-<td>Event id</td>
-</tr>
-<tr>
-<td>userId</td>
-<td><code>string</code></td>
-<td>User id</td>
-</tr>
-<tr>
-<td>payload</td>
-<td><code>object</code></td>
-<td>Payload of the event</td>
-</tr>
-</tbody></table>
-<h2 id='new-transactions-event'>New transactions Event</h2>
-<blockquote>
-<p>Example payload</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d0baf11-248e-4c11-9c04-97b7758b4e04"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"transactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"d520402a-d982-43ee-b1d1-bdfd282249ea"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"613586bf-dac9-4996-9c03-7194a7d62297"</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Id: <code>newTransactions</code></p>
-
-<p>Event that notifies when an account has been automatically updated and new transactions have come through.</p>
-<h3 id='event-payload'>Event Payload</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>accounts</td>
-<td><code>array[object]</code></td>
-<td>Array of accounts that contain new transactions</td>
-</tr>
-<tr>
-<td>» id</td>
-<td><code>string</code></td>
-<td>Account Id</td>
-</tr>
-<tr>
-<td>» transactions</td>
-<td><code>array[string]</code></td>
-<td>Array of transactions ids</td>
-</tr>
-</tbody></table>
-
-<aside class="notice">
-This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
-</aside>
 
 <h1 id="moneyhub-data-api">Moneyhub Data API v2.0.0</h1>
 
@@ -4807,6 +4709,597 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 To perform this operation, you must be authenticated by means of one of the following methods:
 Bearer
 </aside>
+<h2 id='get_accounts-accountid-_counterparties'>get_<em>accounts</em>{accountId}_counterparties</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
+curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>accountId<span class="o">}</span>/counterparties <span class="se">\</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
+
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
+
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties'</span><span class="p">,</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s1">'get'</span><span class="p">,</span>
+
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span><span class="p">,</span>
+  <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+
+</code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
+
+<span class="p">};</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties'</span><span class="p">,</span>
+<span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
+<span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties'</span><span class="p">,</span>
+  <span class="ss">params: </span><span class="p">{</span>
+  <span class="p">},</span> <span class="ss">headers: </span><span class="n">headers</span>
+
+<span class="nb">p</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
+<span class="p">}</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+
+<span class="p">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+</code></pre><pre class="highlight java tab-java"><code><span class="n">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="s">"https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties"</span><span class="o">);</span>
+<span class="n">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+<span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
+<span class="n">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span>
+    <span class="k">new</span> <span class="nf">InputStreamReader</span><span class="o">(</span><span class="n">con</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
+<span class="n">String</span> <span class="n">inputLine</span><span class="o">;</span>
+<span class="n">StringBuffer</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">();</span>
+<span class="k">while</span> <span class="o">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">response</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">inputLine</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+
+</code></pre><pre class="highlight go tab-go"><code><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
+
+</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+       </span><span class="s">"bytes"</span><span class="x">
+       </span><span class="s">"net/http"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+
+    </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
+        </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
+
+    </span><span class="p">}</span><span class="x">
+
+    </span><span class="n">data</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">NewBuffer</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="n">jsonReq</span><span class="p">})</span><span class="x">
+    </span><span class="n">req</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span><span class="x"> </span><span class="s">"https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/counterparties"</span><span class="p">,</span><span class="x"> </span><span class="n">data</span><span class="p">)</span><span class="x">
+    </span><span class="n">req</span><span class="o">.</span><span class="n">Header</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">headers</span><span class="x">
+
+    </span><span class="n">client</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">http</span><span class="o">.</span><span class="n">Client</span><span class="p">{}</span><span class="x">
+    </span><span class="n">resp</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">client</span><span class="o">.</span><span class="n">Do</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="x">
+    </span><span class="c">// ...</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span></code></pre>
+<p><code>GET /accounts/{accountId}/counterparties</code></p>
+
+<p><em>Retrieve the counterparties for an account</em></p>
+
+<p>Requires <strong>transactions:read:all</strong> scope.</p>
+
+<h3 id="get__accounts_{accountid}_counterparties-parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>path</td>
+<td>string(uuid)</td>
+<td>true</td>
+<td>The Account Id</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"British Gas"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"prev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="get__accounts_{accountid}_counterparties-responses">Responses</h3>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Succesful Counterparties Response</td>
+<td>Inline</td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Unsuccesful Response - Not authorised - Missing authorization header - Invalid access Token</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Unsuccesful Response - Forbidden - Invalid scopes</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Unsuccesful Response - Resource Not found</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+</tbody></table>
+
+<h3 id="get__accounts_{accountid}_counterparties-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>» data</td>
+<td>[<a href="#schemacounterparty">Counterparty</a>]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The unique identifier for the counterparty.</td>
+</tr>
+<tr>
+<td>»» label</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>A label describing the counterparty</td>
+</tr>
+<tr>
+<td>» links</td>
+<td><a href="#schemalinks">Links</a></td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» next</td>
+<td>string(uri)</td>
+<td>false</td>
+<td>none</td>
+<td>The url to retrieve the next page of results from</td>
+</tr>
+<tr>
+<td>»» prev</td>
+<td>string(uri)</td>
+<td>false</td>
+<td>none</td>
+<td>The url to retrieve the previous page of results from</td>
+</tr>
+<tr>
+<td>»» self</td>
+<td>string(uri)</td>
+<td>true</td>
+<td>none</td>
+<td>The url of the current resource(s)</td>
+</tr>
+<tr>
+<td>» meta</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+<h2 id='post_accounts-accountid-_recurring-transactions'>post_<em>accounts</em>{accountId}_recurring-transactions</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
+curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>accountId<span class="o">}</span>/recurring-transactions <span class="se">\</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: bearerToken'</span>
+
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.moneyhub.co.uk</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
+
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions'</span><span class="p">,</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s1">'post'</span><span class="p">,</span>
+
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span><span class="p">,</span>
+  <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+
+</code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'bearerToken'</span>
+
+<span class="p">};</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions'</span><span class="p">,</span>
+<span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'bearerToken'</span>
+<span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions'</span><span class="p">,</span>
+  <span class="ss">params: </span><span class="p">{</span>
+  <span class="p">},</span> <span class="ss">headers: </span><span class="n">headers</span>
+
+<span class="nb">p</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'bearerToken'</span>
+<span class="p">}</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+
+<span class="p">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+</code></pre><pre class="highlight java tab-java"><code><span class="n">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="s">"https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions"</span><span class="o">);</span>
+<span class="n">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+<span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"POST"</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
+<span class="n">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span>
+    <span class="k">new</span> <span class="nf">InputStreamReader</span><span class="o">(</span><span class="n">con</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
+<span class="n">String</span> <span class="n">inputLine</span><span class="o">;</span>
+<span class="n">StringBuffer</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">();</span>
+<span class="k">while</span> <span class="o">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">response</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">inputLine</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+
+</code></pre><pre class="highlight go tab-go"><code><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
+
+</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+       </span><span class="s">"bytes"</span><span class="x">
+       </span><span class="s">"net/http"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+
+    </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
+        </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"bearerToken"</span><span class="p">},</span><span class="x">
+
+    </span><span class="p">}</span><span class="x">
+
+    </span><span class="n">data</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">NewBuffer</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="n">jsonReq</span><span class="p">})</span><span class="x">
+    </span><span class="n">req</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span><span class="x"> </span><span class="s">"https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/recurring-transactions"</span><span class="p">,</span><span class="x"> </span><span class="n">data</span><span class="p">)</span><span class="x">
+    </span><span class="n">req</span><span class="o">.</span><span class="n">Header</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">headers</span><span class="x">
+
+    </span><span class="n">client</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">http</span><span class="o">.</span><span class="n">Client</span><span class="p">{}</span><span class="x">
+    </span><span class="n">resp</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">client</span><span class="o">.</span><span class="n">Do</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="x">
+    </span><span class="c">// ...</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span></code></pre>
+<p><code>POST /accounts/{accountId}/recurring-transactions</code></p>
+
+<p><em>Create an estimate of the recurring transactions for an account</em></p>
+
+<p>Requires <strong>transactions:read:all</strong> scope.</p>
+
+<h3 id="post__accounts_{accountid}_recurring-transactions-parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>path</td>
+<td>string(uuid)</td>
+<td>true</td>
+<td>The Account Id</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"counterpartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">-300023</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"predictionSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moneyhub"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2019-03-07"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-04-07"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-05-07"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"prev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="post__accounts_{accountid}_recurring-transactions-responses">Responses</h3>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Succesful Recurring Transactions Response</td>
+<td>Inline</td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Unsuccesful Response - Not authorised - Missing authorization header - Invalid access Token</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Unsuccesful Response - Forbidden - Invalid scopes</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Unsuccesful Response - Resource Not found</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+</tbody></table>
+
+<h3 id="post__accounts_{accountid}_recurring-transactions-responseschema">Response Schema</h3>
+
+<p>Status Code <strong>200</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>» data</td>
+<td>[<a href="#schemarecurringtransactionestimate">RecurringTransactionEstimate</a>]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» counterpartyId</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>The id of the counterparty that the estimate is for</td>
+</tr>
+<tr>
+<td>»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The average prected amount of the recurring transaction in minor units of the currency, eg. pennies for GBP.</td>
+</tr>
+<tr>
+<td>»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The currency of the predicted amount taken from the account</td>
+</tr>
+<tr>
+<td>»» predictionSource</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>The source of the prediction</td>
+</tr>
+<tr>
+<td>»» dates</td>
+<td>[string]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» links</td>
+<td><a href="#schemalinks">Links</a></td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» next</td>
+<td>string(uri)</td>
+<td>false</td>
+<td>none</td>
+<td>The url to retrieve the next page of results from</td>
+</tr>
+<tr>
+<td>»» prev</td>
+<td>string(uri)</td>
+<td>false</td>
+<td>none</td>
+<td>The url to retrieve the previous page of results from</td>
+</tr>
+<tr>
+<td>»» self</td>
+<td>string(uri)</td>
+<td>true</td>
+<td>none</td>
+<td>The url of the current resource(s)</td>
+</tr>
+<tr>
+<td>» meta</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody></table>
+<h4 id='enumerated-values-6'>Enumerated Values</h4>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>predictionSource</td>
+<td>moneyhub</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
 
 <h1 id="moneyhub-data-api-transactions">transactions</h1>
 <h2 id='get__transactions'>get__transactions</h2>
@@ -5228,7 +5721,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</spa
 <td>none</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-6'>Enumerated Values</h4>
+<h4 id='enumerated-values-7'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -5646,7 +6139,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/transactions <span class="se">\</sp
 <td>none</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-7'>Enumerated Values</h4>
+<h4 id='enumerated-values-8'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -6028,7 +6521,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</span
 <td>none</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-8'>Enumerated Values</h4>
+<h4 id='enumerated-values-9'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -6453,7 +6946,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/transactions/<span class="o">{</sp
 <td>none</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-9'>Enumerated Values</h4>
+<h4 id='enumerated-values-10'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -8799,7 +9292,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</s
 <td>none</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-10'>Enumerated Values</h4>
+<h4 id='enumerated-values-11'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -9182,7 +9675,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/spending-goals <span class="se">\</
 <td>none</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-11'>Enumerated Values</h4>
+<h4 id='enumerated-values-12'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -9543,7 +10036,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</sp
 <td>none</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-12'>Enumerated Values</h4>
+<h4 id='enumerated-values-13'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -9933,7 +10426,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/spending-goals/<span class="o">{</
 <td>none</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-13'>Enumerated Values</h4>
+<h4 id='enumerated-values-14'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -12214,7 +12707,7 @@ Bearer
 <td>The type of account - this will determine the data available in the details field</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-14'>Enumerated Values</h4>
+<h4 id='enumerated-values-15'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -12420,7 +12913,7 @@ Bearer
 <td>For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-15'>Enumerated Values</h4>
+<h4 id='enumerated-values-16'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -12743,7 +13236,7 @@ Bearer
 <td>For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-16'>Enumerated Values</h4>
+<h4 id='enumerated-values-17'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -12974,7 +13467,7 @@ Bearer
 <td>For assets. The rate of appreciation as a percentage, negative values indicate that the asset will depreciate</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-17'>Enumerated Values</h4>
+<h4 id='enumerated-values-18'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -13128,7 +13621,7 @@ Bearer
 <td>The currency of the unit price.</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-18'>Enumerated Values</h4>
+<h4 id='enumerated-values-19'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -13259,7 +13752,7 @@ Bearer
 <td>The currency of the unit price.</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-19'>Enumerated Values</h4>
+<h4 id='enumerated-values-20'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -13280,6 +13773,123 @@ Bearer
 </tr>
 </tbody></table>
 
+<h2 id="tocScounterparty">Counterparty</h2>
+
+<p><a id="schemacounterparty"></a></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"British Gas"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='properties-10'>Properties</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The unique identifier for the counterparty.</td>
+</tr>
+<tr>
+<td>label</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>A label describing the counterparty</td>
+</tr>
+</tbody></table>
+
+<h2 id="tocSrecurringtransactionestimate">RecurringTransactionEstimate</h2>
+
+<p><a id="schemarecurringtransactionestimate"></a></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"counterpartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4bac27393bdd9777ce02453256c5577cd02275510b2227f473d03f533924f877"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">-300023</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"predictionSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moneyhub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"2019-03-07"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-04-07"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-05-07"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='properties-11'>Properties</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>counterpartyId</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>The id of the counterparty that the estimate is for</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The average prected amount of the recurring transaction in minor units of the currency, eg. pennies for GBP.</td>
+</tr>
+<tr>
+<td>» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The currency of the predicted amount taken from the account</td>
+</tr>
+<tr>
+<td>predictionSource</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>The source of the prediction</td>
+</tr>
+<tr>
+<td>dates</td>
+<td>[string]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody></table>
+<h4 id='enumerated-values-21'>Enumerated Values</h4>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>predictionSource</td>
+<td>moneyhub</td>
+</tr>
+</tbody></table>
+
 <h2 id="tocScategory">Category</h2>
 
 <p><a id="schemacategory"></a></p>
@@ -13290,7 +13900,7 @@ Bearer
   </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group:2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-10'>Properties</h3>
+</span></code></pre><h3 id='properties-12'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13338,7 +13948,7 @@ Bearer
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bus travel"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-11'>Properties</h3>
+</span></code></pre><h3 id='properties-13'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13372,7 +13982,7 @@ Bearer
   </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bills"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-12'>Properties</h3>
+</span></code></pre><h3 id='properties-14'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13407,7 +14017,7 @@ Bearer
   </span><span class="s2">"lastDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-28"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-13'>Properties</h3>
+</span></code></pre><h3 id='properties-15'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13461,7 +14071,7 @@ Bearer
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-14'>Properties</h3>
+</span></code></pre><h3 id='properties-16'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13570,7 +14180,7 @@ Bearer
 <td>Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-20'>Enumerated Values</h4>
+<h4 id='enumerated-values-22'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -13603,249 +14213,6 @@ Bearer
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-10T12:00:00+00:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='properties-15'>Properties</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>accountId</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>The id of the account the transaction belongs to</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>object</td>
-<td>true</td>
-<td>none</td>
-<td>none</td>
-</tr>
-<tr>
-<td>» value</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The amount of the transaction in minor units of the currency, eg. pennies for GBP, negative means money going out of an account, positive means money coming into an account.</td>
-</tr>
-<tr>
-<td>categoryId</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>The category id. Standard categories are prefixed with &#39;std&#39;, custom categories are prefixed with &#39;cus&#39;</td>
-</tr>
-<tr>
-<td>categoryIdConfirmed</td>
-<td>boolean</td>
-<td>false</td>
-<td>none</td>
-<td>Flag indicating whether the user has confirmed the category id as correct</td>
-</tr>
-<tr>
-<td>date</td>
-<td>string(date-time)</td>
-<td>true</td>
-<td>none</td>
-<td>The date that the transaction occurred. Where available this will contain an accurate time, where the time is not available it will default to midday.</td>
-</tr>
-<tr>
-<td>longDescription</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>The full text description of the transactions - often as it is represented on the users bank statement</td>
-</tr>
-<tr>
-<td>shortDescription</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>A cleaned up and shorter description of the transaction, this can be edited</td>
-</tr>
-<tr>
-<td>notes</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>Arbitrary text that a user can add about a transaction</td>
-</tr>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.</td>
-</tr>
-</tbody></table>
-<h4 id='enumerated-values-21'>Enumerated Values</h4>
-<table><thead>
-<tr>
-<th>Property</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>posted</td>
-</tr>
-<tr>
-<td>status</td>
-<td>pending</td>
-</tr>
-</tbody></table>
-
-<h2 id="tocStransactionpatch">TransactionPatch</h2>
-
-<p><a id="schematransactionpatch"></a></p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c390a94f-2309-4cdf-8d02-b0c5304d9f66"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">-51000</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"categoryId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"std:09f5c144-6d90-4228-98c6-cac1331d874b"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"categoryIdConfirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"longDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New long description"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New short description"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New notes"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-10T12:00:00+00:00"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='properties-16'>Properties</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>accountId</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>Scope &#39;transactions.write.all&#39; required. The id of the account the transaction belongs to</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-<tr>
-<td>» value</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>Scope &#39;transactions.write.all&#39; required. The amount of the transaction in minor units of the currency, eg. pennies for GBP, negative means money going out of an account, positive means money coming into an account.</td>
-</tr>
-<tr>
-<td>categoryId</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>The category id. Standard categories are prefixed with &#39;std&#39;, custom categories are prefixed with &#39;cus&#39;</td>
-</tr>
-<tr>
-<td>categoryIdConfirmed</td>
-<td>boolean</td>
-<td>false</td>
-<td>none</td>
-<td>Flag indificating whether the user has confirmed the category id as correct</td>
-</tr>
-<tr>
-<td>date</td>
-<td>string(date-time)</td>
-<td>false</td>
-<td>none</td>
-<td>Scope &#39;transactions.write.all&#39; required. The date that the transaction occurred. Where available this will contain an accurate time, where the time is not available it will default to midday.</td>
-</tr>
-<tr>
-<td>longDescription</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>Scope &#39;transactions.write.all&#39; required. The full text description of the transactions - often as it is represented on the users bank statement</td>
-</tr>
-<tr>
-<td>shortDescription</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>A cleaned up and shorter description of the transaction, this can be edited</td>
-</tr>
-<tr>
-<td>notes</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>Arbitrary text that a user can add about a transaction</td>
-</tr>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>Scope &#39;transactions.write.all&#39; required. Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.</td>
-</tr>
-</tbody></table>
-<h4 id='enumerated-values-22'>Enumerated Values</h4>
-<table><thead>
-<tr>
-<th>Property</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>posted</td>
-</tr>
-<tr>
-<td>status</td>
-<td>pending</td>
-</tr>
-</tbody></table>
-
-<h2 id="tocStransactioncollectionpost">TransactionCollectionPost</h2>
-
-<p><a id="schematransactioncollectionpost"></a></p>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c390a94f-2309-4cdf-8d02-b0c5304d9f66"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">-4500</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"categoryId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"std:4b0255f0-0309-4509-9e05-4b4e386f9b0d"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"categoryIdConfirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"longDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Long description 1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description 1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-10T12:00:00+00:00"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c390a94f-2309-4cdf-8d02-b0c5304d9f66"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">7800</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"categoryId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"std:4b0255f0-0309-4509-9e05-4b4e386f9b0d"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"longDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Long description 2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-10T12:00:00+00:00"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
 
 </span></code></pre><h3 id='properties-17'>Properties</h3>
 <table><thead>
@@ -13945,6 +14312,249 @@ Bearer
 </tr>
 </tbody></table>
 
+<h2 id="tocStransactionpatch">TransactionPatch</h2>
+
+<p><a id="schematransactionpatch"></a></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c390a94f-2309-4cdf-8d02-b0c5304d9f66"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">-51000</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"categoryId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"std:09f5c144-6d90-4228-98c6-cac1331d874b"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"categoryIdConfirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"longDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New long description"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New short description"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New notes"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-10T12:00:00+00:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='properties-18'>Properties</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Scope &#39;transactions.write.all&#39; required. The id of the account the transaction belongs to</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>Scope &#39;transactions.write.all&#39; required. The amount of the transaction in minor units of the currency, eg. pennies for GBP, negative means money going out of an account, positive means money coming into an account.</td>
+</tr>
+<tr>
+<td>categoryId</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>The category id. Standard categories are prefixed with &#39;std&#39;, custom categories are prefixed with &#39;cus&#39;</td>
+</tr>
+<tr>
+<td>categoryIdConfirmed</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>Flag indificating whether the user has confirmed the category id as correct</td>
+</tr>
+<tr>
+<td>date</td>
+<td>string(date-time)</td>
+<td>false</td>
+<td>none</td>
+<td>Scope &#39;transactions.write.all&#39; required. The date that the transaction occurred. Where available this will contain an accurate time, where the time is not available it will default to midday.</td>
+</tr>
+<tr>
+<td>longDescription</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Scope &#39;transactions.write.all&#39; required. The full text description of the transactions - often as it is represented on the users bank statement</td>
+</tr>
+<tr>
+<td>shortDescription</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>A cleaned up and shorter description of the transaction, this can be edited</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Arbitrary text that a user can add about a transaction</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Scope &#39;transactions.write.all&#39; required. Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.</td>
+</tr>
+</tbody></table>
+<h4 id='enumerated-values-24'>Enumerated Values</h4>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>posted</td>
+</tr>
+<tr>
+<td>status</td>
+<td>pending</td>
+</tr>
+</tbody></table>
+
+<h2 id="tocStransactioncollectionpost">TransactionCollectionPost</h2>
+
+<p><a id="schematransactioncollectionpost"></a></p>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c390a94f-2309-4cdf-8d02-b0c5304d9f66"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">-4500</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"categoryId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"std:4b0255f0-0309-4509-9e05-4b4e386f9b0d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"categoryIdConfirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"longDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Long description 1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description 1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-10T12:00:00+00:00"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c390a94f-2309-4cdf-8d02-b0c5304d9f66"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">7800</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"categoryId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"std:4b0255f0-0309-4509-9e05-4b4e386f9b0d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"longDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Long description 2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-10T12:00:00+00:00"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre><h3 id='properties-19'>Properties</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The id of the account the transaction belongs to</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The amount of the transaction in minor units of the currency, eg. pennies for GBP, negative means money going out of an account, positive means money coming into an account.</td>
+</tr>
+<tr>
+<td>categoryId</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The category id. Standard categories are prefixed with &#39;std&#39;, custom categories are prefixed with &#39;cus&#39;</td>
+</tr>
+<tr>
+<td>categoryIdConfirmed</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>Flag indicating whether the user has confirmed the category id as correct</td>
+</tr>
+<tr>
+<td>date</td>
+<td>string(date-time)</td>
+<td>true</td>
+<td>none</td>
+<td>The date that the transaction occurred. Where available this will contain an accurate time, where the time is not available it will default to midday.</td>
+</tr>
+<tr>
+<td>longDescription</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The full text description of the transactions - often as it is represented on the users bank statement</td>
+</tr>
+<tr>
+<td>shortDescription</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>A cleaned up and shorter description of the transaction, this can be edited</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Arbitrary text that a user can add about a transaction</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Whether the transaction has been posted (booked) or is still a pending transaction. During the transition from pending to posted the description will normally change.</td>
+</tr>
+</tbody></table>
+<h4 id='enumerated-values-25'>Enumerated Values</h4>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>posted</td>
+</tr>
+<tr>
+<td>status</td>
+<td>pending</td>
+</tr>
+</tbody></table>
+
 <h2 id="tocSspendinganalysis">SpendingAnalysis</h2>
 
 <p><a id="schemaspendinganalysis"></a></p>
@@ -13969,7 +14579,7 @@ Bearer
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-18'>Properties</h3>
+</span></code></pre><h3 id='properties-20'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14033,7 +14643,7 @@ Bearer
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-19'>Properties</h3>
+</span></code></pre><h3 id='properties-21'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14108,7 +14718,7 @@ Bearer
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-20'>Properties</h3>
+</span></code></pre><h3 id='properties-22'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14196,7 +14806,7 @@ Bearer
 <td>The spending analysis amount of the specified month expressed in minor units of the currency.</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-24'>Enumerated Values</h4>
+<h4 id='enumerated-values-26'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -14223,7 +14833,7 @@ Bearer
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-21'>Properties</h3>
+</span></code></pre><h3 id='properties-23'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14269,7 +14879,7 @@ Bearer
 <td>The amount of the spending goal in minor units of the currency, eg. pennies for GBP.</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-25'>Enumerated Values</h4>
+<h4 id='enumerated-values-27'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -14296,7 +14906,7 @@ Bearer
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-22'>Properties</h3>
+</span></code></pre><h3 id='properties-24'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14351,7 +14961,7 @@ Bearer
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-23'>Properties</h3>
+</span></code></pre><h3 id='properties-25'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14464,7 +15074,7 @@ Bearer
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-24'>Properties</h3>
+</span></code></pre><h3 id='properties-26'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14542,7 +15152,7 @@ Bearer
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-25'>Properties</h3>
+</span></code></pre><h3 id='properties-27'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14612,7 +15222,7 @@ Bearer
   </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-26'>Properties</h3>
+</span></code></pre><h3 id='properties-28'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14653,7 +15263,7 @@ Bearer
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-27'>Properties</h3>
+</span></code></pre><h3 id='properties-29'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
