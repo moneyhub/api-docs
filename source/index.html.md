@@ -152,7 +152,7 @@ const transactions = await got(`#{resourceServerUrl}/transactions`, {
 - Partner requests an access token from the identity service with the scope of data access required and a custom `sub` parameter that contains the profile id
 - Partner uses the access token at the api gateway to access financial data
 
-# OpenID Connect Implementation
+# OpenID Connect
 
 You can register an OAuth client through our [Admin portal](https://admin-portal.moneyhub.co.uk/). We will then generate a `client_id` and `client_secret` corresponding to your client. These credentials will be used to authenticate your client on every route of our Auth API.
 
@@ -235,29 +235,6 @@ Examples of discovery metadata from other providers are:
 - [Google](https://accounts.google.com/.well-known/openid-configuration)
 - [Microsoft](https://login.windows.net/contoso.onmicrosoft.com/.well-known/openid-configuration)
 
-## Bank connections
-
-We have 4 lists of available bank connections:
-
-- [All connections](https://identity.moneyhub.co.uk/oidc/.well-known/all-connections)
-- [API connections](https://identity.moneyhub.co.uk/oidc/.well-known/api-connections)
-- [Screen-scraping connections](https://identity.moneyhub.co.uk/oidc/.well-known/legacy-connections)
-- [Test connections](https://identity.moneyhub.co.uk/oidc/.well-known/test-connections)
-
-Every client you create will have access to the test connections by default. Access to the real connections via the API
-will need to be requested.
-
-Every connection will have the following properties:
-
-- `id` - bank connection id (used to request an authorization url for a specific bank)
-- `name`
-- `type` - the type of bank connection (`api`, `legacy` or `test`)
-- `bankRef` - reference that uniquely identities a set of connections as being part of the same institution (e.g. HSBC Open banking and HSBC credit cards). It is used to group a set of connections by the banking institution they refer to
-- `parentRef` - this property is now deprecated. Please use `bankRef` instead
-- `iconUrl` - the url of the bank icon SVG. Please be aware we don't have icons for all the connections we provide. For the missing icons you can either use your own set or use our generic bank icon found at this url: <https://identity.moneyhub.co.uk/bank-icons/default>
-- `accountTypes` - an array containing the types of accounts supported by the connection (`cash`, `card`, `pension`, `mortgage`, `investment`, `loan`) and a beta boolean value flagging which accounts types for that connection are currently being developed and may not have a 100% success rate
-- `userTypes` - an array of user account types supported by the bank connection (`personal` and `business`)
-
 ## Response Types
 
 Our discovery doc will list the response types that we support. Currently these are: `code`, `code id_token` and `id_token`.
@@ -289,6 +266,46 @@ They enable you to manage your keys in which ever manner you see fit and removes
 
 For more information about the benefits of this approach or advice
 on implementing, please contact us.
+
+# Bank connections
+
+We have 4 lists of available bank connections:
+
+- [All connections](https://identity.moneyhub.co.uk/oidc/.well-known/all-connections)
+- [API connections](https://identity.moneyhub.co.uk/oidc/.well-known/api-connections)
+- [Screen-scraping connections](https://identity.moneyhub.co.uk/oidc/.well-known/legacy-connections)
+- [Test connections](https://identity.moneyhub.co.uk/oidc/.well-known/test-connections)
+
+Every client you create will have access to the test connections by default. Access to the real connections via the API
+will need to be requested.
+
+Every connection will have the following properties:
+
+- `id` - bank connection id (used to request an authorization url for a specific bank)
+- `name`
+- `type` - the type of bank connection (`api`, `legacy` or `test`)
+- `bankRef` - reference that uniquely identities a set of connections as being part of the same institution (e.g. HSBC Open banking and HSBC credit cards). It is used to group a set of connections by the banking institution they refer to. It can alse be used to retrieve the bank icon.
+- `parentRef` - this property is now deprecated. Please use `bankRef` instead
+- `iconUrl` - the url of the bank icon SVG. Please be aware we don't have icons for all the connections we provide. For the missing icons you can either use your own set or use our generic bank icon found at this url: <https://identity.moneyhub.co.uk/bank-icons/default>
+- `accountTypes` - an array containing the types of accounts supported by the connection (`cash`, `card`, `pension`, `mortgage`, `investment`, `loan`) and a beta boolean value flagging which accounts types for that connection are currently being developed and may not have a 100% success rate
+- `userTypes` - an array of user account types supported by the bank connection (`personal` and `business`)
+
+## GET /bank-icons/:bankRef
+
+`https://identity.moneyhub.co.uk/bank-icons/:bankRef`
+
+This route returns the bank icon as SVG when providing a valid bank reference listed under our available connections.
+
+Please be aware we don't have icons for all the connections we provide, when this is the case the route returns 404 as response unless the `defaultIcon` parameter is used.
+
+| Route parameters | Type | Description |
+| --- | --- | --- | --- | --- |
+| bankRef | `string` | Unique bank reference of the provider. When using `default` as the bank reference we return a generic bank icon.
+
+| Query parameters | Type | Description |
+| --- | --- | --- | --- | --- |
+| defaultIcon | `boolean` | When value is true the route will return the default icon instead of 404 if bank icon is not available
+
 
 # Scopes
 
@@ -828,7 +845,7 @@ Status Code **200**
 |»» id|string|true|none|The unique identity of the account.|
 |»» providerName|string|false|none|The name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
-|»» providerId|string(API|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.|
+|»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -1180,7 +1197,7 @@ Status Code **200**
 |»» id|string|true|none|The unique identity of the account.|
 |»» providerName|string|false|none|The name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
-|»» providerId|string(API|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.|
+|»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -1465,7 +1482,7 @@ Status Code **200**
 |»» id|string|true|none|The unique identity of the account.|
 |»» providerName|string|false|none|The name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
-|»» providerId|string(API|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.|
+|»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -1804,7 +1821,7 @@ Status Code **200**
 |»» id|string|true|none|The unique identity of the account.|
 |»» providerName|string|false|none|The name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
-|»» providerId|string(API|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.|
+|»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -7894,10 +7911,10 @@ Bearer
 ```json
 {
   "categoryId": "string",
-  "startDate": "2019-03-08",
-  "endDate": "2019-03-08",
-  "startDateModified": "2019-03-08",
-  "endDateModified": "2019-03-08",
+  "startDate": "2019-03-11",
+  "endDate": "2019-03-11",
+  "startDateModified": "2019-03-11",
+  "endDateModified": "2019-03-11",
   "limit": 0,
   "offset": 0,
   "text": "string",
@@ -8004,7 +8021,7 @@ Bearer
 |id|string|true|none|The unique identity of the account.|
 |providerName|string|false|none|The name of the provider of the account.|
 |connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
-|providerId|string(API|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.|
+|providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |type|string|true|none|The type of account - this will determine the data available in the details field|
 
 #### Enumerated Values

@@ -271,7 +271,7 @@ Status Code **200**
 |»» id|string|true|none|The unique identity of the account.|
 |»» providerName|string|false|none|The name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
-|»» providerId|string(API|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.|
+|»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -623,7 +623,7 @@ Status Code **200**
 |»» id|string|true|none|The unique identity of the account.|
 |»» providerName|string|false|none|The name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
-|»» providerId|string(API|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.|
+|»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -908,7 +908,7 @@ Status Code **200**
 |»» id|string|true|none|The unique identity of the account.|
 |»» providerName|string|false|none|The name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
-|»» providerId|string(API|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.|
+|»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -1247,7 +1247,7 @@ Status Code **200**
 |»» id|string|true|none|The unique identity of the account.|
 |»» providerName|string|false|none|The name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
-|»» providerId|string(API|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.|
+|»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -7337,10 +7337,10 @@ Bearer
 ```json
 {
   "categoryId": "string",
-  "startDate": "2019-03-08",
-  "endDate": "2019-03-08",
-  "startDateModified": "2019-03-08",
-  "endDateModified": "2019-03-08",
+  "startDate": "2019-03-11",
+  "endDate": "2019-03-11",
+  "startDateModified": "2019-03-11",
+  "endDateModified": "2019-03-11",
   "limit": 0,
   "offset": 0,
   "text": "string",
@@ -7447,7 +7447,7 @@ Bearer
 |id|string|true|none|The unique identity of the account.|
 |providerName|string|false|none|The name of the provider of the account.|
 |connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
-|providerId|string(API|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. This value is not present for accounts created manually by the user.|
+|providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |type|string|true|none|The type of account - this will determine the data available in the details field|
 
 #### Enumerated Values
