@@ -1,0 +1,24 @@
+{
+  "name": "api-docs",
+  "version": "1.0.0",
+  "description": "Moneyhub API docs",
+  "main": "",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "bundle exec middleman server",
+    "deploy": "./deploy.sh",
+    "rebuild": "./get-latest-docs.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moneyhub/api-docs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moneyhub/api-docs/issues"
+  },
+  "homepage": "https://github.com/moneyhub/api-docs#readme"
+}
