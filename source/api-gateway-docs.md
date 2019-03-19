@@ -210,6 +210,7 @@ Requires **accounts:read** scope.
       "dateModified": "2018-07-10T11:39:44+00:00",
       "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
       "providerName": "HSBC",
+      "providerReference": "hsbc",
       "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
       "providerId": "049c10ab871e8d60aa891c0ae368322d",
       "type": "cash:current"
@@ -270,6 +271,7 @@ Status Code **200**
 |»» dateModified|string(date-time)|true|none|The date at which the account was last modified|
 |»» id|string|true|none|The unique identity of the account.|
 |»» providerName|string|false|none|The name of the provider of the account.|
+|»» providerReference|string|false|none|The unique reference name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
@@ -562,6 +564,7 @@ Requires **accounts:read** and **accounts:write:all** scopes.
     "dateModified": "2018-07-10T11:39:44+00:00",
     "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
     "providerName": "HSBC",
+    "providerReference": "hsbc",
     "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
     "providerId": "049c10ab871e8d60aa891c0ae368322d",
     "type": "cash:current"
@@ -622,6 +625,7 @@ Status Code **200**
 |»» dateModified|string(date-time)|true|none|The date at which the account was last modified|
 |»» id|string|true|none|The unique identity of the account.|
 |»» providerName|string|false|none|The name of the provider of the account.|
+|»» providerReference|string|false|none|The unique reference name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
@@ -847,6 +851,7 @@ Requires **accounts:read** scope.
     "dateModified": "2018-07-10T11:39:44+00:00",
     "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
     "providerName": "HSBC",
+    "providerReference": "hsbc",
     "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
     "providerId": "049c10ab871e8d60aa891c0ae368322d",
     "type": "cash:current"
@@ -907,6 +912,7 @@ Status Code **200**
 |»» dateModified|string(date-time)|true|none|The date at which the account was last modified|
 |»» id|string|true|none|The unique identity of the account.|
 |»» providerName|string|false|none|The name of the provider of the account.|
+|»» providerReference|string|false|none|The unique reference name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
@@ -1186,6 +1192,7 @@ Requires **accounts:read** and **account:write:all** scopes.
     "dateModified": "2018-07-10T11:39:44+00:00",
     "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
     "providerName": "HSBC",
+    "providerReference": "hsbc",
     "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
     "providerId": "049c10ab871e8d60aa891c0ae368322d",
     "type": "cash:current"
@@ -1246,6 +1253,7 @@ Status Code **200**
 |»» dateModified|string(date-time)|true|none|The date at which the account was last modified|
 |»» id|string|true|none|The unique identity of the account.|
 |»» providerName|string|false|none|The name of the provider of the account.|
+|»» providerReference|string|false|none|The unique reference name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
@@ -7337,10 +7345,10 @@ Bearer
 ```json
 {
   "categoryId": "string",
-  "startDate": "2019-03-11",
-  "endDate": "2019-03-11",
-  "startDateModified": "2019-03-11",
-  "endDateModified": "2019-03-11",
+  "startDate": "2019-03-19",
+  "endDate": "2019-03-19",
+  "startDateModified": "2019-03-19",
+  "endDateModified": "2019-03-19",
   "limit": 0,
   "offset": 0,
   "text": "string",
@@ -7404,6 +7412,7 @@ Bearer
   "dateModified": "2018-07-10T11:39:44+00:00",
   "id": "ac9bd177-d01e-449c-9f29-d3656d2edc2e",
   "providerName": "HSBC",
+  "providerReference": "hsbc",
   "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
   "providerId": "049c10ab871e8d60aa891c0ae368322d",
   "type": "cash:current"
@@ -7446,6 +7455,7 @@ Bearer
 |dateModified|string(date-time)|true|none|The date at which the account was last modified|
 |id|string|true|none|The unique identity of the account.|
 |providerName|string|false|none|The name of the provider of the account.|
+|providerReference|string|false|none|The unique reference name of the provider of the account.|
 |connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
 |type|string|true|none|The type of account - this will determine the data available in the details field|
