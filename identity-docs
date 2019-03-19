@@ -132,7 +132,7 @@ const transactions = await got(`#{resourceServerUrl}/transactions`, {
 <li>Partner requests an access token from the identity service with the scope of data access required and a custom <code>sub</code> parameter that contains the profile id</li>
 <li>Partner uses the access token at the api gateway to access financial data</li>
 </ul>
-<h1 id='openid-connect-implementation'>OpenID Connect Implementation</h1>
+<h1 id='openid-connect'>OpenID Connect</h1>
 <p>You can register an OAuth client through our <a href="https://admin-portal.moneyhub.co.uk/">Admin portal</a>. We will then generate a <code>client_id</code> and <code>client_secret</code> corresponding to your client. These credentials will be used to authenticate your client on every route of our Auth API.</p>
 
 <p>To correctly authenticate your client, you will need to send your client credentials in the <code>Authorization</code> header in the following format:</p>
@@ -213,31 +213,6 @@ and for example will list our:</p>
 <li><a href="https://accounts.google.com/.well-known/openid-configuration">Google</a></li>
 <li><a href="https://login.windows.net/contoso.onmicrosoft.com/.well-known/openid-configuration">Microsoft</a></li>
 </ul>
-<h2 id='bank-connections'>Bank connections</h2>
-<p>We have 4 lists of available bank connections:</p>
-
-<ul>
-<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/all-connections">All connections</a></li>
-<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/api-connections">API connections</a></li>
-<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/legacy-connections">Screen-scraping connections</a></li>
-<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/test-connections">Test connections</a></li>
-</ul>
-
-<p>Every client you create will have access to the test connections by default. Access to the real connections via the API
-will need to be requested.</p>
-
-<p>Every connection will have the following properties:</p>
-
-<ul>
-<li><code>id</code> - bank connection id (used to request an authorization url for a specific bank)</li>
-<li><code>name</code></li>
-<li><code>type</code> - the type of bank connection (<code>api</code>, <code>legacy</code> or <code>test</code>)</li>
-<li><code>bankRef</code> - reference that uniquely identities a set of connections as being part of the same institution (e.g. HSBC Open banking and HSBC credit cards). It is used to group a set of connections by the banking institution they refer to</li>
-<li><code>parentRef</code> - this property is now deprecated. Please use <code>bankRef</code> instead</li>
-<li><code>iconUrl</code> - the url of the bank icon SVG. Please be aware we don&#39;t have icons for all the connections we provide. For the missing icons you can either use your own set or use our generic bank icon found at this url: <a href="https://identity.moneyhub.co.uk/bank-icons/default">https://identity.moneyhub.co.uk/bank-icons/default</a></li>
-<li><code>accountTypes</code> - an array containing the types of accounts supported by the connection (<code>cash</code>, <code>card</code>, <code>pension</code>, <code>mortgage</code>, <code>investment</code>, <code>loan</code>) and a beta boolean value flagging which accounts types for that connection are currently being developed and may not have a 100% success rate</li>
-<li><code>userTypes</code> - an array of user account types supported by the bank connection (<code>personal</code> and <code>business</code>)</li>
-</ul>
 <h2 id='response-types'>Response Types</h2>
 <p>Our discovery doc will list the response types that we support. Currently these are: <code>code</code>, <code>code id_token</code> and <code>id_token</code>.</p>
 
@@ -264,6 +239,65 @@ authorization code flow.</p>
 
 <p>For more information about the benefits of this approach or advice
 on implementing, please contact us.</p>
+<h1 id='bank-connections'>Bank connections</h1>
+<p>We have 4 lists of available bank connections:</p>
+
+<ul>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/all-connections">All connections</a></li>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/api-connections">API connections</a></li>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/legacy-connections">Screen-scraping connections</a></li>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/test-connections">Test connections</a></li>
+</ul>
+
+<p>Every client you create will have access to the test connections by default. Access to the real connections via the API
+will need to be requested.</p>
+
+<p>Every connection will have the following properties:</p>
+
+<ul>
+<li><code>id</code> - bank connection id (used to request an authorization url for a specific bank)</li>
+<li><code>name</code></li>
+<li><code>type</code> - the type of bank connection (<code>api</code>, <code>legacy</code> or <code>test</code>)</li>
+<li><code>bankRef</code> - reference that uniquely identities a set of connections as being part of the same institution (e.g. HSBC Open banking and HSBC credit cards). It is used to group a set of connections by the banking institution they refer to. It can alse be used to retrieve the bank icon.</li>
+<li><code>parentRef</code> - this property is now deprecated. Please use <code>bankRef</code> instead</li>
+<li><code>iconUrl</code> - the url of the bank icon SVG. Please be aware we don&#39;t have icons for all the connections we provide. For the missing icons you can either use your own set or use our generic bank icon found at this url: <a href="https://identity.moneyhub.co.uk/bank-icons/default">https://identity.moneyhub.co.uk/bank-icons/default</a></li>
+<li><code>accountTypes</code> - an array containing the types of accounts supported by the connection (<code>cash</code>, <code>card</code>, <code>pension</code>, <code>mortgage</code>, <code>investment</code>, <code>loan</code>) and a beta boolean value flagging which accounts types for that connection are currently being developed and may not have a 100% success rate</li>
+<li><code>userTypes</code> - an array of user account types supported by the bank connection (<code>personal</code> and <code>business</code>)</li>
+</ul>
+<h2 id='get-bank-icons-bankref'>GET /bank-icons/:bankRef</h2>
+<p><code>https://identity.moneyhub.co.uk/bank-icons/:bankRef</code></p>
+
+<p>This route returns the bank icon as SVG when providing a valid bank reference listed under our available connections.</p>
+
+<p>Please be aware we don&#39;t have icons for all the connections we provide, when this is the case the route returns 404 as response unless the <code>defaultIcon</code> parameter is used.</p>
+
+<table><thead>
+<tr>
+<th>Route parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bankRef</td>
+<td><code>string</code></td>
+<td>Unique bank reference of the provider. When using <code>default</code> as the bank reference we return a generic bank icon.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Query parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>defaultIcon</td>
+<td><code>boolean</code></td>
+<td>When value is true the route will return the default icon instead of 404 if bank icon is not available</td>
+</tr>
+</tbody></table>
 <h1 id='scopes'>Scopes</h1>
 <p>We use scopes to both describe the access the user is granting and the way in which you would like the user to identify themselves.</p>
 
