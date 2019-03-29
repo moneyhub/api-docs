@@ -213,6 +213,7 @@ Requires **accounts:read** scope.
       "providerReference": "hsbc",
       "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
       "providerId": "049c10ab871e8d60aa891c0ae368322d",
+      "accountType": "personal",
       "type": "cash:current"
     }
   ],
@@ -274,6 +275,7 @@ Status Code **200**
 |»» providerReference|string|false|none|The unique reference name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
+|»» accountType|string|false|none|The type of account (personal/business)|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -289,6 +291,8 @@ Status Code **200**
 |interestType|variable|
 |runningCostPeriod|month|
 |runningCostPeriod|year|
+|accountType|personal|
+|accountType|business|
 |type|cash:current|
 |type|savings|
 |type|card|
@@ -567,6 +571,7 @@ Requires **accounts:read** and **accounts:write:all** scopes.
     "providerReference": "hsbc",
     "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
     "providerId": "049c10ab871e8d60aa891c0ae368322d",
+    "accountType": "personal",
     "type": "cash:current"
   },
   "links": {
@@ -628,6 +633,7 @@ Status Code **200**
 |»» providerReference|string|false|none|The unique reference name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
+|»» accountType|string|false|none|The type of account (personal/business)|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -643,6 +649,8 @@ Status Code **200**
 |interestType|variable|
 |runningCostPeriod|month|
 |runningCostPeriod|year|
+|accountType|personal|
+|accountType|business|
 |type|cash:current|
 |type|savings|
 |type|card|
@@ -854,6 +862,7 @@ Requires **accounts:read** scope.
     "providerReference": "hsbc",
     "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
     "providerId": "049c10ab871e8d60aa891c0ae368322d",
+    "accountType": "personal",
     "type": "cash:current"
   },
   "links": {
@@ -915,6 +924,7 @@ Status Code **200**
 |»» providerReference|string|false|none|The unique reference name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
+|»» accountType|string|false|none|The type of account (personal/business)|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -930,6 +940,8 @@ Status Code **200**
 |interestType|variable|
 |runningCostPeriod|month|
 |runningCostPeriod|year|
+|accountType|personal|
+|accountType|business|
 |type|cash:current|
 |type|savings|
 |type|card|
@@ -1195,6 +1207,7 @@ Requires **accounts:read** and **account:write:all** scopes.
     "providerReference": "hsbc",
     "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
     "providerId": "049c10ab871e8d60aa891c0ae368322d",
+    "accountType": "personal",
     "type": "cash:current"
   },
   "links": {
@@ -1256,6 +1269,7 @@ Status Code **200**
 |»» providerReference|string|false|none|The unique reference name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
+|»» accountType|string|false|none|The type of account (personal/business)|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -1271,6 +1285,8 @@ Status Code **200**
 |interestType|variable|
 |runningCostPeriod|month|
 |runningCostPeriod|year|
+|accountType|personal|
+|accountType|business|
 |type|cash:current|
 |type|savings|
 |type|card|
@@ -4134,6 +4150,14 @@ Requires **categories:read** scope.
 |---|---|---|---|---|
 |limit|query|integer|false|The total number of records to retrieve|
 |offset|query|integer|false|The offset at which to start retrieving records|
+|type|query|string|false|The types of categories to be returned|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|type|personal|
+|type|business|
 
 > Example responses
 
@@ -4556,6 +4580,14 @@ Requires **categories:read** scope.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |categoryId|path|string|true|The Category Id|
+|type|query|string|false|The types of categories to be returned|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|type|personal|
+|type|business|
 
 > Example responses
 
@@ -4751,6 +4783,19 @@ func main() {
 *Retrieve all category groups for a user*
 
 Requires **categories:read** scope.
+
+<h3 id="get__category-groups-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|type|query|string|false|The types of categories to be returned|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|type|personal|
+|type|business|
 
 > Example responses
 
@@ -7345,14 +7390,15 @@ Bearer
 ```json
 {
   "categoryId": "string",
-  "startDate": "2019-03-19",
-  "endDate": "2019-03-19",
-  "startDateModified": "2019-03-19",
-  "endDateModified": "2019-03-19",
+  "startDate": "2019-03-29",
+  "endDate": "2019-03-29",
+  "startDateModified": "2019-03-29",
+  "endDateModified": "2019-03-29",
   "limit": 0,
   "offset": 0,
   "text": "string",
-  "accountId": "stringstringstringstringstringstring"
+  "accountId": "stringstringstringstringstringstring",
+  "type": "string"
 }
 
 ```
@@ -7370,6 +7416,7 @@ Bearer
 |offset|integer|false|none|none|
 |text|string|false|none|none|
 |accountId|string|false|none|none|
+|type|string|false|none|none|
 
 <h2 id="tocSaccount">Account</h2>
 
@@ -7415,6 +7462,7 @@ Bearer
   "providerReference": "hsbc",
   "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
   "providerId": "049c10ab871e8d60aa891c0ae368322d",
+  "accountType": "personal",
   "type": "cash:current"
 }
 
@@ -7458,6 +7506,7 @@ Bearer
 |providerReference|string|false|none|The unique reference name of the provider of the account.|
 |connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
+|accountType|string|false|none|The type of account (personal/business)|
 |type|string|true|none|The type of account - this will determine the data available in the details field|
 
 #### Enumerated Values
@@ -7468,6 +7517,8 @@ Bearer
 |interestType|variable|
 |runningCostPeriod|month|
 |runningCostPeriod|year|
+|accountType|personal|
+|accountType|business|
 |type|cash:current|
 |type|savings|
 |type|card|
