@@ -308,6 +308,9 @@
                     <a href="#get-users-id" class="toc-h2 toc-link" data-title="GET /users/:id">GET /users/:id</a>
                   </li>
                   <li>
+                    <a href="#get-users-id-connections" class="toc-h2 toc-link" data-title="GET /users/:id/connections">GET /users/:id/connections</a>
+                  </li>
+                  <li>
                     <a href="#delete-users-id-connection-connection-id" class="toc-h2 toc-link" data-title="DELETE /users/:id/connection/:connection-id">DELETE /users/:id/connection/:connection-id</a>
                   </li>
                   <li>
@@ -1032,6 +1035,9 @@ It returns an array of all the users associated with your api client.</p>
 <h2 id='get-users-id'>GET /users/:id</h2>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
 It returns a single user associated with your api client.</p>
+<h2 id='get-users-id-connections'>GET /users/:id/connections</h2>
+<p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
+It gets all financial connections of a user.</p>
 <h2 id='delete-users-id-connection-connection-id'>DELETE /users/:id/connection/:connection-id</h2>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:delete</code>.
 It deletes a financial connection of a user. This will revoke the grant that the user provided previously and it
@@ -1358,6 +1364,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
       </span><span class="s2">"providerReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hsbc"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"connectionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"providerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3201"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1659,6 +1666,13 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 <td>false</td>
 </tr>
 <tr>
+<td>»» accountReference</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>A reference number for the account - typically the last 4 digits of the account number</td>
+</tr>
+<tr>
 <td>»» accountType</td>
 <td>string</td>
 <td>false</td>
@@ -1826,6 +1840,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
   "accountName": "Account name",
   "providerName": "Provider name",
   "type": "cash:current",
+  "accountType": "personal",
   "balance": {
     "date": "2018-08-12",
     "amount": {
@@ -1950,6 +1965,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
   </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"providerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Provider name"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2040,6 +2056,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
     </span><span class="s2">"providerReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hsbc"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"connectionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"providerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3201"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -2344,6 +2361,13 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 <td>DEMO</td>
 <td>([\w-])+)</td>
 <td>false</td>
+</tr>
+<tr>
+<td>»» accountReference</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>A reference number for the account - typically the last 4 digits of the account number</td>
 </tr>
 <tr>
 <td>»» accountType</td>
@@ -2661,6 +2685,7 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
     </span><span class="s2">"providerReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hsbc"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"connectionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"providerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3201"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -2965,6 +2990,13 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 <td>DEMO</td>
 <td>([\w-])+)</td>
 <td>false</td>
+</tr>
+<tr>
+<td>»» accountReference</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>A reference number for the account - typically the last 4 digits of the account number</td>
 </tr>
 <tr>
 <td>»» accountType</td>
@@ -3341,6 +3373,7 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
     </span><span class="s2">"providerReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hsbc"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"connectionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"providerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3201"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -3645,6 +3678,13 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
 <td>DEMO</td>
 <td>([\w-])+)</td>
 <td>false</td>
+</tr>
+<tr>
+<td>»» accountReference</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>A reference number for the account - typically the last 4 digits of the account number</td>
 </tr>
 <tr>
 <td>»» accountType</td>
@@ -12659,10 +12699,10 @@ Bearer
 <p><a id="schemaqueryparams"></a></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"categoryId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-29"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-29"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDateModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-29"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDateModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-29"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-25"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-25"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDateModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-25"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDateModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-25"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -12794,6 +12834,7 @@ Bearer
   </span><span class="s2">"providerReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hsbc"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"connectionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"providerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3201"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -13045,6 +13086,13 @@ Bearer
 <td>DEMO</td>
 <td>([\w-])+)</td>
 <td>false</td>
+</tr>
+<tr>
+<td>accountReference</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>A reference number for the account - typically the last 4 digits of the account number</td>
 </tr>
 <tr>
 <td>accountType</td>
@@ -13401,6 +13449,7 @@ Bearer
   </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"providerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Provider name"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -13456,6 +13505,13 @@ Bearer
 <td>true</td>
 <td>none</td>
 <td>The type of account - this will determine the data available in the details field</td>
+</tr>
+<tr>
+<td>accountType</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>The type of account (personal/business)</td>
 </tr>
 <tr>
 <td>balance</td>
@@ -13648,6 +13704,14 @@ Bearer
 <tr>
 <td>type</td>
 <td>properties:buyToLet</td>
+</tr>
+<tr>
+<td>accountType</td>
+<td>personal</td>
+</tr>
+<tr>
+<td>accountType</td>
+<td>business</td>
 </tr>
 <tr>
 <td>interestType</td>
