@@ -474,6 +474,11 @@ It returns an array of all the users associated with your api client.
 This route requires an access token from the client credentials grant with the scope of `user:read`.
 It returns a single user associated with your api client.
 
+## GET /users/:id/connections
+
+This route requires an access token from the client credentials grant with the scope of `user:read`.
+It gets all financial connections of a user.
+
 ## DELETE /users/:id/connection/:connection-id
 
 This route requires an access token from the client credentials grant with the scope of `user:delete`.

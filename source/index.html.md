@@ -492,6 +492,11 @@ It returns an array of all the users associated with your api client.
 This route requires an access token from the client credentials grant with the scope of `user:read`.
 It returns a single user associated with your api client.
 
+## GET /users/:id/connections
+
+This route requires an access token from the client credentials grant with the scope of `user:read`.
+It gets all financial connections of a user.
+
 ## DELETE /users/:id/connection/:connection-id
 
 This route requires an access token from the client credentials grant with the scope of `user:delete`.
@@ -787,6 +792,7 @@ Requires **accounts:read** scope.
       "providerReference": "hsbc",
       "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
       "providerId": "049c10ab871e8d60aa891c0ae368322d",
+      "accountReference": "3201",
       "accountType": "personal",
       "type": "cash:current"
     }
@@ -849,6 +855,7 @@ Status Code **200**
 |»» providerReference|string|false|none|The unique reference name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
+|»» accountReference|string|false|none|A reference number for the account - typically the last 4 digits of the account number|
 |»» accountType|string|false|none|The type of account (personal/business)|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
@@ -931,6 +938,7 @@ const inputBody = '{
   "accountName": "Account name",
   "providerName": "Provider name",
   "type": "cash:current",
+  "accountType": "personal",
   "balance": {
     "date": "2018-08-12",
     "amount": {
@@ -1068,6 +1076,7 @@ Requires **accounts:read** and **accounts:write:all** scopes.
   "accountName": "Account name",
   "providerName": "Provider name",
   "type": "cash:current",
+  "accountType": "personal",
   "balance": {
     "date": "2018-08-12",
     "amount": {
@@ -1145,6 +1154,7 @@ Requires **accounts:read** and **accounts:write:all** scopes.
     "providerReference": "hsbc",
     "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
     "providerId": "049c10ab871e8d60aa891c0ae368322d",
+    "accountReference": "3201",
     "accountType": "personal",
     "type": "cash:current"
   },
@@ -1207,6 +1217,7 @@ Status Code **200**
 |»» providerReference|string|false|none|The unique reference name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
+|»» accountReference|string|false|none|A reference number for the account - typically the last 4 digits of the account number|
 |»» accountType|string|false|none|The type of account (personal/business)|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
@@ -1436,6 +1447,7 @@ Requires **accounts:read** scope.
     "providerReference": "hsbc",
     "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
     "providerId": "049c10ab871e8d60aa891c0ae368322d",
+    "accountReference": "3201",
     "accountType": "personal",
     "type": "cash:current"
   },
@@ -1498,6 +1510,7 @@ Status Code **200**
 |»» providerReference|string|false|none|The unique reference name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
+|»» accountReference|string|false|none|A reference number for the account - typically the last 4 digits of the account number|
 |»» accountType|string|false|none|The type of account (personal/business)|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
@@ -1781,6 +1794,7 @@ Requires **accounts:read** and **account:write:all** scopes.
     "providerReference": "hsbc",
     "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
     "providerId": "049c10ab871e8d60aa891c0ae368322d",
+    "accountReference": "3201",
     "accountType": "personal",
     "type": "cash:current"
   },
@@ -1843,6 +1857,7 @@ Status Code **200**
 |»» providerReference|string|false|none|The unique reference name of the provider of the account.|
 |»» connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |»» providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
+|»» accountReference|string|false|none|A reference number for the account - typically the last 4 digits of the account number|
 |»» accountType|string|false|none|The type of account (personal/business)|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
 |» links|[Links](#schemalinks)|false|none|none|
@@ -7964,10 +7979,10 @@ Bearer
 ```json
 {
   "categoryId": "string",
-  "startDate": "2019-03-29",
-  "endDate": "2019-03-29",
-  "startDateModified": "2019-03-29",
-  "endDateModified": "2019-03-29",
+  "startDate": "2019-04-25",
+  "endDate": "2019-04-25",
+  "startDateModified": "2019-04-25",
+  "endDateModified": "2019-04-25",
   "limit": 0,
   "offset": 0,
   "text": "string",
@@ -8036,6 +8051,7 @@ Bearer
   "providerReference": "hsbc",
   "connectionId": "049c10ab871e8d60aa891c0ae368322d:639cf079-a585-4852-8b4d-1ebd17f4d2cb",
   "providerId": "049c10ab871e8d60aa891c0ae368322d",
+  "accountReference": "3201",
   "accountType": "personal",
   "type": "cash:current"
 }
@@ -8080,6 +8096,7 @@ Bearer
 |providerReference|string|false|none|The unique reference name of the provider of the account.|
 |connectionId|string(([\w-])+:([\w-])+)|false|none|The id of the connection of the account. This value is not present for accounts created manually by the user.|
 |providerId|string(API|DEMO|([\w-])+)|false|none|The id of the provider of the account. Accounts created using the api have a value of 'API'. Accounts crated for a Test user have a value of 'DEMO'. This value is not present for accounts created manually by the user.|
+|accountReference|string|false|none|A reference number for the account - typically the last 4 digits of the account number|
 |accountType|string|false|none|The type of account (personal/business)|
 |type|string|true|none|The type of account - this will determine the data available in the details field|
 
@@ -8214,6 +8231,7 @@ Bearer
   "accountName": "Account name",
   "providerName": "Provider name",
   "type": "cash:current",
+  "accountType": "personal",
   "balance": {
     "date": "2018-08-12",
     "amount": {
@@ -8248,6 +8266,7 @@ Bearer
 |accountName|string|true|none|The name of the account|
 |providerName|string|true|none|The name of the provider of the account.|
 |type|string|true|none|The type of account - this will determine the data available in the details field|
+|accountType|string|false|none|The type of account (personal/business)|
 |balance|object|true|none|none|
 |» amount|object|true|none|none|
 |»» value|integer|true|none|The value of the balance in minor units of the currency, eg. pennies for GBP.|
@@ -8284,6 +8303,8 @@ Bearer
 |type|asset|
 |type|properties:residential|
 |type|properties:buyToLet|
+|accountType|personal|
+|accountType|business|
 |interestType|fixed|
 |interestType|variable|
 |runningCostPeriod|month|
