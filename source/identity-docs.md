@@ -300,6 +300,7 @@ Below is a summary of the scopes we provide, please check our discovery document
 - `openid` - this scope is required and indicates that you are using our OpenID Connect interface. We will return an id token as described in the OpenID Connect Core spec. You can request specific claims to be present in the id token using the claims parameter described in OpenID Connect Core. For details on what claims we support, please check the [claims section](https://moneyhub.github.io/api-docs/#claims)
 - `offline_access` - this scope indicates that you would like ongoing access to the user's resources, when it is present we will issue a refresh token
 
+
 ## Financial institutions
 
 - `id:{bank_code}` - if you pass a specific bank code (available via the endpoints listed above) then we will bypass the bank chooser and take the user directly to the selected bank
@@ -335,6 +336,13 @@ Note - the above transactions:read scopes are mutually exclusive - if more than 
 - `savings_goals:read` - Read access to a customer's saving goals.
 - `savings_goals:write` - Write access to a customer's saving goals.
 - `savings_goals:write:all` - Full write access to saving goals, including the ability to delete goals.
+
+## Payments
+
+- `payee:create` - this scope is required to create a new payee.
+- `payee:read` - this scope is required to retrieve all of the payees that have been created by an API client.
+- `payment` - this scope is required to initiate a payment.
+- `payment:read` - this scope is required to retrieve all of the payments that have been initiated with by an API client.
 
 ## Connection lifecycle
 
@@ -489,6 +497,393 @@ will delete any data associated with it from our API. (e.g. accounts, transactio
 
 This route requires an access token from the client credentials grant with the scope of `user:delete`.
 It deletes a user and all of its financial connections that were created.
+
+# Payments
+
+Moneyhub access to payments uses the same OpenID Connect authorisation service as access to financial data.
+
+There are three additional features that enable payments to be initiated:
+
+ - Support for Payee creation and management
+ - Custom payments scope and associated claim
+ - Support for Request Object endpoint
+
+
+## Payee Management
+
+The Moneyhub payments API is designed to be used to allow payments from arbitrary accounts to a single trusted account. For example a merchant or charity may want to enable their customers to pay into their bank account.
+
+For this reason we require the receiving account to be pre-registered with us as a "payee". We allow this to be done via the administration panel or via API.
+
+When creating payees via API the steps are as follows:
+
+1. Get a client credentials token with the scope `payee:create`
+2. Create a payee using the POST `/payees` route
+3. You will receive back an `id` for the payee. This can be used in subsequent flows
+
+
+## POST /payees
+
+> Example request using moneyhub api client
+
+```
+const tokens = await moneyhub.addPayee({
+  accountNumber: "your account number",
+  sortCode: "your sort code",
+  name: "name of Payee",
+})
+```
+
+
+> Example request
+
+```
+curl --request POST \
+  --url https://identity.moneyhub.co.uk/payees \
+  --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkFObVlmU0dfa2J0MktScFRLbzdRQ (... abbreviated for brevity ...)' \
+  --header 'content-type: application/json' \
+  --data '{\n	"sortCode": "123456",\n	"accountNumber": "12345678",\n	"name": "Account name"\n}'
+```
+
+
+
+> Example response
+
+```json
+{
+  "id": "e07f8dca-1a79-440a-8667-8cd02a000559",
+  "clientId": "c40d7f7a-a698-4bf1-84bf-8f3798c018b2",
+  "sortCode": "123456",
+  "accountNumber": "12345678",
+  "createdAt": "2019-05-23T07:48:53.916Z",
+  "modifiedAt": "2019-05-23T07:48:53.916Z",
+  "active": true,
+  "name": "Account name"
+}
+```
+
+This route requires an access token from the client credentials grant with the scope of `payee:create`.
+
+It creates a payee that later can be used to initiate a payment.
+
+
+## GET /payees
+
+> Example request using moneyhub api client
+
+```
+const tokens = await moneyhub.getPayees({
+  limit: "limit", // optional
+  offset: "offset", // optional
+})
+```
+
+> Example request
+
+```
+curl --request GET \
+  --url https://identity.moneyhub.co.uk/payees \
+  --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'
+```
+
+
+> Example response
+
+```json
+[
+  {
+    "id": "e07f8dca-1a79-440a-8667-8cd02a000559",
+    "clientId": "c40d7f7a-a698-4bf1-84bf-8f3798c018b2",
+    "sortCode": "123456",
+    "accountNumber": "12345678",
+    "createdAt": "2019-05-23T07:48:53.916Z",
+    "modifiedAt": "2019-05-23T07:48:53.916Z",
+    "active": true,
+    "name": "Account name"
+  }
+]
+```
+
+This route requires an access token from the client credentials grant with the scope of `payee:read`.
+
+It returns all the payees that have been created for an specific API client.
+
+## Payments Claim
+
+
+> Claim values
+
+```json
+{
+ "payeeId": "id-of-the-payee",
+ "amount": 150, // in pence
+ "payeeRef": "reference to display on payee's statement", // Max 18 characters
+ "payerRef": "reference to display on payer's statement" // Max 18 characters
+}
+```
+
+> Example payments claim
+
+```json
+{
+ "id_token": {
+   "mh:con_id": {
+     "essential": true,
+   },
+   "mh:payment": {
+     "essential": true,
+     "value": {
+       "payeeId": "id-of-the-payee",
+       "amount": 150,
+       "payeeRef": "reference to display on payee's statement",
+       "payerRef": "reference to display on payer's statement"
+     }
+   }
+ },
+}
+```
+
+In order to initiate a payment via the API you need to use the `payment` scope and use the `mh:payment` claim. This claim require the values of the payeeeId, amount, payee refrence and payer reference.
+
+
+This claim must be supplied using the claims parameter semantics from OpenID Connect Core. It should be nested under the `id_token` key and not the `userinfo` key.
+
+
+Using the claims parameter may feel slightly convoluted, but it is a neat standards compliant way of us allowing OAuth clients to pass us arbitrary payment values.
+
+By putting the payment payload inside a signed request object there is non-repudiable proof that the payment request was signed by your private key.
+
+## POST /request (Request Object Endpoint)
+
+> Example request
+
+```
+curl --request POST \
+  --url https://identity.moneyhub.com/request \
+  --header 'content-type: application/jws' \
+  --data eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkdUTjlKYXJ2eFFLMGc0bHdvUTFESExOTTdhbTN1VFNGZm1jX0Q4WXE4Sk0ifQ.eyJjbGllbnRfaWQiOiJjNDBkN2Y3YS1hNjk4LTRiZjEtODRiZi04ZjM3OThjMDE4YjIiLCJzY29wZSI6InBheW1lbnQgb3BlbmlkIGlkOjFmZmU3MDRkMzk2MjlhOTI5YzhlMjkzODgwZmI0NDlhIiwic3RhdGUiOiJmb29iYXIiLCJjbGFpbXMiOnsiaWRfdG9rZW4iOnsibWg6Y29uX2lkIjp7ImVzc2VudGlhbCI6dHJ1ZX0sIm1oOnBheW1lbnQiOnsiZXNzZW50aWFsIjp0cnVlLCJ2YWx1ZSI6eyJhbW91bnQiOjEwMCwicGF5ZWVSZWYiOiJQYXllZSByZWYiLCJwYXllclJlZiI6IlBheWVyIHJlZiJ9fX19LCJleHAiOjE1NTg2MDc1NTQsInJlZGlyZWN0X3VyaSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMS9hdXRoL2NhbGxiYWNrIiwicmVzcG9uc2VfdHlwZSI6ImNvZGUiLCJwcm9tcHQiOiJjb25zZW50IiwiaXNzIjoiYzQwZDdmN2EtYTY5OC00YmYxLTg0YmYtOGYzNzk4YzAxOGIyIiwiYXVkIjoiaHR0cDovL2lkZW50aXR5LmRldi4xMjcuMC4wLjEubmlwLmlvL29pZGMifQ.ELTOILtLJk-qT6GC7Hv02UfMvHgian791_Bqcr4b0CMIqsCYdeQk-5QgqHO27ZANfteaItOscrsg168_eXas093vhoGnXJsjA9T-f38IXoTil6fq7a4IgEygX2GAAP3c-wAlfW6FNEG5j9o9NhY4EkWlb1B5CGYwaQ61yLYkqBs7D_aYP0h57WeUiqtFwz_p1ieMiyDAL465a3ws2e5AfcT0SzHmaF6qfziL9msdSMgFQheJ4tWXiWum0xDNAIGDWGOV5bqSgnQiscXtbeyGvrl-bgqsaWFsTfGhmSPQrKFkzNCaOqHp0XdxiiyQaGuiPY-P9w9oS2h4Pbk-nompJg
+```
+
+> Example response
+
+```
+urn:x-mh-request:0af734c7-bc2f-4b89-ad0a-f5e0f91d5426
+```
+
+This endpoint receives a request object signed by an API client in order to create a `uri` that can be used to construct an authorization url.
+
+In order to generate an authorization url for a payment to be initiated it is required to obtain a `request_uri` out of a request object containing the `mh:payment` claims.
+
+The OpenId Connect core describes the use of the `request_uri` parameter when constructing an authorization url.
+
+> A user can be redirected to our authorize url by using the `request_uri` parameter as follows:
+
+```
+https://identity.moneyhub.co.uk/oidc/auth?
+ &client_id=s6BhdRkqt3
+ &request_uri=urn:x-mh-request:0af734c7-bc2f-4b89-ad0a-f5e0f91d5426
+ &scope=openid payment id:financial-connection-id
+```
+
+## Payments Authorization
+
+> Creating a payment authorization url using our api client
+
+```
+const url = await moneyhub.getPaymentAuthorizeUrl({
+  bankId: "Bank id to authorise payment from",
+  payeeId: "Id of payee previously added"
+  amount: "Amount in pence to authorize payment"
+  payeeRef: "Payee reference",
+  payerRef: "Payer reference",
+  state: "your state value", // optional
+  nonce: "your nonce value", // optional
+  claims: claimsObject, // optional
+})
+```
+
+To authorise a payment the user needs to be redirected to the authorization url that contains the payments claim as explained above. The generation of the authorization url can be done with our moneyhub api client as shown in this section.
+
+> Exchanging an authorization code for a token set using our api client
+
+```
+const tokens = await moneyhub.exchangeCodeForTokens({
+  code: "the authorization code",
+  nonce: "your nonce value", // optional
+  state: "your state value", // optional
+  id_token: "your id token", // optional
+})
+```
+
+Once the user has successfully granted Moneyhub consent to initiate the payment and authenticated at the bank we will return an authorization code to your `redirect_uri`. This must be exchanged for an access token as per standard OpenID Connect practice. If you don't exchange the auth code for an access token, the payment will never be completed even though the user has authenticated it.
+
+
+> Decoded content of id token after exchanging authorization code
+
+
+```json
+{
+  "sub": "5cda695b82d18512e415e648",
+  "mh:con_id": "1fd7ca2c94a914819b2e1b6cf0abe874:b6592e9e-619f-4171-a933-6023c381bd03",
+  "mh:payment": "aeb2bc6c-505e-41b7-a82a-e898a7e95438",
+  "at_hash": "3MmQIA6EtEnfo319s-UZdw",
+  "sid": "8be9087f-3b9f-426e-af52-2671f2ab88aa",
+  "aud": "c40d7f7a-a698-4bf1-84bf-8f3798c018b2",
+  "exp": 1557821587,
+  "iat": 1557817987,
+  "iss": "https://identity.moneyhub.co.uk/oidc"
+}
+```
+
+
+As well as receiving an access token, you will receive an id token that will have a `mh_payment` claim. The value of this claim in the id token will be the id of the payment.
+
+Once that you have extracted the payment id from the id token you can query the status of the payment on the folllwing endpoint: `GET /payment/:id`
+
+## Payments Management
+
+The following endpoints are available to get access to the payments that have been initiated by an API client.
+
+## GET /payments
+
+
+> Example request using moneyhub api client
+
+```
+const tokens = await moneyhub.getPayments({
+  limit: "limit", // optional
+  offset: "offset", // optional
+})
+```
+
+> Example request
+
+```
+curl --request GET \
+  --url https://identity.moneyhub.co.uk/payments \
+  --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'
+```
+
+
+> Example response
+
+```json
+[
+  {
+    "id": "90ed0342-9b83-4e44-947e-dc8cf9fb869f",
+    "payeeId": "b6d8e08f-2603-4e16-9d93-353693b9d3e5",
+    "payeeName": "Payee Name",
+    "payload": {
+      "client_id": "e4594699-947b-4c70-abcc-2b8417d3ac12",
+      "scope": "payment openid id:ec6c9a9d1c152056ea6a018b37a56daf",
+      "state": "foo",
+      "claims": {
+        "id_token": {
+          "mh:con_id": {
+            "essential": true
+          },
+          "mh:payment": {
+            "essential": true,
+            "value": {
+              "amount": 100,
+              "payeeRef": "payee ref 123",
+              "payerRef": "payer ref 546",
+              "payeeId": "b6d8e08f-2603-4e16-9d93-353693b9d3e5"
+            }
+          }
+        }
+      },
+      "exp": 1558536370,
+      "redirect_uri": "http://localhost:3001/auth/callback",
+      "response_type": "code",
+      "prompt": "consent",
+      "iss": "e4594699-947b-4c70-abcc-2b8417d3ac12",
+      "aud": "https://identity.moneyhub.co.uk/oidc"
+    },
+    "reqCreatedAt": "2019-05-22T14:41:09.788Z",
+    "grantCreatedAt": "2019-05-22T14:41:14.941Z",
+    "exchangedAt": "2019-05-22T14:42:35.623Z",
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36",
+    "ip": "62.30.217.74",
+    "userId": "5ce55f897ae6160923c61166",
+    "connectionId": "ec6c9a9d1c152056ea6a018b37a56daf:b7521b2a-d16d-4e54-8958-0a87d09d1390"
+  }
+]
+```
+
+It returns all the payments that have been initiated by an API client regardless if they were authorised or not. Payments that have been authorised have the properties `exchangedAt` and `connectionId`.
+
+This route requires an access token from the client credentials grant with the scope of `payment:read`.
+
+
+## GET /payments:id
+
+
+> Example request using moneyhub api client
+
+```
+const tokens = await moneyhub.getPayment("payment-id")
+```
+
+> Example request
+
+```
+curl --request GET \
+  --url https://identity.moneyhub.co.uk/payments/payment-id \
+  --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'
+```
+
+
+> Example response
+
+```json
+
+{
+  "id": "90ed0342-9b83-4e44-947e-dc8cf9fb869f",
+  "payeeId": "b6d8e08f-2603-4e16-9d93-353693b9d3e5",
+  "payeeName": "Payee Name",
+  "payload": {
+    "client_id": "e4594699-947b-4c70-abcc-2b8417d3ac12",
+    "scope": "payment openid id:ec6c9a9d1c152056ea6a018b37a56daf",
+    "state": "foo",
+    "claims": {
+      "id_token": {
+        "mh:con_id": {
+          "essential": true
+        },
+        "mh:payment": {
+          "essential": true,
+          "value": {
+            "amount": 100,
+            "payeeRef": "payee ref 123",
+            "payerRef": "payer ref 546",
+            "payeeId": "b6d8e08f-2603-4e16-9d93-353693b9d3e5"
+          }
+        }
+      }
+    },
+    "exp": 1558536370,
+    "redirect_uri": "http://localhost:3001/auth/callback",
+    "response_type": "code",
+    "prompt": "consent",
+    "iss": "e4594699-947b-4c70-abcc-2b8417d3ac12",
+    "aud": "https://identity.moneyhub.co.uk/oidc"
+  },
+  "reqCreatedAt": "2019-05-22T14:41:09.788Z",
+  "grantCreatedAt": "2019-05-22T14:41:14.941Z",
+  "exchangedAt": "2019-05-22T14:42:35.623Z",
+  "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36",
+  "ip": "62.30.217.74",
+  "status": "completed",
+  "userId": "5ce55f897ae6160923c61166",
+  "connectionId": "ec6c9a9d1c152056ea6a018b37a56daf:b7521b2a-d16d-4e54-8958-0a87d09d1390"
+}
+
+```
+
+It returns a single payment that was initiated by an API client. This route is useful to query the status of a payment as it contains a `status` field.
+
+ To call this endpoint you need an access token from the client credentials grant with the scope of `payment:read`.
 
 # Webhooks
 
