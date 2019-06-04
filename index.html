@@ -641,7 +641,7 @@
 
 <p>We provide these features via an OpenID Provider interface that supports standard OAuth 2 based flows to issue access tokens that can be used to gain access to financial data via our API Gateway.</p>
 
-<p><a href="https://moneyhub.github.io/api-docs/#moneyhub-data-api">Moneyhub Data API documentation</a>.</p>
+<p><a href="#moneyhub-data-api">Moneyhub Data API documentation</a>.</p>
 
 <p><a href="https://api.moneyhub.co.uk/docs">Moneyhub Data API Swagger documentation</a></p>
 
@@ -655,13 +655,14 @@
 </blockquote>
 
 <ul>
-<li>Partner redirects user to identity service <code>/oidc/auth</code> with a scope param that contains the id of the bank to connect to and the level of data to gain consent for</li>
-<li>Moneyhub Identity service gains consent from the user to access their banking data</li>
-<li>Moneyhub Identity service redirects the user to the bank</li>
-<li>Bank authenticates the user and sends them back to the Moneyhub Identity Service</li>
+<li>Partner generates an authorisation url to the <a href="#authorization-endpoint">Authorisation Endpoint</a> with the <a href="#financial-institutions">Financial Institution scope</a> to connect to and the <a href="#data-access">Data scopes</a> required as part of the <a href="#claims">Claims</a></li>
+<li>Partner redirects user to the authorisation url</li>
+<li>Moneyhub Auth API gains consent from the user to access their banking data</li>
+<li>Moneyhub Auth API redirects the user to the bank</li>
+<li>Bank authenticates the user and sends them back to the Moneyhub Auth API</li>
 <li>Moneyhub redirects the user back to the partner with an <code>authorization_code</code></li>
-<li>Partner exchanges this code for an <code>access_token</code></li>
-<li>Partner uses the access token at the api gateway to access financial data</li>
+<li>Partner exchanges this code for an <code>access_token</code> using the <a href="#token-endpoint">Token endpoint</a></li>
+<li>Partner uses the access token at the <a href="#moneyhub-data-api">Moneyhub Data API</a> to access user&#39;s financial data</li>
 </ul>
 <h2 id='flow-for-use-case-2'>Flow for use case 2</h2>
 <blockquote>
@@ -747,15 +748,17 @@
 <span class="p">})</span>
 </code></pre>
 <ul>
-<li>Partner requests an access token from the identity service with the scope <code>user:create</code></li>
-<li>Partner uses this token to create a profile at the /user endpoint</li>
-<li>Partner redirects user to the identity service <code>/oidc/auth</code> with a scope param that contains the id of the bank to connect to, and with the id of the new user profile in the claims parameter</li>
-<li>Moneyhub Identity service gains consent from the user to access their banking data</li>
-<li>Moneyhub Identity service redirects the user to the bank</li>
-<li>Bank authenticates the user and sends them back to the Moneyhub Identity Service</li>
-<li>Moneyhub redirects the user back to the partner with an <code>id_token</code> that contains the <code>connection_id</code></li>
-<li>Partner requests an access token from the identity service with the scope of data access required and a custom <code>sub</code> parameter that contains the profile id</li>
-<li>Partner uses the access token at the api gateway to access financial data</li>
+<li>Partner requests an access token from the identity service with the scope <code>user:create</code> using the <a href="#token-endpoint">Token endpoint</a></li>
+<li>Partner uses this token to create a profile at the <a href="#post-users">User endpoint</a></li>
+<li>Partner generates an authorisation url to the <a href="#authorization-endpoint">Authorisation Endpoint</a> with the <a href="#financial-institutions">Financial Institution scope</a> to connect to, and with the id of the new user profile as part of the <a href="#claims">Claims</a></li>
+<li>Partner redirects user to the authorisation url</li>
+<li>Moneyhub Auth API gains consent from the user to access their banking data</li>
+<li>Moneyhub Auth API redirects the user to the bank</li>
+<li>Bank authenticates the user and sends them back to the Moneyhub Auth API</li>
+<li>Moneyhub redirects the user back to the partner with a <code>authorization_code</code> and <code>id_token</code> that contains the <code>connection_id</code></li>
+<li>Partner exchanges the <code>authorization_code</code> and <code>id_token</code> for an <code>access_token</code> to complete the connection using the <a href="#token-endpoint">Token endpoint</a>. This <code>access_token</code> do not contains any data scopes so it can&#39;t be used to gain access to the user&#39;s financial data</li>
+<li>Partner requests an access token from the Moneyhub Auth API with the <a href="#data-access">Data scopes</a> required and a <code>sub</code> parameter in the <a href="#claims">Claims</a> that contains the profile id using the <a href="#token-endpoint">Token endpoint</a></li>
+<li>Partner uses the access token at the <a href="#moneyhub-data-api">Moneyhub Data API</a> to access the user&#39;s financial data</li>
 </ul>
 <h1 id='api-clients'>API clients</h1>
 <p>You can register an OAuth client through our <a href="https://admin-portal.moneyhub.co.uk/">Admin portal</a>.
