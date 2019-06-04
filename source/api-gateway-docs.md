@@ -187,6 +187,8 @@ Requires **accounts:read** scope.
       "details": {
         "AER": 1.3,
         "APR": 13.1,
+        "sortCodeAccountNumber": "60161331926819",
+        "iban": "GB2960161331926819",
         "creditLimit": 150000,
         "endDate": "2020-01-01",
         "fixedDate": "2019-01-01",
@@ -252,6 +254,8 @@ Status Code **200**
 |»» details|object|true|none|none|
 |»»» AER|number|false|none|For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.|
 |»»» APR|number|false|none|For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.|
+|»»» sortCodeAccountNumber|string|false|none|For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the `accounts_details:read` scope.|
+|»»» iban|string|false|none|For cash accounts. Populated with the full IBAN number. It requires the `accounts_details:read` scope.|
 |»»» creditLimit|integer|false|none|For credit cards. The agreed overdraft limit of the account in minor units of the currency.|
 |»»» endDate|string(date)|false|none|For Mortgages and loans. The date at which the loan/mortgage will finish.|
 |»»» fixedDate|string(date)|false|none|For Mortgages. The date at which the current fixed rate ends|
@@ -369,6 +373,8 @@ const inputBody = '{
   "details": {
     "AER": 1.3,
     "APR": 13.1,
+    "sortCodeAccountNumber": "60161331926819",
+    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -507,6 +513,8 @@ Requires **accounts:read** and **accounts:write:all** scopes.
   "details": {
     "AER": 1.3,
     "APR": 13.1,
+    "sortCodeAccountNumber": "60161331926819",
+    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -549,6 +557,8 @@ Requires **accounts:read** and **accounts:write:all** scopes.
     "details": {
       "AER": 1.3,
       "APR": 13.1,
+      "sortCodeAccountNumber": "60161331926819",
+      "iban": "GB2960161331926819",
       "creditLimit": 150000,
       "endDate": "2020-01-01",
       "fixedDate": "2019-01-01",
@@ -614,6 +624,8 @@ Status Code **200**
 |»» details|object|true|none|none|
 |»»» AER|number|false|none|For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.|
 |»»» APR|number|false|none|For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.|
+|»»» sortCodeAccountNumber|string|false|none|For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the `accounts_details:read` scope.|
+|»»» iban|string|false|none|For cash accounts. Populated with the full IBAN number. It requires the `accounts_details:read` scope.|
 |»»» creditLimit|integer|false|none|For credit cards. The agreed overdraft limit of the account in minor units of the currency.|
 |»»» endDate|string(date)|false|none|For Mortgages and loans. The date at which the loan/mortgage will finish.|
 |»»» fixedDate|string(date)|false|none|For Mortgages. The date at which the current fixed rate ends|
@@ -842,6 +854,8 @@ Requires **accounts:read** scope.
     "details": {
       "AER": 1.3,
       "APR": 13.1,
+      "sortCodeAccountNumber": "60161331926819",
+      "iban": "GB2960161331926819",
       "creditLimit": 150000,
       "endDate": "2020-01-01",
       "fixedDate": "2019-01-01",
@@ -907,6 +921,8 @@ Status Code **200**
 |»» details|object|true|none|none|
 |»»» AER|number|false|none|For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.|
 |»»» APR|number|false|none|For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.|
+|»»» sortCodeAccountNumber|string|false|none|For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the `accounts_details:read` scope.|
+|»»» iban|string|false|none|For cash accounts. Populated with the full IBAN number. It requires the `accounts_details:read` scope.|
 |»»» creditLimit|integer|false|none|For credit cards. The agreed overdraft limit of the account in minor units of the currency.|
 |»»» endDate|string(date)|false|none|For Mortgages and loans. The date at which the loan/mortgage will finish.|
 |»»» fixedDate|string(date)|false|none|For Mortgages. The date at which the current fixed rate ends|
@@ -1016,6 +1032,8 @@ const inputBody = '{
   "details": {
     "AER": 1.3,
     "APR": 13.1,
+    "sortCodeAccountNumber": "60161331926819",
+    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -1146,6 +1164,8 @@ Requires **accounts:read** and **account:write:all** scopes.
   "details": {
     "AER": 1.3,
     "APR": 13.1,
+    "sortCodeAccountNumber": "60161331926819",
+    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -1189,6 +1209,8 @@ Requires **accounts:read** and **account:write:all** scopes.
     "details": {
       "AER": 1.3,
       "APR": 13.1,
+      "sortCodeAccountNumber": "60161331926819",
+      "iban": "GB2960161331926819",
       "creditLimit": 150000,
       "endDate": "2020-01-01",
       "fixedDate": "2019-01-01",
@@ -1254,6 +1276,8 @@ Status Code **200**
 |»» details|object|true|none|none|
 |»»» AER|number|false|none|For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.|
 |»»» APR|number|false|none|For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.|
+|»»» sortCodeAccountNumber|string|false|none|For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the `accounts_details:read` scope.|
+|»»» iban|string|false|none|For cash accounts. Populated with the full IBAN number. It requires the `accounts_details:read` scope.|
 |»»» creditLimit|integer|false|none|For credit cards. The agreed overdraft limit of the account in minor units of the currency.|
 |»»» endDate|string(date)|false|none|For Mortgages and loans. The date at which the loan/mortgage will finish.|
 |»»» fixedDate|string(date)|false|none|For Mortgages. The date at which the current fixed rate ends|
@@ -7400,10 +7424,10 @@ Bearer
 ```json
 {
   "categoryId": "string",
-  "startDate": "2019-04-25",
-  "endDate": "2019-04-25",
-  "startDateModified": "2019-04-25",
-  "endDateModified": "2019-04-25",
+  "startDate": "2019-05-22",
+  "endDate": "2019-05-22",
+  "startDateModified": "2019-05-22",
+  "endDateModified": "2019-05-22",
   "limit": 0,
   "offset": 0,
   "text": "string",
@@ -7446,6 +7470,8 @@ Bearer
   "details": {
     "AER": 1.3,
     "APR": 13.1,
+    "sortCodeAccountNumber": "60161331926819",
+    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -7493,6 +7519,8 @@ Bearer
 |details|object|true|none|none|
 |» AER|number|false|none|For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.|
 |» APR|number|false|none|For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.|
+|» sortCodeAccountNumber|string|false|none|For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the `accounts_details:read` scope.|
+|» iban|string|false|none|For cash accounts. Populated with the full IBAN number. It requires the `accounts_details:read` scope.|
 |» creditLimit|integer|false|none|For credit cards. The agreed overdraft limit of the account in minor units of the currency.|
 |» endDate|string(date)|false|none|For Mortgages and loans. The date at which the loan/mortgage will finish.|
 |» fixedDate|string(date)|false|none|For Mortgages. The date at which the current fixed rate ends|
@@ -7551,6 +7579,8 @@ Bearer
 {
   "AER": 1.3,
   "APR": 13.1,
+  "sortCodeAccountNumber": "60161331926819",
+  "iban": "GB2960161331926819",
   "creditLimit": 150000,
   "endDate": "2020-01-01",
   "fixedDate": "2019-01-01",
@@ -7574,6 +7604,8 @@ Bearer
 |---|---|---|---|---|
 |AER|number|false|none|For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.|
 |APR|number|false|none|For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.|
+|sortCodeAccountNumber|string|false|none|For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the `accounts_details:read` scope.|
+|iban|string|false|none|For cash accounts. Populated with the full IBAN number. It requires the `accounts_details:read` scope.|
 |creditLimit|integer|false|none|For credit cards. The agreed overdraft limit of the account in minor units of the currency.|
 |endDate|string(date)|false|none|For Mortgages and loans. The date at which the loan/mortgage will finish.|
 |fixedDate|string(date)|false|none|For Mortgages. The date at which the current fixed rate ends|
@@ -7662,6 +7694,8 @@ Bearer
   "details": {
     "AER": 1.3,
     "APR": 13.1,
+    "sortCodeAccountNumber": "60161331926819",
+    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -7695,6 +7729,8 @@ Bearer
 |details|object|false|none|none|
 |» AER|number|false|none|For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.|
 |» APR|number|false|none|For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.|
+|» sortCodeAccountNumber|string|false|none|For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the `accounts_details:read` scope.|
+|» iban|string|false|none|For cash accounts. Populated with the full IBAN number. It requires the `accounts_details:read` scope.|
 |» creditLimit|integer|false|none|For credit cards. The agreed overdraft limit of the account in minor units of the currency.|
 |» endDate|string(date)|false|none|For Mortgages and loans. The date at which the loan/mortgage will finish.|
 |» fixedDate|string(date)|false|none|For Mortgages. The date at which the current fixed rate ends|
@@ -7742,6 +7778,8 @@ Bearer
   "details": {
     "AER": 1.3,
     "APR": 13.1,
+    "sortCodeAccountNumber": "60161331926819",
+    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -7769,6 +7807,8 @@ Bearer
 |details|object|false|none|none|
 |» AER|number|false|none|For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.|
 |» APR|number|false|none|For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.|
+|» sortCodeAccountNumber|string|false|none|For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the `accounts_details:read` scope.|
+|» iban|string|false|none|For cash accounts. Populated with the full IBAN number. It requires the `accounts_details:read` scope.|
 |» creditLimit|integer|false|none|For credit cards. The agreed overdraft limit of the account in minor units of the currency.|
 |» endDate|string(date)|false|none|For Mortgages and loans. The date at which the loan/mortgage will finish.|
 |» fixedDate|string(date)|false|none|For Mortgages. The date at which the current fixed rate ends|
@@ -8479,6 +8519,7 @@ Bearer
 |name|string|true|none|Name for the savings goal.|
 |amount|object|true|none|none|
 |» value|integer|true|none|The target amount in minor unit in minor units of the currency, eg. pennies for GBP.|
+|» currency|string|false|none|The currency of the amount|
 |imageUrl|string|false|none|none|
 |notes|string|false|none|Arbitrary text that a user can add about a savings goal.|
 |accounts|[object]|true|none|Accounts that will be taken into account towards the target amount.|
