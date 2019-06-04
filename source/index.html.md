@@ -155,8 +155,8 @@ const transactions = await got(`#{resourceServerUrl}/transactions`, {
 - Moneyhub Auth API gains consent from the user to access their banking data
 - Moneyhub Auth API redirects the user to the bank
 - Bank authenticates the user and sends them back to the Moneyhub Auth API
-- Moneyhub redirects the user back to the partner with a `authorization_code` and `id_token` that contains the `connection_id`
-- Partner exchanges the `authorization_code` and `id_token` for an `access_token` to complete the connection using the [Token endpoint](#token-endpoint). This `access_token` do not contains any data scopes so it can't be used to gain access to the user's financial data
+- Moneyhub redirects the user back to the partner with an `authorization_code`
+- Partner exchanges the `authorization_code` for an `access_token` and `id_token`to complete the connection using the [Token endpoint](#token-endpoint). This `access_token` do not contains any data scopes so it can't be used to gain access to the user's financial data. The `id_token` contains the `connection_id`
 - Partner requests an access token from the Moneyhub Auth API with the [Data scopes](#data-access) required and a `sub` parameter in the [Claims](#claims) that contains the profile id using the [Token endpoint](#token-endpoint)
 - Partner uses the access token at the [Moneyhub Data API](#moneyhub-data-api) to access the user's financial data
 
