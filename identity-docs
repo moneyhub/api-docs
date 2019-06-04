@@ -439,6 +439,83 @@ screen scraping the following parameters would be sent in the request object:</p
 <li><code>sub</code> - the subject (user id) that the authorization request should be scoped to (for adding, reauth and refresh)</li>
 <li><code>mh:con_id</code> - the connection id that the authorization request should be scoped to (for reauth and refresh)</li>
 </ul>
+<h1 id='connection-widget'>Connection Widget</h1>
+<blockquote>
+<p>Example loading via script tag</p>
+</blockquote>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;script
+  </span><span class="na">data-clientid=</span><span class="s">"your-client-id"</span>
+  <span class="na">data-redirecturi=</span><span class="s">"your-redirect-uri"</span>
+  <span class="na">data-userid=</span><span class="s">"the-user-id"</span>
+  <span class="na">data-posturi=</span><span class="s">"/result"</span>
+  <span class="na">data-finishuri=</span><span class="s">"/finish"</span>
+  <span class="na">data-type=</span><span class="s">"test"</span>
+  <span class="na">src=</span><span class="s">"https://bank-chooser.moneyhub.co.uk/account-connect.js"</span>
+<span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+<blockquote>
+<p>Example loading via JS API</p>
+</blockquote>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://bank-chooser.moneyhub.co.uk/account-connect-js.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre><pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">moneyhubAccountConnectWidget</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"#test"</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="p">{</span>
+  <span class="na">clientid</span><span class="p">:</span> <span class="s2">"your-client-id"</span><span class="p">,</span>
+  <span class="na">redirecturi</span><span class="p">:</span> <span class="s2">"your-redirect-uri"</span><span class="p">,</span>
+  <span class="na">userid</span><span class="p">:</span> <span class="s2">"user-id"</span><span class="p">,</span>
+  <span class="na">posturi</span><span class="p">:</span> <span class="s2">"/result"</span><span class="p">,</span>
+  <span class="na">finishuri</span><span class="p">:</span> <span class="s2">"/finish"</span><span class="p">,</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s2">"test"</span><span class="p">,</span>
+  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span><span class="s2">"any"</span><span class="p">:</span> <span class="s2">"data you want associated with this session"</span><span class="p">}</span>
+  <span class="nl">identityuri</span><span class="p">:</span> <span class="s2">"https://identity.moneyhub.co.uk"</span><span class="p">,</span>
+<span class="p">})</span>
+</code></pre>
+<p>We provide an account connection widget that that makes it easier to allow users to connect their accounts.</p>
+
+<p>The widget can either be initialised with data attributes in a script tag - or can be injected into the DOM via a JavaScript API.</p>
+<h2 id='parameters'>Parameters</h2>
+<ul>
+<li><em>clientid</em> - this is your client id for the client you want to use. It is availble from the admin portal</li>
+<li><em>redirecturi</em> - this is the uri that you want the user to be redirected to after they have succesfully connected to an account or had an error. This redirect uri must be added to your api client in the admin portal. The redirect uri also needs to host the widget and mustn&#39;t interfere with query parameters.</li>
+<li><em>userid</em> - the id of the user you want to connect accounts for. The user must be created via our API prior to the widget being loaded.</li>
+<li><em>posturi</em> - an enpoint set up to receive a JSON post each time a user either connects an account or has an error connecting an account. More details below</li>
+<li><em>finishuri</em> - a uri to redirect the user to when they click the &quot;Finish&quot; button</li>
+<li><em>type</em> - the type of connections to show when the users chooses a bank. Values can be &quot;all&quot;, &quot;api&quot; or &quot;test&quot;.</li>
+<li><em>identityuri</em> - this should always be &quot;https://identity.moneyhub.co.uk&quot; in the production environment.</li>
+<li><em>meta</em> - this is an optional property that you can set - it will be passed to the post uri.</li>
+</ul>
+<h2 id='post-uri'>Post URI</h2>
+<blockquote>
+<p>Example request to post uri when there is an error</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"bankId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ffe704d39629a929c8e293880fb449a"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://identity-dev.moneyhub.co.uk/oidc/auth?claims=%7B%22id_token%22%3A%7B%22sub%22%3A%7B%22essential%22%3Atrue%2C%22value%22%3A%225c82710d7c2eb82b175c2c5c%22%7D%7D%7D&amp;client_id=4d18da1b-b6b7-4275-8407-3c8bade53f9a&amp;redirect_uri=http%3A%2F%2Flocalhost%3A3001&amp;response_type=code&amp;scope=openid%20id%3A1ffe704d39629a929c8e293880fb449a&amp;state=7f231a1c3ee116a04db56438cc60b4ee"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1559556347842</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c82710d7c2eb82b175c2c5c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some meta property"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7f231a1c3ee116a04db56438cc60b4ee"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid_claims"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"modified"</span><span class="p">:</span><span class="w"> </span><span class="mi">1559556348809</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Example request to the post uri when an account has been succesfully connected:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"bankId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ffe704d39629a929c8e293880fb449a"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://identity-dev.moneyhub.co.uk/oidc/auth?claims=%7B%22id_token%22%3A%7B%22sub%22%3A%7B%22essential%22%3Atrue%2C%22value%22%3A%225ca49cda9cd8ab3640f3bb67%22%7D%7D%7D&amp;client_id=4d18da1b-b6b7-4275-8407-3c8bade53f9a&amp;redirect_uri=http%3A%2F%2Flocalhost%3A3001&amp;response_type=code&amp;scope=openid%20id%3A1ffe704d39629a929c8e293880fb449a&amp;state=d657b3e549494c38fa7c8040763ef999"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1559556615352</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ca49cda9cd8ab3640f3bb67"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some meta property"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d657b3e549494c38fa7c8040763ef999"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bRHSHtqICup80FBfvi5jG7sejsY"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"modified"</span><span class="p">:</span><span class="w"> </span><span class="mi">1559556620133</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint must be set up to receive a JSON payload when the user succesfully connects or has an error connecting.</p>
+
+<p>In the case of an error, there is nothing that you need to do, but it may be worth recording the error.</p>
+
+<p>The important property here is <code>code</code>. This must be sent to our token endpoint in a standard OAuth 2 authorization code grant.</p>
 <h1 id='user-management-2'>User Management</h1>
 <p>To support use case 2, the following RESTful routes are available:</p>
 <h2 id='post-users'>POST /users</h2>
@@ -590,30 +667,30 @@ It deletes a user and all of its financial connections that were created.</p>
 <p>Claim values</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
- </span><span class="s2">"payeeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id-of-the-payee"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">pence</span><span class="w">
- </span><span class="s2">"payeeRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference to display on payee's statement"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Max</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="err">characters</span><span class="w">
- </span><span class="s2">"payerRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference to display on payer's statement"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Max</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="err">characters</span><span class="w">
+  </span><span class="s2">"payeeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id-of-the-payee"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">pence</span><span class="w">
+  </span><span class="s2">"payeeRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference to display on payee's statement"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Max</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="err">characters</span><span class="w">
+  </span><span class="s2">"payerRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference to display on payer's statement"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Max</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="err">characters</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Example payments claim</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
- </span><span class="s2">"id_token"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-   </span><span class="s2">"mh:con_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"mh:payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-       </span><span class="s2">"payeeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id-of-the-payee"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"payeeRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference to display on payee's statement"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"payerRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference to display on payer's statement"</span><span class="w">
-     </span><span class="p">}</span><span class="w">
-   </span><span class="p">}</span><span class="w">
- </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"id_token"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"mh:con_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"mh:payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"payeeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id-of-the-payee"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"payeeRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference to display on payee's statement"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"payerRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference to display on payer's statement"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>In order to initiate a payment via the API you need to use the <code>payment</code> scope and use the <code>mh:payment</code> claim. This claim require the values of the payeeeId, amount, payee refrence and payer reference.</p>
@@ -779,8 +856,7 @@ It deletes a user and all of its financial connections that were created.</p>
 <blockquote>
 <p>Example response</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90ed0342-9b83-4e44-947e-dc8cf9fb869f"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"payeeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b6d8e08f-2603-4e16-9d93-353693b9d3e5"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"payeeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Payee Name"</span><span class="p">,</span><span class="w">
@@ -820,7 +896,6 @@ It deletes a user and all of its financial connections that were created.</p>
   </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ce55f897ae6160923c61166"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"connectionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ec6c9a9d1c152056ea6a018b37a56daf:b7521b2a-d16d-4e54-8958-0a87d09d1390"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <p>It returns a single payment that was initiated by an API client. This route is useful to query the status of a payment as it contains a <code>status</code> field.</p>
 
