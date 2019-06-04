@@ -51,6 +51,9 @@ We provide these features via an OpenID Provider interface that supports standar
 
 ## Flow for use case 1
 
+> Connecting to a financial institution
+> ![Use case 1](first-use-case.png)
+
 - Partner redirects user to identity service `/oidc/auth` with a scope param that contains the id of the bank to connect to and the level of data to gain consent for
 - Moneyhub Identity service gains consent from the user to access their banking data
 - Moneyhub Identity service redirects the user to the bank
@@ -60,6 +63,9 @@ We provide these features via an OpenID Provider interface that supports standar
 - Partner uses the access token at the api gateway to access financial data
 
 ## Flow for use case 2
+
+> Registering a user and connecting to a financial institution
+> ![Use case 2](second-use-case.png)
 
 > This example assumes the use of an OpenID Client (e.g. [Node OpenId client](https://github.com/panva/node-openid-client))
 
@@ -151,17 +157,101 @@ const transactions = await got(`#{resourceServerUrl}/transactions`, {
 - Partner requests an access token from the identity service with the scope of data access required and a custom `sub` parameter that contains the profile id
 - Partner uses the access token at the api gateway to access financial data
 
-# OpenID Connect
+# API clients
 
-You can register an OAuth client through our [Admin portal](https://admin-portal.moneyhub.co.uk/). We will then generate a `client_id` and `client_secret` corresponding to your client. These credentials will be used to authenticate your client on every route of our Auth API.
+You can register an OAuth client through our [Admin portal](https://admin-portal.moneyhub.co.uk/).
+We will then generate a `client_id` and `client_secret` corresponding to your client. These credentials will be used to authenticate your client on every route of our Auth API.
 
 To correctly authenticate your client, you will need to send your client credentials in the `Authorization` header in the following format:
 
 `Authorization: Basic Base64_encode(<client_id>:<client_secret>)`
 
-Definitions of the OpenID client meta data can be found [here](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata)
+[API Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata)
 
-Moneyhub supports the following endpoints:
+## Production
+
+Ideally a production API client should have the following settings:
+
+1. Either a JWKS key set registered or a jwks_uri configured, i.e. either the JWKS or JWKS_URI field filled in.
+2. Client Authentication configured to be `private_key_jwt`
+3. Request Object signing alg configured to be one of the RS*, ES* or PS\* algorithms
+4. ID token signing alg configured to be one of the RS*, ES* or PS\* algorithms
+5. Response type set to be `code id_token`
+6. Grant types to be authorization_code, refresh_token, client_credentials and implicit
+7. Redirect uris are required to be https://
+
+This settings will require the following changes in the auth flow if the authentication that was used previously was `client_secret_basic`:
+
+1. Allowing an `implicit` grant type in the settings requires:
+   - A nonce to be added to the request object when generating an authorization url ([OpenId Nonce](https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes))
+   - The same nonce to be used when exchanging the code for the token set
+2. Having a response type of `code id_token` will send a code and id_token value to your registered callback. The code, id_token, nonce and state values need to be used to exchange them for a token set at the end of the authorization process.
+
+## JWKS Key Set
+
+> Example creating JWKS key set using the Moneyhub api client
+
+```
+node examples/jwks/create-jwks.js
+
+Options
+
+  --key-alg string
+  --key-use string
+  --key-size number
+  --alg string
+```
+
+> Public keys - This can be used as the jwks in your API client configuration in the Moneyhub Admin portal
+
+```json
+{
+  "keys": [
+    {
+      "kty": "RSA",
+      "kid": "lNWK3qGU9eQMLqH96ZB5Jf4i3hEdhqNKpaDBGmREt5Q",
+      "use": "sig",
+      "e": "AQAB",
+      "n": "kHkz5oM6xis2NIJJtbeffY_F9DLNO6Tx9JsYtwTFSvqI5x3msssgDbYs8VjUR_Dt5yurz1dHBkJLK1ZvvTIUwTSc_TG8y0m3-MsszVM5jbEvI5AUATRca6zQJhRQCYgvAeFPGQgUNh8zjsAzlwc3VXdEYBT69orNdOru-MEGynnFJpi23ikm57IWKlpfZplGh7FxHZgABNJ1PPhFZGJFAxVtI5LbMlwIsHWtP7gxUw4U0-U7rLL-_fFqSEMP6aGI4GMDSpTh6P7mRTORfXUIE3ycOzXJiK5fOfwQzNOMD41uMshOsyMAu0BsNZQuKqefb9qT5lfGP15zmQnVqePOZw",
+      "alg": "RS256"
+    }
+  ]
+}
+```
+
+> Private keys - This can be used as the keys value when configuring the moneyhub api client
+
+```json
+{
+  "keys": [
+    {
+      "kty": "RSA",
+      "kid": "lNWK3qGU9eQMLqH96ZB5Jf4i3hEdhqNKpaDBGmREt5Q",
+      "use": "sig",
+      "e": "AQAB",
+      "n": "kHkz5oM6xis2NIJJtbeffY_F9DLNO6Tx9JsYtwTFSvqI5x3msssgDbYs8VjUR_Dt5yurz1dHBkJLK1ZvvTIUwTSc_TG8y0m3-MsszVM5jbEvI5AUATRca6zQJhRQCYgvAeFPGQgUNh8zjsAzlwc3VXdEYBT69orNdOru-MEGynnFJpi23ikm57IWKlpfZplGh7FxHZgABNJ1PPhFZGJFAxVtI5LbMlwIsHWtP7gxUw4U0-U7rLL-_fFqSEMP6aGI4GMDSpTh6P7mRTORfXUIE3ycOzXJiK5fOfwQzNOMD41uMshOsyMAu0BsNZQuKqefb9qT5lfGP15zmQnVqePOZw",
+      "d": "B4ssmJa1lO9grzE2ZBSocUf2kB-u87RTJfCLQ9Mt8hJO37KB_0f37n9arWdz_iWoZm-zUuo9vSftAOBMiVZ6GvSCVf4o23yH7Ke_OSFlWe6shXDaeo2fXcfyPmrFGxpPSgvXs3jmhUTvzj5e8z3fN8k4esPdrs3kmHxD6h06G4xXwtmEHOuygn96IdpK5Zql4wy8L0goo8mOrP_4caPOLdBDeATDwqWXMTeXMW8NGsp90sBjDxVzqqysH0gnQZV0ZfVH2K1fgPoKNJtyX28RVcrjOW6oU5lxARVfxI3bwTGbJ8MaLNrKrd7KjUFaJ_owvpX3ifo6woHL3IrBP-rnwQ",
+      "p": "5orIAF7rPBZzw0A9sj2ems2AO6xwR6jJy_xSJ6jflstW3Cmz0DdG3u9IUrQpQb9G1oO-L_So5iaCKjSfLessu3uVzvWLfkOP-zNeSjL86zlW0cFtzVeIImDBiyx21RvgFjhVQ5GKic01Il9aDOrkA5Q78m_v-OxA7TaOzMw1RTE",
+      "q": "oG1WZreDYjMYko2dcXgpijwqYi1Z_5UsiQrjDZpGskk3g1bq4SGVZkpR-tx8Cx6Bn8W8-rOpiTJg08FUGFNjJgNF9mSBhUjaQc0IrKrdy_4wfMyHqqE7cEdSGSg-xH0TghGfCVbJuXYWoMM7hT7XJ7HSiiA92m-msvI4K4cKRxc",
+      "dp": "az-0uzdtB48KW5LPINQ5rJpdRWV69ls3RYYkUf7lxSjjR5i-5eZROfTnGFJnvwZU1gaDu5t911Oiyi-gvaPiM3XSw2zHb_3ORXYoLyx5LJSIJxxtEFHgKt4IK86LmahWHwAl6kESyfiE93CUW94KJQAYwzf_0zVVHwV6eRumzIE",
+      "dq": "mGBBuL6FpDg0Fr871BL2Ib6T4zyARypBaslUcA8hJyYz_CQKZFups8bTpxrVFxqatE70-Iq9dPrMzVTLs29AtVJWmXlNLHPOGsHMg3SnxqJhG6iJE6Cg_DxB1nNLawYCCYEDNbOhVu66_2dwmVbetW1JNLj7BwcVptI6V92j_XE",
+      "qi": "pwGzAE02GWIp7TRburRvxC2SCLo1Oo3flPcKoYSKNguPzWe9gP-xhD9ZhNoDIRnNrgK562cB9dlSXvEGnrfSJdXTCM2m7BANyMvP0w_XkvxE0p4yY9BJtiQ-QgvZto-7PKn0PSukwE3I2fT2Hpgp7idCJE_EQnIsQCX4XD3DG48"
+    }
+  ]
+}
+```
+
+To configure your API client you will need to generate a JWKS key set and have access to the public and private keys separately.
+
+The public key needs to be added as the jwks in your API client configuration in the Moneyhub Admin portal.
+
+The private key needs to be used as part of the configuration of the moneyhub api client or your openid client.
+
+The easiest way to generate a valid jwks set is using our Moneyhub API client ([Moneyhub API client](https://github.com/moneyhub/moneyhub-api-client)).
+
+The client has the method `createJWKS()` and there is an example of how to use it when cloning the repo under the examples folder.
+
+# OpenId Connect
 
 ## Authorization Endpoint
 
