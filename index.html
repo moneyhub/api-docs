@@ -1713,6 +1713,8 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
       </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"AER"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span><span class="w">
         </span><span class="s2">"APR"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sortCodeAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60161331926819"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB2960161331926819"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"creditLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
         </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"fixedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01"</span><span class="p">,</span><span class="w">
@@ -1871,6 +1873,20 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 <td>false</td>
 <td>none</td>
 <td>For credit cards, mortgages and loans. Interest rate expessed as a percentage &#39;Annual Percentage Rate&#39;.</td>
+</tr>
+<tr>
+<td>»»» sortCodeAccountNumber</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the <code>accounts_details:read</code> scope.</td>
+</tr>
+<tr>
+<td>»»» iban</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the full IBAN number. It requires the <code>accounts_details:read</code> scope.</td>
 </tr>
 <tr>
 <td>»»» creditLimit</td>
@@ -2225,6 +2241,8 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
   "details": {
     "AER": 1.3,
     "APR": 13.1,
+    "sortCodeAccountNumber": "60161331926819",
+    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -2350,6 +2368,8 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
   </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"AER"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span><span class="w">
     </span><span class="s2">"APR"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCodeAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60161331926819"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB2960161331926819"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"creditLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fixedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01"</span><span class="p">,</span><span class="w">
@@ -2405,6 +2425,8 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
     </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"AER"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span><span class="w">
       </span><span class="s2">"APR"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCodeAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60161331926819"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB2960161331926819"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"creditLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fixedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01"</span><span class="p">,</span><span class="w">
@@ -2568,6 +2590,20 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 <td>false</td>
 <td>none</td>
 <td>For credit cards, mortgages and loans. Interest rate expessed as a percentage &#39;Annual Percentage Rate&#39;.</td>
+</tr>
+<tr>
+<td>»»» sortCodeAccountNumber</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the <code>accounts_details:read</code> scope.</td>
+</tr>
+<tr>
+<td>»»» iban</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the full IBAN number. It requires the <code>accounts_details:read</code> scope.</td>
 </tr>
 <tr>
 <td>»»» creditLimit</td>
@@ -3034,6 +3070,8 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
     </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"AER"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span><span class="w">
       </span><span class="s2">"APR"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCodeAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60161331926819"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB2960161331926819"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"creditLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fixedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01"</span><span class="p">,</span><span class="w">
@@ -3197,6 +3235,20 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 <td>false</td>
 <td>none</td>
 <td>For credit cards, mortgages and loans. Interest rate expessed as a percentage &#39;Annual Percentage Rate&#39;.</td>
+</tr>
+<tr>
+<td>»»» sortCodeAccountNumber</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the <code>accounts_details:read</code> scope.</td>
+</tr>
+<tr>
+<td>»»» iban</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the full IBAN number. It requires the <code>accounts_details:read</code> scope.</td>
 </tr>
 <tr>
 <td>»»» creditLimit</td>
@@ -3543,6 +3595,8 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
   "details": {
     "AER": 1.3,
     "APR": 13.1,
+    "sortCodeAccountNumber": "60161331926819",
+    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -3660,6 +3714,8 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
   </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"AER"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span><span class="w">
     </span><span class="s2">"APR"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCodeAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60161331926819"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB2960161331926819"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"creditLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fixedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01"</span><span class="p">,</span><span class="w">
@@ -3722,6 +3778,8 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
     </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"AER"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span><span class="w">
       </span><span class="s2">"APR"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCodeAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60161331926819"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB2960161331926819"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"creditLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fixedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01"</span><span class="p">,</span><span class="w">
@@ -3885,6 +3943,20 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
 <td>false</td>
 <td>none</td>
 <td>For credit cards, mortgages and loans. Interest rate expessed as a percentage &#39;Annual Percentage Rate&#39;.</td>
+</tr>
+<tr>
+<td>»»» sortCodeAccountNumber</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the <code>accounts_details:read</code> scope.</td>
+</tr>
+<tr>
+<td>»»» iban</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the full IBAN number. It requires the <code>accounts_details:read</code> scope.</td>
 </tr>
 <tr>
 <td>»»» creditLimit</td>
@@ -13074,10 +13146,10 @@ Bearer
 <p><a id="schemaqueryparams"></a></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"categoryId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-25"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-25"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDateModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-25"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDateModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-25"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDateModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDateModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -13183,6 +13255,8 @@ Bearer
   </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"AER"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span><span class="w">
     </span><span class="s2">"APR"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCodeAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60161331926819"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB2960161331926819"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"creditLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fixedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01"</span><span class="p">,</span><span class="w">
@@ -13293,6 +13367,20 @@ Bearer
 <td>false</td>
 <td>none</td>
 <td>For credit cards, mortgages and loans. Interest rate expessed as a percentage &#39;Annual Percentage Rate&#39;.</td>
+</tr>
+<tr>
+<td>» sortCodeAccountNumber</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the <code>accounts_details:read</code> scope.</td>
+</tr>
+<tr>
+<td>» iban</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the full IBAN number. It requires the <code>accounts_details:read</code> scope.</td>
 </tr>
 <tr>
 <td>» creditLimit</td>
@@ -13567,6 +13655,8 @@ Bearer
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"AER"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span><span class="w">
   </span><span class="s2">"APR"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCodeAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60161331926819"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB2960161331926819"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"creditLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
   </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"fixedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01"</span><span class="p">,</span><span class="w">
@@ -13605,6 +13695,20 @@ Bearer
 <td>false</td>
 <td>none</td>
 <td>For credit cards, mortgages and loans. Interest rate expessed as a percentage &#39;Annual Percentage Rate&#39;.</td>
+</tr>
+<tr>
+<td>sortCodeAccountNumber</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the <code>accounts_details:read</code> scope.</td>
+</tr>
+<tr>
+<td>iban</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the full IBAN number. It requires the <code>accounts_details:read</code> scope.</td>
 </tr>
 <tr>
 <td>creditLimit</td>
@@ -13834,6 +13938,8 @@ Bearer
   </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"AER"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span><span class="w">
     </span><span class="s2">"APR"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCodeAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60161331926819"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB2960161331926819"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"creditLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fixedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01"</span><span class="p">,</span><span class="w">
@@ -13936,6 +14042,20 @@ Bearer
 <td>false</td>
 <td>none</td>
 <td>For credit cards, mortgages and loans. Interest rate expessed as a percentage &#39;Annual Percentage Rate&#39;.</td>
+</tr>
+<tr>
+<td>» sortCodeAccountNumber</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the <code>accounts_details:read</code> scope.</td>
+</tr>
+<tr>
+<td>» iban</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the full IBAN number. It requires the <code>accounts_details:read</code> scope.</td>
 </tr>
 <tr>
 <td>» creditLimit</td>
@@ -14115,6 +14235,8 @@ Bearer
   </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"AER"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span><span class="w">
     </span><span class="s2">"APR"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCodeAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60161331926819"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB2960161331926819"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"creditLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fixedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01"</span><span class="p">,</span><span class="w">
@@ -14175,6 +14297,20 @@ Bearer
 <td>false</td>
 <td>none</td>
 <td>For credit cards, mortgages and loans. Interest rate expessed as a percentage &#39;Annual Percentage Rate&#39;.</td>
+</tr>
+<tr>
+<td>» sortCodeAccountNumber</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the <code>accounts_details:read</code> scope.</td>
+</tr>
+<tr>
+<td>» iban</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>For cash accounts. Populated with the full IBAN number. It requires the <code>accounts_details:read</code> scope.</td>
 </tr>
 <tr>
 <td>» creditLimit</td>
@@ -15905,6 +16041,13 @@ Bearer
 <td>true</td>
 <td>none</td>
 <td>The target amount in minor unit in minor units of the currency, eg. pennies for GBP.</td>
+</tr>
+<tr>
+<td>» currency</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>The currency of the amount</td>
 </tr>
 <tr>
 <td>imageUrl</td>
