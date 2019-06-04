@@ -755,8 +755,8 @@
 <li>Moneyhub Auth API gains consent from the user to access their banking data</li>
 <li>Moneyhub Auth API redirects the user to the bank</li>
 <li>Bank authenticates the user and sends them back to the Moneyhub Auth API</li>
-<li>Moneyhub redirects the user back to the partner with a <code>authorization_code</code> and <code>id_token</code> that contains the <code>connection_id</code></li>
-<li>Partner exchanges the <code>authorization_code</code> and <code>id_token</code> for an <code>access_token</code> to complete the connection using the <a href="#token-endpoint">Token endpoint</a>. This <code>access_token</code> do not contains any data scopes so it can&#39;t be used to gain access to the user&#39;s financial data</li>
+<li>Moneyhub redirects the user back to the partner with an <code>authorization_code</code></li>
+<li>Partner exchanges the <code>authorization_code</code> for an <code>access_token</code> and <code>id_token</code>to complete the connection using the <a href="#token-endpoint">Token endpoint</a>. This <code>access_token</code> do not contains any data scopes so it can&#39;t be used to gain access to the user&#39;s financial data. The <code>id_token</code> contains the <code>connection_id</code></li>
 <li>Partner requests an access token from the Moneyhub Auth API with the <a href="#data-access">Data scopes</a> required and a <code>sub</code> parameter in the <a href="#claims">Claims</a> that contains the profile id using the <a href="#token-endpoint">Token endpoint</a></li>
 <li>Partner uses the access token at the <a href="#moneyhub-data-api">Moneyhub Data API</a> to access the user&#39;s financial data</li>
 </ul>
