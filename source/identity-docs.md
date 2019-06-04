@@ -51,7 +51,7 @@ We provide these features via an OpenID Provider interface that supports standar
 
 > This example assumes the use of an OpenID Client (e.g. [Node OpenId client](https://github.com/panva/node-openid-client))
 
-```
+```js
 const { access_token } = await client.grant({
   grant_type: "client_credentials",
   scope: "user:create",
@@ -173,7 +173,7 @@ This settings will require the following changes in the auth flow if the authent
 
 > Example creating JWKS key set using the Moneyhub api client
 
-```
+```console
 node examples/jwks/create-jwks.js
 
 Options
@@ -249,7 +249,7 @@ We support the use of request objects and the claims parameter at this endpoint.
 
 > Example of a client_credentials grant for creating a user
 
-```
+```sh
 curl -X POST \
   'https://identity.moneyhub.co.uk/oidc/token' \
   -H 'Authorization: Basic Base64_encode(<client_id>:<client_secret>'\
@@ -259,7 +259,7 @@ curl -X POST \
 
 > Example of a client_credentials grant for data access
 
-```
+```sh
 curl -X POST \
   'https://identity.moneyhub.co.uk/oidc/token' \
   -H 'Authorization: Basic Base64_encode(<client_id>:<client_secret>'\
@@ -412,6 +412,7 @@ Note - the above transactions:read scopes are mutually exclusive - if more than 
 - `transactions:write` - For all transactions that are able to be read it is possible to edit certain fields (e.g. category, notes, etc.). Please see the documentation on the transactions endpoint for details of which fields can be edited. If `transactions:write` is provided without any `transactions:read` scope there will be an `invalid_scope` error
 - `transactions:write:all` - This allows full access to create transactions, edit all their properties and delete transactions. This scope is only available when issuing tokens for users that are managed by the client (only available for use case 2)
 - `accounts:read` - Read access to all accounts
+- `accounts_details:read` - Read access to accounts details such as full account number and sort code.
 - `accounts:write` - Write access to all accounts. Please see the accounts endpoint for details of which fields can be edited.
 - `accounts:write:all` - Full write access including the ability to delete accounts. This scope is only available when issuing tokens for users that are managed by the client (only available for use case 2)
 - `categories:read` - Read access to a customer's categories.
@@ -615,14 +616,16 @@ To support use case 2, the following RESTful routes are available:
 
 > Example request:
 
-```
+```sh
 POST /users HTTP/1.1
 Host: identity.moneyhub.co.uk
 Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkFObVlmU0dfa2J0MktScFRLbzdRQ05IMl9SSy0wYTc4N3lqbTA3encifQ.eyJqdGkiOiJjcEVPMk11dVJscmtDfkdDQ3Rqa0IiLCJpc3MiOiJodHRwOi8vaWRlbnRpdHkuZGV2LjEyNy4wLjAuMS5uaXAuaW8vb2lkYyIsImlhdCI6MTUzNDQ5MzU0MSwiZXhwIjoxNTM0NDk0MTQxLCJzY29wZSI6InVzZXI6Y3JlYXRlIiwiYXVkIjoiODk4YzUyOWItYzA2Mi00ZjI2LWExMzYtZmQ4YmM0NjJkNTgzIn0.AMU266O-wgmz-6SOfSF_Bq0LQhoAgytaInwCKhT-tXQ6Z_L0I75blmRujnKALK-LG08ny_gemtDWUEmD2mjyHgO-vtmiSNMHF2T5z2GS3k4VOUbGKVjFY5kK9QfoUCR_WCpUEPd64LHe_IaR0rMAzaKcVLRhtjin9yAB-goif683ESBFQLDrnojzdcOxWtP1x_qGSNBOMqJ6RDk7H65aBCXJj5eee11EW71G1Q3C3_MyJqTYdwXbAzkE-8XLDznDqZzVmm4erFUTN3TuB5L7af2pendAWitGEeshHKRpgeHI3EQrNj98-UIyemVV9tUK76x2ojiV1ge7ZpnYeNCO0A
 Content-Type: application/json
+```
 
+```json
 {
-  "clientUserId":"some-id"
+  "clientUserId": "some-id"
 }
 ```
 
@@ -700,7 +703,7 @@ When creating payees via API the steps are as follows:
 
 > Example request using moneyhub api client
 
-```
+```js
 const tokens = await moneyhub.addPayee({
   accountNumber: "your account number",
   sortCode: "your sort code",
@@ -710,7 +713,7 @@ const tokens = await moneyhub.addPayee({
 
 > Example request
 
-```
+```sh
 curl --request POST \
   --url https://identity.moneyhub.co.uk/payees \
   --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkFObVlmU0dfa2J0MktScFRLbzdRQ (... abbreviated for brevity ...)' \
@@ -741,7 +744,7 @@ It creates a payee that later can be used to initiate a payment.
 
 > Example request using moneyhub api client
 
-```
+```js
 const tokens = await moneyhub.getPayees({
   limit: "limit", // optional
   offset: "offset", // optional
@@ -750,7 +753,7 @@ const tokens = await moneyhub.getPayees({
 
 > Example request
 
-```
+```sh
 curl --request GET \
   --url https://identity.moneyhub.co.uk/payees \
   --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'
@@ -823,7 +826,7 @@ By putting the payment payload inside a signed request object there is non-repud
 
 > Example request
 
-```
+```sh
 curl --request POST \
   --url https://identity.moneyhub.com/request \
   --header 'content-type: application/jws' \
@@ -855,7 +858,7 @@ https://identity.moneyhub.co.uk/oidc/auth?
 
 > Creating a payment authorization url using our api client
 
-```
+```js
 const url = await moneyhub.getPaymentAuthorizeUrl({
   bankId: "Bank id to authorise payment from",
   payeeId: "Id of payee previously added"
@@ -872,7 +875,7 @@ To authorise a payment the user needs to be redirected to the authorization url 
 
 > Exchanging an authorization code for a token set using our api client
 
-```
+```js
 const tokens = await moneyhub.exchangeCodeForTokens({
   code: "the authorization code",
   nonce: "your nonce value", // optional
@@ -911,7 +914,7 @@ The following endpoints are available to get access to the payments that have be
 
 > Example request using moneyhub api client
 
-```
+```js
 const tokens = await moneyhub.getPayments({
   limit: "limit", // optional
   offset: "offset", // optional
@@ -920,56 +923,10 @@ const tokens = await moneyhub.getPayments({
 
 > Example request
 
-```
+```sh
 curl --request GET \
   --url https://identity.moneyhub.co.uk/payments \
   --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'
-```
-
-> Example response
-
-```json
-[
-  {
-    "id": "90ed0342-9b83-4e44-947e-dc8cf9fb869f",
-    "payeeId": "b6d8e08f-2603-4e16-9d93-353693b9d3e5",
-    "payeeName": "Payee Name",
-    "payload": {
-      "client_id": "e4594699-947b-4c70-abcc-2b8417d3ac12",
-      "scope": "payment openid id:ec6c9a9d1c152056ea6a018b37a56daf",
-      "state": "foo",
-      "claims": {
-        "id_token": {
-          "mh:con_id": {
-            "essential": true
-          },
-          "mh:payment": {
-            "essential": true,
-            "value": {
-              "amount": 100,
-              "payeeRef": "payee ref 123",
-              "payerRef": "payer ref 546",
-              "payeeId": "b6d8e08f-2603-4e16-9d93-353693b9d3e5"
-            }
-          }
-        }
-      },
-      "exp": 1558536370,
-      "redirect_uri": "http://localhost:3001/auth/callback",
-      "response_type": "code",
-      "prompt": "consent",
-      "iss": "e4594699-947b-4c70-abcc-2b8417d3ac12",
-      "aud": "https://identity.moneyhub.co.uk/oidc"
-    },
-    "reqCreatedAt": "2019-05-22T14:41:09.788Z",
-    "grantCreatedAt": "2019-05-22T14:41:14.941Z",
-    "exchangedAt": "2019-05-22T14:42:35.623Z",
-    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36",
-    "ip": "62.30.217.74",
-    "userId": "5ce55f897ae6160923c61166",
-    "connectionId": "ec6c9a9d1c152056ea6a018b37a56daf:b7521b2a-d16d-4e54-8958-0a87d09d1390"
-  }
-]
 ```
 
 It returns all the payments that have been initiated by an API client regardless if they were authorised or not. Payments that have been authorised have the properties `exchangedAt` and `connectionId`.
@@ -980,61 +937,16 @@ This route requires an access token from the client credentials grant with the s
 
 > Example request using moneyhub api client
 
-```
+```js
 const tokens = await moneyhub.getPayment("payment-id")
 ```
 
 > Example request
 
-```
+```sh
 curl --request GET \
   --url https://identity.moneyhub.co.uk/payments/payment-id \
   --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'
-```
-
-> Example response
-
-```json
-{
-  "id": "90ed0342-9b83-4e44-947e-dc8cf9fb869f",
-  "payeeId": "b6d8e08f-2603-4e16-9d93-353693b9d3e5",
-  "payeeName": "Payee Name",
-  "payload": {
-    "client_id": "e4594699-947b-4c70-abcc-2b8417d3ac12",
-    "scope": "payment openid id:ec6c9a9d1c152056ea6a018b37a56daf",
-    "state": "foo",
-    "claims": {
-      "id_token": {
-        "mh:con_id": {
-          "essential": true
-        },
-        "mh:payment": {
-          "essential": true,
-          "value": {
-            "amount": 100,
-            "payeeRef": "payee ref 123",
-            "payerRef": "payer ref 546",
-            "payeeId": "b6d8e08f-2603-4e16-9d93-353693b9d3e5"
-          }
-        }
-      }
-    },
-    "exp": 1558536370,
-    "redirect_uri": "http://localhost:3001/auth/callback",
-    "response_type": "code",
-    "prompt": "consent",
-    "iss": "e4594699-947b-4c70-abcc-2b8417d3ac12",
-    "aud": "https://identity.moneyhub.co.uk/oidc"
-  },
-  "reqCreatedAt": "2019-05-22T14:41:09.788Z",
-  "grantCreatedAt": "2019-05-22T14:41:14.941Z",
-  "exchangedAt": "2019-05-22T14:42:35.623Z",
-  "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36",
-  "ip": "62.30.217.74",
-  "status": "completed",
-  "userId": "5ce55f897ae6160923c61166",
-  "connectionId": "ec6c9a9d1c152056ea6a018b37a56daf:b7521b2a-d16d-4e54-8958-0a87d09d1390"
-}
 ```
 
 It returns a single payment that was initiated by an API client. This route is useful to query the status of a payment as it contains a `status` field.
