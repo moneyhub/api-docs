@@ -30,7 +30,8 @@ This document will provide a high level overview, but we recommend that users fa
 
 Base URL:
 
-- <a href="https://identity.moneyhub.co.uk">https://identity.moneyhub.co.uk</a>
+* <a href="https://identity.moneyhub.co.uk">https://identity.moneyhub.co.uk</a>
+
 
 # Overview
 
@@ -41,7 +42,7 @@ Our identity service supports the following use cases:
 
 We provide these features via an OpenID Provider interface that supports standard OAuth 2 based flows to issue access tokens that can be used to gain access to financial data via our API Gateway.
 
-[Moneyhub Data API documentation](#moneyhub-data-api).
+[Moneyhub Data API documentation](https://moneyhub.github.io/api-docs/#moneyhub-data-api).
 
 [Moneyhub Data API Swagger documentation](https://api.moneyhub.co.uk/docs)
 
@@ -51,26 +52,19 @@ We provide these features via an OpenID Provider interface that supports standar
 
 ## Flow for use case 1
 
-> Connecting to a financial institution
-> ![Use case 1](first-use-case.png)
-
-- Partner generates an authorisation url to the [Authorisation Endpoint](#authorization-endpoint) with the [Financial Institution scope](#financial-institutions) to connect to and the [Data scopes](#data-access) required as part of the [Claims](#claims)
-- Partner redirects user to the authorisation url
-- Moneyhub Auth API gains consent from the user to access their banking data
-- Moneyhub Auth API redirects the user to the bank
-- Bank authenticates the user and sends them back to the Moneyhub Auth API
+- Partner redirects user to identity service `/oidc/auth` with a scope param that contains the id of the bank to connect to and the level of data to gain consent for
+- Moneyhub Identity service gains consent from the user to access their banking data
+- Moneyhub Identity service redirects the user to the bank
+- Bank authenticates the user and sends them back to the Moneyhub Identity Service
 - Moneyhub redirects the user back to the partner with an `authorization_code`
-- Partner exchanges this code for an `access_token` using the [Token endpoint](#token-endpoint)
-- Partner uses the access token at the [Moneyhub Data API](#moneyhub-data-api) to access user's financial data
+- Partner exchanges this code for an `access_token`
+- Partner uses the access token at the api gateway to access financial data
 
 ## Flow for use case 2
 
-> Registering a user and connecting to a financial institution
-> ![Use case 2](second-use-case.png)
-
 > This example assumes the use of an OpenID Client (e.g. [Node OpenId client](https://github.com/panva/node-openid-client))
 
-```js
+```
 const { access_token } = await client.grant({
   grant_type: "client_credentials",
   scope: "user:create",
@@ -148,113 +142,27 @@ const transactions = await got(`#{resourceServerUrl}/transactions`, {
 })
 ```
 
-- Partner requests an access token from the identity service with the scope `user:create` using the [Token endpoint](#token-endpoint)
-- Partner uses this token to create a profile at the [User endpoint](#post-users)
-- Partner generates an authorisation url to the [Authorisation Endpoint](#authorization-endpoint) with the [Financial Institution scope](#financial-institutions) to connect to, and with the id of the new user profile as part of the [Claims](#claims)
-- Partner redirects user to the authorisation url
-- Moneyhub Auth API gains consent from the user to access their banking data
-- Moneyhub Auth API redirects the user to the bank
-- Bank authenticates the user and sends them back to the Moneyhub Auth API
-- Moneyhub redirects the user back to the partner with an `authorization_code`
-- Partner exchanges the `authorization_code` for an `access_token` and `id_token`to complete the connection using the [Token endpoint](#token-endpoint). This `access_token` do not contains any data scopes so it can't be used to gain access to the user's financial data. The `id_token` contains the `connection_id`
-- Partner requests an access token from the Moneyhub Auth API with the [Data scopes](#data-access) required and a `sub` parameter in the [Claims](#claims) that contains the profile id using the [Token endpoint](#token-endpoint)
-- Partner uses the access token at the [Moneyhub Data API](#moneyhub-data-api) to access the user's financial data
+- Partner requests an access token from the identity service with the scope `user:create`
+- Partner uses this token to create a profile at the /user endpoint
+- Partner redirects user to the identity service `/oidc/auth` with a scope param that contains the id of the bank to connect to, and with the id of the new user profile in the claims parameter
+- Moneyhub Identity service gains consent from the user to access their banking data
+- Moneyhub Identity service redirects the user to the bank
+- Bank authenticates the user and sends them back to the Moneyhub Identity Service
+- Moneyhub redirects the user back to the partner with an `id_token` that contains the `connection_id`
+- Partner requests an access token from the identity service with the scope of data access required and a custom `sub` parameter that contains the profile id
+- Partner uses the access token at the api gateway to access financial data
 
-# API clients
+# OpenID Connect
 
-You can register an OAuth client through our [Admin portal](https://admin-portal.moneyhub.co.uk/).
-We will then generate a `client_id` and `client_secret` corresponding to your client. These credentials will be used to authenticate your client on every route of our Auth API.
+You can register an OAuth client through our [Admin portal](https://admin-portal.moneyhub.co.uk/). We will then generate a `client_id` and `client_secret` corresponding to your client. These credentials will be used to authenticate your client on every route of our Auth API.
 
 To correctly authenticate your client, you will need to send your client credentials in the `Authorization` header in the following format:
 
 `Authorization: Basic Base64_encode(<client_id>:<client_secret>)`
 
-[API Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata)
+Definitions of the OpenID client meta data can be found [here](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata)
 
-## Production
-
-Ideally a production API client should have the following settings:
-
-1. Either a JWKS key set registered or a jwks_uri configured, i.e. either the JWKS or JWKS_URI field filled in.
-2. Client Authentication configured to be `private_key_jwt`
-3. Request Object signing alg configured to be one of the RS*, ES* or PS\* algorithms
-4. ID token signing alg configured to be one of the RS*, ES* or PS\* algorithms
-5. Response type set to be `code id_token`
-6. Grant types to be authorization_code, refresh_token, client_credentials and implicit
-7. Redirect uris are required to be https://
-
-This settings will require the following changes in the auth flow if the authentication that was used previously was `client_secret_basic`:
-
-1. Allowing an `implicit` grant type in the settings requires:
-   - A nonce to be added to the request object when generating an authorization url ([OpenId Nonce](https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes))
-   - The same nonce to be used when exchanging the code for the token set
-2. Having a response type of `code id_token` will send a code and id_token value to your registered callback. The code, id_token, nonce and state values need to be used to exchange them for a token set at the end of the authorization process.
-
-## JWKS Key Set
-
-> Example creating JWKS key set using the Moneyhub api client
-
-```console
-node examples/jwks/create-jwks.js
-
-Options
-
-  --key-alg string
-  --key-use string
-  --key-size number
-  --alg string
-```
-
-> Public keys - This can be used as the jwks in your API client configuration in the Moneyhub Admin portal
-
-```json
-{
-  "keys": [
-    {
-      "kty": "RSA",
-      "kid": "lNWK3qGU9eQMLqH96ZB5Jf4i3hEdhqNKpaDBGmREt5Q",
-      "use": "sig",
-      "e": "AQAB",
-      "n": "kHkz5oM6xis2NIJJtbeffY_F9DLNO6Tx9JsYtwTFSvqI5x3msssgDbYs8VjUR_Dt5yurz1dHBkJLK1ZvvTIUwTSc_TG8y0m3-MsszVM5jbEvI5AUATRca6zQJhRQCYgvAeFPGQgUNh8zjsAzlwc3VXdEYBT69orNdOru-MEGynnFJpi23ikm57IWKlpfZplGh7FxHZgABNJ1PPhFZGJFAxVtI5LbMlwIsHWtP7gxUw4U0-U7rLL-_fFqSEMP6aGI4GMDSpTh6P7mRTORfXUIE3ycOzXJiK5fOfwQzNOMD41uMshOsyMAu0BsNZQuKqefb9qT5lfGP15zmQnVqePOZw",
-      "alg": "RS256"
-    }
-  ]
-}
-```
-
-> Private keys - This can be used as the keys value when configuring the moneyhub api client
-
-```json
-{
-  "keys": [
-    {
-      "kty": "RSA",
-      "kid": "lNWK3qGU9eQMLqH96ZB5Jf4i3hEdhqNKpaDBGmREt5Q",
-      "use": "sig",
-      "e": "AQAB",
-      "n": "kHkz5oM6xis2NIJJtbeffY_F9DLNO6Tx9JsYtwTFSvqI5x3msssgDbYs8VjUR_Dt5yurz1dHBkJLK1ZvvTIUwTSc_TG8y0m3-MsszVM5jbEvI5AUATRca6zQJhRQCYgvAeFPGQgUNh8zjsAzlwc3VXdEYBT69orNdOru-MEGynnFJpi23ikm57IWKlpfZplGh7FxHZgABNJ1PPhFZGJFAxVtI5LbMlwIsHWtP7gxUw4U0-U7rLL-_fFqSEMP6aGI4GMDSpTh6P7mRTORfXUIE3ycOzXJiK5fOfwQzNOMD41uMshOsyMAu0BsNZQuKqefb9qT5lfGP15zmQnVqePOZw",
-      "d": "B4ssmJa1lO9grzE2ZBSocUf2kB-u87RTJfCLQ9Mt8hJO37KB_0f37n9arWdz_iWoZm-zUuo9vSftAOBMiVZ6GvSCVf4o23yH7Ke_OSFlWe6shXDaeo2fXcfyPmrFGxpPSgvXs3jmhUTvzj5e8z3fN8k4esPdrs3kmHxD6h06G4xXwtmEHOuygn96IdpK5Zql4wy8L0goo8mOrP_4caPOLdBDeATDwqWXMTeXMW8NGsp90sBjDxVzqqysH0gnQZV0ZfVH2K1fgPoKNJtyX28RVcrjOW6oU5lxARVfxI3bwTGbJ8MaLNrKrd7KjUFaJ_owvpX3ifo6woHL3IrBP-rnwQ",
-      "p": "5orIAF7rPBZzw0A9sj2ems2AO6xwR6jJy_xSJ6jflstW3Cmz0DdG3u9IUrQpQb9G1oO-L_So5iaCKjSfLessu3uVzvWLfkOP-zNeSjL86zlW0cFtzVeIImDBiyx21RvgFjhVQ5GKic01Il9aDOrkA5Q78m_v-OxA7TaOzMw1RTE",
-      "q": "oG1WZreDYjMYko2dcXgpijwqYi1Z_5UsiQrjDZpGskk3g1bq4SGVZkpR-tx8Cx6Bn8W8-rOpiTJg08FUGFNjJgNF9mSBhUjaQc0IrKrdy_4wfMyHqqE7cEdSGSg-xH0TghGfCVbJuXYWoMM7hT7XJ7HSiiA92m-msvI4K4cKRxc",
-      "dp": "az-0uzdtB48KW5LPINQ5rJpdRWV69ls3RYYkUf7lxSjjR5i-5eZROfTnGFJnvwZU1gaDu5t911Oiyi-gvaPiM3XSw2zHb_3ORXYoLyx5LJSIJxxtEFHgKt4IK86LmahWHwAl6kESyfiE93CUW94KJQAYwzf_0zVVHwV6eRumzIE",
-      "dq": "mGBBuL6FpDg0Fr871BL2Ib6T4zyARypBaslUcA8hJyYz_CQKZFups8bTpxrVFxqatE70-Iq9dPrMzVTLs29AtVJWmXlNLHPOGsHMg3SnxqJhG6iJE6Cg_DxB1nNLawYCCYEDNbOhVu66_2dwmVbetW1JNLj7BwcVptI6V92j_XE",
-      "qi": "pwGzAE02GWIp7TRburRvxC2SCLo1Oo3flPcKoYSKNguPzWe9gP-xhD9ZhNoDIRnNrgK562cB9dlSXvEGnrfSJdXTCM2m7BANyMvP0w_XkvxE0p4yY9BJtiQ-QgvZto-7PKn0PSukwE3I2fT2Hpgp7idCJE_EQnIsQCX4XD3DG48"
-    }
-  ]
-}
-```
-
-To configure your API client you will need to generate a JWKS key set and have access to the public and private keys separately.
-
-The public key needs to be added as the jwks in your API client configuration in the Moneyhub Admin portal.
-
-The private key needs to be used as part of the configuration of the moneyhub api client or your openid client.
-
-The easiest way to generate a valid jwks set is using our Moneyhub API client ([Moneyhub API client](https://github.com/moneyhub/moneyhub-api-client)).
-
-The client has the method `createJWKS()` and there is an example of how to use it when cloning the repo under the examples folder.
-
-# OpenId Connect
+Moneyhub supports the following endpoints:
 
 ## Authorization Endpoint
 
@@ -270,7 +178,7 @@ We support the use of request objects and the claims parameter at this endpoint.
 
 > Example of a client_credentials grant for creating a user
 
-```sh
+```
 curl -X POST \
   'https://identity.moneyhub.co.uk/oidc/token' \
   -H 'Authorization: Basic Base64_encode(<client_id>:<client_secret>'\
@@ -280,7 +188,7 @@ curl -X POST \
 
 > Example of a client_credentials grant for data access
 
-```sh
+```
 curl -X POST \
   'https://identity.moneyhub.co.uk/oidc/token' \
   -H 'Authorization: Basic Base64_encode(<client_id>:<client_secret>'\
@@ -301,7 +209,7 @@ The `authorization_code` and `refresh_token` grant types are implemented exactly
 The `client_credentials` grant supports 2 use cases:
 
 - generating a token for for creating, deleting or reading users that have been created using your oauth client credentials
-  The scopes that can be requested are `user:create`, `user:read` and `user:delete`
+The scopes that can be requested are `user:create`, `user:read` and `user:delete`
 - generating a token to access a specific user's data (e.g. accounts, transactions). The `sub` query parameter is required
 
 ## Discovery
@@ -390,13 +298,14 @@ This route returns the bank icon as SVG when providing a valid bank reference li
 
 Please be aware we don't have icons for all the connections we provide, when this is the case the route returns 404 as response unless the `defaultIcon` parameter is used.
 
-| Route parameters | Type     | Description                                                                                                      |
-| ---------------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
-| bankRef          | `string` | Unique bank reference of the provider. When using `default` as the bank reference we return a generic bank icon. |
+| Route parameters | Type | Description |
+| --- | --- | --- | --- | --- |
+| bankRef | `string` | Unique bank reference of the provider. When using `default` as the bank reference we return a generic bank icon.
 
-| Query parameters | Type      | Description                                                                                            |
-| ---------------- | --------- | ------------------------------------------------------------------------------------------------------ |
-| defaultIcon      | `boolean` | When value is true the route will return the default icon instead of 404 if bank icon is not available |
+| Query parameters | Type | Description |
+| --- | --- | --- | --- | --- |
+| defaultIcon | `boolean` | When value is true the route will return the default icon instead of 404 if bank icon is not available
+
 
 # Scopes
 
@@ -408,6 +317,7 @@ Below is a summary of the scopes we provide, please check our discovery document
 
 - `openid` - this scope is required and indicates that you are using our OpenID Connect interface. We will return an id token as described in the OpenID Connect Core spec. You can request specific claims to be present in the id token using the claims parameter described in OpenID Connect Core. For details on what claims we support, please check the [claims section](https://moneyhub.github.io/api-docs/#claims)
 - `offline_access` - this scope indicates that you would like ongoing access to the user's resources, when it is present we will issue a refresh token
+
 
 ## Financial institutions
 
@@ -433,7 +343,6 @@ Note - the above transactions:read scopes are mutually exclusive - if more than 
 - `transactions:write` - For all transactions that are able to be read it is possible to edit certain fields (e.g. category, notes, etc.). Please see the documentation on the transactions endpoint for details of which fields can be edited. If `transactions:write` is provided without any `transactions:read` scope there will be an `invalid_scope` error
 - `transactions:write:all` - This allows full access to create transactions, edit all their properties and delete transactions. This scope is only available when issuing tokens for users that are managed by the client (only available for use case 2)
 - `accounts:read` - Read access to all accounts
-- `accounts_details:read` - Read access to accounts details such as full account number and sort code.
 - `accounts:write` - Write access to all accounts. Please see the accounts endpoint for details of which fields can be edited.
 - `accounts:write:all` - Full write access including the ability to delete accounts. This scope is only available when issuing tokens for users that are managed by the client (only available for use case 2)
 - `categories:read` - Read access to a customer's categories.
@@ -475,7 +384,7 @@ The only scope that can (and must) be supplied along with either `reauth` or `re
 # Claims
 
 > To add a new account for a registered user via either openbanking or
-> screen scraping the following parameters would be sent in the request object:
+screen scraping the following parameters would be sent in the request object:
 
 ```json
 {
@@ -493,7 +402,6 @@ The only scope that can (and must) be supplied along with either `reauth` or `re
   }
 }
 ```
-
 > On completion of the connection, the connection id is returned in the id token as below:
 
 ```json
@@ -509,7 +417,7 @@ The only scope that can (and must) be supplied along with either `reauth` or `re
 ```
 
 > To refresh an account for a registered user via either openbanking or
-> screen scraping the following parameters would be sent in the request object:
+screen scraping the following parameters would be sent in the request object:
 
 ```json
 {
@@ -541,94 +449,6 @@ Our discovery document details the `claims` that we support, they currently incl
 - `sub` - the subject (user id) that the authorization request should be scoped to (for adding, reauth and refresh)
 - `mh:con_id` - the connection id that the authorization request should be scoped to (for reauth and refresh)
 
-# Connection Widget
-
-> Example loading via script tag
-
-```html
-<script
-  data-clientid="your-client-id"
-  data-redirecturi="your-redirect-uri"
-  data-userid="the-user-id"
-  data-posturi="/result"
-  data-finishuri="/finish"
-  data-type="test"
-  src="https://bank-chooser.moneyhub.co.uk/account-connect.js"
-></script>
-```
-
-> Example loading via JS API
-
-```html
-<script src="https://bank-chooser.moneyhub.co.uk/account-connect-js.js"></script>
-```
-
-```js
-window.moneyhubAccountConnectWidget(document.querySelectorAll("#test")[0], {
-  clientid: "your-client-id",
-  redirecturi: "your-redirect-uri",
-  userid: "user-id",
-  posturi: "/result",
-  finishuri: "/finish",
-  type: "test",
-  meta: {"any": "data you want associated with this session"}
-  identityuri: "https://identity.moneyhub.co.uk",
-})
-```
-
-We provide an account connection widget that that makes it easier to allow users to connect their accounts.
-
-The widget can either be initialised with data attributes in a script tag - or can be injected into the DOM via a JavaScript API.
-
-## Parameters
-
-- _clientid_ - this is your client id for the client you want to use. It is availble from the admin portal
-- _redirecturi_ - this is the uri that you want the user to be redirected to after they have succesfully connected to an account or had an error. This redirect uri must be added to your api client in the admin portal. The redirect uri also needs to host the widget and mustn't interfere with query parameters.
-- _userid_ - the id of the user you want to connect accounts for. The user must be created via our API prior to the widget being loaded.
-- _posturi_ - an enpoint set up to receive a JSON post each time a user either connects an account or has an error connecting an account. More details below
-- _finishuri_ - a uri to redirect the user to when they click the "Finish" button
-- _type_ - the type of connections to show when the users chooses a bank. Values can be "all", "api" or "test".
-- _identityuri_ - this should always be "https://identity.moneyhub.co.uk" in the production environment.
-- _meta_ - this is an optional property that you can set - it will be passed to the post uri.
-
-## Post URI
-
-> Example request to post uri when there is an error
-
-```json
-{
-  "bankId": "1ffe704d39629a929c8e293880fb449a",
-  "url": "https://identity-dev.moneyhub.co.uk/oidc/auth?claims=%7B%22id_token%22%3A%7B%22sub%22%3A%7B%22essential%22%3Atrue%2C%22value%22%3A%225c82710d7c2eb82b175c2c5c%22%7D%7D%7D&client_id=4d18da1b-b6b7-4275-8407-3c8bade53f9a&redirect_uri=http%3A%2F%2Flocalhost%3A3001&response_type=code&scope=openid%20id%3A1ffe704d39629a929c8e293880fb449a&state=7f231a1c3ee116a04db56438cc60b4ee",
-  "created": 1559556347842,
-  "userId": "5c82710d7c2eb82b175c2c5c",
-  "meta": "some meta property",
-  "state": "7f231a1c3ee116a04db56438cc60b4ee",
-  "error": "invalid_claims",
-  "modified": 1559556348809
-}
-```
-
-> Example request to the post uri when an account has been succesfully connected:
-
-```json
-{
-  "bankId": "1ffe704d39629a929c8e293880fb449a",
-  "url": "https://identity-dev.moneyhub.co.uk/oidc/auth?claims=%7B%22id_token%22%3A%7B%22sub%22%3A%7B%22essential%22%3Atrue%2C%22value%22%3A%225ca49cda9cd8ab3640f3bb67%22%7D%7D%7D&client_id=4d18da1b-b6b7-4275-8407-3c8bade53f9a&redirect_uri=http%3A%2F%2Flocalhost%3A3001&response_type=code&scope=openid%20id%3A1ffe704d39629a929c8e293880fb449a&state=d657b3e549494c38fa7c8040763ef999",
-  "created": 1559556615352,
-  "userId": "5ca49cda9cd8ab3640f3bb67",
-  "meta": "some meta property",
-  "state": "d657b3e549494c38fa7c8040763ef999",
-  "code": "bRHSHtqICup80FBfvi5jG7sejsY",
-  "modified": 1559556620133
-}
-```
-
-This endpoint must be set up to receive a JSON payload when the user succesfully connects or has an error connecting.
-
-In the case of an error, there is nothing that you need to do, but it may be worth recording the error.
-
-The important property here is `code`. This must be sent to our token endpoint in a standard OAuth 2 authorization code grant.
-
 # User Management
 
 To support use case 2, the following RESTful routes are available:
@@ -637,16 +457,14 @@ To support use case 2, the following RESTful routes are available:
 
 > Example request:
 
-```sh
+```
 POST /users HTTP/1.1
 Host: identity.moneyhub.co.uk
 Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkFObVlmU0dfa2J0MktScFRLbzdRQ05IMl9SSy0wYTc4N3lqbTA3encifQ.eyJqdGkiOiJjcEVPMk11dVJscmtDfkdDQ3Rqa0IiLCJpc3MiOiJodHRwOi8vaWRlbnRpdHkuZGV2LjEyNy4wLjAuMS5uaXAuaW8vb2lkYyIsImlhdCI6MTUzNDQ5MzU0MSwiZXhwIjoxNTM0NDk0MTQxLCJzY29wZSI6InVzZXI6Y3JlYXRlIiwiYXVkIjoiODk4YzUyOWItYzA2Mi00ZjI2LWExMzYtZmQ4YmM0NjJkNTgzIn0.AMU266O-wgmz-6SOfSF_Bq0LQhoAgytaInwCKhT-tXQ6Z_L0I75blmRujnKALK-LG08ny_gemtDWUEmD2mjyHgO-vtmiSNMHF2T5z2GS3k4VOUbGKVjFY5kK9QfoUCR_WCpUEPd64LHe_IaR0rMAzaKcVLRhtjin9yAB-goif683ESBFQLDrnojzdcOxWtP1x_qGSNBOMqJ6RDk7H65aBCXJj5eee11EW71G1Q3C3_MyJqTYdwXbAzkE-8XLDznDqZzVmm4erFUTN3TuB5L7af2pendAWitGEeshHKRpgeHI3EQrNj98-UIyemVV9tUK76x2ojiV1ge7ZpnYeNCO0A
 Content-Type: application/json
-```
 
-```json
 {
-  "clientUserId": "some-id"
+  "clientUserId":"some-id"
 }
 ```
 
@@ -704,9 +522,10 @@ Moneyhub access to payments uses the same OpenID Connect authorisation service a
 
 There are three additional features that enable payments to be initiated:
 
-- Support for Payee creation and management
-- Custom payments scope and associated claim
-- Support for Request Object endpoint
+ - Support for Payee creation and management
+ - Custom payments scope and associated claim
+ - Support for Request Object endpoint
+
 
 ## Payee Management
 
@@ -720,11 +539,12 @@ When creating payees via API the steps are as follows:
 2. Create a payee using the POST `/payees` route
 3. You will receive back an `id` for the payee. This can be used in subsequent flows
 
+
 ## POST /payees
 
 > Example request using moneyhub api client
 
-```js
+```
 const tokens = await moneyhub.addPayee({
   accountNumber: "your account number",
   sortCode: "your sort code",
@@ -732,15 +552,18 @@ const tokens = await moneyhub.addPayee({
 })
 ```
 
+
 > Example request
 
-```sh
+```
 curl --request POST \
   --url https://identity.moneyhub.co.uk/payees \
   --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkFObVlmU0dfa2J0MktScFRLbzdRQ (... abbreviated for brevity ...)' \
   --header 'content-type: application/json' \
   --data '{\n	"sortCode": "123456",\n	"accountNumber": "12345678",\n	"name": "Account name"\n}'
 ```
+
+
 
 > Example response
 
@@ -761,11 +584,12 @@ This route requires an access token from the client credentials grant with the s
 
 It creates a payee that later can be used to initiate a payment.
 
+
 ## GET /payees
 
 > Example request using moneyhub api client
 
-```js
+```
 const tokens = await moneyhub.getPayees({
   limit: "limit", // optional
   offset: "offset", // optional
@@ -774,11 +598,12 @@ const tokens = await moneyhub.getPayees({
 
 > Example request
 
-```sh
+```
 curl --request GET \
   --url https://identity.moneyhub.co.uk/payees \
   --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'
 ```
+
 
 > Example response
 
@@ -803,14 +628,15 @@ It returns all the payees that have been created for an specific API client.
 
 ## Payments Claim
 
+
 > Claim values
 
 ```json
 {
-  "payeeId": "id-of-the-payee",
-  "amount": 150, // in pence
-  "payeeRef": "reference to display on payee's statement", // Max 18 characters
-  "payerRef": "reference to display on payer's statement" // Max 18 characters
+ "payeeId": "id-of-the-payee",
+ "amount": 150, // in pence
+ "payeeRef": "reference to display on payee's statement", // Max 18 characters
+ "payerRef": "reference to display on payer's statement" // Max 18 characters
 }
 ```
 
@@ -818,26 +644,28 @@ It returns all the payees that have been created for an specific API client.
 
 ```json
 {
-  "id_token": {
-    "mh:con_id": {
-      "essential": true
-    },
-    "mh:payment": {
-      "essential": true,
-      "value": {
-        "payeeId": "id-of-the-payee",
-        "amount": 150,
-        "payeeRef": "reference to display on payee's statement",
-        "payerRef": "reference to display on payer's statement"
-      }
-    }
-  }
+ "id_token": {
+   "mh:con_id": {
+     "essential": true,
+   },
+   "mh:payment": {
+     "essential": true,
+     "value": {
+       "payeeId": "id-of-the-payee",
+       "amount": 150,
+       "payeeRef": "reference to display on payee's statement",
+       "payerRef": "reference to display on payer's statement"
+     }
+   }
+ },
 }
 ```
 
 In order to initiate a payment via the API you need to use the `payment` scope and use the `mh:payment` claim. This claim require the values of the payeeeId, amount, payee refrence and payer reference.
 
+
 This claim must be supplied using the claims parameter semantics from OpenID Connect Core. It should be nested under the `id_token` key and not the `userinfo` key.
+
 
 Using the claims parameter may feel slightly convoluted, but it is a neat standards compliant way of us allowing OAuth clients to pass us arbitrary payment values.
 
@@ -847,7 +675,7 @@ By putting the payment payload inside a signed request object there is non-repud
 
 > Example request
 
-```sh
+```
 curl --request POST \
   --url https://identity.moneyhub.com/request \
   --header 'content-type: application/jws' \
@@ -879,7 +707,7 @@ https://identity.moneyhub.co.uk/oidc/auth?
 
 > Creating a payment authorization url using our api client
 
-```js
+```
 const url = await moneyhub.getPaymentAuthorizeUrl({
   bankId: "Bank id to authorise payment from",
   payeeId: "Id of payee previously added"
@@ -896,7 +724,7 @@ To authorise a payment the user needs to be redirected to the authorization url 
 
 > Exchanging an authorization code for a token set using our api client
 
-```js
+```
 const tokens = await moneyhub.exchangeCodeForTokens({
   code: "the authorization code",
   nonce: "your nonce value", // optional
@@ -907,7 +735,9 @@ const tokens = await moneyhub.exchangeCodeForTokens({
 
 Once the user has successfully granted Moneyhub consent to initiate the payment and authenticated at the bank we will return an authorization code to your `redirect_uri`. This must be exchanged for an access token as per standard OpenID Connect practice. If you don't exchange the auth code for an access token, the payment will never be completed even though the user has authenticated it.
 
+
 > Decoded content of id token after exchanging authorization code
+
 
 ```json
 {
@@ -923,6 +753,7 @@ Once the user has successfully granted Moneyhub consent to initiate the payment 
 }
 ```
 
+
 As well as receiving an access token, you will receive an id token that will have a `mh_payment` claim. The value of this claim in the id token will be the id of the payment.
 
 Once that you have extracted the payment id from the id token you can query the status of the payment on the folllwing endpoint: `GET /payment/:id`
@@ -933,9 +764,10 @@ The following endpoints are available to get access to the payments that have be
 
 ## GET /payments
 
+
 > Example request using moneyhub api client
 
-```js
+```
 const tokens = await moneyhub.getPayments({
   limit: "limit", // optional
   offset: "offset", // optional
@@ -944,35 +776,132 @@ const tokens = await moneyhub.getPayments({
 
 > Example request
 
-```sh
+```
 curl --request GET \
   --url https://identity.moneyhub.co.uk/payments \
   --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'
+```
+
+
+> Example response
+
+```json
+[
+  {
+    "id": "90ed0342-9b83-4e44-947e-dc8cf9fb869f",
+    "payeeId": "b6d8e08f-2603-4e16-9d93-353693b9d3e5",
+    "payeeName": "Payee Name",
+    "payload": {
+      "client_id": "e4594699-947b-4c70-abcc-2b8417d3ac12",
+      "scope": "payment openid id:ec6c9a9d1c152056ea6a018b37a56daf",
+      "state": "foo",
+      "claims": {
+        "id_token": {
+          "mh:con_id": {
+            "essential": true
+          },
+          "mh:payment": {
+            "essential": true,
+            "value": {
+              "amount": 100,
+              "payeeRef": "payee ref 123",
+              "payerRef": "payer ref 546",
+              "payeeId": "b6d8e08f-2603-4e16-9d93-353693b9d3e5"
+            }
+          }
+        }
+      },
+      "exp": 1558536370,
+      "redirect_uri": "http://localhost:3001/auth/callback",
+      "response_type": "code",
+      "prompt": "consent",
+      "iss": "e4594699-947b-4c70-abcc-2b8417d3ac12",
+      "aud": "https://identity.moneyhub.co.uk/oidc"
+    },
+    "reqCreatedAt": "2019-05-22T14:41:09.788Z",
+    "grantCreatedAt": "2019-05-22T14:41:14.941Z",
+    "exchangedAt": "2019-05-22T14:42:35.623Z",
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36",
+    "ip": "62.30.217.74",
+    "userId": "5ce55f897ae6160923c61166",
+    "connectionId": "ec6c9a9d1c152056ea6a018b37a56daf:b7521b2a-d16d-4e54-8958-0a87d09d1390"
+  }
+]
 ```
 
 It returns all the payments that have been initiated by an API client regardless if they were authorised or not. Payments that have been authorised have the properties `exchangedAt` and `connectionId`.
 
 This route requires an access token from the client credentials grant with the scope of `payment:read`.
 
+
 ## GET /payments:id
+
 
 > Example request using moneyhub api client
 
-```js
+```
 const tokens = await moneyhub.getPayment("payment-id")
 ```
 
 > Example request
 
-```sh
+```
 curl --request GET \
   --url https://identity.moneyhub.co.uk/payments/payment-id \
   --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'
 ```
 
+
+> Example response
+
+```json
+
+{
+  "id": "90ed0342-9b83-4e44-947e-dc8cf9fb869f",
+  "payeeId": "b6d8e08f-2603-4e16-9d93-353693b9d3e5",
+  "payeeName": "Payee Name",
+  "payload": {
+    "client_id": "e4594699-947b-4c70-abcc-2b8417d3ac12",
+    "scope": "payment openid id:ec6c9a9d1c152056ea6a018b37a56daf",
+    "state": "foo",
+    "claims": {
+      "id_token": {
+        "mh:con_id": {
+          "essential": true
+        },
+        "mh:payment": {
+          "essential": true,
+          "value": {
+            "amount": 100,
+            "payeeRef": "payee ref 123",
+            "payerRef": "payer ref 546",
+            "payeeId": "b6d8e08f-2603-4e16-9d93-353693b9d3e5"
+          }
+        }
+      }
+    },
+    "exp": 1558536370,
+    "redirect_uri": "http://localhost:3001/auth/callback",
+    "response_type": "code",
+    "prompt": "consent",
+    "iss": "e4594699-947b-4c70-abcc-2b8417d3ac12",
+    "aud": "https://identity.moneyhub.co.uk/oidc"
+  },
+  "reqCreatedAt": "2019-05-22T14:41:09.788Z",
+  "grantCreatedAt": "2019-05-22T14:41:14.941Z",
+  "exchangedAt": "2019-05-22T14:42:35.623Z",
+  "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36",
+  "ip": "62.30.217.74",
+  "status": "completed",
+  "userId": "5ce55f897ae6160923c61166",
+  "connectionId": "ec6c9a9d1c152056ea6a018b37a56daf:b7521b2a-d16d-4e54-8958-0a87d09d1390"
+}
+
+```
+
 It returns a single payment that was initiated by an API client. This route is useful to query the status of a payment as it contains a `status` field.
 
-To call this endpoint you need an access token from the client credentials grant with the scope of `payment:read`.
+ To call this endpoint you need an access token from the client credentials grant with the scope of `payment:read`.
 
 # Webhooks
 
@@ -996,7 +925,6 @@ To call this endpoint you need an access token from the client credentials grant
   }
 }
 ```
-
 This is a way to be notified in real time about events related to the api users that you have created.
 
 You can configure webhook endpoints via the [Admin portal](https://admin-portal.moneyhub.co.uk/) when you add or edit your [API clients](/my-api-clients).
@@ -1005,12 +933,12 @@ Once that you start receiving webhooks you will be able to see a list of them wh
 
 ### Schema
 
-| Name      | Type           | Description              |
-| --------- | -------------- | ------------------------ |
-| id        | `string`       | Unique id of the webhook |
-| eventType | `string[enum]` | Event id                 |
-| userId    | `string`       | User id                  |
-| payload   | `object`       | Payload of the event     |
+| Name | Type | Description |
+| --- | --- | --- | --- | --- |
+| id | `string` | Unique id of the webhook
+| eventType | `string[enum]` | Event id
+| userId | `string` | User id
+| payload | `object` | Payload of the event
 
 ## New transactions
 
@@ -1029,18 +957,17 @@ Once that you start receiving webhooks you will be able to see a list of them wh
   ]
 }
 ```
-
 Id: `newTransactions`
 
 Event that notifies when an account has been automatically updated and new transactions have come through.
 
 ### Event Payload
 
-| Name           | Type            | Description                                     |
-| -------------- | --------------- | ----------------------------------------------- |
-| accounts       | `array[object]` | Array of accounts that contain new transactions |
-| » id           | `string`        | Account Id                                      |
-| » transactions | `array[string]` | Array of transactions ids                       |
+| Name | Type | Description |
+| --- | --- | --- | --- | --- |
+| accounts | `array[object]` | Array of accounts that contain new transactions
+| » id | `string` | Account Id
+| » transactions | `array[string]` | Array of transactions ids
 
 <aside class="notice">
 This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
@@ -1420,8 +1347,6 @@ const inputBody = '{
   "details": {
     "AER": 1.3,
     "APR": 13.1,
-    "sortCodeAccountNumber": "60161331926819",
-    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -1560,8 +1485,6 @@ Requires **accounts:read** and **accounts:write:all** scopes.
   "details": {
     "AER": 1.3,
     "APR": 13.1,
-    "sortCodeAccountNumber": "60161331926819",
-    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -2079,8 +2002,6 @@ const inputBody = '{
   "details": {
     "AER": 1.3,
     "APR": 13.1,
-    "sortCodeAccountNumber": "60161331926819",
-    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -2211,8 +2132,6 @@ Requires **accounts:read** and **account:write:all** scopes.
   "details": {
     "AER": 1.3,
     "APR": 13.1,
-    "sortCodeAccountNumber": "60161331926819",
-    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -8741,8 +8660,6 @@ Bearer
   "details": {
     "AER": 1.3,
     "APR": 13.1,
-    "sortCodeAccountNumber": "60161331926819",
-    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -8776,8 +8693,6 @@ Bearer
 |details|object|false|none|none|
 |» AER|number|false|none|For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.|
 |» APR|number|false|none|For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.|
-|» sortCodeAccountNumber|string|false|none|For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the `accounts_details:read` scope.|
-|» iban|string|false|none|For cash accounts. Populated with the full IBAN number. It requires the `accounts_details:read` scope.|
 |» creditLimit|integer|false|none|For credit cards. The agreed overdraft limit of the account in minor units of the currency.|
 |» endDate|string(date)|false|none|For Mortgages and loans. The date at which the loan/mortgage will finish.|
 |» fixedDate|string(date)|false|none|For Mortgages. The date at which the current fixed rate ends|
@@ -8825,8 +8740,6 @@ Bearer
   "details": {
     "AER": 1.3,
     "APR": 13.1,
-    "sortCodeAccountNumber": "60161331926819",
-    "iban": "GB2960161331926819",
     "creditLimit": 150000,
     "endDate": "2020-01-01",
     "fixedDate": "2019-01-01",
@@ -8854,8 +8767,6 @@ Bearer
 |details|object|false|none|none|
 |» AER|number|false|none|For cash and savings accounts. Interest rate expessed as a percentage 'Annual Equivalent Rate'.|
 |» APR|number|false|none|For credit cards, mortgages and loans. Interest rate expessed as a percentage 'Annual Percentage Rate'.|
-|» sortCodeAccountNumber|string|false|none|For cash accounts. Populated with the 6 digit Sort Code and 8 digit Account Number. It requires the `accounts_details:read` scope.|
-|» iban|string|false|none|For cash accounts. Populated with the full IBAN number. It requires the `accounts_details:read` scope.|
 |» creditLimit|integer|false|none|For credit cards. The agreed overdraft limit of the account in minor units of the currency.|
 |» endDate|string(date)|false|none|For Mortgages and loans. The date at which the loan/mortgage will finish.|
 |» fixedDate|string(date)|false|none|For Mortgages. The date at which the current fixed rate ends|
