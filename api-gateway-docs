@@ -218,7 +218,38 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
       </span><span class="s2">"providerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3201"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"performanceScore"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"openingBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"currentBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"contributions"</span><span class="p">:</span><span class="w"> </span><span class="mi">240098</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"withdrawals"</span><span class="p">:</span><span class="w"> </span><span class="mi">20067</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"nonContributionGrowth"</span><span class="p">:</span><span class="w"> </span><span class="mi">340054</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"growthRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.98</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"annualisedGrowthRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">60.98</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"months"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"openingBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nonContributionGrowth"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.67</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"aer"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.98</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -553,35 +584,189 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 <td>The type of account - this will determine the data available in the details field</td>
 </tr>
 <tr>
-<td>» links</td>
+<td>»» performanceScore</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>Performance score of investment and pension accounts. Once that an account has at least 3 balances the score will be provided. Please note that this is an experimental feature.</td>
+</tr>
+<tr>
+<td>»»» totals</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»» openingBalance</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» date</td>
+<td>string(date)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The opening balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» currentBalance</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» date</td>
+<td>string(date)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The current balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» contributions</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The contributions in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» withdrawals</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The withdrawals in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» nonContributionGrowth</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The non contribution growth in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» growthRate</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The growth rate expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»»» annualisedGrowthRate</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The annualised growth rate expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»» months</td>
+<td>[object]</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» date</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Date in the format YYYY-MM</td>
+</tr>
+<tr>
+<td>»»»»»» openingBalance</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The opening balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» nonContributionGrowth</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The non contribution growth expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»»» aer</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The aer expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»» links</td>
 <td><a href="#schemalinks">Links</a></td>
 <td>false</td>
 <td>none</td>
 <td>none</td>
 </tr>
 <tr>
-<td>»» next</td>
+<td>»»»»»» next</td>
 <td>string(uri)</td>
 <td>false</td>
 <td>none</td>
 <td>The url to retrieve the next page of results from</td>
 </tr>
 <tr>
-<td>»» prev</td>
+<td>»»»»»» prev</td>
 <td>string(uri)</td>
 <td>false</td>
 <td>none</td>
 <td>The url to retrieve the previous page of results from</td>
 </tr>
 <tr>
-<td>»» self</td>
+<td>»»»»»» self</td>
 <td>string(uri)</td>
 <td>true</td>
 <td>none</td>
 <td>The url of the current resource(s)</td>
 </tr>
 <tr>
-<td>» meta</td>
+<td>»»»»» meta</td>
 <td>object</td>
 <td>false</td>
 <td>none</td>
@@ -926,7 +1111,38 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
     </span><span class="s2">"providerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3201"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"performanceScore"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"openingBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"currentBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"contributions"</span><span class="p">:</span><span class="w"> </span><span class="mi">240098</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"withdrawals"</span><span class="p">:</span><span class="w"> </span><span class="mi">20067</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nonContributionGrowth"</span><span class="p">:</span><span class="w"> </span><span class="mi">340054</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"growthRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.98</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"annualisedGrowthRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">60.98</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"months"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"openingBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"nonContributionGrowth"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.67</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"aer"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.98</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="p">,</span><span class="w">
@@ -1266,35 +1482,189 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts <span class="se">\</span>
 <td>The type of account - this will determine the data available in the details field</td>
 </tr>
 <tr>
-<td>» links</td>
+<td>»» performanceScore</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>Performance score of investment and pension accounts. Once that an account has at least 3 balances the score will be provided. Please note that this is an experimental feature.</td>
+</tr>
+<tr>
+<td>»»» totals</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»» openingBalance</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» date</td>
+<td>string(date)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The opening balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» currentBalance</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» date</td>
+<td>string(date)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The current balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» contributions</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The contributions in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» withdrawals</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The withdrawals in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» nonContributionGrowth</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The non contribution growth in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» growthRate</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The growth rate expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»»» annualisedGrowthRate</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The annualised growth rate expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»» months</td>
+<td>[object]</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» date</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Date in the format YYYY-MM</td>
+</tr>
+<tr>
+<td>»»»»»» openingBalance</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The opening balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» nonContributionGrowth</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The non contribution growth expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»»» aer</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The aer expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»» links</td>
 <td><a href="#schemalinks">Links</a></td>
 <td>false</td>
 <td>none</td>
 <td>none</td>
 </tr>
 <tr>
-<td>»» next</td>
+<td>»»»»»» next</td>
 <td>string(uri)</td>
 <td>false</td>
 <td>none</td>
 <td>The url to retrieve the next page of results from</td>
 </tr>
 <tr>
-<td>»» prev</td>
+<td>»»»»»» prev</td>
 <td>string(uri)</td>
 <td>false</td>
 <td>none</td>
 <td>The url to retrieve the previous page of results from</td>
 </tr>
 <tr>
-<td>»» self</td>
+<td>»»»»»» self</td>
 <td>string(uri)</td>
 <td>true</td>
 <td>none</td>
 <td>The url of the current resource(s)</td>
 </tr>
 <tr>
-<td>» meta</td>
+<td>»»»»» meta</td>
 <td>object</td>
 <td>false</td>
 <td>none</td>
@@ -1571,7 +1941,38 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
     </span><span class="s2">"providerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3201"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"performanceScore"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"openingBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"currentBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"contributions"</span><span class="p">:</span><span class="w"> </span><span class="mi">240098</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"withdrawals"</span><span class="p">:</span><span class="w"> </span><span class="mi">20067</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nonContributionGrowth"</span><span class="p">:</span><span class="w"> </span><span class="mi">340054</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"growthRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.98</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"annualisedGrowthRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">60.98</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"months"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"openingBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"nonContributionGrowth"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.67</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"aer"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.98</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="p">,</span><span class="w">
@@ -1911,35 +2312,189 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>acc
 <td>The type of account - this will determine the data available in the details field</td>
 </tr>
 <tr>
-<td>» links</td>
+<td>»» performanceScore</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>Performance score of investment and pension accounts. Once that an account has at least 3 balances the score will be provided. Please note that this is an experimental feature.</td>
+</tr>
+<tr>
+<td>»»» totals</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»» openingBalance</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» date</td>
+<td>string(date)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The opening balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» currentBalance</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» date</td>
+<td>string(date)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The current balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» contributions</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The contributions in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» withdrawals</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The withdrawals in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» nonContributionGrowth</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The non contribution growth in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» growthRate</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The growth rate expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»»» annualisedGrowthRate</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The annualised growth rate expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»» months</td>
+<td>[object]</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» date</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Date in the format YYYY-MM</td>
+</tr>
+<tr>
+<td>»»»»»» openingBalance</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The opening balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» nonContributionGrowth</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The non contribution growth expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»»» aer</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The aer expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»» links</td>
 <td><a href="#schemalinks">Links</a></td>
 <td>false</td>
 <td>none</td>
 <td>none</td>
 </tr>
 <tr>
-<td>»» next</td>
+<td>»»»»»» next</td>
 <td>string(uri)</td>
 <td>false</td>
 <td>none</td>
 <td>The url to retrieve the next page of results from</td>
 </tr>
 <tr>
-<td>»» prev</td>
+<td>»»»»»» prev</td>
 <td>string(uri)</td>
 <td>false</td>
 <td>none</td>
 <td>The url to retrieve the previous page of results from</td>
 </tr>
 <tr>
-<td>»» self</td>
+<td>»»»»»» self</td>
 <td>string(uri)</td>
 <td>true</td>
 <td>none</td>
 <td>The url of the current resource(s)</td>
 </tr>
 <tr>
-<td>» meta</td>
+<td>»»»»» meta</td>
 <td>object</td>
 <td>false</td>
 <td>none</td>
@@ -2275,7 +2830,38 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
     </span><span class="s2">"providerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3201"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"performanceScore"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"openingBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"currentBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"contributions"</span><span class="p">:</span><span class="w"> </span><span class="mi">240098</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"withdrawals"</span><span class="p">:</span><span class="w"> </span><span class="mi">20067</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nonContributionGrowth"</span><span class="p">:</span><span class="w"> </span><span class="mi">340054</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"growthRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.98</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"annualisedGrowthRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">60.98</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"months"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"openingBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"nonContributionGrowth"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.67</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"aer"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.98</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="p">,</span><span class="w">
@@ -2615,35 +3201,189 @@ curl -X PATCH https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>a
 <td>The type of account - this will determine the data available in the details field</td>
 </tr>
 <tr>
-<td>» links</td>
+<td>»» performanceScore</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>Performance score of investment and pension accounts. Once that an account has at least 3 balances the score will be provided. Please note that this is an experimental feature.</td>
+</tr>
+<tr>
+<td>»»» totals</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»» openingBalance</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» date</td>
+<td>string(date)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The opening balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» currentBalance</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» date</td>
+<td>string(date)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The current balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» contributions</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The contributions in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» withdrawals</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The withdrawals in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» nonContributionGrowth</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The non contribution growth in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» growthRate</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The growth rate expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»»» annualisedGrowthRate</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The annualised growth rate expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»» months</td>
+<td>[object]</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»»» date</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Date in the format YYYY-MM</td>
+</tr>
+<tr>
+<td>»»»»»» openingBalance</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The opening balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»»» nonContributionGrowth</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The non contribution growth expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»»» aer</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The aer expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»»» links</td>
 <td><a href="#schemalinks">Links</a></td>
 <td>false</td>
 <td>none</td>
 <td>none</td>
 </tr>
 <tr>
-<td>»» next</td>
+<td>»»»»»» next</td>
 <td>string(uri)</td>
 <td>false</td>
 <td>none</td>
 <td>The url to retrieve the next page of results from</td>
 </tr>
 <tr>
-<td>»» prev</td>
+<td>»»»»»» prev</td>
 <td>string(uri)</td>
 <td>false</td>
 <td>none</td>
 <td>The url to retrieve the previous page of results from</td>
 </tr>
 <tr>
-<td>»» self</td>
+<td>»»»»»» self</td>
 <td>string(uri)</td>
 <td>true</td>
 <td>none</td>
 <td>The url of the current resource(s)</td>
 </tr>
 <tr>
-<td>» meta</td>
+<td>»»»»» meta</td>
 <td>object</td>
 <td>false</td>
 <td>none</td>
@@ -11752,7 +12492,38 @@ Bearer
   </span><span class="s2">"providerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"049c10ab871e8d60aa891c0ae368322d"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"accountReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3201"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash:current"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"performanceScore"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"openingBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"currentBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"contributions"</span><span class="p">:</span><span class="w"> </span><span class="mi">240098</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"withdrawals"</span><span class="p">:</span><span class="w"> </span><span class="mi">20067</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nonContributionGrowth"</span><span class="p">:</span><span class="w"> </span><span class="mi">340054</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"growthRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.98</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"annualisedGrowthRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">60.98</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"months"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"openingBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nonContributionGrowth"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.67</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"aer"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.98</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='properties-2'>Properties</h3>
@@ -12038,6 +12809,160 @@ Bearer
 <td>none</td>
 <td>The type of account - this will determine the data available in the details field</td>
 </tr>
+<tr>
+<td>performanceScore</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>Performance score of investment and pension accounts. Once that an account has at least 3 balances the score will be provided. Please note that this is an experimental feature.</td>
+</tr>
+<tr>
+<td>» totals</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» openingBalance</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»» date</td>
+<td>string(date)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The opening balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»» currentBalance</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»» date</td>
+<td>string(date)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The current balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»» contributions</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The contributions in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»» withdrawals</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The withdrawals in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»» nonContributionGrowth</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The non contribution growth in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»» growthRate</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The growth rate expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»» annualisedGrowthRate</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The annualised growth rate expressed in percentage</td>
+</tr>
+<tr>
+<td>»»» months</td>
+<td>[object]</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»» date</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Date in the format YYYY-MM</td>
+</tr>
+<tr>
+<td>»»»» openingBalance</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The opening balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»» nonContributionGrowth</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The non contribution growth expressed in percentage</td>
+</tr>
+<tr>
+<td>»»»» aer</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The aer expressed in percentage</td>
+</tr>
 </tbody></table>
 <h4 id='enumerated-values-18'>Enumerated Values</h4>
 <table><thead>
@@ -12294,6 +13219,202 @@ Bearer
 </tr>
 </tbody></table>
 
+<h2 id="tocSperformancescore">PerformanceScore</h2>
+
+<p><a id="schemaperformancescore"></a></p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"openingBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"currentBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-12"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"contributions"</span><span class="p">:</span><span class="w"> </span><span class="mi">240098</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"withdrawals"</span><span class="p">:</span><span class="w"> </span><span class="mi">20067</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nonContributionGrowth"</span><span class="p">:</span><span class="w"> </span><span class="mi">340054</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"growthRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.98</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"annualisedGrowthRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">60.98</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"months"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"openingBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">300023</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nonContributionGrowth"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.67</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"aer"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.98</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p><em>Performance score of investment and pension accounts. Once that an account has at least 3 balances the score will be provided. Please note that this is an experimental feature.</em></p>
+<h3 id='properties-4'>Properties</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totals</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» openingBalance</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» date</td>
+<td>string(date)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The opening balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» currentBalance</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»» date</td>
+<td>string(date)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»» amount</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»»» value</td>
+<td>integer</td>
+<td>true</td>
+<td>none</td>
+<td>The current balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»»» currency</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»» contributions</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The contributions in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»» withdrawals</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The withdrawals in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»» nonContributionGrowth</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The non contribution growth in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»» growthRate</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The growth rate expressed in percentage</td>
+</tr>
+<tr>
+<td>»»» annualisedGrowthRate</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The annualised growth rate expressed in percentage</td>
+</tr>
+<tr>
+<td>»» months</td>
+<td>[object]</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»» date</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Date in the format YYYY-MM</td>
+</tr>
+<tr>
+<td>»»» openingBalance</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>The opening balance in minor units of the currency, eg. pennies for GBP</td>
+</tr>
+<tr>
+<td>»»» nonContributionGrowth</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The non contribution growth expressed in percentage</td>
+</tr>
+<tr>
+<td>»»» aer</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>The aer expressed in percentage</td>
+</tr>
+</tbody></table>
+
 <h2 id="tocSbalance">Balance</h2>
 
 <p><a id="schemabalance"></a></p>
@@ -12305,7 +13426,7 @@ Bearer
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-4'>Properties</h3>
+</span></code></pre><h3 id='properties-5'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -12355,7 +13476,7 @@ Bearer
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-5'>Properties</h3>
+</span></code></pre><h3 id='properties-6'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -12421,7 +13542,7 @@ Bearer
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-6'>Properties</h3>
+</span></code></pre><h3 id='properties-7'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -12702,7 +13823,7 @@ Bearer
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-7'>Properties</h3>
+</span></code></pre><h3 id='properties-8'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -12891,7 +14012,7 @@ Bearer
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-8'>Properties</h3>
+</span></code></pre><h3 id='properties-9'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13036,7 +14157,7 @@ Bearer
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-9'>Properties</h3>
+</span></code></pre><h3 id='properties-10'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13153,7 +14274,7 @@ Bearer
   </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"British Gas"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-10'>Properties</h3>
+</span></code></pre><h3 id='properties-11'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13196,7 +14317,7 @@ Bearer
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-11'>Properties</h3>
+</span></code></pre><h3 id='properties-12'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13272,7 +14393,7 @@ Bearer
   </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group:2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-12'>Properties</h3>
+</span></code></pre><h3 id='properties-13'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13320,7 +14441,7 @@ Bearer
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bus travel"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-13'>Properties</h3>
+</span></code></pre><h3 id='properties-14'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13354,7 +14475,7 @@ Bearer
   </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bills"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-14'>Properties</h3>
+</span></code></pre><h3 id='properties-15'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13389,7 +14510,7 @@ Bearer
   </span><span class="s2">"lastDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-28"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-15'>Properties</h3>
+</span></code></pre><h3 id='properties-16'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13443,7 +14564,7 @@ Bearer
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-16'>Properties</h3>
+</span></code></pre><h3 id='properties-17'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13586,7 +14707,7 @@ Bearer
   </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-10T12:00:00+00:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-17'>Properties</h3>
+</span></code></pre><h3 id='properties-18'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13701,7 +14822,7 @@ Bearer
   </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-10T12:00:00+00:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-18'>Properties</h3>
+</span></code></pre><h3 id='properties-19'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13829,7 +14950,7 @@ Bearer
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 
-</span></code></pre><h3 id='properties-19'>Properties</h3>
+</span></code></pre><h3 id='properties-20'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13951,7 +15072,7 @@ Bearer
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-20'>Properties</h3>
+</span></code></pre><h3 id='properties-21'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14015,7 +15136,7 @@ Bearer
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-21'>Properties</h3>
+</span></code></pre><h3 id='properties-22'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14090,7 +15211,7 @@ Bearer
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-22'>Properties</h3>
+</span></code></pre><h3 id='properties-23'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14205,7 +15326,7 @@ Bearer
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-23'>Properties</h3>
+</span></code></pre><h3 id='properties-24'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14278,7 +15399,7 @@ Bearer
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-24'>Properties</h3>
+</span></code></pre><h3 id='properties-25'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14333,7 +15454,7 @@ Bearer
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-25'>Properties</h3>
+</span></code></pre><h3 id='properties-26'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14446,7 +15567,7 @@ Bearer
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-26'>Properties</h3>
+</span></code></pre><h3 id='properties-27'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14531,7 +15652,7 @@ Bearer
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-27'>Properties</h3>
+</span></code></pre><h3 id='properties-28'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14601,7 +15722,7 @@ Bearer
   </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-28'>Properties</h3>
+</span></code></pre><h3 id='properties-29'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14642,7 +15763,7 @@ Bearer
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='properties-29'>Properties</h3>
+</span></code></pre><h3 id='properties-30'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
