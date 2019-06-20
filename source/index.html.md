@@ -1264,7 +1264,38 @@ Requires **accounts:read** scope.
       "providerId": "049c10ab871e8d60aa891c0ae368322d",
       "accountReference": "3201",
       "accountType": "personal",
-      "type": "cash:current"
+      "type": "cash:current",
+      "performanceScore": {
+        "totals": {
+          "openingBalance": {
+            "date": "2018-08-12",
+            "amount": {
+              "value": 300023,
+              "currency": "GBP"
+            }
+          },
+          "currentBalance": {
+            "date": "2018-08-12",
+            "amount": {
+              "value": 300023,
+              "currency": "GBP"
+            }
+          },
+          "contributions": 240098,
+          "withdrawals": 20067,
+          "nonContributionGrowth": 340054,
+          "growthRate": 35.98,
+          "annualisedGrowthRate": 60.98
+        },
+        "months": [
+          {
+            "date": "2018-08",
+            "openingBalance": 300023,
+            "nonContributionGrowth": 15.67,
+            "aer": 35.98
+          }
+        ]
+      }
     }
   ],
   "links": {
@@ -1330,11 +1361,33 @@ Status Code **200**
 |»» accountReference|string|false|none|A reference number for the account - typically the last 4 digits of the account number|
 |»» accountType|string|false|none|The type of account (personal/business)|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
-|» links|[Links](#schemalinks)|false|none|none|
-|»» next|string(uri)|false|none|The url to retrieve the next page of results from|
-|»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
-|»» self|string(uri)|true|none|The url of the current resource(s)|
-|» meta|object|false|none|none|
+|»» performanceScore|object|false|none|Performance score of investment and pension accounts. Once that an account has at least 3 balances the score will be provided. Please note that this is an experimental feature.|
+|»»» totals|object|true|none|none|
+|»»»» openingBalance|object|false|none|none|
+|»»»»» date|string(date)|false|none|none|
+|»»»»» amount|object|false|none|none|
+|»»»»»» value|integer|true|none|The opening balance in minor units of the currency, eg. pennies for GBP|
+|»»»»»» currency|string|true|none|none|
+|»»»»» currentBalance|object|false|none|none|
+|»»»»»» date|string(date)|false|none|none|
+|»»»»»» amount|object|false|none|none|
+|»»»»»»» value|integer|true|none|The current balance in minor units of the currency, eg. pennies for GBP|
+|»»»»»»» currency|string|true|none|none|
+|»»»»»» contributions|integer|false|none|The contributions in minor units of the currency, eg. pennies for GBP|
+|»»»»»» withdrawals|integer|false|none|The withdrawals in minor units of the currency, eg. pennies for GBP|
+|»»»»»» nonContributionGrowth|integer|false|none|The non contribution growth in minor units of the currency, eg. pennies for GBP|
+|»»»»»» growthRate|number|false|none|The growth rate expressed in percentage|
+|»»»»»» annualisedGrowthRate|number|false|none|The annualised growth rate expressed in percentage|
+|»»»»» months|[object]|true|none|none|
+|»»»»»» date|string|false|none|Date in the format YYYY-MM|
+|»»»»»» openingBalance|integer|false|none|The opening balance in minor units of the currency, eg. pennies for GBP|
+|»»»»»» nonContributionGrowth|number|false|none|The non contribution growth expressed in percentage|
+|»»»»»» aer|number|false|none|The aer expressed in percentage|
+|»»»»» links|[Links](#schemalinks)|false|none|none|
+|»»»»»» next|string(uri)|false|none|The url to retrieve the next page of results from|
+|»»»»»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
+|»»»»»» self|string(uri)|true|none|The url of the current resource(s)|
+|»»»»» meta|object|false|none|none|
 
 #### Enumerated Values
 
@@ -1630,7 +1683,38 @@ Requires **accounts:read** and **accounts:write:all** scopes.
     "providerId": "049c10ab871e8d60aa891c0ae368322d",
     "accountReference": "3201",
     "accountType": "personal",
-    "type": "cash:current"
+    "type": "cash:current",
+    "performanceScore": {
+      "totals": {
+        "openingBalance": {
+          "date": "2018-08-12",
+          "amount": {
+            "value": 300023,
+            "currency": "GBP"
+          }
+        },
+        "currentBalance": {
+          "date": "2018-08-12",
+          "amount": {
+            "value": 300023,
+            "currency": "GBP"
+          }
+        },
+        "contributions": 240098,
+        "withdrawals": 20067,
+        "nonContributionGrowth": 340054,
+        "growthRate": 35.98,
+        "annualisedGrowthRate": 60.98
+      },
+      "months": [
+        {
+          "date": "2018-08",
+          "openingBalance": 300023,
+          "nonContributionGrowth": 15.67,
+          "aer": 35.98
+        }
+      ]
+    }
   },
   "links": {
     "next": "http://example.com",
@@ -1696,11 +1780,33 @@ Status Code **200**
 |»» accountReference|string|false|none|A reference number for the account - typically the last 4 digits of the account number|
 |»» accountType|string|false|none|The type of account (personal/business)|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
-|» links|[Links](#schemalinks)|false|none|none|
-|»» next|string(uri)|false|none|The url to retrieve the next page of results from|
-|»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
-|»» self|string(uri)|true|none|The url of the current resource(s)|
-|» meta|object|false|none|none|
+|»» performanceScore|object|false|none|Performance score of investment and pension accounts. Once that an account has at least 3 balances the score will be provided. Please note that this is an experimental feature.|
+|»»» totals|object|true|none|none|
+|»»»» openingBalance|object|false|none|none|
+|»»»»» date|string(date)|false|none|none|
+|»»»»» amount|object|false|none|none|
+|»»»»»» value|integer|true|none|The opening balance in minor units of the currency, eg. pennies for GBP|
+|»»»»»» currency|string|true|none|none|
+|»»»»» currentBalance|object|false|none|none|
+|»»»»»» date|string(date)|false|none|none|
+|»»»»»» amount|object|false|none|none|
+|»»»»»»» value|integer|true|none|The current balance in minor units of the currency, eg. pennies for GBP|
+|»»»»»»» currency|string|true|none|none|
+|»»»»»» contributions|integer|false|none|The contributions in minor units of the currency, eg. pennies for GBP|
+|»»»»»» withdrawals|integer|false|none|The withdrawals in minor units of the currency, eg. pennies for GBP|
+|»»»»»» nonContributionGrowth|integer|false|none|The non contribution growth in minor units of the currency, eg. pennies for GBP|
+|»»»»»» growthRate|number|false|none|The growth rate expressed in percentage|
+|»»»»»» annualisedGrowthRate|number|false|none|The annualised growth rate expressed in percentage|
+|»»»»» months|[object]|true|none|none|
+|»»»»»» date|string|false|none|Date in the format YYYY-MM|
+|»»»»»» openingBalance|integer|false|none|The opening balance in minor units of the currency, eg. pennies for GBP|
+|»»»»»» nonContributionGrowth|number|false|none|The non contribution growth expressed in percentage|
+|»»»»»» aer|number|false|none|The aer expressed in percentage|
+|»»»»» links|[Links](#schemalinks)|false|none|none|
+|»»»»»» next|string(uri)|false|none|The url to retrieve the next page of results from|
+|»»»»»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
+|»»»»»» self|string(uri)|true|none|The url of the current resource(s)|
+|»»»»» meta|object|false|none|none|
 
 #### Enumerated Values
 
@@ -1927,7 +2033,38 @@ Requires **accounts:read** scope.
     "providerId": "049c10ab871e8d60aa891c0ae368322d",
     "accountReference": "3201",
     "accountType": "personal",
-    "type": "cash:current"
+    "type": "cash:current",
+    "performanceScore": {
+      "totals": {
+        "openingBalance": {
+          "date": "2018-08-12",
+          "amount": {
+            "value": 300023,
+            "currency": "GBP"
+          }
+        },
+        "currentBalance": {
+          "date": "2018-08-12",
+          "amount": {
+            "value": 300023,
+            "currency": "GBP"
+          }
+        },
+        "contributions": 240098,
+        "withdrawals": 20067,
+        "nonContributionGrowth": 340054,
+        "growthRate": 35.98,
+        "annualisedGrowthRate": 60.98
+      },
+      "months": [
+        {
+          "date": "2018-08",
+          "openingBalance": 300023,
+          "nonContributionGrowth": 15.67,
+          "aer": 35.98
+        }
+      ]
+    }
   },
   "links": {
     "next": "http://example.com",
@@ -1993,11 +2130,33 @@ Status Code **200**
 |»» accountReference|string|false|none|A reference number for the account - typically the last 4 digits of the account number|
 |»» accountType|string|false|none|The type of account (personal/business)|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
-|» links|[Links](#schemalinks)|false|none|none|
-|»» next|string(uri)|false|none|The url to retrieve the next page of results from|
-|»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
-|»» self|string(uri)|true|none|The url of the current resource(s)|
-|» meta|object|false|none|none|
+|»» performanceScore|object|false|none|Performance score of investment and pension accounts. Once that an account has at least 3 balances the score will be provided. Please note that this is an experimental feature.|
+|»»» totals|object|true|none|none|
+|»»»» openingBalance|object|false|none|none|
+|»»»»» date|string(date)|false|none|none|
+|»»»»» amount|object|false|none|none|
+|»»»»»» value|integer|true|none|The opening balance in minor units of the currency, eg. pennies for GBP|
+|»»»»»» currency|string|true|none|none|
+|»»»»» currentBalance|object|false|none|none|
+|»»»»»» date|string(date)|false|none|none|
+|»»»»»» amount|object|false|none|none|
+|»»»»»»» value|integer|true|none|The current balance in minor units of the currency, eg. pennies for GBP|
+|»»»»»»» currency|string|true|none|none|
+|»»»»»» contributions|integer|false|none|The contributions in minor units of the currency, eg. pennies for GBP|
+|»»»»»» withdrawals|integer|false|none|The withdrawals in minor units of the currency, eg. pennies for GBP|
+|»»»»»» nonContributionGrowth|integer|false|none|The non contribution growth in minor units of the currency, eg. pennies for GBP|
+|»»»»»» growthRate|number|false|none|The growth rate expressed in percentage|
+|»»»»»» annualisedGrowthRate|number|false|none|The annualised growth rate expressed in percentage|
+|»»»»» months|[object]|true|none|none|
+|»»»»»» date|string|false|none|Date in the format YYYY-MM|
+|»»»»»» openingBalance|integer|false|none|The opening balance in minor units of the currency, eg. pennies for GBP|
+|»»»»»» nonContributionGrowth|number|false|none|The non contribution growth expressed in percentage|
+|»»»»»» aer|number|false|none|The aer expressed in percentage|
+|»»»»» links|[Links](#schemalinks)|false|none|none|
+|»»»»»» next|string(uri)|false|none|The url to retrieve the next page of results from|
+|»»»»»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
+|»»»»»» self|string(uri)|true|none|The url of the current resource(s)|
+|»»»»» meta|object|false|none|none|
 
 #### Enumerated Values
 
@@ -2278,7 +2437,38 @@ Requires **accounts:read** and **account:write:all** scopes.
     "providerId": "049c10ab871e8d60aa891c0ae368322d",
     "accountReference": "3201",
     "accountType": "personal",
-    "type": "cash:current"
+    "type": "cash:current",
+    "performanceScore": {
+      "totals": {
+        "openingBalance": {
+          "date": "2018-08-12",
+          "amount": {
+            "value": 300023,
+            "currency": "GBP"
+          }
+        },
+        "currentBalance": {
+          "date": "2018-08-12",
+          "amount": {
+            "value": 300023,
+            "currency": "GBP"
+          }
+        },
+        "contributions": 240098,
+        "withdrawals": 20067,
+        "nonContributionGrowth": 340054,
+        "growthRate": 35.98,
+        "annualisedGrowthRate": 60.98
+      },
+      "months": [
+        {
+          "date": "2018-08",
+          "openingBalance": 300023,
+          "nonContributionGrowth": 15.67,
+          "aer": 35.98
+        }
+      ]
+    }
   },
   "links": {
     "next": "http://example.com",
@@ -2344,11 +2534,33 @@ Status Code **200**
 |»» accountReference|string|false|none|A reference number for the account - typically the last 4 digits of the account number|
 |»» accountType|string|false|none|The type of account (personal/business)|
 |»» type|string|true|none|The type of account - this will determine the data available in the details field|
-|» links|[Links](#schemalinks)|false|none|none|
-|»» next|string(uri)|false|none|The url to retrieve the next page of results from|
-|»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
-|»» self|string(uri)|true|none|The url of the current resource(s)|
-|» meta|object|false|none|none|
+|»» performanceScore|object|false|none|Performance score of investment and pension accounts. Once that an account has at least 3 balances the score will be provided. Please note that this is an experimental feature.|
+|»»» totals|object|true|none|none|
+|»»»» openingBalance|object|false|none|none|
+|»»»»» date|string(date)|false|none|none|
+|»»»»» amount|object|false|none|none|
+|»»»»»» value|integer|true|none|The opening balance in minor units of the currency, eg. pennies for GBP|
+|»»»»»» currency|string|true|none|none|
+|»»»»» currentBalance|object|false|none|none|
+|»»»»»» date|string(date)|false|none|none|
+|»»»»»» amount|object|false|none|none|
+|»»»»»»» value|integer|true|none|The current balance in minor units of the currency, eg. pennies for GBP|
+|»»»»»»» currency|string|true|none|none|
+|»»»»»» contributions|integer|false|none|The contributions in minor units of the currency, eg. pennies for GBP|
+|»»»»»» withdrawals|integer|false|none|The withdrawals in minor units of the currency, eg. pennies for GBP|
+|»»»»»» nonContributionGrowth|integer|false|none|The non contribution growth in minor units of the currency, eg. pennies for GBP|
+|»»»»»» growthRate|number|false|none|The growth rate expressed in percentage|
+|»»»»»» annualisedGrowthRate|number|false|none|The annualised growth rate expressed in percentage|
+|»»»»» months|[object]|true|none|none|
+|»»»»»» date|string|false|none|Date in the format YYYY-MM|
+|»»»»»» openingBalance|integer|false|none|The opening balance in minor units of the currency, eg. pennies for GBP|
+|»»»»»» nonContributionGrowth|number|false|none|The non contribution growth expressed in percentage|
+|»»»»»» aer|number|false|none|The aer expressed in percentage|
+|»»»»» links|[Links](#schemalinks)|false|none|none|
+|»»»»»» next|string(uri)|false|none|The url to retrieve the next page of results from|
+|»»»»»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
+|»»»»»» self|string(uri)|true|none|The url of the current resource(s)|
+|»»»»» meta|object|false|none|none|
 
 #### Enumerated Values
 
@@ -8539,7 +8751,38 @@ Bearer
   "providerId": "049c10ab871e8d60aa891c0ae368322d",
   "accountReference": "3201",
   "accountType": "personal",
-  "type": "cash:current"
+  "type": "cash:current",
+  "performanceScore": {
+    "totals": {
+      "openingBalance": {
+        "date": "2018-08-12",
+        "amount": {
+          "value": 300023,
+          "currency": "GBP"
+        }
+      },
+      "currentBalance": {
+        "date": "2018-08-12",
+        "amount": {
+          "value": 300023,
+          "currency": "GBP"
+        }
+      },
+      "contributions": 240098,
+      "withdrawals": 20067,
+      "nonContributionGrowth": 340054,
+      "growthRate": 35.98,
+      "annualisedGrowthRate": 60.98
+    },
+    "months": [
+      {
+        "date": "2018-08",
+        "openingBalance": 300023,
+        "nonContributionGrowth": 15.67,
+        "aer": 35.98
+      }
+    ]
+  }
 }
 
 ```
@@ -8587,6 +8830,28 @@ Bearer
 |accountReference|string|false|none|A reference number for the account - typically the last 4 digits of the account number|
 |accountType|string|false|none|The type of account (personal/business)|
 |type|string|true|none|The type of account - this will determine the data available in the details field|
+|performanceScore|object|false|none|Performance score of investment and pension accounts. Once that an account has at least 3 balances the score will be provided. Please note that this is an experimental feature.|
+|» totals|object|true|none|none|
+|»» openingBalance|object|false|none|none|
+|»»» date|string(date)|false|none|none|
+|»»» amount|object|false|none|none|
+|»»»» value|integer|true|none|The opening balance in minor units of the currency, eg. pennies for GBP|
+|»»»» currency|string|true|none|none|
+|»»» currentBalance|object|false|none|none|
+|»»»» date|string(date)|false|none|none|
+|»»»» amount|object|false|none|none|
+|»»»»» value|integer|true|none|The current balance in minor units of the currency, eg. pennies for GBP|
+|»»»»» currency|string|true|none|none|
+|»»»» contributions|integer|false|none|The contributions in minor units of the currency, eg. pennies for GBP|
+|»»»» withdrawals|integer|false|none|The withdrawals in minor units of the currency, eg. pennies for GBP|
+|»»»» nonContributionGrowth|integer|false|none|The non contribution growth in minor units of the currency, eg. pennies for GBP|
+|»»»» growthRate|number|false|none|The growth rate expressed in percentage|
+|»»»» annualisedGrowthRate|number|false|none|The annualised growth rate expressed in percentage|
+|»»» months|[object]|true|none|none|
+|»»»» date|string|false|none|Date in the format YYYY-MM|
+|»»»» openingBalance|integer|false|none|The opening balance in minor units of the currency, eg. pennies for GBP|
+|»»»» nonContributionGrowth|number|false|none|The non contribution growth expressed in percentage|
+|»»»» aer|number|false|none|The aer expressed in percentage|
 
 #### Enumerated Values
 
@@ -8667,6 +8932,73 @@ Bearer
 |interestType|variable|
 |runningCostPeriod|month|
 |runningCostPeriod|year|
+
+<h2 id="tocSperformancescore">PerformanceScore</h2>
+
+<a id="schemaperformancescore"></a>
+
+```json
+{
+  "totals": {
+    "openingBalance": {
+      "date": "2018-08-12",
+      "amount": {
+        "value": 300023,
+        "currency": "GBP"
+      }
+    },
+    "currentBalance": {
+      "date": "2018-08-12",
+      "amount": {
+        "value": 300023,
+        "currency": "GBP"
+      }
+    },
+    "contributions": 240098,
+    "withdrawals": 20067,
+    "nonContributionGrowth": 340054,
+    "growthRate": 35.98,
+    "annualisedGrowthRate": 60.98
+  },
+  "months": [
+    {
+      "date": "2018-08",
+      "openingBalance": 300023,
+      "nonContributionGrowth": 15.67,
+      "aer": 35.98
+    }
+  ]
+}
+
+```
+
+*Performance score of investment and pension accounts. Once that an account has at least 3 balances the score will be provided. Please note that this is an experimental feature.*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|totals|object|true|none|none|
+|» openingBalance|object|false|none|none|
+|»» date|string(date)|false|none|none|
+|»» amount|object|false|none|none|
+|»»» value|integer|true|none|The opening balance in minor units of the currency, eg. pennies for GBP|
+|»»» currency|string|true|none|none|
+|»» currentBalance|object|false|none|none|
+|»»» date|string(date)|false|none|none|
+|»»» amount|object|false|none|none|
+|»»»» value|integer|true|none|The current balance in minor units of the currency, eg. pennies for GBP|
+|»»»» currency|string|true|none|none|
+|»»» contributions|integer|false|none|The contributions in minor units of the currency, eg. pennies for GBP|
+|»»» withdrawals|integer|false|none|The withdrawals in minor units of the currency, eg. pennies for GBP|
+|»»» nonContributionGrowth|integer|false|none|The non contribution growth in minor units of the currency, eg. pennies for GBP|
+|»»» growthRate|number|false|none|The growth rate expressed in percentage|
+|»»» annualisedGrowthRate|number|false|none|The annualised growth rate expressed in percentage|
+|»» months|[object]|true|none|none|
+|»»» date|string|false|none|Date in the format YYYY-MM|
+|»»» openingBalance|integer|false|none|The opening balance in minor units of the currency, eg. pennies for GBP|
+|»»» nonContributionGrowth|number|false|none|The non contribution growth expressed in percentage|
+|»»» aer|number|false|none|The aer expressed in percentage|
 
 <h2 id="tocSbalance">Balance</h2>
 
