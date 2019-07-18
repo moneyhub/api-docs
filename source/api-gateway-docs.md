@@ -244,7 +244,7 @@ Requires **accounts:read** scope.
           {
             "date": "2018-08",
             "openingBalance": 300023,
-            "nonContributionGrowth": 15.67,
+            "nonContributionGrowth": 1567,
             "aer": 35.98
           }
         ]
@@ -334,7 +334,7 @@ Status Code **200**
 |»»»»» months|[object]|true|none|none|
 |»»»»»» date|string|false|none|Date in the format YYYY-MM|
 |»»»»»» openingBalance|integer|false|none|The opening balance in minor units of the currency, eg. pennies for GBP|
-|»»»»»» nonContributionGrowth|number|false|none|The non contribution growth expressed in percentage|
+|»»»»»» nonContributionGrowth|number|false|none|The non contribution growth in minor units of the currency, eg. pennies for GBP|
 |»»»»»» aer|number|false|none|The aer expressed in percentage|
 |»»»»» links|[Links](#schemalinks)|false|none|none|
 |»»»»»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -663,7 +663,7 @@ Requires **accounts:read** and **accounts:write:all** scopes.
         {
           "date": "2018-08",
           "openingBalance": 300023,
-          "nonContributionGrowth": 15.67,
+          "nonContributionGrowth": 1567,
           "aer": 35.98
         }
       ]
@@ -753,7 +753,7 @@ Status Code **200**
 |»»»»» months|[object]|true|none|none|
 |»»»»»» date|string|false|none|Date in the format YYYY-MM|
 |»»»»»» openingBalance|integer|false|none|The opening balance in minor units of the currency, eg. pennies for GBP|
-|»»»»»» nonContributionGrowth|number|false|none|The non contribution growth expressed in percentage|
+|»»»»»» nonContributionGrowth|number|false|none|The non contribution growth in minor units of the currency, eg. pennies for GBP|
 |»»»»»» aer|number|false|none|The aer expressed in percentage|
 |»»»»» links|[Links](#schemalinks)|false|none|none|
 |»»»»»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -1013,7 +1013,7 @@ Requires **accounts:read** scope.
         {
           "date": "2018-08",
           "openingBalance": 300023,
-          "nonContributionGrowth": 15.67,
+          "nonContributionGrowth": 1567,
           "aer": 35.98
         }
       ]
@@ -1103,7 +1103,7 @@ Status Code **200**
 |»»»»» months|[object]|true|none|none|
 |»»»»»» date|string|false|none|Date in the format YYYY-MM|
 |»»»»»» openingBalance|integer|false|none|The opening balance in minor units of the currency, eg. pennies for GBP|
-|»»»»»» nonContributionGrowth|number|false|none|The non contribution growth expressed in percentage|
+|»»»»»» nonContributionGrowth|number|false|none|The non contribution growth in minor units of the currency, eg. pennies for GBP|
 |»»»»»» aer|number|false|none|The aer expressed in percentage|
 |»»»»» links|[Links](#schemalinks)|false|none|none|
 |»»»»»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -1417,7 +1417,7 @@ Requires **accounts:read** and **account:write:all** scopes.
         {
           "date": "2018-08",
           "openingBalance": 300023,
-          "nonContributionGrowth": 15.67,
+          "nonContributionGrowth": 1567,
           "aer": 35.98
         }
       ]
@@ -1507,7 +1507,7 @@ Status Code **200**
 |»»»»» months|[object]|true|none|none|
 |»»»»»» date|string|false|none|Date in the format YYYY-MM|
 |»»»»»» openingBalance|integer|false|none|The opening balance in minor units of the currency, eg. pennies for GBP|
-|»»»»»» nonContributionGrowth|number|false|none|The non contribution growth expressed in percentage|
+|»»»»»» nonContributionGrowth|number|false|none|The non contribution growth in minor units of the currency, eg. pennies for GBP|
 |»»»»»» aer|number|false|none|The aer expressed in percentage|
 |»»»»» links|[Links](#schemalinks)|false|none|none|
 |»»»»»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -7731,7 +7731,7 @@ Bearer
       {
         "date": "2018-08",
         "openingBalance": 300023,
-        "nonContributionGrowth": 15.67,
+        "nonContributionGrowth": 1567,
         "aer": 35.98
       }
     ]
@@ -7803,7 +7803,7 @@ Bearer
 |»»» months|[object]|true|none|none|
 |»»»» date|string|false|none|Date in the format YYYY-MM|
 |»»»» openingBalance|integer|false|none|The opening balance in minor units of the currency, eg. pennies for GBP|
-|»»»» nonContributionGrowth|number|false|none|The non contribution growth expressed in percentage|
+|»»»» nonContributionGrowth|number|false|none|The non contribution growth in minor units of the currency, eg. pennies for GBP|
 |»»»» aer|number|false|none|The aer expressed in percentage|
 
 #### Enumerated Values
@@ -7917,7 +7917,7 @@ Bearer
     {
       "date": "2018-08",
       "openingBalance": 300023,
-      "nonContributionGrowth": 15.67,
+      "nonContributionGrowth": 1567,
       "aer": 35.98
     }
   ]
@@ -7950,7 +7950,7 @@ Bearer
 |»» months|[object]|true|none|none|
 |»»» date|string|false|none|Date in the format YYYY-MM|
 |»»» openingBalance|integer|false|none|The opening balance in minor units of the currency, eg. pennies for GBP|
-|»»» nonContributionGrowth|number|false|none|The non contribution growth expressed in percentage|
+|»»» nonContributionGrowth|number|false|none|The non contribution growth in minor units of the currency, eg. pennies for GBP|
 |»»» aer|number|false|none|The aer expressed in percentage|
 
 <h2 id="tocSbalance">Balance</h2>

@@ -169,8 +169,11 @@ This settings will require the following changes in the auth flow if the authent
 
 1. Allowing an `implicit` grant type in the settings requires:
    - A nonce to be added to the request object when generating an authorization url ([OpenId Nonce](https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes))
-   - The same nonce to be used when exchanging the code for the token set
-2. Having a response type of `code id_token` will send a code and id_token value to your registered callback. The code, id_token, nonce and state values need to be used to exchange them for a token set at the end of the authorization process.
+   - The same nonce value needs to be used when exchanging the authorization code for the token set at the end of the authorization process.
+2. Having a response type of `code id_token` will cause the following changes:
+
+- You will receive the code and id token encoded in the fragment part of your registered callback instead of receiving it as query params. This is a security enhancement as this way it reduces the likelihood of the id token to be leaked during transport.
+- The id_token will need to be used when exchanging the authorization code for the token set at the end of the authorization process.
 
 ## JWKS Key Set
 
