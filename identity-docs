@@ -172,10 +172,15 @@ We will then generate a <code>client_id</code> and <code>client_secret</code> co
 
 <ul>
 <li>A nonce to be added to the request object when generating an authorization url (<a href="https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes">OpenId Nonce</a>)</li>
-<li>The same nonce to be used when exchanging the code for the token set</li>
+<li>The same nonce value needs to be used when exchanging the authorization code for the token set at the end of the authorization process.</li>
 </ul></li>
-<li>Having a response type of <code>code id_token</code> will send a code and id_token value to your registered callback. The code, id_token, nonce and state values need to be used to exchange them for a token set at the end of the authorization process.</li>
+<li>Having a response type of <code>code id_token</code> will cause the following changes:</li>
 </ol>
+
+<ul>
+<li>You will receive the code and id token encoded in the fragment part of your registered callback instead of receiving it as query params. This is a security enhancement as this way it reduces the likelihood of the id token to be leaked during transport.</li>
+<li>The id_token will need to be used when exchanging the authorization code for the token set at the end of the authorization process.</li>
+</ul>
 <h2 id='jwks-key-set'>JWKS Key Set</h2>
 <blockquote>
 <p>Example creating JWKS key set using the Moneyhub api client</p>
