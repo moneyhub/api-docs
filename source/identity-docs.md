@@ -731,15 +731,19 @@ curl --request POST \
 
 ```json
 {
-  "id": "e07f8dca-1a79-440a-8667-8cd02a000559",
-  "clientId": "c40d7f7a-a698-4bf1-84bf-8f3798c018b2",
-  "sortCode": "123456",
-  "accountNumber": "12345678",
-  "createdAt": "2019-05-23T07:48:53.916Z",
-  "modifiedAt": "2019-05-23T07:48:53.916Z",
-  "active": true,
-  "name": "Account name"
+  "data": {
+    "id": "e07f8dca-1a79-440a-8667-8cd02a000559",
+    "clientId": "c40d7f7a-a698-4bf1-84bf-8f3798c018b2",
+    "sortCode": "123456",
+    "accountNumber": "12345678",
+    "createdAt": "2019-05-23T07:48:53.916Z",
+    "modifiedAt": "2019-05-23T07:48:53.916Z",
+    "active": true,
+    "name": "Account name"
+  },
+  "meta": {}
 }
+
 ```
 
 This route requires an access token from the client credentials grant with the scope of `payee:create`.
@@ -768,18 +772,22 @@ curl --request GET \
 > Example response
 
 ```json
-[
-  {
-    "id": "e07f8dca-1a79-440a-8667-8cd02a000559",
-    "clientId": "c40d7f7a-a698-4bf1-84bf-8f3798c018b2",
-    "sortCode": "123456",
-    "accountNumber": "12345678",
-    "createdAt": "2019-05-23T07:48:53.916Z",
-    "modifiedAt": "2019-05-23T07:48:53.916Z",
-    "active": true,
-    "name": "Account name"
-  }
-]
+{
+  "data": [
+    {
+      "id": "e07f8dca-1a79-440a-8667-8cd02a000559",
+      "clientId": "c40d7f7a-a698-4bf1-84bf-8f3798c018b2",
+      "sortCode": "123456",
+      "accountNumber": "12345678",
+      "createdAt": "2019-05-23T07:48:53.916Z",
+      "modifiedAt": "2019-05-23T07:48:53.916Z",
+      "active": true,
+      "name": "Account name"
+    }
+  ],
+  "meta": {}
+}
+
 ```
 
 This route requires an access token from the client credentials grant with the scope of `payee:read`.

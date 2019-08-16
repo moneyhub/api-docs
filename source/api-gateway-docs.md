@@ -2744,6 +2744,14 @@ Requires **accounts:read** and **transactions:read:all** scope.
         "value": -300023,
         "currency": "GBP"
       },
+      "amountRange": {
+        "value": 5000,
+        "currency": "GBP"
+      },
+      "monthlyAmount": {
+        "value": 5000,
+        "currency": "GBP"
+      },
       "predictionSource": "moneyhub",
       "dates": [
         "2019-03-07",
@@ -2781,6 +2789,12 @@ Status Code **200**
 |»» amount|object|false|none|none|
 |»»» value|integer|true|none|The average prected amount of the recurring transaction in minor units of the currency, eg. pennies for GBP.|
 |»»» currency|string|true|none|The currency of the predicted amount taken from the account|
+|»» amountRange|object|false|none|none|
+|»»» value|integer|true|none|The prected range of the recurring transaction in minor units of the currency, eg. pennies for GBP.|
+|»»» currency|string|true|none|The currency of the predicted range taken from the account|
+|»» monthlyAmount|object|false|none|none|
+|»»» value|integer|true|none|The prected monthly amount for this counterparty, regardless of how many transactions in minor units of the currency, eg. pennies for GBP.|
+|»»» currency|string|true|none|The currency of the monthly amount taken from the account|
 |»» predictionSource|string|false|none|The source of the prediction|
 |»» dates|[string]|false|none|none|
 |» links|[Links](#schemalinks)|false|none|none|
@@ -8285,6 +8299,14 @@ Bearer
     "value": -300023,
     "currency": "GBP"
   },
+  "amountRange": {
+    "value": 5000,
+    "currency": "GBP"
+  },
+  "monthlyAmount": {
+    "value": 5000,
+    "currency": "GBP"
+  },
   "predictionSource": "moneyhub",
   "dates": [
     "2019-03-07",
@@ -8303,6 +8325,12 @@ Bearer
 |amount|object|false|none|none|
 |» value|integer|true|none|The average prected amount of the recurring transaction in minor units of the currency, eg. pennies for GBP.|
 |» currency|string|true|none|The currency of the predicted amount taken from the account|
+|amountRange|object|false|none|none|
+|» value|integer|true|none|The prected range of the recurring transaction in minor units of the currency, eg. pennies for GBP.|
+|» currency|string|true|none|The currency of the predicted range taken from the account|
+|monthlyAmount|object|false|none|none|
+|» value|integer|true|none|The prected monthly amount for this counterparty, regardless of how many transactions in minor units of the currency, eg. pennies for GBP.|
+|» currency|string|true|none|The currency of the monthly amount taken from the account|
 |predictionSource|string|false|none|The source of the prediction|
 |dates|[string]|false|none|none|
 
