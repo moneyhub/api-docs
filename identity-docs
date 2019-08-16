@@ -712,15 +712,19 @@ It deletes a user and all of its financial connections that were created.</p>
 <p>Example response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e07f8dca-1a79-440a-8667-8cd02a000559"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c40d7f7a-a698-4bf1-84bf-8f3798c018b2"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T07:48:53.916Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T07:48:53.916Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e07f8dca-1a79-440a-8667-8cd02a000559"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c40d7f7a-a698-4bf1-84bf-8f3798c018b2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T07:48:53.916Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T07:48:53.916Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre>
 <p>This route requires an access token from the client credentials grant with the scope of <code>payee:create</code>.</p>
 
@@ -744,18 +748,22 @@ It deletes a user and all of its financial connections that were created.</p>
 <blockquote>
 <p>Example response</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e07f8dca-1a79-440a-8667-8cd02a000559"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c40d7f7a-a698-4bf1-84bf-8f3798c018b2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T07:48:53.916Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T07:48:53.916Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e07f8dca-1a79-440a-8667-8cd02a000559"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c40d7f7a-a698-4bf1-84bf-8f3798c018b2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T07:48:53.916Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T07:48:53.916Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 </span></code></pre>
 <p>This route requires an access token from the client credentials grant with the scope of <code>payee:read</code>.</p>
 
