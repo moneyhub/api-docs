@@ -6,9 +6,9 @@ The docs use Slate under the hood. You might want to learn more about editing [S
 
 You're going to need:
 
- - **Linux or macOS** — Windows may work, but is unsupported.
- - **Ruby, version 2.3.1 or newer**
- - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
+- **Linux or macOS** — Windows may work, but is unsupported.
+- **Ruby, version 2.3.1 or newer** - `RVM` is a good option to install ruby for Mac and Linux
+- **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
 
 ### Getting Set Up
 
