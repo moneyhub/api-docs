@@ -459,7 +459,7 @@ The only scope that can (and must) be supplied along with either `reauth` or `re
 
 # Claims
 
-> To add a new account for a registered user via either openbanking or
+> To add a new connection for a registered user via either openbanking or
 > screen scraping the following parameters would be sent in the request object:
 
 ```json
@@ -518,6 +518,7 @@ Moneyhub uses the OpenID Connect [claims parameter](http://openid.net/specs/open
 
 1. Specifying the connection that should be re-authorised or refreshed
 2. Specifying the user profile that an account should be added to
+3. Overriding the category type to categorise transactions for all accounts from this connection
 
 The format of the claims parameter may seem odd to those unfamiliar with OpenID Connect, but it has the advantage of being a standards compliant technique of supporting the above purposes. It is supported by many OpenID Connect relying party libraries.
 
@@ -525,6 +526,7 @@ Our discovery document details the `claims` that we support, they currently incl
 
 - `sub` - the subject (user id) that the authorization request should be scoped to (for adding, reauth and refresh)
 - `mh:con_id` - the connection id that the authorization request should be scoped to (for reauth and refresh)
+- `mh:cat_type` - (optional) override the category type that will be applied to transactions received through this connection (for adding and reauth). Valid values are `personal` and `business`
 
 # Connection Widget
 

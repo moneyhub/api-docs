@@ -2753,6 +2753,7 @@ Requires **accounts:read** and **transactions:read:all** scope.
         "currency": "GBP"
       },
       "predictionSource": "moneyhub",
+      "monthlyAverageOnly": false,
       "dates": [
         "2019-03-07",
         "2019-04-07",
@@ -2796,6 +2797,7 @@ Status Code **200**
 |»»» value|integer|true|none|The prected monthly amount for this counterparty, regardless of how many transactions in minor units of the currency, eg. pennies for GBP.|
 |»»» currency|string|true|none|The currency of the monthly amount taken from the account|
 |»» predictionSource|string|false|none|The source of the prediction|
+|»» monthlyAverageOnly|boolean|false|none|A flag indiciating whether the predictions are based only on a monthly average or not. If the predictions are based solely on monthly averages then the dates array will be defaulted to the end of the month for the next 3 motnhs.|
 |»» dates|[string]|false|none|none|
 |» links|[Links](#schemalinks)|false|none|none|
 |»» next|string(uri)|false|none|The url to retrieve the next page of results from|
@@ -8308,6 +8310,7 @@ Bearer
     "currency": "GBP"
   },
   "predictionSource": "moneyhub",
+  "monthlyAverageOnly": false,
   "dates": [
     "2019-03-07",
     "2019-04-07",
@@ -8332,6 +8335,7 @@ Bearer
 |» value|integer|true|none|The prected monthly amount for this counterparty, regardless of how many transactions in minor units of the currency, eg. pennies for GBP.|
 |» currency|string|true|none|The currency of the monthly amount taken from the account|
 |predictionSource|string|false|none|The source of the prediction|
+|monthlyAverageOnly|boolean|false|none|A flag indiciating whether the predictions are based only on a monthly average or not. If the predictions are based solely on monthly averages then the dates array will be defaulted to the end of the month for the next 3 motnhs.|
 |dates|[string]|false|none|none|
 
 #### Enumerated Values
