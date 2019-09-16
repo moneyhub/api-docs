@@ -1092,7 +1092,7 @@ an error of <code>invalid_scope</code> if more than one of the above is supplied
 </ul>
 <h1 id='claims'>Claims</h1>
 <blockquote>
-<p>To add a new account for a registered user via either openbanking or
+<p>To add a new connection for a registered user via either openbanking or
 screen scraping the following parameters would be sent in the request object:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -1148,6 +1148,7 @@ screen scraping the following parameters would be sent in the request object:</p
 <ol>
 <li>Specifying the connection that should be re-authorised or refreshed</li>
 <li>Specifying the user profile that an account should be added to</li>
+<li>Overriding the category type to categorise transactions for all accounts from this connection</li>
 </ol>
 
 <p>The format of the claims parameter may seem odd to those unfamiliar with OpenID Connect, but it has the advantage of being a standards compliant technique of supporting the above purposes. It is supported by many OpenID Connect relying party libraries.</p>
@@ -1157,6 +1158,7 @@ screen scraping the following parameters would be sent in the request object:</p
 <ul>
 <li><code>sub</code> - the subject (user id) that the authorization request should be scoped to (for adding, reauth and refresh)</li>
 <li><code>mh:con_id</code> - the connection id that the authorization request should be scoped to (for reauth and refresh)</li>
+<li><code>mh:cat_type</code> - (optional) override the category type that will be applied to transactions received through this connection (for adding and reauth). Valid values are <code>personal</code> and <code>business</code></li>
 </ul>
 <h1 id='connection-widget'>Connection Widget</h1>
 <blockquote>
@@ -6726,6 +6728,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>ac
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"predictionSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moneyhub"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"monthlyAverageOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="s2">"2019-03-07"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"2019-04-07"</span><span class="p">,</span><span class="w">
@@ -6873,6 +6876,13 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>ac
 <td>false</td>
 <td>none</td>
 <td>The source of the prediction</td>
+</tr>
+<tr>
+<td>»» monthlyAverageOnly</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>A flag indiciating whether the predictions are based only on a monthly average or not. If the predictions are based solely on monthly averages then the dates array will be defaulted to the end of the month for the next 3 motnhs.</td>
 </tr>
 <tr>
 <td>»» dates</td>
@@ -16010,6 +16020,7 @@ Bearer
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"predictionSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moneyhub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"monthlyAverageOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"2019-03-07"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"2019-04-07"</span><span class="p">,</span><span class="w">
@@ -16103,6 +16114,13 @@ Bearer
 <td>false</td>
 <td>none</td>
 <td>The source of the prediction</td>
+</tr>
+<tr>
+<td>monthlyAverageOnly</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>A flag indiciating whether the predictions are based only on a monthly average or not. If the predictions are based solely on monthly averages then the dates array will be defaulted to the end of the month for the next 3 motnhs.</td>
 </tr>
 <tr>
 <td>dates</td>

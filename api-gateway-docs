@@ -5084,6 +5084,7 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>ac
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"predictionSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moneyhub"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"monthlyAverageOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="s2">"2019-03-07"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"2019-04-07"</span><span class="p">,</span><span class="w">
@@ -5231,6 +5232,13 @@ curl -X POST https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>ac
 <td>false</td>
 <td>none</td>
 <td>The source of the prediction</td>
+</tr>
+<tr>
+<td>»» monthlyAverageOnly</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>A flag indiciating whether the predictions are based only on a monthly average or not. If the predictions are based solely on monthly averages then the dates array will be defaulted to the end of the month for the next 3 motnhs.</td>
 </tr>
 <tr>
 <td>»» dates</td>
@@ -14368,6 +14376,7 @@ Bearer
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"predictionSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moneyhub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"monthlyAverageOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"2019-03-07"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"2019-04-07"</span><span class="p">,</span><span class="w">
@@ -14461,6 +14470,13 @@ Bearer
 <td>false</td>
 <td>none</td>
 <td>The source of the prediction</td>
+</tr>
+<tr>
+<td>monthlyAverageOnly</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>A flag indiciating whether the predictions are based only on a monthly average or not. If the predictions are based solely on monthly averages then the dates array will be defaulted to the end of the month for the next 3 motnhs.</td>
 </tr>
 <tr>
 <td>dates</td>
