@@ -228,7 +228,163 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#" class="toc-h1 toc-link" data-title="Service is not responding">Service is not responding</a>
+            <a href="#moneyhub-auth-api" class="toc-h1 toc-link" data-title="Moneyhub Auth API">Moneyhub Auth API</a>
+          </li>
+          <li>
+            <a href="#overview" class="toc-h1 toc-link" data-title="Overview">Overview</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#flow-for-use-case-1" class="toc-h2 toc-link" data-title="Flow for use case 1">Flow for use case 1</a>
+                  </li>
+                  <li>
+                    <a href="#flow-for-use-case-2" class="toc-h2 toc-link" data-title="Flow for use case 2">Flow for use case 2</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-clients" class="toc-h1 toc-link" data-title="API clients">API clients</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#production" class="toc-h2 toc-link" data-title="Production">Production</a>
+                  </li>
+                  <li>
+                    <a href="#jwks-key-set" class="toc-h2 toc-link" data-title="JWKS Key Set">JWKS Key Set</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#openid-connect" class="toc-h1 toc-link" data-title="OpenId Connect">OpenId Connect</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#authorization-endpoint" class="toc-h2 toc-link" data-title="Authorization Endpoint">Authorization Endpoint</a>
+                  </li>
+                  <li>
+                    <a href="#token-endpoint" class="toc-h2 toc-link" data-title="Token Endpoint">Token Endpoint</a>
+                  </li>
+                  <li>
+                    <a href="#discovery" class="toc-h2 toc-link" data-title="Discovery">Discovery</a>
+                  </li>
+                  <li>
+                    <a href="#response-types" class="toc-h2 toc-link" data-title="Response Types">Response Types</a>
+                  </li>
+                  <li>
+                    <a href="#request-object" class="toc-h2 toc-link" data-title="Request Object">Request Object</a>
+                  </li>
+                  <li>
+                    <a href="#jwks-endpoints-amp-asymmetric-signatures" class="toc-h2 toc-link" data-title="JWKS Endpoints &amp; Asymmetric Signatures">JWKS Endpoints &amp; Asymmetric Signatures</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#bank-connections" class="toc-h1 toc-link" data-title="Bank connections">Bank connections</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-bank-icons-bankref" class="toc-h2 toc-link" data-title="GET /bank-icons/:bankRef">GET /bank-icons/:bankRef</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#scopes" class="toc-h1 toc-link" data-title="Scopes">Scopes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#openid" class="toc-h2 toc-link" data-title="OpenID">OpenID</a>
+                  </li>
+                  <li>
+                    <a href="#financial-institutions" class="toc-h2 toc-link" data-title="Financial institutions">Financial institutions</a>
+                  </li>
+                  <li>
+                    <a href="#data-access" class="toc-h2 toc-link" data-title="Data access">Data access</a>
+                  </li>
+                  <li>
+                    <a href="#payments" class="toc-h2 toc-link" data-title="Payments">Payments</a>
+                  </li>
+                  <li>
+                    <a href="#connection-lifecycle" class="toc-h2 toc-link" data-title="Connection lifecycle">Connection lifecycle</a>
+                  </li>
+                  <li>
+                    <a href="#user-management" class="toc-h2 toc-link" data-title="User management">User management</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#claims" class="toc-h1 toc-link" data-title="Claims">Claims</a>
+          </li>
+          <li>
+            <a href="#connection-widget" class="toc-h1 toc-link" data-title="Connection Widget">Connection Widget</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#parameters" class="toc-h2 toc-link" data-title="Parameters">Parameters</a>
+                  </li>
+                  <li>
+                    <a href="#post-uri" class="toc-h2 toc-link" data-title="Post URI">Post URI</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#user-management-2" class="toc-h1 toc-link" data-title="User Management">User Management</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#post-users" class="toc-h2 toc-link" data-title="POST /users">POST /users</a>
+                  </li>
+                  <li>
+                    <a href="#get-users" class="toc-h2 toc-link" data-title="GET /users">GET /users</a>
+                  </li>
+                  <li>
+                    <a href="#get-users-id" class="toc-h2 toc-link" data-title="GET /users/:id">GET /users/:id</a>
+                  </li>
+                  <li>
+                    <a href="#get-users-id-connections" class="toc-h2 toc-link" data-title="GET /users/:id/connections">GET /users/:id/connections</a>
+                  </li>
+                  <li>
+                    <a href="#delete-users-id-connection-connection-id" class="toc-h2 toc-link" data-title="DELETE /users/:id/connection/:connection-id">DELETE /users/:id/connection/:connection-id</a>
+                  </li>
+                  <li>
+                    <a href="#delete-users-id" class="toc-h2 toc-link" data-title="DELETE /users/:id">DELETE /users/:id</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#payments-2" class="toc-h1 toc-link" data-title="Payments">Payments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#payee-management" class="toc-h2 toc-link" data-title="Payee Management">Payee Management</a>
+                  </li>
+                  <li>
+                    <a href="#post-payees" class="toc-h2 toc-link" data-title="POST /payees">POST /payees</a>
+                  </li>
+                  <li>
+                    <a href="#get-payees" class="toc-h2 toc-link" data-title="GET /payees">GET /payees</a>
+                  </li>
+                  <li>
+                    <a href="#payments-claim" class="toc-h2 toc-link" data-title="Payments Claim">Payments Claim</a>
+                  </li>
+                  <li>
+                    <a href="#post-request-request-object-endpoint" class="toc-h2 toc-link" data-title="POST /request (Request Object Endpoint)">POST /request (Request Object Endpoint)</a>
+                  </li>
+                  <li>
+                    <a href="#payments-authorization" class="toc-h2 toc-link" data-title="Payments Authorization">Payments Authorization</a>
+                  </li>
+                  <li>
+                    <a href="#payments-management" class="toc-h2 toc-link" data-title="Payments Management">Payments Management</a>
+                  </li>
+                  <li>
+                    <a href="#get-payments" class="toc-h2 toc-link" data-title="GET /payments">GET /payments</a>
+                  </li>
+                  <li>
+                    <a href="#get-payments-id" class="toc-h2 toc-link" data-title="GET /payments:id">GET /payments:id</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#schema" class="toc-h2 toc-link" data-title="Schema">Schema</a>
+                  </li>
+                  <li>
+                    <a href="#new-transactions" class="toc-h2 toc-link" data-title="New transactions">New transactions</a>
+                  </li>
+              </ul>
           </li>
             <li class="separator" />
           <li>
@@ -462,32 +618,1081 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <p>&lt;!DOCTYPE html&gt;
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Whoops | Navy</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/__navy_internal_proxy/error_page.css" />
-  </head>
-  <body>
-    <div id="logo">Navy</div>
-    <div id="content">
-      <h1>Service is not responding</h1></p>
+        <h1 id='moneyhub-auth-api'>Moneyhub Auth API</h1><h6 id='version-0-8'>Version 0.8</h6>
+<p>We provide an OpenID Connect compliant interface that should work well with any OpenID Connect certified relying party software.</p>
 
-<p><p>
-        The service <code id="service-name"></code> is currently not responding to HTTP requests. Please check
-        check whether it is running properly.
-      </p>
-    </div></p>
+<p>This document will provide a high level overview, but we recommend that users familiarise themselves with the following specs:</p>
 
-<p><script>
-      var serviceName = window.location.hostname.substring(0, window.location.hostname.indexOf(&#39;.&#39;))
-      document.getElementById(&#39;service-name&#39;).innerText = serviceName
-    </script>
-  </body>
-</html></p>
+<ul>
+<li><a href="http://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect Core</a></li>
+<li><a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_001.md">Financial Grade API Read Only Profile</a></li>
+<li><a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_002.md">Financial Grade API Read/Write Profile</a></li>
+</ul>
+
+<p>Base URL:</p>
+
+<ul>
+<li><a href="https://identity.moneyhub.co.uk">https://identity.moneyhub.co.uk</a></li>
+</ul>
+<h1 id='overview'>Overview</h1>
+<p>Our identity service supports the following use cases:</p>
+
+<ol>
+<li>Allowing a user to connect to a financial institution and grant permissioned access to their data from that financial institution.</li>
+<li>Allowing a user to connect to multiple financial institutions through a single profile and gain access to the data from those institutions.</li>
+</ol>
+
+<p>We provide these features via an OpenID Provider interface that supports standard OAuth 2 based flows to issue access tokens that can be used to gain access to financial data via our API Gateway.</p>
+
+<p><a href="#moneyhub-data-api">Moneyhub Data API documentation</a>.</p>
+
+<p><a href="https://api.moneyhub.co.uk/docs">Moneyhub Data API Swagger documentation</a></p>
+
+<p><a href="https://github.com/moneyhub/moneyhub-api-client">Moneyhub API client</a></p>
+
+<p><a href="https://admin-portal.moneyhub.co.uk/">Moneyhub Admin portal</a></p>
+<h2 id='flow-for-use-case-1'>Flow for use case 1</h2>
+<blockquote>
+<p>Connecting to a financial institution
+<img src="images/first-use-case.png" alt="Use case 1" /></p>
+</blockquote>
+
+<ul>
+<li>Partner generates an authorisation url to the <a href="#authorization-endpoint">Authorisation Endpoint</a> with the <a href="#financial-institutions">Financial Institution scope</a> to connect to and the <a href="#data-access">Data scopes</a> required as part of the <a href="#claims">Claims</a></li>
+<li>Partner redirects user to the authorisation url</li>
+<li>Moneyhub Auth API gains consent from the user to access their banking data</li>
+<li>Moneyhub Auth API redirects the user to the bank</li>
+<li>Bank authenticates the user and sends them back to the Moneyhub Auth API</li>
+<li>Moneyhub redirects the user back to the partner with an <code>authorization_code</code></li>
+<li>Partner exchanges this code for an <code>access_token</code> using the <a href="#token-endpoint">Token endpoint</a></li>
+<li>Partner uses the access token at the <a href="#moneyhub-data-api">Moneyhub Data API</a> to access user&#39;s financial data</li>
+</ul>
+<h2 id='flow-for-use-case-2'>Flow for use case 2</h2>
+<blockquote>
+<p>Registering a user and connecting to a financial institution
+<img src="images/second-use-case.png" alt="Use case 2" /></p>
+
+<p>This example assumes the use of an OpenID Client (e.g. <a href="https://github.com/panva/node-openid-client">Node OpenId client</a>)</p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="p">{</span> <span class="nx">access_token</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">grant</span><span class="p">({</span>
+  <span class="na">grant_type</span><span class="p">:</span> <span class="s2">"client_credentials"</span><span class="p">,</span>
+  <span class="na">scope</span><span class="p">:</span> <span class="s2">"user:create"</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="kr">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">got</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`#{identityServiceUrl}/`</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">Authorization</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">access_token</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="p">{</span> <span class="na">clientUserId</span><span class="p">:</span> <span class="s2">"some-id"</span> <span class="p">},</span>
+<span class="p">})</span>
+
+<span class="kr">const</span> <span class="nx">authParams</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">client_id</span><span class="p">:</span> <span class="nx">client_id</span><span class="p">,</span>
+  <span class="na">scope</span><span class="p">:</span> <span class="s2">"openid id:some-bankid"</span><span class="p">,</span>
+  <span class="na">state</span><span class="p">:</span> <span class="s2">"your-state-value"</span><span class="p">,</span>
+  <span class="na">redirect_uri</span><span class="p">:</span> <span class="nx">redirect_uri</span><span class="p">,</span>
+  <span class="na">response_type</span><span class="p">:</span> <span class="s2">"code"</span><span class="p">,</span>
+  <span class="na">prompt</span><span class="p">:</span> <span class="s2">"consent"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">claims</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">id_token</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">sub</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">essential</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="na">value</span><span class="p">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">userId</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">mh</span><span class="p">:</span><span class="na">con_id</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">essential</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">requestObject</span><span class="p">({</span>
+  <span class="p">...</span><span class="nx">authParams</span><span class="p">,</span>
+  <span class="nx">claims</span><span class="p">,</span>
+  <span class="na">max_age</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">client</span><span class="p">.</span><span class="nx">authorizationUrl</span><span class="p">({</span>
+  <span class="p">...</span><span class="nx">authParams</span><span class="p">,</span>
+  <span class="nx">request</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="c1">// redirect the user to this url</span>
+<span class="c1">// if everything is succesful they will be redirected to your `redirect_uri` with `code` and `state` as query parameters.</span>
+
+<span class="kr">const</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">authorizationCallback</span><span class="p">(</span>
+  <span class="nx">redirect_uri</span><span class="p">,</span>
+  <span class="p">{</span> <span class="nx">code</span><span class="p">,</span> <span class="nx">state</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">state</span><span class="p">:</span> <span class="nx">expectedState</span> <span class="p">}</span>
+<span class="p">)</span>
+<span class="c1">// these tokens confirm that the account has been added, however cannot be used for data access</span>
+<span class="c1">// the `id_token` will contain the id of the connection that has just been created</span>
+
+<span class="kr">const</span> <span class="p">{</span> <span class="nx">access_token</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">grant</span><span class="p">({</span>
+  <span class="na">grant_type</span><span class="p">:</span> <span class="s2">"client_credentials"</span><span class="p">,</span>
+  <span class="na">scope</span><span class="p">:</span> <span class="s2">"accounts:read transactions:read:all"</span><span class="p">,</span>
+  <span class="na">sub</span><span class="p">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">userId</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">got</span><span class="p">(</span><span class="s2">`#{resourceServerUrl}/accounts`</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">Authorization</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">access_token</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="kr">const</span> <span class="nx">transactions</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">got</span><span class="p">(</span><span class="s2">`#{resourceServerUrl}/transactions`</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">Authorization</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">access_token</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">})</span>
+</code></pre>
+<ul>
+<li>Partner requests an access token from the identity service with the scope <code>user:create</code> using the <a href="#token-endpoint">Token endpoint</a></li>
+<li>Partner uses this token to create a profile at the <a href="#post-users">User endpoint</a></li>
+<li>Partner generates an authorisation url to the <a href="#authorization-endpoint">Authorisation Endpoint</a> with the <a href="#financial-institutions">Financial Institution scope</a> to connect to, and with the id of the new user profile as part of the <a href="#claims">Claims</a></li>
+<li>Partner redirects user to the authorisation url</li>
+<li>Moneyhub Auth API gains consent from the user to access their banking data</li>
+<li>Moneyhub Auth API redirects the user to the bank</li>
+<li>Bank authenticates the user and sends them back to the Moneyhub Auth API</li>
+<li>Moneyhub redirects the user back to the partner with an <code>authorization_code</code></li>
+<li>Partner exchanges the <code>authorization_code</code> for an <code>access_token</code> and <code>id_token</code>to complete the connection using the <a href="#token-endpoint">Token endpoint</a>. This <code>access_token</code> do not contains any data scopes so it can&#39;t be used to gain access to the user&#39;s financial data. The <code>id_token</code> contains the <code>connection_id</code></li>
+<li>Partner requests an access token from the Moneyhub Auth API with the <a href="#data-access">Data scopes</a> required and a <code>sub</code> parameter in the <a href="#claims">Claims</a> that contains the profile id using the <a href="#token-endpoint">Token endpoint</a></li>
+<li>Partner uses the access token at the <a href="#moneyhub-data-api">Moneyhub Data API</a> to access the user&#39;s financial data</li>
+</ul>
+<h1 id='api-clients'>API clients</h1>
+<p>You can register an OAuth client through our <a href="https://admin-portal.moneyhub.co.uk/">Admin portal</a>.
+We will then generate a <code>client_id</code> and <code>client_secret</code> corresponding to your client. These credentials will be used to authenticate your client on every route of our Auth API.</p>
+
+<p>To correctly authenticate your client, you will need to send your client credentials in the <code>Authorization</code> header in the following format:</p>
+
+<p><code>Authorization: Basic Base64_encode(&lt;client_id&gt;:&lt;client_secret&gt;)</code></p>
+
+<p><a href="https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata">API Client Metadata</a></p>
+<h2 id='production'>Production</h2>
+<p>Ideally a production API client should have the following settings:</p>
+
+<ol>
+<li>Either a JWKS key set registered or a jwks_uri configured, i.e. either the JWKS or JWKS_URI field filled in.</li>
+<li>Client Authentication configured to be <code>private_key_jwt</code></li>
+<li>Request Object signing alg configured to be one of the RS*, ES* or PS* algorithms</li>
+<li>ID token signing alg configured to be one of the RS*, ES* or PS* algorithms</li>
+<li>Response type set to be <code>code id_token</code></li>
+<li>Grant types to be authorization_code, refresh_token, client_credentials and implicit</li>
+<li>Redirect uris are required to be https://</li>
+</ol>
+
+<p>This settings will require the following changes in the auth flow if the authentication that was used previously was <code>client_secret_basic</code>:</p>
+
+<ol>
+<li>Allowing an <code>implicit</code> grant type in the settings requires:
+
+<ul>
+<li>A nonce to be added to the request object when generating an authorization url (<a href="https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes">OpenId Nonce</a>)</li>
+<li>The same nonce value needs to be used when exchanging the authorization code for the token set at the end of the authorization process.</li>
+</ul></li>
+<li>Having a response type of <code>code id_token</code> will cause the following changes:</li>
+</ol>
+
+<ul>
+<li>You will receive the code and id token encoded in the fragment part of your registered callback instead of receiving it as query params. This is a security enhancement as this way it reduces the likelihood of the id token to be leaked during transport.</li>
+<li>The id_token will need to be used when exchanging the authorization code for the token set at the end of the authorization process.</li>
+</ul>
+<h2 id='jwks-key-set'>JWKS Key Set</h2>
+<blockquote>
+<p>Example creating JWKS key set using the Moneyhub api client</p>
+</blockquote>
+<pre class="highlight shell_session"><code>node examples/jwks/create-jwks.js
+
+Options
+
+  --key-alg string
+  --key-use string
+  --key-size number
+  --alg string
+</code></pre>
+<blockquote>
+<p>Public keys - This can be used as the jwks in your API client configuration in the Moneyhub Admin portal</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"kty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lNWK3qGU9eQMLqH96ZB5Jf4i3hEdhqNKpaDBGmREt5Q"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"use"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sig"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"e"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AQAB"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"n"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kHkz5oM6xis2NIJJtbeffY_F9DLNO6Tx9JsYtwTFSvqI5x3msssgDbYs8VjUR_Dt5yurz1dHBkJLK1ZvvTIUwTSc_TG8y0m3-MsszVM5jbEvI5AUATRca6zQJhRQCYgvAeFPGQgUNh8zjsAzlwc3VXdEYBT69orNdOru-MEGynnFJpi23ikm57IWKlpfZplGh7FxHZgABNJ1PPhFZGJFAxVtI5LbMlwIsHWtP7gxUw4U0-U7rLL-_fFqSEMP6aGI4GMDSpTh6P7mRTORfXUIE3ycOzXJiK5fOfwQzNOMD41uMshOsyMAu0BsNZQuKqefb9qT5lfGP15zmQnVqePOZw"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RS256"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Private keys - This can be used as the keys value when configuring the moneyhub api client</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"kty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lNWK3qGU9eQMLqH96ZB5Jf4i3hEdhqNKpaDBGmREt5Q"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"use"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sig"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"e"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AQAB"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"n"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kHkz5oM6xis2NIJJtbeffY_F9DLNO6Tx9JsYtwTFSvqI5x3msssgDbYs8VjUR_Dt5yurz1dHBkJLK1ZvvTIUwTSc_TG8y0m3-MsszVM5jbEvI5AUATRca6zQJhRQCYgvAeFPGQgUNh8zjsAzlwc3VXdEYBT69orNdOru-MEGynnFJpi23ikm57IWKlpfZplGh7FxHZgABNJ1PPhFZGJFAxVtI5LbMlwIsHWtP7gxUw4U0-U7rLL-_fFqSEMP6aGI4GMDSpTh6P7mRTORfXUIE3ycOzXJiK5fOfwQzNOMD41uMshOsyMAu0BsNZQuKqefb9qT5lfGP15zmQnVqePOZw"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B4ssmJa1lO9grzE2ZBSocUf2kB-u87RTJfCLQ9Mt8hJO37KB_0f37n9arWdz_iWoZm-zUuo9vSftAOBMiVZ6GvSCVf4o23yH7Ke_OSFlWe6shXDaeo2fXcfyPmrFGxpPSgvXs3jmhUTvzj5e8z3fN8k4esPdrs3kmHxD6h06G4xXwtmEHOuygn96IdpK5Zql4wy8L0goo8mOrP_4caPOLdBDeATDwqWXMTeXMW8NGsp90sBjDxVzqqysH0gnQZV0ZfVH2K1fgPoKNJtyX28RVcrjOW6oU5lxARVfxI3bwTGbJ8MaLNrKrd7KjUFaJ_owvpX3ifo6woHL3IrBP-rnwQ"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5orIAF7rPBZzw0A9sj2ems2AO6xwR6jJy_xSJ6jflstW3Cmz0DdG3u9IUrQpQb9G1oO-L_So5iaCKjSfLessu3uVzvWLfkOP-zNeSjL86zlW0cFtzVeIImDBiyx21RvgFjhVQ5GKic01Il9aDOrkA5Q78m_v-OxA7TaOzMw1RTE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oG1WZreDYjMYko2dcXgpijwqYi1Z_5UsiQrjDZpGskk3g1bq4SGVZkpR-tx8Cx6Bn8W8-rOpiTJg08FUGFNjJgNF9mSBhUjaQc0IrKrdy_4wfMyHqqE7cEdSGSg-xH0TghGfCVbJuXYWoMM7hT7XJ7HSiiA92m-msvI4K4cKRxc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"az-0uzdtB48KW5LPINQ5rJpdRWV69ls3RYYkUf7lxSjjR5i-5eZROfTnGFJnvwZU1gaDu5t911Oiyi-gvaPiM3XSw2zHb_3ORXYoLyx5LJSIJxxtEFHgKt4IK86LmahWHwAl6kESyfiE93CUW94KJQAYwzf_0zVVHwV6eRumzIE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mGBBuL6FpDg0Fr871BL2Ib6T4zyARypBaslUcA8hJyYz_CQKZFups8bTpxrVFxqatE70-Iq9dPrMzVTLs29AtVJWmXlNLHPOGsHMg3SnxqJhG6iJE6Cg_DxB1nNLawYCCYEDNbOhVu66_2dwmVbetW1JNLj7BwcVptI6V92j_XE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"qi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pwGzAE02GWIp7TRburRvxC2SCLo1Oo3flPcKoYSKNguPzWe9gP-xhD9ZhNoDIRnNrgK562cB9dlSXvEGnrfSJdXTCM2m7BANyMvP0w_XkvxE0p4yY9BJtiQ-QgvZto-7PKn0PSukwE3I2fT2Hpgp7idCJE_EQnIsQCX4XD3DG48"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>To configure your API client you will need to generate a JWKS key set and have access to the public and private keys separately.</p>
+
+<p>The public key needs to be added as the jwks in your API client configuration in the Moneyhub Admin portal.</p>
+
+<p>The private key needs to be used as part of the configuration of the moneyhub api client or your openid client.</p>
+
+<p>The easiest way to generate a valid jwks set is using our Moneyhub API client (<a href="https://github.com/moneyhub/moneyhub-api-client">Moneyhub API client</a>).</p>
+
+<p>The client has the method <code>createJWKS()</code> and there is an example of how to use it when cloning the repo under the examples folder.</p>
+<h1 id='openid-connect'>OpenId Connect</h1><h2 id='authorization-endpoint'>Authorization Endpoint</h2>
+<p><code>https://identity.moneyhub.co.uk/oidc/auth</code></p>
+
+<p><a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint">OpenID Connect Authorization Spec</a></p>
+
+<p>We support the use of request objects and the claims parameter at this endpoint.</p>
+<h2 id='token-endpoint'>Token Endpoint</h2>
+<p><code>https://identity.moneyhub.co.uk/oidc/token</code></p>
+
+<blockquote>
+<p>Example of a client_credentials grant for creating a user</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl -X POST <span class="se">\</span>
+  <span class="s1">'https://identity.moneyhub.co.uk/oidc/token'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: Basic Base64_encode(&lt;client_id&gt;:&lt;client_secret&gt;'</span><span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+  -d <span class="s1">'grant_type=client_credentials&amp;scope=user%3Acreate'</span>
+</code></pre>
+<blockquote>
+<p>Example of a client_credentials grant for data access</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl -X POST <span class="se">\</span>
+  <span class="s1">'https://identity.moneyhub.co.uk/oidc/token'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: Basic Base64_encode(&lt;client_id&gt;:&lt;client_secret&gt;'</span><span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+  -d <span class="s1">'grant_type=client_credentials&amp;scope=accounts%3Aread&amp;sub=example-user-id'</span>
+</code></pre>
+<p><a href="http://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint">OpenID Connect Token Spec</a></p>
+
+<p>We support the following grant types:</p>
+
+<ul>
+<li><code>authorization_code</code></li>
+<li><code>client_credentials</code></li>
+<li><code>refresh_token</code></li>
+</ul>
+
+<p>The <code>authorization_code</code> and <code>refresh_token</code> grant types are implemented exactly as according to the specs in <a href="https://tools.ietf.org/html/rfc6749">RFC6749</a> and <a href="http://openid.net/specs/openid-connect-core-1_0.html">OIDC</a>.</p>
+
+<p>The <code>client_credentials</code> grant supports 2 use cases:</p>
+
+<ul>
+<li>generating a token for for creating, deleting or reading users that have been created using your oauth client credentials
+The scopes that can be requested are <code>user:create</code>, <code>user:read</code> and <code>user:delete</code></li>
+<li>generating a token to access a specific user&#39;s data (e.g. accounts, transactions). The <code>sub</code> query parameter is required</li>
+</ul>
+<h2 id='discovery'>Discovery</h2>
+<p><code>https://identity.moneyhub.co.uk/oidc/.well-known/openid-configuration</code></p>
+
+<p><a href="http://openid.net/specs/openid-connect-discovery-1_0.html">OpenID Connect Discovery Spec</a></p>
+
+<p>Our discovery document is available <a href="https://identity.moneyhub.co.uk/oidc/.well-known/openid-configuration">here</a>.
+It will contain our up-to-date machine readable configuration
+and for example will list our:</p>
+
+<ul>
+<li>token endpoint</li>
+<li>authorization endpoint</li>
+<li>jwks endpoint</li>
+<li>scopes that we support</li>
+<li>claims that we support</li>
+<li>the cryptographic algorithms we support</li>
+<li>the response types we support</li>
+</ul>
+
+<p>Examples of discovery metadata from other providers are:</p>
+
+<ul>
+<li><a href="https://accounts.google.com/.well-known/openid-configuration">Google</a></li>
+<li><a href="https://login.windows.net/contoso.onmicrosoft.com/.well-known/openid-configuration">Microsoft</a></li>
+</ul>
+<h2 id='response-types'>Response Types</h2>
+<p>Our discovery doc will list the response types that we support. Currently these are: <code>code</code>, <code>code id_token</code> and <code>id_token</code>.</p>
+
+<p><code>code</code> is fairly straight forward and is the standard OAuth 2
+authorization code flow.</p>
+
+<p><code>code id_token</code> is one of the variants of the hybrid flow and isn&#39;t always understood. At a basic level it means that we will send an <code>id_token</code> along with the authorization code when we redirect the user back to your <code>redirect_uri</code>. This id_token doesn&#39;t contain any identity information, but is rather a detached signature which cryptographically binds the authorization_code we send back with the nonce and the state that you sent to us. It prevents a certain class of code interception attacks and we encourage implementers to use it rather than the basic authorization code flow.</p>
+<h2 id='request-object'>Request Object</h2>
+<p>OpenID Connect defines the request object - this is a JWT that contains the standard OAuth 2.0 parameters such as: <code>client_id</code>, <code>scope</code>, <code>state</code>, etc.</p>
+
+<p>We encourage implementers to use this and may require it for certain use cases.</p>
+
+<p>The request object allows you to sign the request parameters and prevents tampering. This can prevent a certain class of attacks against OAuth 2.0.</p>
+
+<p>More information about request objects is available <a href="http://openid.net/specs/openid-connect-core-1_0.html#JWTRequests">here</a></p>
+<h2 id='jwks-endpoints-amp-asymmetric-signatures'>JWKS Endpoints &amp; Asymmetric Signatures</h2>
+<p>We use jwks endpoints to support the <a href="http://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys">rotation of signing keys</a></p>
+
+<p>As part of registering your client software with us, we will ask you for your own jwks endpoint.</p>
+
+<p>If you don&#39;t yet have one, we strongly encourage you to implement one. JWKS endpoints provide a neat method to achieve key rotation without any interruption to service or any need for bilateral communication.</p>
+
+<p>They enable you to manage your keys in which ever manner you see fit and removes the need for the <code>client_secret</code>.</p>
+
+<p>For more information about the benefits of this approach or advice
+on implementing, please contact us.</p>
+<h1 id='bank-connections'>Bank connections</h1>
+<p>We have 4 lists of available bank connections:</p>
+
+<ul>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/all-connections">All connections</a></li>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/api-connections">API connections</a></li>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/legacy-connections">Screen-scraping connections</a></li>
+<li><a href="https://identity.moneyhub.co.uk/oidc/.well-known/test-connections">Test connections</a></li>
+</ul>
+
+<p>Every client you create will have access to the test connections by default. Access to the real connections via the API
+will need to be requested.</p>
+
+<p>Every connection will have the following properties:</p>
+
+<ul>
+<li><code>id</code> - bank connection id (used to request an authorization url for a specific bank)</li>
+<li><code>name</code></li>
+<li><code>type</code> - the type of bank connection (<code>api</code>, <code>legacy</code> or <code>test</code>)</li>
+<li><code>bankRef</code> - reference that uniquely identities a set of connections as being part of the same institution (e.g. HSBC Open banking and HSBC credit cards). It is used to group a set of connections by the banking institution they refer to. It can alse be used to retrieve the bank icon.</li>
+<li><code>parentRef</code> - this property is now deprecated. Please use <code>bankRef</code> instead</li>
+<li><code>iconUrl</code> - the url of the bank icon SVG. Please be aware we don&#39;t have icons for all the connections we provide. For the missing icons you can either use your own set or use our generic bank icon found at this url: <a href="https://identity.moneyhub.co.uk/bank-icons/default">https://identity.moneyhub.co.uk/bank-icons/default</a></li>
+<li><code>accountTypes</code> - an array containing the types of accounts supported by the connection (<code>cash</code>, <code>card</code>, <code>pension</code>, <code>mortgage</code>, <code>investment</code>, <code>loan</code>) and a beta boolean value flagging which accounts types for that connection are currently being developed and may not have a 100% success rate</li>
+<li><code>userTypes</code> - an array of user account types supported by the bank connection (<code>personal</code> and <code>business</code>)</li>
+</ul>
+<h2 id='get-bank-icons-bankref'>GET /bank-icons/:bankRef</h2>
+<p><code>https://identity.moneyhub.co.uk/bank-icons/:bankRef</code></p>
+
+<p>This route returns the bank icon as SVG when providing a valid bank reference listed under our available connections.</p>
+
+<p>Please be aware we don&#39;t have icons for all the connections we provide, when this is the case the route returns 404 as response unless the <code>defaultIcon</code> parameter is used.</p>
+
+<table><thead>
+<tr>
+<th>Route parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bankRef</td>
+<td><code>string</code></td>
+<td>Unique bank reference of the provider. When using <code>default</code> as the bank reference we return a generic bank icon.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Query parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>defaultIcon</td>
+<td><code>boolean</code></td>
+<td>When value is true the route will return the default icon instead of 404 if bank icon is not available</td>
+</tr>
+</tbody></table>
+<h1 id='scopes'>Scopes</h1>
+<p>We use scopes to both describe the access the user is granting and the way in which you would like the user to identify themselves.</p>
+
+<p>Below is a summary of the scopes we provide, please check our discovery document available <a href="https://identity.moneyhub.co.uk/oidc/.well-known/openid-configuration">here</a> to see which particular scopes are supported by a given deployment of our identity service.</p>
+<h2 id='openid'>OpenID</h2>
+<ul>
+<li><code>openid</code> - this scope is required and indicates that you are using our OpenID Connect interface. We will return an id token as described in the OpenID Connect Core spec. You can request specific claims to be present in the id token using the claims parameter described in OpenID Connect Core. For details on what claims we support, please check the <a href="https://moneyhub.github.io/api-docs/#claims">claims section</a></li>
+<li><code>offline_access</code> - this scope indicates that you would like ongoing access to the user&#39;s resources, when it is present we will issue a refresh token</li>
+</ul>
+<h2 id='financial-institutions'>Financial institutions</h2>
+<ul>
+<li><code>id:{bank_code}</code> - if you pass a specific bank code (available via the endpoints listed above) then we will bypass the bank chooser and take the user directly to the selected bank</li>
+<li><code>id:all</code> - if you specify this scope we will display a list of all available connections</li>
+<li><code>id:api</code> - if you specify this scope we will display a list of the available API based connections</li>
+<li><code>id:legacy</code> - if you specify this scope we will display a list of the available legacy (screen scraping) connections</li>
+<li><code>id:test</code> - if you specify a type of connection then we will display a list of our test connections. This scope will be enabled by default when creating a new client through our <a href="https://admin-portal.moneyhub.co.uk/">admin portal</a></li>
+</ul>
+
+<p>The above scopes are mutually exclusive and we will return
+an error of <code>invalid_scope</code> if more than one of the above is supplied.</p>
+<h2 id='data-access'>Data access</h2>
+<p>Most data access scopes are available to use in both <a href="https://moneyhub.github.io/api-docs/#overview">use cases</a>. The scopes ending in <code>write:all</code> are only available in the second use.</p>
+
+<ul>
+<li><code>transactions:read:all</code> - All transactions</li>
+<li><code>transactions:read:in</code> - All incoming transactions</li>
+<li><code>transactions:read:out</code> - All outgoing transactions</li>
+</ul>
+
+<p>Note - the above transactions:read scopes are mutually exclusive - if more than one is provided there will be an <code>invalid_scope</code> error.</p>
+
+<ul>
+<li><code>transactions:write</code> - For all transactions that are able to be read it is possible to edit certain fields (e.g. category, notes, etc.). Please see the documentation on the transactions endpoint for details of which fields can be edited. If <code>transactions:write</code> is provided without any <code>transactions:read</code> scope there will be an <code>invalid_scope</code> error</li>
+<li><code>transactions:write:all</code> - This allows full access to create transactions, edit all their properties and delete transactions. This scope is only available when issuing tokens for users that are managed by the client (only available for use case 2)</li>
+<li><code>accounts:read</code> - Read access to all accounts</li>
+<li><code>accounts_details:read</code> - Read access to accounts details such as full account number and sort code.</li>
+<li><code>accounts:write</code> - Write access to all accounts. Please see the accounts endpoint for details of which fields can be edited.</li>
+<li><code>accounts:write:all</code> - Full write access including the ability to delete accounts. This scope is only available when issuing tokens for users that are managed by the client (only available for use case 2)</li>
+<li><code>categories:read</code> - Read access to a customer&#39;s categories.</li>
+<li><code>categories:write</code> - Write access to a customer&#39;s custom categories.</li>
+<li><code>spending_analysis:read</code> - Read access to a customer&#39;s spending analysis.</li>
+<li><code>spending_goals:read</code> - Read access to a customer&#39;s spending goals.</li>
+<li><code>spending_goals:write</code> - Write access to a customer&#39;s spending goals.</li>
+<li><code>spending_goals:write:all</code> - Full write access to spending goals, including the ability to delete goals.</li>
+<li><code>savings_goals:read</code> - Read access to a customer&#39;s saving goals.</li>
+<li><code>savings_goals:write</code> - Write access to a customer&#39;s saving goals.</li>
+<li><code>savings_goals:write:all</code> - Full write access to saving goals, including the ability to delete goals.</li>
+</ul>
+<h2 id='payments'>Payments</h2>
+<ul>
+<li><code>payee:create</code> - this scope is required to create a new payee.</li>
+<li><code>payee:read</code> - this scope is required to retrieve all of the payees that have been created by an API client.</li>
+<li><code>payment</code> - this scope is required to initiate a payment.</li>
+<li><code>payment:read</code> - this scope is required to retrieve all of the payments that have been initiated with by an API client.</li>
+</ul>
+<h2 id='connection-lifecycle'>Connection lifecycle</h2>
+<p>Some of the OpenBanking APIs that we connect to require the user to re-authenticate every 90 days. In addition we have screen-scraping connections that the user will need to update if their credentials change. In order to support these flows we support the following scopes:</p>
+
+<ul>
+<li><code>reauth</code></li>
+<li><code>refresh</code></li>
+</ul>
+
+<p>These scopes require a claims parameter to be sent that contains a <code>sub</code> value and a <code>mh:con_id</code> value. Moneyhub will then take the user through a re-authentication journey or &quot;refresh&quot; journey.</p>
+
+<p>We advise that the above 2 scopes are used with the response_type of <code>id_token</code> rather than <code>code id_token</code>. This is because the access token issued at the end of such a flow is of no value and can only be introspected to confirm the values already present in the id_token.</p>
+
+<p>The only scope that can (and must) be supplied along with either <code>reauth</code> or <code>refresh</code> is <code>openid</code>. If any other scope is provided the result will be an <code>invalid_scope</code> error.</p>
+<h2 id='user-management'>User management</h2>
+<ul>
+<li><code>user:create</code> - this scope is only supported with the client credentials grant type. It allows a relying party to create a new user profile.</li>
+<li><code>user:read</code> - this scope is only supported with the client credentials grant type. It allows a relying party to access their user profiles.</li>
+<li><code>user:delete</code> - this scope is only supported with the client credentials grant type. It allows a relying party to delete a user profile.</li>
+</ul>
+<h1 id='claims'>Claims</h1>
+<blockquote>
+<p>To add a new connection for a registered user via either openbanking or
+screen scraping the following parameters would be sent in the request object:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"openid id:all"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"claims"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id_token"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c1907c0e6b340e5c056fb2a"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"mh:con_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>On completion of the connection, the connection id is returned in the id token as below:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"iss"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://identity.moneyhub.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24400320"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"aud"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s6BhdRkqt3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"n-0S6_WzA2Mj"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1311281970</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"iat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1311280970</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mh:con_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"the-connection-id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>To refresh an account for a registered user via either openbanking or
+screen scraping the following parameters would be sent in the request object:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"openid refresh"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"claims"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id_token"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c1907c0e6b340e5c056fb2a"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"mh:con_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b74f1a79f0be8bdb857d82d0f041d7d2:0f1aa7c1-6379-483a-bfd8-ae0a208fb635"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Moneyhub uses the OpenID Connect <a href="http://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter">claims parameter</a> for the following purposes:</p>
+
+<ol>
+<li>Specifying the connection that should be re-authorised or refreshed</li>
+<li>Specifying the user profile that an account should be added to</li>
+<li>Overriding the category type to categorise transactions for all accounts from this connection</li>
+</ol>
+
+<p>The format of the claims parameter may seem odd to those unfamiliar with OpenID Connect, but it has the advantage of being a standards compliant technique of supporting the above purposes. It is supported by many OpenID Connect relying party libraries.</p>
+
+<p>Our discovery document details the <code>claims</code> that we support, they currently include:</p>
+
+<ul>
+<li><code>sub</code> - the subject (user id) that the authorization request should be scoped to (for adding, reauth and refresh)</li>
+<li><code>mh:con_id</code> - the connection id that the authorization request should be scoped to (for reauth and refresh)</li>
+<li><code>mh:cat_type</code> - (optional) override the category type that will be applied to transactions received through this connection (for adding and reauth). Valid values are <code>personal</code> and <code>business</code></li>
+</ul>
+<h1 id='connection-widget'>Connection Widget</h1>
+<blockquote>
+<p>Example loading via script tag</p>
+</blockquote>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;script
+  </span><span class="na">data-clientid=</span><span class="s">"your-client-id"</span>
+  <span class="na">data-redirecturi=</span><span class="s">"your-redirect-uri"</span>
+  <span class="na">data-userid=</span><span class="s">"the-user-id"</span>
+  <span class="na">data-posturi=</span><span class="s">"/result"</span>
+  <span class="na">data-finishuri=</span><span class="s">"/finish"</span>
+  <span class="na">data-type=</span><span class="s">"test"</span>
+  <span class="na">src=</span><span class="s">"https://bank-chooser.moneyhub.co.uk/account-connect.js"</span>
+<span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+<blockquote>
+<p>Example loading via JS API</p>
+</blockquote>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://bank-chooser.moneyhub.co.uk/account-connect-js.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre><pre class="highlight javascript"><code><span class="nb">window</span><span class="p">.</span><span class="nx">moneyhubAccountConnectWidget</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"#test"</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="p">{</span>
+  <span class="na">clientid</span><span class="p">:</span> <span class="s2">"your-client-id"</span><span class="p">,</span>
+  <span class="na">redirecturi</span><span class="p">:</span> <span class="s2">"your-redirect-uri"</span><span class="p">,</span>
+  <span class="na">userid</span><span class="p">:</span> <span class="s2">"user-id"</span><span class="p">,</span>
+  <span class="na">posturi</span><span class="p">:</span> <span class="s2">"/result"</span><span class="p">,</span>
+  <span class="na">finishuri</span><span class="p">:</span> <span class="s2">"/finish"</span><span class="p">,</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s2">"test"</span><span class="p">,</span>
+  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span><span class="s2">"any"</span><span class="p">:</span> <span class="s2">"data you want associated with this session"</span><span class="p">}</span>
+  <span class="nl">identityuri</span><span class="p">:</span> <span class="s2">"https://identity.moneyhub.co.uk"</span><span class="p">,</span>
+<span class="p">})</span>
+</code></pre>
+<p>We provide an account connection widget that that makes it easier to allow users to connect their accounts.</p>
+
+<p>The widget can either be initialised with data attributes in a script tag - or can be injected into the DOM via a JavaScript API.</p>
+<h2 id='parameters'>Parameters</h2>
+<ul>
+<li><em>clientid</em> - this is your client id for the client you want to use. It is availble from the admin portal</li>
+<li><em>redirecturi</em> - this is the uri that you want the user to be redirected to after they have succesfully connected to an account or had an error. This redirect uri must be added to your api client in the admin portal. The redirect uri also needs to host the widget and mustn&#39;t interfere with query parameters.</li>
+<li><em>userid</em> - the id of the user you want to connect accounts for. The user must be created via our API prior to the widget being loaded.</li>
+<li><em>posturi</em> - an enpoint set up to receive a JSON post each time a user either connects an account or has an error connecting an account. More details below</li>
+<li><em>finishuri</em> - a uri to redirect the user to when they click the &quot;Finish&quot; button</li>
+<li><em>type</em> - the type of connections to show when the users chooses a bank. Values can be &quot;all&quot;, &quot;api&quot; or &quot;test&quot;.</li>
+<li><em>identityuri</em> - this should always be &quot;https://identity.moneyhub.co.uk&quot; in the production environment.</li>
+<li><em>meta</em> - this is an optional property that you can set - it will be passed to the post uri.</li>
+</ul>
+<h2 id='post-uri'>Post URI</h2>
+<blockquote>
+<p>Example request to post uri when there is an error</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"bankId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ffe704d39629a929c8e293880fb449a"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://identity-dev.moneyhub.co.uk/oidc/auth?claims=%7B%22id_token%22%3A%7B%22sub%22%3A%7B%22essential%22%3Atrue%2C%22value%22%3A%225c82710d7c2eb82b175c2c5c%22%7D%7D%7D&amp;client_id=4d18da1b-b6b7-4275-8407-3c8bade53f9a&amp;redirect_uri=http%3A%2F%2Flocalhost%3A3001&amp;response_type=code&amp;scope=openid%20id%3A1ffe704d39629a929c8e293880fb449a&amp;state=7f231a1c3ee116a04db56438cc60b4ee"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1559556347842</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c82710d7c2eb82b175c2c5c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some meta property"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7f231a1c3ee116a04db56438cc60b4ee"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid_claims"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"modified"</span><span class="p">:</span><span class="w"> </span><span class="mi">1559556348809</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Example request to the post uri when an account has been succesfully connected:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"bankId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ffe704d39629a929c8e293880fb449a"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://identity-dev.moneyhub.co.uk/oidc/auth?claims=%7B%22id_token%22%3A%7B%22sub%22%3A%7B%22essential%22%3Atrue%2C%22value%22%3A%225ca49cda9cd8ab3640f3bb67%22%7D%7D%7D&amp;client_id=4d18da1b-b6b7-4275-8407-3c8bade53f9a&amp;redirect_uri=http%3A%2F%2Flocalhost%3A3001&amp;response_type=code&amp;scope=openid%20id%3A1ffe704d39629a929c8e293880fb449a&amp;state=d657b3e549494c38fa7c8040763ef999"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1559556615352</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ca49cda9cd8ab3640f3bb67"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some meta property"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d657b3e549494c38fa7c8040763ef999"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bRHSHtqICup80FBfvi5jG7sejsY"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"modified"</span><span class="p">:</span><span class="w"> </span><span class="mi">1559556620133</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint must be set up to receive a JSON payload when the user succesfully connects or has an error connecting.</p>
+
+<p>In the case of an error, there is nothing that you need to do, but it may be worth recording the error.</p>
+
+<p>The important property here is <code>code</code>. This must be sent to our token endpoint in a standard OAuth 2 authorization code grant.</p>
+<h1 id='user-management-2'>User Management</h1>
+<p>To support use case 2, the following RESTful routes are available:</p>
+<h2 id='post-users'>POST /users</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>POST /users HTTP/1.1
+Host: identity.moneyhub.co.uk
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkFObVlmU0dfa2J0MktScFRLbzdRQ05IMl9SSy0wYTc4N3lqbTA3encifQ.eyJqdGkiOiJjcEVPMk11dVJscmtDfkdDQ3Rqa0IiLCJpc3MiOiJodHRwOi8vaWRlbnRpdHkuZGV2LjEyNy4wLjAuMS5uaXAuaW8vb2lkYyIsImlhdCI6MTUzNDQ5MzU0MSwiZXhwIjoxNTM0NDk0MTQxLCJzY29wZSI6InVzZXI6Y3JlYXRlIiwiYXVkIjoiODk4YzUyOWItYzA2Mi00ZjI2LWExMzYtZmQ4YmM0NjJkNTgzIn0.AMU266O-wgmz-6SOfSF_Bq0LQhoAgytaInwCKhT-tXQ6Z_L0I75blmRujnKALK-LG08ny_gemtDWUEmD2mjyHgO-vtmiSNMHF2T5z2GS3k4VOUbGKVjFY5kK9QfoUCR_WCpUEPd64LHe_IaR0rMAzaKcVLRhtjin9yAB-goif683ESBFQLDrnojzdcOxWtP1x_qGSNBOMqJ6RDk7H65aBCXJj5eee11EW71G1Q3C3_MyJqTYdwXbAzkE-8XLDznDqZzVmm4erFUTN3TuB5L7af2pendAWitGEeshHKRpgeHI3EQrNj98-UIyemVV9tUK76x2ojiV1ge7ZpnYeNCO0A
+Content-Type: application/json
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"clientUserId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"clientUserId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"328278302947678c0fc37f54"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"898c529b-c062-4f26-a136-fd8bc462d583"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"scopes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user:create"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"managedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This allows an API client to create a new &quot;user&quot;. Once this user has been created the following operations are possible:</p>
+
+<ul>
+<li>starting an authorisation flow to connect a financial provider to that user</li>
+<li>gaining an access token for that user</li>
+<li>using that access token to get and create financial resources for that user</li>
+</ul>
+
+<p>This route requires an access token from the client credentials grant with the scope of <code>user:create</code>.</p>
+
+<p>It accepts a JSON body with a single parameter: <code>clientUserId</code>. This is optional but allows an API cilent to persist it&#39;s own identifier against the user.</p>
+<h2 id='get-users'>GET /users</h2>
+<p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
+It returns an array of all the users associated with your api client.</p>
+<h2 id='get-users-id'>GET /users/:id</h2>
+<p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
+It returns a single user associated with your api client.</p>
+<h2 id='get-users-id-connections'>GET /users/:id/connections</h2>
+<blockquote>
+<p>Example request using moneyhub api client</p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">connections</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">moneyhub</span><span class="p">.</span><span class="nx">getUserConnections</span><span class="p">(</span><span class="s2">"user-id"</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Example response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b74f1a79f0be8bdb857d82d0f041d7d2:567da9db-7296-4dc0-8a99-7b20dea8d21f"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Modelo Open Banking Mock"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"connectedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-27T14:29:43.687Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastUpdated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-27T14:30:30.284Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-26T14:29:30.715Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"10c6e372-64a4-4d80-add1-ba8549d668ed"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b74f1a79f0be8bdb857d82d0f041d7d2:6fbebd5e-fb2a-4814-bdaf-9a8871167f43"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nationwide Open Banking"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"connectedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-27T14:28:47.072Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastUpdated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-27T14:29:34.792Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-26T14:27:51.576Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"11b6f582-3013-4c71-8af3-9c2d83444c14"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"re_sync"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
+It gets information about all financial connections of a user.</p>
+<h3 id='connection-status'>Connection status</h3>
+<ul>
+<li><code>ok</code> - The connection has a healthy status.</li>
+<li><code>error</code> - The connection has encountered an error while syncing, the error code is specified under the error property.</li>
+</ul>
+<h3 id='connection-errors'>Connection errors</h3>
+<ul>
+<li><code>re_sync</code>: &quot;This connection hasn&#39;t been updated recently, most likely due to the requirement for the user to enter multi factor authentication. We advise getting the user to refresh manually.&quot;,</li>
+<li><code>sync_error</code>: &quot;There was an error syncing this connection, we will try to resync later.&quot;,</li>
+<li><code>sync_partial</code>: &quot;There was an error syncing some of the transactions on this account, we will try to resync later&quot;,</li>
+<li><code>mfa_required</code>: &quot;This connection requires multi factor authentication and must be refreshed manually&quot;,</li>
+<li><code>credentials_error</code>: &quot;This connection can no longer be updated, the user may have changed their credentials or revoked access. Please take the user through a refresh flow where they can &quot;</li>
+</ul>
+<h2 id='delete-users-id-connection-connection-id'>DELETE /users/:id/connection/:connection-id</h2>
+<p>This route requires an access token from the client credentials grant with the scope of <code>user:delete</code>.
+It deletes a financial connection of a user. This will revoke the grant that the user provided previously and it
+will delete any data associated with it from our API. (e.g. accounts, transactions)</p>
+<h2 id='delete-users-id'>DELETE /users/:id</h2>
+<p>This route requires an access token from the client credentials grant with the scope of <code>user:delete</code>.
+It deletes a user and all of its financial connections that were created.</p>
+<h1 id='payments-2'>Payments</h1>
+<p>Moneyhub access to payments uses the same OpenID Connect authorisation service as access to financial data.</p>
+
+<p>There are three additional features that enable payments to be initiated:</p>
+
+<ul>
+<li>Support for Payee creation and management</li>
+<li>Custom payments scope and associated claim</li>
+<li>Support for Request Object endpoint</li>
+</ul>
+<h2 id='payee-management'>Payee Management</h2>
+<p>The Moneyhub payments API is designed to be used to allow payments from arbitrary accounts to a single trusted account. For example a merchant or charity may want to enable their customers to pay into their bank account.</p>
+
+<p>For this reason we require the receiving account to be pre-registered with us as a &quot;payee&quot;. We allow this to be done via the administration panel or via API.</p>
+
+<p>When creating payees via API the steps are as follows:</p>
+
+<ol>
+<li>Get a client credentials token with the scope <code>payee:create</code></li>
+<li>Create a payee using the POST <code>/payees</code> route</li>
+<li>You will receive back an <code>id</code> for the payee. This can be used in subsequent flows</li>
+</ol>
+<h2 id='post-payees'>POST /payees</h2>
+<blockquote>
+<p>Example request using moneyhub api client</p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">moneyhub</span><span class="p">.</span><span class="nx">addPayee</span><span class="p">({</span>
+  <span class="na">accountNumber</span><span class="p">:</span> <span class="s2">"your account number"</span><span class="p">,</span>
+  <span class="na">sortCode</span><span class="p">:</span> <span class="s2">"your sort code"</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"name of Payee"</span><span class="p">,</span>
+<span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>Example request</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl --request POST <span class="se">\</span>
+  --url https://identity.moneyhub.co.uk/payees <span class="se">\</span>
+  --header <span class="s1">'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkFObVlmU0dfa2J0MktScFRLbzdRQ (... abbreviated for brevity ...)'</span> <span class="se">\</span>
+  --header <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+  --data <span class="s1">'{\n   "sortCode": "123456",\n "accountNumber": "12345678",\n  "name": "Account name"\n}'</span>
+</code></pre>
+<blockquote>
+<p>Example response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e07f8dca-1a79-440a-8667-8cd02a000559"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c40d7f7a-a698-4bf1-84bf-8f3798c018b2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T07:48:53.916Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T07:48:53.916Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This route requires an access token from the client credentials grant with the scope of <code>payee:create</code>.</p>
+
+<p>It creates a payee that later can be used to initiate a payment.</p>
+<h2 id='get-payees'>GET /payees</h2>
+<blockquote>
+<p>Example request using moneyhub api client</p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">moneyhub</span><span class="p">.</span><span class="nx">getPayees</span><span class="p">({</span>
+  <span class="na">limit</span><span class="p">:</span> <span class="s2">"limit"</span><span class="p">,</span> <span class="c1">// optional</span>
+  <span class="na">offset</span><span class="p">:</span> <span class="s2">"offset"</span><span class="p">,</span> <span class="c1">// optional</span>
+<span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>Example request</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl --request GET <span class="se">\</span>
+  --url https://identity.moneyhub.co.uk/payees <span class="se">\</span>
+  --header <span class="s1">'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'</span>
+</code></pre>
+<blockquote>
+<p>Example response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e07f8dca-1a79-440a-8667-8cd02a000559"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c40d7f7a-a698-4bf1-84bf-8f3798c018b2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T07:48:53.916Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T07:48:53.916Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This route requires an access token from the client credentials grant with the scope of <code>payee:read</code>.</p>
+
+<p>It returns all the payees that have been created for an specific API client.</p>
+<h2 id='payments-claim'>Payments Claim</h2>
+<blockquote>
+<p>Claim values</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"payeeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id-of-the-payee"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">pence</span><span class="w">
+  </span><span class="s2">"payeeRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference to display on payee's statement"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Max</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="err">characters</span><span class="w">
+  </span><span class="s2">"payerRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference to display on payer's statement"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Max</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="err">characters</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Example payments claim</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id_token"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"mh:con_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"mh:payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"payeeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id-of-the-payee"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"payeeRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference to display on payee's statement"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"payerRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference to display on payer's statement"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>In order to initiate a payment via the API you need to use the <code>payment</code> scope and use the <code>mh:payment</code> claim. This claim require the values of the payeeeId, amount, payee refrence and payer reference.</p>
+
+<p>This claim must be supplied using the claims parameter semantics from OpenID Connect Core. It should be nested under the <code>id_token</code> key and not the <code>userinfo</code> key.</p>
+
+<p>Using the claims parameter may feel slightly convoluted, but it is a neat standards compliant way of us allowing OAuth clients to pass us arbitrary payment values.</p>
+
+<p>By putting the payment payload inside a signed request object there is non-repudiable proof that the payment request was signed by your private key.</p>
+<h2 id='post-request-request-object-endpoint'>POST /request (Request Object Endpoint)</h2>
+<blockquote>
+<p>Example request</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl --request POST <span class="se">\</span>
+  --url https://identity.moneyhub.com/request <span class="se">\</span>
+  --header <span class="s1">'content-type: application/jws'</span> <span class="se">\</span>
+  --data eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkdUTjlKYXJ2eFFLMGc0bHdvUTFESExOTTdhbTN1VFNGZm1jX0Q4WXE4Sk0ifQ.eyJjbGllbnRfaWQiOiJjNDBkN2Y3YS1hNjk4LTRiZjEtODRiZi04ZjM3OThjMDE4YjIiLCJzY29wZSI6InBheW1lbnQgb3BlbmlkIGlkOjFmZmU3MDRkMzk2MjlhOTI5YzhlMjkzODgwZmI0NDlhIiwic3RhdGUiOiJmb29iYXIiLCJjbGFpbXMiOnsiaWRfdG9rZW4iOnsibWg6Y29uX2lkIjp7ImVzc2VudGlhbCI6dHJ1ZX0sIm1oOnBheW1lbnQiOnsiZXNzZW50aWFsIjp0cnVlLCJ2YWx1ZSI6eyJhbW91bnQiOjEwMCwicGF5ZWVSZWYiOiJQYXllZSByZWYiLCJwYXllclJlZiI6IlBheWVyIHJlZiJ9fX19LCJleHAiOjE1NTg2MDc1NTQsInJlZGlyZWN0X3VyaSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMS9hdXRoL2NhbGxiYWNrIiwicmVzcG9uc2VfdHlwZSI6ImNvZGUiLCJwcm9tcHQiOiJjb25zZW50IiwiaXNzIjoiYzQwZDdmN2EtYTY5OC00YmYxLTg0YmYtOGYzNzk4YzAxOGIyIiwiYXVkIjoiaHR0cDovL2lkZW50aXR5LmRldi4xMjcuMC4wLjEubmlwLmlvL29pZGMifQ.ELTOILtLJk-qT6GC7Hv02UfMvHgian791_Bqcr4b0CMIqsCYdeQk-5QgqHO27ZANfteaItOscrsg168_eXas093vhoGnXJsjA9T-f38IXoTil6fq7a4IgEygX2GAAP3c-wAlfW6FNEG5j9o9NhY4EkWlb1B5CGYwaQ61yLYkqBs7D_aYP0h57WeUiqtFwz_p1ieMiyDAL465a3ws2e5AfcT0SzHmaF6qfziL9msdSMgFQheJ4tWXiWum0xDNAIGDWGOV5bqSgnQiscXtbeyGvrl-bgqsaWFsTfGhmSPQrKFkzNCaOqHp0XdxiiyQaGuiPY-P9w9oS2h4Pbk-nompJg
+</code></pre>
+<blockquote>
+<p>Example response</p>
+</blockquote>
+<pre class="highlight plaintext"><code>urn:x-mh-request:0af734c7-bc2f-4b89-ad0a-f5e0f91d5426
+</code></pre>
+<p>This endpoint receives a request object signed by an API client in order to create a <code>uri</code> that can be used to construct an authorization url.</p>
+
+<p>In order to generate an authorization url for a payment to be initiated it is required to obtain a <code>request_uri</code> out of a request object containing the <code>mh:payment</code> claims.</p>
+
+<p>The OpenId Connect core describes the use of the <code>request_uri</code> parameter when constructing an authorization url.</p>
+
+<blockquote>
+<p>A user can be redirected to our authorize url by using the <code>request_uri</code> parameter as follows:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>https://identity.moneyhub.co.uk/oidc/auth?
+ &amp;client_id=s6BhdRkqt3
+ &amp;request_uri=urn:x-mh-request:0af734c7-bc2f-4b89-ad0a-f5e0f91d5426
+ &amp;scope=openid payment id:financial-connection-id
+</code></pre><h2 id='payments-authorization'>Payments Authorization</h2>
+<blockquote>
+<p>Creating a payment authorization url using our api client</p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">moneyhub</span><span class="p">.</span><span class="nx">getPaymentAuthorizeUrl</span><span class="p">({</span>
+  <span class="na">bankId</span><span class="p">:</span> <span class="s2">"Bank id to authorise payment from"</span><span class="p">,</span>
+  <span class="na">payeeId</span><span class="p">:</span> <span class="s2">"Id of payee previously added"</span>
+  <span class="na">amount</span><span class="p">:</span> <span class="s2">"Amount in pence to authorize payment"</span>
+  <span class="na">payeeRef</span><span class="p">:</span> <span class="s2">"Payee reference"</span><span class="p">,</span>
+  <span class="na">payerRef</span><span class="p">:</span> <span class="s2">"Payer reference"</span><span class="p">,</span>
+  <span class="na">state</span><span class="p">:</span> <span class="s2">"your state value"</span><span class="p">,</span> <span class="c1">// optional</span>
+  <span class="na">nonce</span><span class="p">:</span> <span class="s2">"your nonce value"</span><span class="p">,</span> <span class="c1">// optional</span>
+  <span class="na">claims</span><span class="p">:</span> <span class="nx">claimsObject</span><span class="p">,</span> <span class="c1">// optional</span>
+<span class="p">})</span>
+</code></pre>
+<p>To authorise a payment the user needs to be redirected to the authorization url that contains the payments claim as explained above. The generation of the authorization url can be done with our moneyhub api client as shown in this section.</p>
+
+<blockquote>
+<p>Exchanging an authorization code for a token set using our api client</p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">moneyhub</span><span class="p">.</span><span class="nx">exchangeCodeForTokens</span><span class="p">({</span>
+  <span class="na">code</span><span class="p">:</span> <span class="s2">"the authorization code"</span><span class="p">,</span>
+  <span class="na">nonce</span><span class="p">:</span> <span class="s2">"your nonce value"</span><span class="p">,</span> <span class="c1">// optional</span>
+  <span class="na">state</span><span class="p">:</span> <span class="s2">"your state value"</span><span class="p">,</span> <span class="c1">// optional</span>
+  <span class="na">id_token</span><span class="p">:</span> <span class="s2">"your id token"</span><span class="p">,</span> <span class="c1">// optional</span>
+<span class="p">})</span>
+</code></pre>
+<p>Once the user has successfully granted Moneyhub consent to initiate the payment and authenticated at the bank we will return an authorization code to your <code>redirect_uri</code>. This must be exchanged for an access token as per standard OpenID Connect practice. If you don&#39;t exchange the auth code for an access token, the payment will never be completed even though the user has authenticated it.</p>
+
+<blockquote>
+<p>Decoded content of id token after exchanging authorization code</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5cda695b82d18512e415e648"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mh:con_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1fd7ca2c94a914819b2e1b6cf0abe874:b6592e9e-619f-4171-a933-6023c381bd03"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mh:payment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aeb2bc6c-505e-41b7-a82a-e898a7e95438"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"at_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3MmQIA6EtEnfo319s-UZdw"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8be9087f-3b9f-426e-af52-2671f2ab88aa"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"aud"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c40d7f7a-a698-4bf1-84bf-8f3798c018b2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1557821587</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"iat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1557817987</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"iss"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://identity.moneyhub.co.uk/oidc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>As well as receiving an access token, you will receive an id token that will have a <code>mh_payment</code> claim. The value of this claim in the id token will be the id of the payment.</p>
+
+<p>Once that you have extracted the payment id from the id token you can query the status of the payment on the folllwing endpoint: <code>GET /payment/:id</code></p>
+<h2 id='payments-management'>Payments Management</h2>
+<p>The following endpoints are available to get access to the payments that have been initiated by an API client.</p>
+<h2 id='get-payments'>GET /payments</h2>
+<blockquote>
+<p>Example request using moneyhub api client</p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">moneyhub</span><span class="p">.</span><span class="nx">getPayments</span><span class="p">({</span>
+  <span class="na">limit</span><span class="p">:</span> <span class="s2">"limit"</span><span class="p">,</span> <span class="c1">// optional</span>
+  <span class="na">offset</span><span class="p">:</span> <span class="s2">"offset"</span><span class="p">,</span> <span class="c1">// optional</span>
+<span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>Example request</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl --request GET <span class="se">\</span>
+  --url https://identity.moneyhub.co.uk/payments <span class="se">\</span>
+  --header <span class="s1">'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'</span>
+</code></pre>
+<p>It returns all the payments that have been initiated by an API client regardless if they were authorised or not. Payments that have been authorised have the properties <code>exchangedAt</code> and <code>connectionId</code>.</p>
+
+<p>This route requires an access token from the client credentials grant with the scope of <code>payment:read</code>.</p>
+<h2 id='get-payments-id'>GET /payments:id</h2>
+<blockquote>
+<p>Example request using moneyhub api client</p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">moneyhub</span><span class="p">.</span><span class="nx">getPayment</span><span class="p">(</span><span class="s2">"payment-id"</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Example request</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl --request GET <span class="se">\</span>
+  --url https://identity.moneyhub.co.uk/payments/payment-id <span class="se">\</span>
+  --header <span class="s1">'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'</span>
+</code></pre>
+<p>It returns a single payment that was initiated by an API client. This route is useful to query the status of a payment as it contains a <code>status</code> field.</p>
+
+<p>To call this endpoint you need an access token from the client credentials grant with the scope of <code>payment:read</code>.</p>
+<h1 id='webhooks'>Webhooks</h1>
+<blockquote>
+<p>Example webhook</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abe168ce-1b2f-4c38-9c92-db5730485cb3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"eventType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newTransactions"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c79210bbac25ecb5e71ac40"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d0baf11-248e-4c11-9c04-97b7758b4e04"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"d520402a-d982-43ee-b1d1-bdfd282249ea"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"613586bf-dac9-4996-9c03-7194a7d62297"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This is a way to be notified in real time about events related to the api users that you have created.</p>
+
+<p>You can configure webhook endpoints via the <a href="https://admin-portal.moneyhub.co.uk/">Admin portal</a> when you add or edit your <a href="/my-api-clients">API clients</a>.</p>
+
+<p>Once that you start receiving webhooks you will be able to see a list of them when you drill down to the details of your <a href="https://admin-portal.moneyhub.co.uk/api-users">API users</a>.</p>
+<h3 id='schema'>Schema</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>string</code></td>
+<td>Unique id of the webhook</td>
+</tr>
+<tr>
+<td>eventType</td>
+<td><code>string[enum]</code></td>
+<td>Event id</td>
+</tr>
+<tr>
+<td>userId</td>
+<td><code>string</code></td>
+<td>User id</td>
+</tr>
+<tr>
+<td>payload</td>
+<td><code>object</code></td>
+<td>Payload of the event</td>
+</tr>
+</tbody></table>
+<h2 id='new-transactions'>New transactions</h2>
+<blockquote>
+<p>Example payload</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d0baf11-248e-4c11-9c04-97b7758b4e04"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"d520402a-d982-43ee-b1d1-bdfd282249ea"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"613586bf-dac9-4996-9c03-7194a7d62297"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Id: <code>newTransactions</code></p>
+
+<p>Event that notifies when an account has been automatically updated and new transactions have come through.</p>
+<h3 id='event-payload'>Event Payload</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accounts</td>
+<td><code>array[object]</code></td>
+<td>Array of accounts that contain new transactions</td>
+</tr>
+<tr>
+<td>» id</td>
+<td><code>string</code></td>
+<td>Account Id</td>
+</tr>
+<tr>
+<td>» transactions</td>
+<td><code>array[string]</code></td>
+<td>Array of transactions ids</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
+</aside>
 
 <h1 id="moneyhub-data-api">Moneyhub Data API v2.0.0</h1>
 
