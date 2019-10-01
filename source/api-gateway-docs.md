@@ -4412,6 +4412,7 @@ Requires **categories:read** scope.
 |---|---|
 |type|personal|
 |type|business|
+|type|all|
 
 > Example responses
 
@@ -4842,6 +4843,7 @@ Requires **categories:read** scope.
 |---|---|
 |type|personal|
 |type|business|
+|type|all|
 
 > Example responses
 
