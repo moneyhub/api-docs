@@ -1280,60 +1280,8 @@ It returns an array of all the users associated with your api client.</p>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
 It returns a single user associated with your api client.</p>
 <h2 id='get-users-id-connections'>GET /users/:id/connections</h2>
-<blockquote>
-<p>Example request using moneyhub api client</p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">connections</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">moneyhub</span><span class="p">.</span><span class="nx">getUserConnections</span><span class="p">(</span><span class="s2">"user-id"</span><span class="p">)</span>
-</code></pre>
-<blockquote>
-<p>Example response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b74f1a79f0be8bdb857d82d0f041d7d2:567da9db-7296-4dc0-8a99-7b20dea8d21f"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Modelo Open Banking Mock"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"connectedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-27T14:29:43.687Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lastUpdated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-27T14:30:30.284Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-26T14:29:30.715Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"accountIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"10c6e372-64a4-4d80-add1-ba8549d668ed"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b74f1a79f0be8bdb857d82d0f041d7d2:6fbebd5e-fb2a-4814-bdaf-9a8871167f43"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nationwide Open Banking"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"connectedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-27T14:28:47.072Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lastUpdated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-27T14:29:34.792Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-26T14:27:51.576Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"accountIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"11b6f582-3013-4c71-8af3-9c2d83444c14"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"re_sync"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
-It gets information about all financial connections of a user.</p>
-<h3 id='connection-status'>Connection status</h3>
-<ul>
-<li><code>ok</code> - The connection has a healthy status.</li>
-<li><code>error</code> - The connection has encountered an error while syncing, the error code is specified under the error property.</li>
-</ul>
-<h3 id='connection-errors'>Connection errors</h3>
-<ul>
-<li><code>re_sync</code>: &quot;This connection hasn&#39;t been updated recently, most likely due to the requirement for the user to enter multi factor authentication. We advise getting the user to refresh manually.&quot;,</li>
-<li><code>sync_error</code>: &quot;There was an error syncing this connection, we will try to resync later.&quot;,</li>
-<li><code>sync_partial</code>: &quot;There was an error syncing some of the transactions on this account, we will try to resync later&quot;,</li>
-<li><code>mfa_required</code>: &quot;This connection requires multi factor authentication and must be refreshed manually&quot;,</li>
-<li><code>credentials_error</code>: &quot;This connection can no longer be updated, the user may have changed their credentials or revoked access. Please take the user through a refresh flow where they can &quot;</li>
-</ul>
+It gets all financial connections of a user.</p>
 <h2 id='delete-users-id-connection-connection-id'>DELETE /users/:id/connection/:connection-id</h2>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:delete</code>.
 It deletes a financial connection of a user. This will revoke the grant that the user provided previously and it
@@ -9348,6 +9296,10 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span>
 <td>type</td>
 <td>business</td>
 </tr>
+<tr>
+<td>type</td>
+<td>all</td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -9954,6 +9906,10 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories/<span class="o">{</span>c
 <tr>
 <td>type</td>
 <td>business</td>
+</tr>
+<tr>
+<td>type</td>
+<td>all</td>
 </tr>
 </tbody></table>
 

@@ -7652,6 +7652,10 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories <span class="se">\</span>
 <td>type</td>
 <td>business</td>
 </tr>
+<tr>
+<td>type</td>
+<td>all</td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -8258,6 +8262,10 @@ curl -X GET https://api.moneyhub.co.uk/v2.0/categories/<span class="o">{</span>c
 <tr>
 <td>type</td>
 <td>business</td>
+</tr>
+<tr>
+<td>type</td>
+<td>all</td>
 </tr>
 </tbody></table>
 
