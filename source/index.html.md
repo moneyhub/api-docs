@@ -689,8 +689,62 @@ It returns a single user associated with your api client.
 
 ## GET /users/:id/connections
 
+> Example request using moneyhub api client
+
+```js
+const connections = await moneyhub.getUserConnections("user-id")
+```
+
+> Example response
+
+```json
+{
+  "data": [
+    {
+      "id": "b74f1a79f0be8bdb857d82d0f041d7d2:567da9db-7296-4dc0-8a99-7b20dea8d21f",
+      "name": "Modelo Open Banking Mock",
+      "connectedOn": "2019-09-27T14:29:43.687Z",
+      "lastUpdated": "2019-09-27T14:30:30.284Z",
+      "expiresAt": "2019-12-26T14:29:30.715Z",
+      "accountIds": [
+        "10c6e372-64a4-4d80-add1-ba8549d668ed"
+      ],
+      "status": "ok",
+      "error": null,
+    },
+    {
+      "id": "b74f1a79f0be8bdb857d82d0f041d7d2:6fbebd5e-fb2a-4814-bdaf-9a8871167f43",
+      "name": "Nationwide Open Banking",
+      "connectedOn": "2019-09-27T14:28:47.072Z",
+      "lastUpdated": "2019-09-27T14:29:34.792Z",
+      "expiresAt": "2019-12-26T14:27:51.576Z",
+      "accountIds": [
+        "11b6f582-3013-4c71-8af3-9c2d83444c14"
+      ],
+      "status": "error",
+      "error": "resync"
+    }
+  ],
+  "meta": {}
+}
+
+```
+
 This route requires an access token from the client credentials grant with the scope of `user:read`.
-It gets all financial connections of a user.
+It gets information about all financial connections of a user.
+
+### Connection status
+
+- `ok` - The connection has a healthy status.
+- `error` - The connection has encountered an error while syncing, the error code is specified under the error property.
+
+### Connection errors
+
+- `resync`: "This connection hasn't been updated recently, most likely due to the requirement for the user to enter multi factor authentication. We advise getting the user to refresh manually.",
+- `sync_error`: "There was an error syncing this connection, we will try to resync later.",
+- `sync_partial`: "There was an error syncing some of the transactions on this account, we will try to resync later",
+- `mfa_required`: "This connection requires multi factor authentication and must be refreshed manually",
+- `credentials_error`: "This connection can no longer be updated, the user may have changed their credentials or revoked access. Please take the user through a refresh flow where they can "
 
 ## DELETE /users/:id/connection/:connection-id
 
@@ -3429,6 +3483,538 @@ Status Code **200**
 |»»»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
 |»»»» self|string(uri)|true|none|The url of the current resource(s)|
 |»»» meta|object|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|ISIN|
+|type|SEDOL|
+|type|MEX|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## get__accounts_{accountId}_holdings_{holdingId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings/{holdingId} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: bearerToken'
+
+```
+
+```http
+GET https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings/{holdingId} HTTP/1.1
+Host: api.moneyhub.co.uk
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json',
+  'Authorization':'bearerToken'
+
+};
+
+$.ajax({
+  url: 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings/{holdingId}',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'bearerToken'
+
+};
+
+fetch('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings/{holdingId}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'bearerToken'
+}
+
+result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings/{holdingId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'bearerToken'
+}
+
+r = requests.get('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings/{holdingId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings/{holdingId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"bearerToken"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings/{holdingId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /accounts/{accountId}/holdings/{holdingId}`
+
+*Retrieve the holding for an account with matched ISIN codes*
+
+Requires **accounts:read** scope.
+
+<h3 id="get__accounts_{accountid}_holdings_{holdingid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|string(uuid)|true|The Account Id|
+|holdingId|path|string|true|The Holding Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": "6a8b01768a50b095a8c0445c1b080900f1096fd0b6e40863c6b82d63607c3bbe",
+    "history": [
+      {
+        "total": {
+          "value": 90334.16,
+          "currency": "GBP"
+        },
+        "unitPrice": {
+          "value": 19.862,
+          "currency": "GBP"
+        },
+        "quantity": 4548.09,
+        "date": "2018-07-11"
+      }
+    ],
+    "matched": [
+      {
+        "isin": "GB00B39TQT96",
+        "name": "Dynamic Bond Fund Acc",
+        "score": 0.5,
+        "priceGBP": 4548.09,
+        "price": {
+          "value": 90334.16,
+          "currency": "GBP"
+        },
+        "date": "2018-07-11"
+      }
+    ],
+    "codes": [
+      {
+        "code": "GB00B39TQT96",
+        "type": "ISIN"
+      }
+    ],
+    "name": "Dynamic Bond Fund",
+    "quantity": 4548.09,
+    "total": {
+      "value": 90334.16,
+      "currency": "GBP"
+    },
+    "unitPrice": {
+      "value": 19.862,
+      "currency": "GBP"
+    }
+  },
+  "links": {
+    "next": "http://example.com",
+    "prev": "http://example.com",
+    "self": "http://example.com"
+  },
+  "meta": {}
+}
+```
+
+<h3 id="get__accounts_{accountid}_holdings_{holdingid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Succesful Holding Response|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unsuccesful Response - Not authorised - Missing authorization header - Invalid access Token|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Unsuccesful Response - Forbidden - Invalid scopes|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Unsuccesful Response - Resource Not found|[Error](#schemaerror)|
+
+<h3 id="get__accounts_{accountid}_holdings_{holdingid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» data|object|false|none|none|
+|»» id|string|true|none|The id of the holding|
+|»» history|[object]|true|none|none|
+|»»» total|object|false|none|none|
+|»»»» value|number|true|none|The value of the total in minor units of the currency, eg. pennies for GBP.|
+|»»»» currency|string|true|none|The currency of the total.|
+|»»» unitPrice|object|false|none|none|
+|»»»» value|number|true|none|The value of the unit price in minor units of the currency, eg. pennies for GBP.|
+|»»»» currency|string|true|none|The currency of the unit price.|
+|»»» quantity|number|false|none|none|
+|»»» date|string(date)|false|none|Date of the valuation|
+|»» matched|[object]|true|none|none|
+|»»» isin|string|false|none|The ISIN code of the match|
+|»»» name|string|false|none|The name of the match|
+|»»» score|number|false|none|none|
+|»»» priceGBP|number|false|none|none|
+|»»» price|object|false|none|none|
+|»»»» value|number|true|none|The unit price in minor units of the currency (e.g. pence for GBP)|
+|»»»» currency|string|true|none|The currency of the matched holding|
+|»»» date|string(date)|false|none|Date of the valuation|
+|»» codes|[object]|true|none|none|
+|»»» code|string|false|none|none|
+|»»» type|string|false|none|none|
+|»» name|string|true|none|none|
+|»» quantity|number|true|none|none|
+|»» total|object|true|none|none|
+|»»» value|number|true|none|The value of the total in minor units of the currency, eg. pennies for GBP.|
+|»»» currency|string|true|none|The currency of the total.|
+|»» unitPrice|object|true|none|none|
+|»»» value|number|true|none|The value of the unit price in minor units of the currency, eg. pennies for GBP.|
+|»»» currency|string|true|none|The currency of the unit price.|
+|»» links|[Links](#schemalinks)|false|none|none|
+|»»» next|string(uri)|false|none|The url to retrieve the next page of results from|
+|»»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
+|»»» self|string(uri)|true|none|The url of the current resource(s)|
+|»» meta|object|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|ISIN|
+|type|SEDOL|
+|type|MEX|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## get__accounts_{accountId}_holdings-with-matches
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings-with-matches \
+  -H 'Accept: application/json' \
+  -H 'Authorization: bearerToken'
+
+```
+
+```http
+GET https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings-with-matches HTTP/1.1
+Host: api.moneyhub.co.uk
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json',
+  'Authorization':'bearerToken'
+
+};
+
+$.ajax({
+  url: 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings-with-matches',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'bearerToken'
+
+};
+
+fetch('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings-with-matches',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'bearerToken'
+}
+
+result = RestClient.get 'https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings-with-matches',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'bearerToken'
+}
+
+r = requests.get('https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings-with-matches', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings-with-matches");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"bearerToken"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.moneyhub.co.uk/v2.0/accounts/{accountId}/holdings-with-matches", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /accounts/{accountId}/holdings-with-matches`
+
+*Retrieve the holdings for an account with matched ISIN codes*
+
+Requires **accounts:read** scope.
+
+<h3 id="get__accounts_{accountid}_holdings-with-matches-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|string(uuid)|true|The Account Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "date": "2018-07-11",
+      "id": "6a8b01768a50b095a8c0445c1b080900f1096fd0b6e40863c6b82d63607c3bbe",
+      "matched": [
+        {
+          "isin": "GB00B39TQT96",
+          "name": "Dynamic Bond Fund Acc",
+          "score": 0.5,
+          "priceGBP": 4548.09,
+          "price": {
+            "value": 90334.16,
+            "currency": "GBP"
+          },
+          "date": "2018-07-11"
+        }
+      ],
+      "codes": [
+        {
+          "code": "GB00B39TQT96",
+          "type": "ISIN"
+        }
+      ],
+      "name": "Dynamic Bond Fund",
+      "quantity": 4548.09,
+      "total": {
+        "value": 90334.16,
+        "currency": "GBP"
+      },
+      "unitPrice": {
+        "value": 19.862,
+        "currency": "GBP"
+      }
+    }
+  ],
+  "links": {
+    "next": "http://example.com",
+    "prev": "http://example.com",
+    "self": "http://example.com"
+  },
+  "meta": {}
+}
+```
+
+<h3 id="get__accounts_{accountid}_holdings-with-matches-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Succesful Holdings Response|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unsuccesful Response - Not authorised - Missing authorization header - Invalid access Token|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Unsuccesful Response - Forbidden - Invalid scopes|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Unsuccesful Response - Resource Not found|[Error](#schemaerror)|
+
+<h3 id="get__accounts_{accountid}_holdings-with-matches-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» data|[[HoldingWithMatches](#schemaholdingwithmatches)]|false|none|none|
+|»» date|string(date)|false|none|Date of the valuation|
+|»» id|string|true|none|The id of the holding|
+|»» matched|[object]|true|none|none|
+|»»» isin|string|false|none|The ISIN code of the match|
+|»»» name|string|false|none|The name of the match|
+|»»» score|number|false|none|none|
+|»»» priceGBP|number|false|none|none|
+|»»» price|object|false|none|none|
+|»»»» value|number|true|none|The unit price in minor units of the currency (e.g. pence for GBP)|
+|»»»» currency|string|true|none|The currency of the matched holding|
+|»»» date|string(date)|false|none|Date of the valuation|
+|»» codes|[object]|true|none|none|
+|»»» code|string|false|none|none|
+|»»» type|string|false|none|none|
+|»» name|string|true|none|none|
+|»» quantity|number|true|none|none|
+|»» total|object|true|none|none|
+|»»» value|number|true|none|The value of the total in minor units of the currency, eg. pennies for GBP.|
+|»»» currency|string|true|none|The currency of the total.|
+|»» unitPrice|object|true|none|none|
+|»»» value|number|true|none|The value of the unit price in minor units of the currency, eg. pennies for GBP.|
+|»»» currency|string|true|none|The currency of the unit price.|
+|»» links|[Links](#schemalinks)|false|none|none|
+|»»» next|string(uri)|false|none|The url to retrieve the next page of results from|
+|»»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
+|»»» self|string(uri)|true|none|The url of the current resource(s)|
+|»» meta|object|false|none|none|
 
 #### Enumerated Values
 
@@ -9317,6 +9903,179 @@ Bearer
 |» code|string|false|none|none|
 |» type|string|false|none|none|
 |description|string|true|none|none|
+|quantity|number|true|none|none|
+|total|object|true|none|none|
+|» value|number|true|none|The value of the total in minor units of the currency, eg. pennies for GBP.|
+|» currency|string|true|none|The currency of the total.|
+|unitPrice|object|true|none|none|
+|» value|number|true|none|The value of the unit price in minor units of the currency, eg. pennies for GBP.|
+|» currency|string|true|none|The currency of the unit price.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|ISIN|
+|type|SEDOL|
+|type|MEX|
+
+<h2 id="tocSholdingwithmatches">HoldingWithMatches</h2>
+
+<a id="schemaholdingwithmatches"></a>
+
+```json
+{
+  "date": "2018-07-11",
+  "id": "6a8b01768a50b095a8c0445c1b080900f1096fd0b6e40863c6b82d63607c3bbe",
+  "matched": [
+    {
+      "isin": "GB00B39TQT96",
+      "name": "Dynamic Bond Fund Acc",
+      "score": 0.5,
+      "priceGBP": 4548.09,
+      "price": {
+        "value": 90334.16,
+        "currency": "GBP"
+      },
+      "date": "2018-07-11"
+    }
+  ],
+  "codes": [
+    {
+      "code": "GB00B39TQT96",
+      "type": "ISIN"
+    }
+  ],
+  "name": "Dynamic Bond Fund",
+  "quantity": 4548.09,
+  "total": {
+    "value": 90334.16,
+    "currency": "GBP"
+  },
+  "unitPrice": {
+    "value": 19.862,
+    "currency": "GBP"
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date|string(date)|false|none|Date of the valuation|
+|id|string|true|none|The id of the holding|
+|matched|[object]|true|none|none|
+|» isin|string|false|none|The ISIN code of the match|
+|» name|string|false|none|The name of the match|
+|» score|number|false|none|none|
+|» priceGBP|number|false|none|none|
+|» price|object|false|none|none|
+|»» value|number|true|none|The unit price in minor units of the currency (e.g. pence for GBP)|
+|»» currency|string|true|none|The currency of the matched holding|
+|» date|string(date)|false|none|Date of the valuation|
+|codes|[object]|true|none|none|
+|» code|string|false|none|none|
+|» type|string|false|none|none|
+|name|string|true|none|none|
+|quantity|number|true|none|none|
+|total|object|true|none|none|
+|» value|number|true|none|The value of the total in minor units of the currency, eg. pennies for GBP.|
+|» currency|string|true|none|The currency of the total.|
+|unitPrice|object|true|none|none|
+|» value|number|true|none|The value of the unit price in minor units of the currency, eg. pennies for GBP.|
+|» currency|string|true|none|The currency of the unit price.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|ISIN|
+|type|SEDOL|
+|type|MEX|
+
+<h2 id="tocSholdingwithmatchesandhistory">HoldingWithMatchesAndHistory</h2>
+
+<a id="schemaholdingwithmatchesandhistory"></a>
+
+```json
+{
+  "id": "6a8b01768a50b095a8c0445c1b080900f1096fd0b6e40863c6b82d63607c3bbe",
+  "history": [
+    {
+      "total": {
+        "value": 90334.16,
+        "currency": "GBP"
+      },
+      "unitPrice": {
+        "value": 19.862,
+        "currency": "GBP"
+      },
+      "quantity": 4548.09,
+      "date": "2018-07-11"
+    }
+  ],
+  "matched": [
+    {
+      "isin": "GB00B39TQT96",
+      "name": "Dynamic Bond Fund Acc",
+      "score": 0.5,
+      "priceGBP": 4548.09,
+      "price": {
+        "value": 90334.16,
+        "currency": "GBP"
+      },
+      "date": "2018-07-11"
+    }
+  ],
+  "codes": [
+    {
+      "code": "GB00B39TQT96",
+      "type": "ISIN"
+    }
+  ],
+  "name": "Dynamic Bond Fund",
+  "quantity": 4548.09,
+  "total": {
+    "value": 90334.16,
+    "currency": "GBP"
+  },
+  "unitPrice": {
+    "value": 19.862,
+    "currency": "GBP"
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|true|none|The id of the holding|
+|history|[object]|true|none|none|
+|» total|object|false|none|none|
+|»» value|number|true|none|The value of the total in minor units of the currency, eg. pennies for GBP.|
+|»» currency|string|true|none|The currency of the total.|
+|» unitPrice|object|false|none|none|
+|»» value|number|true|none|The value of the unit price in minor units of the currency, eg. pennies for GBP.|
+|»» currency|string|true|none|The currency of the unit price.|
+|» quantity|number|false|none|none|
+|» date|string(date)|false|none|Date of the valuation|
+|matched|[object]|true|none|none|
+|» isin|string|false|none|The ISIN code of the match|
+|» name|string|false|none|The name of the match|
+|» score|number|false|none|none|
+|» priceGBP|number|false|none|none|
+|» price|object|false|none|none|
+|»» value|number|true|none|The unit price in minor units of the currency (e.g. pence for GBP)|
+|»» currency|string|true|none|The currency of the matched holding|
+|» date|string(date)|false|none|Date of the valuation|
+|codes|[object]|true|none|none|
+|» code|string|false|none|none|
+|» type|string|false|none|none|
+|name|string|true|none|none|
 |quantity|number|true|none|none|
 |total|object|true|none|none|
 |» value|number|true|none|The value of the total in minor units of the currency, eg. pennies for GBP.|

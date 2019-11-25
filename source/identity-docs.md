@@ -671,8 +671,62 @@ It returns a single user associated with your api client.
 
 ## GET /users/:id/connections
 
+> Example request using moneyhub api client
+
+```js
+const connections = await moneyhub.getUserConnections("user-id")
+```
+
+> Example response
+
+```json
+{
+  "data": [
+    {
+      "id": "b74f1a79f0be8bdb857d82d0f041d7d2:567da9db-7296-4dc0-8a99-7b20dea8d21f",
+      "name": "Modelo Open Banking Mock",
+      "connectedOn": "2019-09-27T14:29:43.687Z",
+      "lastUpdated": "2019-09-27T14:30:30.284Z",
+      "expiresAt": "2019-12-26T14:29:30.715Z",
+      "accountIds": [
+        "10c6e372-64a4-4d80-add1-ba8549d668ed"
+      ],
+      "status": "ok",
+      "error": null,
+    },
+    {
+      "id": "b74f1a79f0be8bdb857d82d0f041d7d2:6fbebd5e-fb2a-4814-bdaf-9a8871167f43",
+      "name": "Nationwide Open Banking",
+      "connectedOn": "2019-09-27T14:28:47.072Z",
+      "lastUpdated": "2019-09-27T14:29:34.792Z",
+      "expiresAt": "2019-12-26T14:27:51.576Z",
+      "accountIds": [
+        "11b6f582-3013-4c71-8af3-9c2d83444c14"
+      ],
+      "status": "error",
+      "error": "resync"
+    }
+  ],
+  "meta": {}
+}
+
+```
+
 This route requires an access token from the client credentials grant with the scope of `user:read`.
-It gets all financial connections of a user.
+It gets information about all financial connections of a user.
+
+### Connection status
+
+- `ok` - The connection has a healthy status.
+- `error` - The connection has encountered an error while syncing, the error code is specified under the error property.
+
+### Connection errors
+
+- `resync`: "This connection hasn't been updated recently, most likely due to the requirement for the user to enter multi factor authentication. We advise getting the user to refresh manually.",
+- `sync_error`: "There was an error syncing this connection, we will try to resync later.",
+- `sync_partial`: "There was an error syncing some of the transactions on this account, we will try to resync later",
+- `mfa_required`: "This connection requires multi factor authentication and must be refreshed manually",
+- `credentials_error`: "This connection can no longer be updated, the user may have changed their credentials or revoked access. Please take the user through a refresh flow where they can "
 
 ## DELETE /users/:id/connection/:connection-id
 
