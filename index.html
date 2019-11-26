@@ -1096,6 +1096,14 @@ an error of <code>invalid_scope</code> if more than one of the above is supplied
 <p>We advise that the above 2 scopes are used with the response_type of <code>id_token</code> rather than <code>code id_token</code>. This is because the access token issued at the end of such a flow is of no value and can only be introspected to confirm the values already present in the id_token.</p>
 
 <p>The only scope that can (and must) be supplied along with either <code>reauth</code> or <code>refresh</code> is <code>openid</code>. If any other scope is provided the result will be an <code>invalid_scope</code> error.</p>
+<h3 id='reauth'><strong>Reauth</strong></h3>
+<p>This flow should be used to:
+- Re authenticate an open banking connection once that the user&#39;s consent has expired.
+- Update the login credentials on a legacy connection.</p>
+<h3 id='refresh'><strong>Refresh</strong></h3>
+<p>This flow is available only for legacy connections when the input of the user might be required to fetch the latest data. This is usually the case when MFA or security questions are enabled on the bank site.</p>
+
+<p>This flow is not available for open banking connections as user input is never required to fetch the latest data, unless the consent has expired. If this is the case the reauth flow will need to be used to get a new consent.</p>
 <h2 id='user-management'>User management</h2>
 <ul>
 <li><code>user:create</code> - this scope is only supported with the client credentials grant type. It allows a relying party to create a new user profile.</li>
@@ -1340,11 +1348,11 @@ It gets information about all financial connections of a user.</p>
 </ul>
 <h3 id='connection-errors'>Connection errors</h3>
 <ul>
-<li><code>resync</code>: &quot;This connection hasn&#39;t been updated recently, most likely due to the requirement for the user to enter multi factor authentication. We advise getting the user to refresh manually.&quot;,</li>
-<li><code>sync_error</code>: &quot;There was an error syncing this connection, we will try to resync later.&quot;,</li>
-<li><code>sync_partial</code>: &quot;There was an error syncing some of the transactions on this account, we will try to resync later&quot;,</li>
-<li><code>mfa_required</code>: &quot;This connection requires multi factor authentication and must be refreshed manually&quot;,</li>
-<li><code>credentials_error</code>: &quot;This connection can no longer be updated, the user may have changed their credentials or revoked access. Please take the user through a refresh flow where they can &quot;</li>
+<li><code>resync</code>: This connection hasn&#39;t been updated recently, most likely due to the requirement for the user to enter multi factor authentication. We advise to trigger a sync. If problem persists a reauth flow can be used for open banking connections and a refresh flow can be used for legacy connections.</li>
+<li><code>sync_error</code>: There was an error syncing this connection. Please wait for us to automatically resync this connection later or trigger a sync. If problem persists a reauth flow can be used for open banking connections and a refresh flow can be used for legacy connections.</li>
+<li><code>sync_partial</code>: There was an error syncing some of the transactions on this account. Please wait for us to automatically resync this connection later or trigger a sync.</li>
+<li><code>mfa_required</code>: This connection requires multi factor authentication and needs user input. Please take the user through a refresh flow.</li>
+<li><code>credentials_error</code>: This connection can no longer be updated, the user may have changed their credentials or revoked access. Please take the user through a reauth flow.</li>
 </ul>
 <h2 id='delete-users-id-connection-connection-id'>DELETE /users/:id/connection/:connection-id</h2>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:delete</code>.
