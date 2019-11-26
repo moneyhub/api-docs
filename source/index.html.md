@@ -469,6 +469,18 @@ We advise that the above 2 scopes are used with the response_type of `id_token` 
 
 The only scope that can (and must) be supplied along with either `reauth` or `refresh` is `openid`. If any other scope is provided the result will be an `invalid_scope` error.
 
+### **Reauth**
+
+This flow should be used to:
+- Re authenticate an open banking connection once that the user's consent has expired.
+- Update the login credentials on a legacy connection.
+
+### **Refresh**
+
+This flow is available only for legacy connections when the input of the user might be required to fetch the latest data. This is usually the case when MFA or security questions are enabled on the bank site.
+
+This flow is not available for open banking connections as user input is never required to fetch the latest data, unless the consent has expired. If this is the case the reauth flow will need to be used to get a new consent.
+
 ## User management
 
 - `user:create` - this scope is only supported with the client credentials grant type. It allows a relying party to create a new user profile.
@@ -740,11 +752,11 @@ It gets information about all financial connections of a user.
 
 ### Connection errors
 
-- `resync`: "This connection hasn't been updated recently, most likely due to the requirement for the user to enter multi factor authentication. We advise getting the user to refresh manually.",
-- `sync_error`: "There was an error syncing this connection, we will try to resync later.",
-- `sync_partial`: "There was an error syncing some of the transactions on this account, we will try to resync later",
-- `mfa_required`: "This connection requires multi factor authentication and must be refreshed manually",
-- `credentials_error`: "This connection can no longer be updated, the user may have changed their credentials or revoked access. Please take the user through a refresh flow where they can "
+- `resync`: This connection hasn't been updated recently, most likely due to the requirement for the user to enter multi factor authentication. We advise to trigger a sync. If problem persists a reauth flow can be used for open banking connections and a refresh flow can be used for legacy connections.
+- `sync_error`: There was an error syncing this connection. Please wait for us to automatically resync this connection later or trigger a sync. If problem persists a reauth flow can be used for open banking connections and a refresh flow can be used for legacy connections.
+- `sync_partial`: There was an error syncing some of the transactions on this account. Please wait for us to automatically resync this connection later or trigger a sync.
+- `mfa_required`: This connection requires multi factor authentication and needs user input. Please take the user through a refresh flow.
+- `credentials_error`: This connection can no longer be updated, the user may have changed their credentials or revoked access. Please take the user through a reauth flow.
 
 ## DELETE /users/:id/connection/:connection-id
 
