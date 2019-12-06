@@ -1698,7 +1698,8 @@ Requires **accounts:write:all** scope.
 ```json
 {
   "code": "string",
-  "message": "string"
+  "message": "string",
+  "correlationId": "string"
 }
 ```
 
@@ -3103,11 +3104,25 @@ Status Code **200**
 |» data|[[Counterparty](#schemacounterparty)]|false|none|none|
 |»» id|string|true|none|The unique identifier for the counterparty.|
 |»» label|string|true|none|A label describing the counterparty|
-|» links|[Links](#schemalinks)|false|none|none|
-|»» next|string(uri)|false|none|The url to retrieve the next page of results from|
-|»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
-|»» self|string(uri)|true|none|The url of the current resource(s)|
-|» meta|object|false|none|none|
+|»» type|string|true|none|The type of counterpary (specific to an account, or globally recognoised accross all users)|
+|»» companyName|string|false|none|The full name of the company (only for global counterparties)|
+|»» logo|string|false|none|The url to the company logo (only for global counterparties)|
+|»» website|string|false|none|The url to the company website (only for global counterparties)|
+|»» mcc|object|false|none|none|
+|»»» code|string|false|none|The merchant category code (only for global counterparties)|
+|»»» name|string|false|none|The merchant category code name (only for global counterparties)|
+|»» links|[Links](#schemalinks)|false|none|none|
+|»»» next|string(uri)|false|none|The url to retrieve the next page of results from|
+|»»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
+|»»» self|string(uri)|true|none|The url of the current resource(s)|
+|»» meta|object|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|global|
+|type|local|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -4507,7 +4522,8 @@ Requires **transactions:write:all** scope.
 ```json
 {
   "code": "string",
-  "message": "string"
+  "message": "string",
+  "correlationId": "string"
 }
 ```
 
@@ -7014,7 +7030,8 @@ Requires **spending_goals:write:all** scope.
 ```json
 {
   "code": "string",
-  "message": "string"
+  "message": "string",
+  "correlationId": "string"
 }
 ```
 
@@ -8151,7 +8168,8 @@ Requires **savings_goals:write:all** scope.
 ```json
 {
   "code": "string",
-  "message": "string"
+  "message": "string",
+  "correlationId": "string"
 }
 ```
 
@@ -8163,6 +8181,230 @@ Requires **savings_goals:write:all** scope.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unsuccesful Response - Not authorised - Missing authorization header - Invalid access Token|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Unsuccesful Response - Forbidden - Invalid scopes|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Unsuccesful Response - Resource Not Found|[Error](#schemaerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+<h1 id="moneyhub-data-api-sync">sync</h1>
+
+## post__sync_{connectionId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://api.moneyhub.co.uk/v2.0/sync/{connectionId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: bearerToken'
+
+```
+
+```http
+POST https://api.moneyhub.co.uk/v2.0/sync/{connectionId} HTTP/1.1
+Host: api.moneyhub.co.uk
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'bearerToken'
+
+};
+
+$.ajax({
+  url: 'https://api.moneyhub.co.uk/v2.0/sync/{connectionId}',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "customerIpAddress": "104.25.212.99",
+  "customerLastLoggedTime": "2017-04-05T10:43:07+00:00"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'bearerToken'
+
+};
+
+fetch('https://api.moneyhub.co.uk/v2.0/sync/{connectionId}',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'Authorization' => 'bearerToken'
+}
+
+result = RestClient.post 'https://api.moneyhub.co.uk/v2.0/sync/{connectionId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Authorization': 'bearerToken'
+}
+
+r = requests.post('https://api.moneyhub.co.uk/v2.0/sync/{connectionId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://api.moneyhub.co.uk/v2.0/sync/{connectionId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"bearerToken"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://api.moneyhub.co.uk/v2.0/sync/{connectionId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /sync/{connectionId}`
+
+*Sync an existing connection*
+
+Requires **accounts:read** and either **accounts:write** or **account:write:all** scopes.
+
+> Body parameter
+
+```json
+{
+  "customerIpAddress": "104.25.212.99",
+  "customerLastLoggedTime": "2017-04-05T10:43:07+00:00"
+}
+```
+
+<h3 id="post__sync_{connectionid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|connectionId|path|string|true|The connection id|
+|body|body|[SyncPost](#schemasyncpost)|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "status": "ok"
+  },
+  "links": {
+    "next": "http://example.com",
+    "prev": "http://example.com",
+    "self": "http://example.com"
+  },
+  "meta": {}
+}
+```
+
+<h3 id="post__sync_{connectionid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Succesful Sync Response|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Unsuccessful Response - Bad request - Missing query parameters - Missing body properties|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unsuccesful Response - Not authorised - Missing authorization header - Invalid access Token|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Unsuccesful Response - Forbidden - Invalid scopes|[Error](#schemaerror)|
+
+<h3 id="post__sync_{connectionid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» data|object|false|none|none|
+|»» status|string|true|none|Status of the connection|
+|» links|[Links](#schemalinks)|false|none|none|
+|»» next|string(uri)|false|none|The url to retrieve the next page of results from|
+|»» prev|string(uri)|false|none|The url to retrieve the previous page of results from|
+|»» self|string(uri)|true|none|The url of the current resource(s)|
+|» meta|object|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|status|ok|
+|status|error|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -8996,6 +9238,20 @@ Bearer
 |---|---|---|---|---|
 |id|string|true|none|The unique identifier for the counterparty.|
 |label|string|true|none|A label describing the counterparty|
+|type|string|true|none|The type of counterpary (specific to an account, or globally recognoised accross all users)|
+|companyName|string|false|none|The full name of the company (only for global counterparties)|
+|logo|string|false|none|The url to the company logo (only for global counterparties)|
+|website|string|false|none|The url to the company website (only for global counterparties)|
+|mcc|object|false|none|none|
+|» code|string|false|none|The merchant category code (only for global counterparties)|
+|» name|string|false|none|The merchant category code name (only for global counterparties)|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|global|
+|type|local|
 
 <h2 id="tocSrecurringtransactionestimate">RecurringTransactionEstimate</h2>
 
@@ -9613,6 +9869,25 @@ Bearer
 |accounts|[object]|false|none|Accounts that will be taken into account towards the target amount.|
 |» id|string|true|none|Id of the account|
 
+<h2 id="tocSsyncpost">SyncPost</h2>
+
+<a id="schemasyncpost"></a>
+
+```json
+{
+  "customerIpAddress": "104.25.212.99",
+  "customerLastLoggedTime": "2017-04-05T10:43:07+00:00"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|customerIpAddress|string|false|none|The customer ip address if it is currently logged in|
+|customerLastLoggedTime|string|false|none|The time when the customer last logged in represened as ISO 8601 date-time format including timezone|
+
 <h2 id="tocSlinks">Links</h2>
 
 <a id="schemalinks"></a>
@@ -9641,7 +9916,8 @@ Bearer
 ```json
 {
   "code": "string",
-  "message": "string"
+  "message": "string",
+  "correlationId": "string"
 }
 
 ```
@@ -9652,4 +9928,5 @@ Bearer
 |---|---|---|---|---|
 |code|string|true|none|The error code|
 |message|string|false|none|The error message|
+|correlationId|string|false|none|Id that identifies the request and can be used to ask for more details related to the error|
 
