@@ -767,8 +767,8 @@ It gets information about all financial connections of a user.
 
 ### Connection errors
 
-- `resync`: This connection hasn't been updated recently, most likely due to the requirement for the user to enter multi factor authentication. We advise to trigger a sync. If problem persists a reauth flow can be used for open banking connections and a refresh flow can be used for legacy connections.
-- `sync_error`: There was an error syncing this connection. Please wait for us to automatically resync this connection later or trigger a sync. If problem persists a reauth flow can be used for open banking connections and a refresh flow can be used for legacy connections.
+- `resync`: This connection hasn't been updated recently, most likely due to the requirement for the user to enter multi factor authentication. We advise to trigger a sync. If problem persists a reauth flow can be used for api connections and a refresh flow can be used for legacy connections.
+- `sync_error`: There was an error syncing this connection. Please wait for us to automatically resync this connection later or trigger a sync. If problem persists a reauth flow can be used for api connections and a refresh flow can be used for legacy connections.
 - `sync_partial`: There was an error syncing some of the transactions on this account. Please wait for us to automatically resync this connection later or trigger a sync.
 - `mfa_required`: This connection requires multi factor authentication and needs user input. Please take the user through a refresh flow.
 - `credentials_error`: This connection can no longer be updated, the user may have changed their credentials or revoked access. Please take the user through a reauth flow.
