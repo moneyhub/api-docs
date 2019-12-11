@@ -1324,6 +1324,7 @@ It returns a single user associated with your api client.</p>
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b74f1a79f0be8bdb857d82d0f041d7d2:567da9db-7296-4dc0-8a99-7b20dea8d21f"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Modelo Open Banking Mock"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"connectedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-27T14:29:43.687Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"lastUpdated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-27T14:30:30.284Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-26T14:29:30.715Z"</span><span class="p">,</span><span class="w">
@@ -1334,8 +1335,22 @@ It returns a single user associated with your api client.</p>
       </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3c4637d3178c9a28ce655bfbf8e27a10:ae9cf42a-2fcb-40f1-a1ad-da0a5f1beed5"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aviva"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"legacy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"connectedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-23T18:29:43.687Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastUpdated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-23T18:30:30.284Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-22T12:29:30.715Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"ee429506-5565-4ee9-9c31-e375283c0497"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b74f1a79f0be8bdb857d82d0f041d7d2:6fbebd5e-fb2a-4814-bdaf-9a8871167f43"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nationwide Open Banking"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"connectedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-27T14:28:47.072Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"lastUpdated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-27T14:29:34.792Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-26T14:27:51.576Z"</span><span class="p">,</span><span class="w">
@@ -1359,8 +1374,8 @@ It gets information about all financial connections of a user.</p>
 </ul>
 <h3 id='connection-errors'>Connection errors</h3>
 <ul>
-<li><code>resync</code>: This connection hasn&#39;t been updated recently, most likely due to the requirement for the user to enter multi factor authentication. We advise to trigger a sync. If problem persists a reauth flow can be used for open banking connections and a refresh flow can be used for legacy connections.</li>
-<li><code>sync_error</code>: There was an error syncing this connection. Please wait for us to automatically resync this connection later or trigger a sync. If problem persists a reauth flow can be used for open banking connections and a refresh flow can be used for legacy connections.</li>
+<li><code>resync</code>: This connection hasn&#39;t been updated recently, most likely due to the requirement for the user to enter multi factor authentication. We advise to trigger a sync. If problem persists a reauth flow can be used for api connections and a refresh flow can be used for legacy connections.</li>
+<li><code>sync_error</code>: There was an error syncing this connection. Please wait for us to automatically resync this connection later or trigger a sync. If problem persists a reauth flow can be used for api connections and a refresh flow can be used for legacy connections.</li>
 <li><code>sync_partial</code>: There was an error syncing some of the transactions on this account. Please wait for us to automatically resync this connection later or trigger a sync.</li>
 <li><code>mfa_required</code>: This connection requires multi factor authentication and needs user input. Please take the user through a refresh flow.</li>
 <li><code>credentials_error</code>: This connection can no longer be updated, the user may have changed their credentials or revoked access. Please take the user through a reauth flow.</li>
