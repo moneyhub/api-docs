@@ -697,6 +697,7 @@ const connections = await moneyhub.getUserConnections("user-id")
     {
       "id": "b74f1a79f0be8bdb857d82d0f041d7d2:567da9db-7296-4dc0-8a99-7b20dea8d21f",
       "name": "Modelo Open Banking Mock",
+      "type": "test",
       "connectedOn": "2019-09-27T14:29:43.687Z",
       "lastUpdated": "2019-09-27T14:30:30.284Z",
       "expiresAt": "2019-12-26T14:29:30.715Z",
@@ -707,8 +708,22 @@ const connections = await moneyhub.getUserConnections("user-id")
       "error": null,
     },
     {
+      "id": "3c4637d3178c9a28ce655bfbf8e27a10:ae9cf42a-2fcb-40f1-a1ad-da0a5f1beed5",
+      "name": "Aviva",
+      "type": "legacy",
+      "connectedOn": "2019-09-23T18:29:43.687Z",
+      "lastUpdated": "2019-09-23T18:30:30.284Z",
+      "expiresAt": "2019-12-22T12:29:30.715Z",
+      "accountIds": [
+        "ee429506-5565-4ee9-9c31-e375283c0497"
+      ],
+      "status": "ok",
+      "error": null,
+    },
+    {
       "id": "b74f1a79f0be8bdb857d82d0f041d7d2:6fbebd5e-fb2a-4814-bdaf-9a8871167f43",
       "name": "Nationwide Open Banking",
+      "type": "api",
       "connectedOn": "2019-09-27T14:28:47.072Z",
       "lastUpdated": "2019-09-27T14:29:34.792Z",
       "expiresAt": "2019-12-26T14:27:51.576Z",
