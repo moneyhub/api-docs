@@ -1096,3 +1096,106 @@ It deletes a user and all of its financial connections that were created.</p>
 <aside class="notice">
 This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
 </aside>
+<h2 id='updated-transactions'>Updated transactions</h2>
+<p>Id: <code>updatedTransactions</code></p>
+
+<p>Event that notifies when an account has been automatically updated and transactions have been updated.</p>
+
+<p>The fields that can be updated are the status (pending|posted), description and/or amount.</p>
+<h3 id='event-payload-2'>Event Payload</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accounts</td>
+<td><code>array[object]</code></td>
+<td>Array of accounts that contain updated transactions</td>
+</tr>
+<tr>
+<td>» id</td>
+<td><code>string</code></td>
+<td>Account Id</td>
+</tr>
+<tr>
+<td>» transactions</td>
+<td><code>array[string]</code></td>
+<td>Array of transactions ids</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
+</aside>
+<h2 id='deleted-transactions'>Deleted transactions</h2>
+<p>Id: <code>deletedTransactions</code></p>
+
+<p>Event that notifies when an account has been automatically updated and transactions have been marked as deleted.</p>
+
+<p>This can happen when the financial institution marks a transaction as deleted or stop sending it.</p>
+<h3 id='event-payload-3'>Event Payload</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accounts</td>
+<td><code>array[object]</code></td>
+<td>Array of accounts that contain deleted transactions</td>
+</tr>
+<tr>
+<td>» id</td>
+<td><code>string</code></td>
+<td>Account Id</td>
+</tr>
+<tr>
+<td>» transactions</td>
+<td><code>array[string]</code></td>
+<td>Array of transactions ids</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
+</aside>
+<h2 id='restored-transactions'>Restored transactions</h2>
+<p>Id: <code>restoredTransactions</code></p>
+
+<p>Event that notifies when an account has been automatically updated and transactions have been restored.</p>
+
+<p>This event happens only when a transactions was previously marked as deleted but it has been restored.
+This is useful to resolve issues when the financial institutions fix data inconsistencies sent from their API.</p>
+<h3 id='event-payload-4'>Event Payload</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accounts</td>
+<td><code>array[object]</code></td>
+<td>Array of accounts that contain restored transactions</td>
+</tr>
+<tr>
+<td>» id</td>
+<td><code>string</code></td>
+<td>Account Id</td>
+</tr>
+<tr>
+<td>» transactions</td>
+<td><code>array[string]</code></td>
+<td>Array of transactions ids</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
+</aside>
