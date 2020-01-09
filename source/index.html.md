@@ -1140,6 +1140,67 @@ Event that notifies when an account has been automatically updated and new trans
 This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
 </aside>
 
+## Updated transactions
+
+Id: `updatedTransactions`
+
+Event that notifies when an account has been automatically updated and transactions have been updated.
+
+The fields that can be updated are the status (pending|posted), description and/or amount.
+
+### Event Payload
+
+| Name           | Type            | Description                                         |
+| -------------- | --------------- | -----------------------------------------------     |
+| accounts       | `array[object]` | Array of accounts that contain updated transactions |
+| » id           | `string`        | Account Id                                          |
+| » transactions | `array[string]` | Array of transactions ids                           |
+
+<aside class="notice">
+This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
+</aside>
+
+## Deleted transactions
+
+Id: `deletedTransactions`
+
+Event that notifies when an account has been automatically updated and transactions have been marked as deleted.
+
+This can happen when the financial institution marks a transaction as deleted or stop sending it.
+
+### Event Payload
+
+| Name           | Type            | Description                                         |
+| -------------- | --------------- | -----------------------------------------------     |
+| accounts       | `array[object]` | Array of accounts that contain deleted transactions |
+| » id           | `string`        | Account Id                                          |
+| » transactions | `array[string]` | Array of transactions ids                           |
+
+<aside class="notice">
+This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
+</aside>
+
+## Restored transactions
+
+Id: `restoredTransactions`
+
+Event that notifies when an account has been automatically updated and transactions have been restored.
+
+This event happens only when a transactions was previously marked as deleted but it has been restored.
+This is useful to resolve issues when the financial institutions fix data inconsistencies sent from their API.
+
+### Event Payload
+
+| Name           | Type            | Description                                         |
+| -------------- | --------------- | -----------------------------------------------     |
+| accounts       | `array[object]` | Array of accounts that contain restored transactions |
+| » id           | `string`        | Account Id                                          |
+| » transactions | `array[string]` | Array of transactions ids                           |
+
+<aside class="notice">
+This event is not sent on the initial connection to a financial institution or when reauthorising a connection.
+</aside>
+
 
 <h1 id="moneyhub-data-api">Moneyhub Data API v2.0.0</h1>
 
