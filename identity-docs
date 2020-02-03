@@ -664,6 +664,25 @@ Content-Type: application/json
 <h2 id='get-users'>GET /users</h2>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
 It returns an array of all the users associated with your api client.</p>
+
+<table><thead>
+<tr>
+<th>Query parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td><code>number</code></td>
+<td>Set the number of records to be retrieved (Default: 100)</td>
+</tr>
+<tr>
+<td>offset</td>
+<td><code>number</code></td>
+<td>By specifying offset, you retrieve a subset of records starting with the offset value (Default: 0)</td>
+</tr>
+</tbody></table>
 <h2 id='get-users-id'>GET /users/:id</h2>
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:read</code>.
 It returns a single user associated with your api client.</p>
@@ -845,6 +864,25 @@ It deletes a user and all of its financial connections that were created.</p>
 <p>This route requires an access token from the client credentials grant with the scope of <code>payee:read</code>.</p>
 
 <p>It returns all the payees that have been created for an specific API client.</p>
+
+<table><thead>
+<tr>
+<th>Query parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td><code>number</code></td>
+<td>Set the number of records to be retrieved (Default: 10)</td>
+</tr>
+<tr>
+<td>offset</td>
+<td><code>number</code></td>
+<td>By specifying offset, you retrieve a subset of records starting with the offset value (Default: 0)</td>
+</tr>
+</tbody></table>
 <h2 id='payments-claim'>Payments Claim</h2>
 <blockquote>
 <p>Claim values</p>
@@ -978,6 +1016,25 @@ It deletes a user and all of its financial connections that were created.</p>
 <p>It returns all the payments that have been initiated by an API client regardless if they were authorised or not. Payments that have been authorised have the properties <code>exchangedAt</code> and <code>connectionId</code>.</p>
 
 <p>This route requires an access token from the client credentials grant with the scope of <code>payment:read</code>.</p>
+
+<table><thead>
+<tr>
+<th>Query parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td><code>number</code></td>
+<td>Set the number of records to be retrieved (Default: 10)</td>
+</tr>
+<tr>
+<td>offset</td>
+<td><code>number</code></td>
+<td>By specifying offset, you retrieve a subset of records starting with the offset value (Default: 0)</td>
+</tr>
+</tbody></table>
 <h2 id='get-payments-id'>GET /payments:id</h2>
 <blockquote>
 <p>Example request using moneyhub api client</p>
