@@ -676,6 +676,11 @@ It accepts a JSON body with a single parameter: `clientUserId`. This is optional
 This route requires an access token from the client credentials grant with the scope of `user:read`.
 It returns an array of all the users associated with your api client.
 
+| Query parameters | Type      | Description                                                                                            |
+| ---------------- | --------- | ------------------------------------------------------------------------------------------------------ |
+| limit            | `number`  | Set the number of records to be retrieved (Default: 100)                                               |
+| offset           | `number`  | By specifying offset, you retrieve a subset of records starting with the offset value (Default: 0)     |
+
 ## GET /users/:id
 
 This route requires an access token from the client credentials grant with the scope of `user:read`.
@@ -877,6 +882,11 @@ This route requires an access token from the client credentials grant with the s
 
 It returns all the payees that have been created for an specific API client.
 
+| Query parameters | Type      | Description                                                                                            |
+| ---------------- | --------- | ------------------------------------------------------------------------------------------------------ |
+| limit            | `number`  | Set the number of records to be retrieved (Default: 10)                                                |
+| offset           | `number`  | By specifying offset, you retrieve a subset of records starting with the offset value (Default: 0)     |
+
 ## Payments Claim
 
 > Claim values
@@ -1029,6 +1039,11 @@ curl --request GET \
 It returns all the payments that have been initiated by an API client regardless if they were authorised or not. Payments that have been authorised have the properties `exchangedAt` and `connectionId`.
 
 This route requires an access token from the client credentials grant with the scope of `payment:read`.
+
+| Query parameters | Type      | Description                                                                                            |
+| ---------------- | --------- | ------------------------------------------------------------------------------------------------------ |
+| limit            | `number`  | Set the number of records to be retrieved (Default: 10)                                                |
+| offset           | `number`  | By specifying offset, you retrieve a subset of records starting with the offset value (Default: 0)     |
 
 ## GET /payments:id
 
