@@ -161,19 +161,13 @@ Ideally a production API client should have the following settings:
 2. Client Authentication configured to be `private_key_jwt`
 3. Request Object signing alg configured to be one of the RS*, ES* or PS\* algorithms
 4. ID token signing alg configured to be one of the RS*, ES* or PS\* algorithms
-5. Response type set to be `code id_token`
-6. Grant types to be authorization_code, refresh_token, client_credentials and implicit
+5. Response type set to be `code`
+6. Grant types to be authorization_code, refresh_token and client_credentials
 7. Redirect uris are required to be https://
 
-This settings will require the following changes in the auth flow if the authentication that was used previously was `client_secret_basic`:
-
-1. Allowing an `implicit` grant type in the settings requires:
+These are a couple of security enhanncemnets that can be implemented on your side:
    - A nonce to be added to the request object when generating an authorization url ([OpenId Nonce](https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes))
    - The same nonce value needs to be used when exchanging the authorization code for the token set at the end of the authorization process.
-2. Having a response type of `code id_token` will cause the following changes:
-
-- You will receive the code and id token encoded in the fragment part of your registered callback instead of receiving it as query params. This is a security enhancement as this way it reduces the likelihood of the id token to be leaked during transport.
-- The id_token will need to be used when exchanging the authorization code for the token set at the end of the authorization process.
 
 ## JWKS Key Set
 
