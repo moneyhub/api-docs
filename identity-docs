@@ -160,27 +160,14 @@ We will then generate a <code>client_id</code> and <code>client_secret</code> co
 <li>Client Authentication configured to be <code>private_key_jwt</code></li>
 <li>Request Object signing alg configured to be one of the RS*, ES* or PS* algorithms</li>
 <li>ID token signing alg configured to be one of the RS*, ES* or PS* algorithms</li>
-<li>Response type set to be <code>code id_token</code></li>
-<li>Grant types to be authorization_code, refresh_token, client_credentials and implicit</li>
+<li>Response type set to be <code>code</code></li>
+<li>Grant types to be authorization_code, refresh_token and client_credentials</li>
 <li>Redirect uris are required to be https://</li>
 </ol>
 
-<p>This settings will require the following changes in the auth flow if the authentication that was used previously was <code>client_secret_basic</code>:</p>
-
-<ol>
-<li>Allowing an <code>implicit</code> grant type in the settings requires:
-
-<ul>
-<li>A nonce to be added to the request object when generating an authorization url (<a href="https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes">OpenId Nonce</a>)</li>
-<li>The same nonce value needs to be used when exchanging the authorization code for the token set at the end of the authorization process.</li>
-</ul></li>
-<li>Having a response type of <code>code id_token</code> will cause the following changes:</li>
-</ol>
-
-<ul>
-<li>You will receive the code and id token encoded in the fragment part of your registered callback instead of receiving it as query params. This is a security enhancement as this way it reduces the likelihood of the id token to be leaked during transport.</li>
-<li>The id_token will need to be used when exchanging the authorization code for the token set at the end of the authorization process.</li>
-</ul>
+<p>These are a couple of security enhanncemnets that can be implemented on your side:
+   - A nonce to be added to the request object when generating an authorization url (<a href="https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes">OpenId Nonce</a>)
+   - The same nonce value needs to be used when exchanging the authorization code for the token set at the end of the authorization process.</p>
 <h2 id='jwks-key-set'>JWKS Key Set</h2>
 <blockquote>
 <p>Example creating JWKS key set using the Moneyhub api client</p>
