@@ -2894,7 +2894,7 @@ func main() {
 
 *Delete a single account*
 
-Requires **accounts:write:all** scope.
+This endpoint can only be used to delete accounts created using the POST /accounts endpoint. Accounts created when connecting to a financial institution can only be deleted by removing the connection they belong to. Requires **accounts:write:all** scope.
 
 <h3 id="delete__accounts_{accountid}-parameters">Parameters</h3>
 
