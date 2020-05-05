@@ -5487,7 +5487,7 @@ curl -X DELETE https://api.moneyhub.co.uk/v2.0/accounts/<span class="o">{</span>
 
 <p><em>Delete a single account</em></p>
 
-<p>Requires <strong>accounts:write:all</strong> scope.</p>
+<p>This endpoint can only be used to delete accounts created using the POST /accounts endpoint. Accounts created when connecting to a financial institution can only be deleted by removing the connection they belong to. Requires <strong>accounts:write:all</strong> scope.</p>
 
 <h3 id="delete__accounts_{accountid}-parameters">Parameters</h3>
 
