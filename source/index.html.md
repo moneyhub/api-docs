@@ -1048,6 +1048,40 @@ curl --request GET \
   --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'
 ```
 
+> Example response
+
+```json
+{
+  "data": [
+    {
+      "id": "b4805496-154d-4592-8f67-88aebb7460e1",
+      "payeeId": "258aaee5-0f1a-441c-8008-b57c2391767d",
+      "payerRef": "Payer ref",
+      "paymentSubmissionId": "258aaee5-0f1a-441c-8008-b57c2391767d",
+      "amount": 100,
+      "currency": "GBP",
+      "status": "completed",
+      "finalisedAt": "2020-04-22T13:52:53.380Z",
+      "initiatedAt": "2020-04-22T13:50:39.607Z"
+    },
+    {
+      "id": "00c13805-0a92-48ba-967a-b44dfcf2053d",
+      "payeeId": "258aaee5-0f1a-441c-8008-b57c2391767d",
+      "payerRef": "Payer ref 456",
+      "paymentSubmissionId": "44e92d3c-d022-4f5a-a835-14b14ea1ed25",
+      "amount": 100,
+      "currency": "GBP",
+      "status": "inProgress",
+      "finalisedAt": "2019-09-23T14:58:51.848Z",
+      "initiatedAt": "2019-09-23T14:58:51.952Z"
+    }
+ ],
+  "meta": {
+    "limit": 10,
+    "offset": 0
+  }
+}
+
 It returns all the payments that have been initiated by an API client regardless if they were authorised or not. Payments that have been authorised have the properties `exchangedAt` and `connectionId`.
 
 This route requires an access token from the client credentials grant with the scope of `payment:read`.
