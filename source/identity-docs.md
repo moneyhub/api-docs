@@ -1063,6 +1063,7 @@ curl --request GET \
     "offset": 0
   }
 }
+```
 
 It returns all the payments that have been initiated by an API client regardless if they were authorised or not. Payments that have been authorised have the properties `exchangedAt` and `connectionId`.
 
