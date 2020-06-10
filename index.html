@@ -893,7 +893,7 @@ Options
 </blockquote>
 <pre class="highlight sh tab-shell"><code>curl -X POST <span class="se">\</span>
   <span class="s1">'https://identity.moneyhub.co.uk/oidc/token'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: Basic Base64_encode(&lt;client_id&gt;:&lt;client_secret&gt;'</span><span class="se">\</span>
+  -H <span class="s1">'Authorization: Basic Base64_encode(&lt;client_id&gt;:&lt;client_secret&gt;)'</span><span class="se">\</span>
   -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
   -d <span class="s1">'grant_type=client_credentials&amp;scope=user%3Acreate'</span>
 </code></pre>
@@ -902,7 +902,7 @@ Options
 </blockquote>
 <pre class="highlight sh tab-shell"><code>curl -X POST <span class="se">\</span>
   <span class="s1">'https://identity.moneyhub.co.uk/oidc/token'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: Basic Base64_encode(&lt;client_id&gt;:&lt;client_secret&gt;'</span><span class="se">\</span>
+  -H <span class="s1">'Authorization: Basic Base64_encode(&lt;client_id&gt;:&lt;client_secret&gt;)'</span><span class="se">\</span>
   -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
   -d <span class="s1">'grant_type=client_credentials&amp;scope=accounts%3Aread&amp;sub=example-user-id'</span>
 </code></pre>
@@ -1403,7 +1403,12 @@ will delete any data associated with it from our API. (e.g. accounts, transactio
 <p>This route requires an access token from the client credentials grant with the scope of <code>user:delete</code>.
 It deletes a user and all of its financial connections that were created.</p>
 <h1 id='payments-2'>Payments</h1>
-<p>Moneyhub access to payments uses the same OpenID Connect authorisation service as access to financial data.</p>
+<p>Moneyhub access to payments uses the same OpenID Connect authorisation service as access to financial data, with some additional requirements to client configuration:</p>
+
+<ul>
+<li>A valid <a href="#jwks-key-set">JWKS</a></li>
+<li>A <code>request_object_signing_alg</code> not equal to <code>none</code></li>
+</ul>
 
 <p>There are three additional features that enable payments to be initiated:</p>
 
@@ -1597,7 +1602,7 @@ It deletes a user and all of its financial connections that were created.</p>
   <span class="na">amount</span><span class="p">:</span> <span class="s2">"Amount in pence to authorize payment"</span>
   <span class="na">payeeRef</span><span class="p">:</span> <span class="s2">"Payee reference"</span><span class="p">,</span>
   <span class="na">payerRef</span><span class="p">:</span> <span class="s2">"Payer reference"</span><span class="p">,</span>
-  <span class="na">state</span><span class="p">:</span> <span class="s2">"your state value"</span><span class="p">,</span> <span class="c1">// optional</span>
+  <span class="na">state</span><span class="p">:</span> <span class="s2">"your state value"</span><span class="p">,</span>
   <span class="na">nonce</span><span class="p">:</span> <span class="s2">"your nonce value"</span><span class="p">,</span> <span class="c1">// optional</span>
   <span class="na">claims</span><span class="p">:</span> <span class="nx">claimsObject</span><span class="p">,</span> <span class="c1">// optional</span>
 <span class="p">})</span>
@@ -1608,10 +1613,15 @@ It deletes a user and all of its financial connections that were created.</p>
 <p>Exchanging an authorization code for a token set using our api client</p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">moneyhub</span><span class="p">.</span><span class="nx">exchangeCodeForTokens</span><span class="p">({</span>
-  <span class="na">code</span><span class="p">:</span> <span class="s2">"the authorization code"</span><span class="p">,</span>
-  <span class="na">nonce</span><span class="p">:</span> <span class="s2">"your nonce value"</span><span class="p">,</span> <span class="c1">// optional</span>
-  <span class="na">state</span><span class="p">:</span> <span class="s2">"your state value"</span><span class="p">,</span> <span class="c1">// optional</span>
-  <span class="na">id_token</span><span class="p">:</span> <span class="s2">"your id token"</span><span class="p">,</span> <span class="c1">// optional</span>
+  <span class="na">localParams</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">nonce</span><span class="p">:</span> <span class="s2">"your nonce value"</span><span class="p">,</span>
+    <span class="na">state</span><span class="p">:</span> <span class="s2">"your state value"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">paramsFromCallback</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">code</span><span class="p">:</span> <span class="s2">"code param from callback"</span><span class="p">,</span>
+    <span class="na">state</span><span class="p">:</span> <span class="s2">"state from callback"</span><span class="p">,</span>
+    <span class="na">id_token</span><span class="p">:</span> <span class="s2">"id_token from callback"</span><span class="p">,</span>
+  <span class="p">},</span>
 <span class="p">})</span>
 </code></pre>
 <p>Once the user has successfully granted Moneyhub consent to initiate the payment and authenticated at the bank we will return an authorization code to your <code>redirect_uri</code>. This must be exchanged for an access token as per standard OpenID Connect practice. If you don&#39;t exchange the auth code for an access token, the payment will never be completed even though the user has authenticated it.</p>
@@ -1720,6 +1730,21 @@ It deletes a user and all of its financial connections that were created.</p>
 <pre class="highlight sh tab-shell"><code>curl --request GET <span class="se">\</span>
   --url https://identity.moneyhub.co.uk/payments/payment-id <span class="se">\</span>
   --header <span class="s1">'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'</span>
+</code></pre><pre class="highlight plaintext"><code>{
+  "data":
+    {
+      "id": "00c13805-0a92-48ba-967a-b44dfcf2053d",
+      "payeeId": "258aaee5-0f1a-441c-8008-b57c2391767d",
+      "payerRef": "Payer ref 456",
+      "paymentSubmissionId": "44e92d3c-d022-4f5a-a835-14b14ea1ed25",
+      "amount": 100,
+      "currency": "GBP",
+      "status": "inProgress",
+      "finalisedAt": "2019-09-23T14:58:51.848Z",
+      "initiatedAt": "2019-09-23T14:58:51.952Z"
+    }
+  "meta": {}
+}
 </code></pre>
 <p>It returns a single payment that was initiated by an API client. This route is useful to query the status of a payment as it contains a <code>status</code> field.</p>
 
