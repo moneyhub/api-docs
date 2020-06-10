@@ -252,7 +252,7 @@ We support the use of request objects and the claims parameter at this endpoint.
 ```sh
 curl -X POST \
   'https://identity.moneyhub.co.uk/oidc/token' \
-  -H 'Authorization: Basic Base64_encode(<client_id>:<client_secret>'\
+  -H 'Authorization: Basic Base64_encode(<client_id>:<client_secret>)'\
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'grant_type=client_credentials&scope=user%3Acreate'
 ```
@@ -262,7 +262,7 @@ curl -X POST \
 ```sh
 curl -X POST \
   'https://identity.moneyhub.co.uk/oidc/token' \
-  -H 'Authorization: Basic Base64_encode(<client_id>:<client_secret>'\
+  -H 'Authorization: Basic Base64_encode(<client_id>:<client_secret>)'\
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'grant_type=client_credentials&scope=accounts%3Aread&sub=example-user-id'
 ```
@@ -767,7 +767,10 @@ It deletes a user and all of its financial connections that were created.
 
 # Payments
 
-Moneyhub access to payments uses the same OpenID Connect authorisation service as access to financial data.
+Moneyhub access to payments uses the same OpenID Connect authorisation service as access to financial data, with some additional requirements to client configuration:
+
+- A valid [JWKS](#jwks-key-set)
+- A `request_object_signing_alg` not equal to `none`
 
 There are three additional features that enable payments to be initiated:
 
@@ -966,7 +969,7 @@ const url = await moneyhub.getPaymentAuthorizeUrl({
   amount: "Amount in pence to authorize payment"
   payeeRef: "Payee reference",
   payerRef: "Payer reference",
-  state: "your state value", // optional
+  state: "your state value",
   nonce: "your nonce value", // optional
   claims: claimsObject, // optional
 })
@@ -978,10 +981,15 @@ To authorise a payment the user needs to be redirected to the authorization url 
 
 ```js
 const tokens = await moneyhub.exchangeCodeForTokens({
-  code: "the authorization code",
-  nonce: "your nonce value", // optional
-  state: "your state value", // optional
-  id_token: "your id token", // optional
+  localParams: {
+    nonce: "your nonce value",
+    state: "your state value",
+  },
+  paramsFromCallback: {
+    code: "code param from callback",
+    state: "state from callback",
+    id_token: "id_token from callback",
+  },
 })
 ```
 
@@ -1088,6 +1096,24 @@ const tokens = await moneyhub.getPayment("payment-id")
 curl --request GET \
   --url https://identity.moneyhub.co.uk/payments/payment-id \
   --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkQ5SkF (... abbreviated for brevity ...)'
+```
+
+```
+{
+  "data":
+    {
+      "id": "00c13805-0a92-48ba-967a-b44dfcf2053d",
+      "payeeId": "258aaee5-0f1a-441c-8008-b57c2391767d",
+      "payerRef": "Payer ref 456",
+      "paymentSubmissionId": "44e92d3c-d022-4f5a-a835-14b14ea1ed25",
+      "amount": 100,
+      "currency": "GBP",
+      "status": "inProgress",
+      "finalisedAt": "2019-09-23T14:58:51.848Z",
+      "initiatedAt": "2019-09-23T14:58:51.952Z"
+    }
+  "meta": {}
+}
 ```
 
 It returns a single payment that was initiated by an API client. This route is useful to query the status of a payment as it contains a `status` field.
