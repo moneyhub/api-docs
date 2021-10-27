@@ -23,7 +23,7 @@ under the License.
   end
 %>
 
-<% SECTIONS_TO_SEPARATE = ["Moneyhub Data API v2.0.0"] %>
+<% sections_to_separate = ["Moneyhub Data API v2.0.0"] %>
 
 <!doctype html>
 <html>
@@ -74,7 +74,7 @@ under the License.
       <% end %>
       <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
-          <% if SECTIONS_TO_SEPARATE.include? h1[:title] %>
+          <% if sections_to_separate.include? h1[:title] %>
             <li class="separator" />
           <% end %>
           <li>
