@@ -19,4 +19,4 @@ headingLevel: 2
 
 # Moneyhub API Docs
 
-Our documentation has a new home here: [Moneyhub API Docs](https://docs.moneyhubenterprise.com/docs)
+Our documentation has a new home here: [Moneyhub API Docs](https://www.notion.so/Moneyhub-API-Docs-26fa35dba2a64cf08116cbd6fe844488)
